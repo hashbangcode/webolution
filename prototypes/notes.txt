@@ -1,0 +1,3 @@
+http://www.bekirdag.com/en/php_mysql/a_hello_world_genetic_algorithm_example_in_php.html
+
+https://github.com/apssouza22/image-edit/blob/master/Color.class.php

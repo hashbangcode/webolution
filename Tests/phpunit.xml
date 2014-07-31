@@ -1,0 +1,14 @@
+<phpunit>
+  <logging>
+    <log type="coverage-html" target="/Users/philipnorton/Development/evolution/Tests/coverage" charset="UTF-8"
+         yui="true" highlight="true"
+         lowUpperBound="35" highLowerBound="70"/>
+  </logging>
+
+  <filter>
+    <whitelist>
+      <directory suffix=".php">/Users/philipnorton/Development/evolution/includes</directory>
+    </whitelist>
+  </filter>
+
+</phpunit>
