@@ -83,15 +83,12 @@ class PHPUnit_Framework_Comparator_DOMNode extends PHPUnit_Framework_Comparator_
      *                                                          fails. Contains information about the
      *                                                          specific errors that lead to the failure.
      */
-    public function assertEquals($expected, $actual, $delta = 0, $canonicalize = false, $ignoreCase = false)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
     {
-        $expectedXML = $expected->C14N();
-        $actualXML = $actual->C14N();
-        if ($ignoreCase === true) {
-            $expectedXML = strtolower($expectedXML);
-            $actualXML = strtolower($actualXML);
-        }
-        if ($expectedXML !== $actualXML) {
+        $expectedAsString = $this->nodeToText($expected, true, $ignoreCase);
+        $actualAsString   = $this->nodeToText($actual, true, $ignoreCase);
+
+        if ($expectedAsString !== $actualAsString) {
             if ($expected instanceof DOMDocument) {
                 $type = 'documents';
             } else {
@@ -101,10 +98,10 @@ class PHPUnit_Framework_Comparator_DOMNode extends PHPUnit_Framework_Comparator_
             throw new PHPUnit_Framework_ComparisonFailure(
               $expected,
               $actual,
-              $this->domToText($expected),
-              $this->domToText($actual),
+              $expectedAsString,
+              $actualAsString,
               false,
-              sprintf('Failed asserting that two DOM %s are equal.', $type)
+              sprintf("Failed asserting that two DOM %s are equal.\n", $type)
             );
         }
     }
@@ -114,10 +111,19 @@ class PHPUnit_Framework_Comparator_DOMNode extends PHPUnit_Framework_Comparator_
      * representation of a DOMNode.
      *
      * @param  DOMNode $node
+     * @param  boolean $canonicalize
+     * @param  boolean $ignoreCase
      * @return string
      */
-    protected function domToText(DOMNode $node)
+    private function nodeToText(DOMNode $node, $canonicalize, $ignoreCase)
     {
+        if ($canonicalize) {
+            $document = new DOMDocument;
+            $document->loadXML($node->C14N());
+
+            $node = $document;
+        }
+
         if ($node instanceof DOMDocument) {
             $document = $node;
         } else {
@@ -128,9 +134,15 @@ class PHPUnit_Framework_Comparator_DOMNode extends PHPUnit_Framework_Comparator_
         $document->normalizeDocument();
 
         if ($node instanceof DOMDocument) {
-            return $node->saveXML();
+            $text = $node->saveXML();
+        } else {
+            $text = $document->saveXML($node);
         }
 
-        return $document->saveXML($node);
+        if ($ignoreCase) {
+            $text = strtolower($text);
+        }
+
+        return $text;
     }
 }
