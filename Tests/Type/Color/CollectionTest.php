@@ -1,21 +1,21 @@
 <?php
 
-require_once '../includes/Color.php';
-require_once '../includes/ColorCollection.php';
+use Hashbangcode\Wevolution\Type\Color\Collection;
+use Hashbangcode\Wevolution\Type\Color\Color;
 
 /**
- * Test class for ColorCollection
+ * Test class for Collection
  */
-class ColorCollectionTest extends PHPUnit_Framework_TestCase
+class CollectionTest extends PHPUnit_Framework_TestCase
 {
 
   public function testEmptyCollection() {
-    $colorCollection = new ColorCollection();
+    $colorCollection = new Collection();
     $this->assertEquals(0, $colorCollection->getLength());
   }
 
   public function testAddItemCollection() {
-    $colorCollection = new ColorCollection();
+    $colorCollection = new Collection();
 
     $color = Color::generateRandomColor();
 
@@ -25,7 +25,7 @@ class ColorCollectionTest extends PHPUnit_Framework_TestCase
   }
 
   public function testAddItemsToCollection() {
-    $colorCollection = new ColorCollection();
+    $colorCollection = new Collection();
 
     $colorCollection->add(Color::generateRandomColor());
     $colorCollection->add(Color::generateRandomColor());
@@ -35,7 +35,7 @@ class ColorCollectionTest extends PHPUnit_Framework_TestCase
   }
 
   public function testSortByHue() {
-    $colorCollection = new ColorCollection();
+    $colorCollection = new Collection();
 
     $colorCollection->add(new Color(0, 0, 255));
     $colorCollection->add(new Color(0, 0, 0));
@@ -49,14 +49,14 @@ class ColorCollectionTest extends PHPUnit_Framework_TestCase
   }
 
   public function testColorIteration() {
-    $colorCollection = new ColorCollection();
+    $colorCollection = new Collection();
 
     $colorCollection->add(Color::generateRandomColor());
     $colorCollection->add(Color::generateRandomColor());
     $colorCollection->add(Color::generateRandomColor());
 
     foreach ($colorCollection->getColors() as $color) {
-      $this->assertInstanceOf('Color', $color);
+      $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $color);
     }
   }
 

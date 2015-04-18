@@ -1,7 +1,7 @@
 <?php
 
-require_once '../includes/Color.php';
-require_once '../includes/EvolutionColor.php';
+require_once '../src/Color.php';
+require_once '../src/EvolutionColor.php';
 
 /**
  * Test class for Color

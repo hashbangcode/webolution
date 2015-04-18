@@ -1,5 +1,7 @@
 <?php
 
+namespace Hashbangcode\Wevolution\Type\Color;
+
 /**
  * Class Color
  */
@@ -33,7 +35,7 @@ class Color
    * @param $green integer The green level.
    * @param $blue integer The blue level.
    */
-  public function Color($red, $green, $blue)
+  public function __construct($red, $green, $blue)
   {
     if ($red < 0 && $red > 255) {
 

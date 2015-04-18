@@ -1,6 +1,6 @@
 <?php
 
-require_once '../includes/Color.php';
+use Hashbangcode\Wevolution\Type\Color\Color;
 
 /**
  * Test class for Color

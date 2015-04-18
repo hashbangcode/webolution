@@ -1,16 +1,18 @@
 <?php
 
+namespace Hashbangcode\Wevolution\Type\Color;
+
 /**
- * Class ColorCollection
+ * Class Collection
  */
-class ColorCollection
+class Collection
 {
 
   private $length = 0;
 
   private $colors = array();
 
-  public function ColorCollection() {
+  public function __construct() {
 
   }
 

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Wevolution Test Suite" tests="92" assertions="1717" failures="0" errors="0" time="0.035865">
+    <testsuite name="ColorIndividualTest" file="/Users/philipnorton42/Development/webolution/tests/Evolution/Individual/ColorIndividualTest.php" tests="1" assertions="1" failures="0" errors="0" time="0.001433">
+      <testcase name="testCreateColorIndividual" class="ColorIndividualTest" file="/Users/philipnorton42/Development/webolution/tests/Evolution/Individual/ColorIndividualTest.php" line="11" assertions="1" time="0.001433"/>
+    </testsuite>
+    <testsuite name="CollectionTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/CollectionTest.php" tests="5" assertions="6" failures="0" errors="0" time="0.002247">
+      <testcase name="testEmptyCollection" class="CollectionTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/CollectionTest.php" line="12" assertions="1" time="0.001885"/>
+      <testcase name="testAddItemCollection" class="CollectionTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/CollectionTest.php" line="17" assertions="1" time="0.000107"/>
+      <testcase name="testAddItemsToCollection" class="CollectionTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/CollectionTest.php" line="27" assertions="1" time="0.000081"/>
+      <testcase name="testSortByHue" class="CollectionTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/CollectionTest.php" line="37" assertions="0" time="0.000094"/>
+      <testcase name="testColorIteration" class="CollectionTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/CollectionTest.php" line="51" assertions="3" time="0.000080"/>
+    </testsuite>
+    <testsuite name="ColorTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/ColorTest.php" tests="85" assertions="1709" failures="0" errors="0" time="0.031965">
+      <testcase name="testCreateColorFromStrings" class="ColorTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/ColorTest.php" line="11" assertions="3" time="0.000118"/>
+      <testcase name="testCreateColorFromIntegers" class="ColorTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/ColorTest.php" line="19" assertions="3" time="0.000086"/>
+      <testcase name="testGenerateColorFromHex" class="ColorTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/ColorTest.php" line="27" assertions="3" time="0.000097"/>
+      <testcase name="testGenerateFromHSL" class="ColorTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/ColorTest.php" line="36" assertions="3" time="0.000117"/>
+      <testcase name="testGenerateRandomColor" class="ColorTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/ColorTest.php" line="45" assertions="12" time="0.001150"/>
+      <testcase name="testRandomiseColor" class="ColorTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/ColorTest.php" line="58" assertions="12" time="0.000308"/>
+      <testcase name="testColorMutation" class="ColorTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/ColorTest.php" line="74" assertions="12" time="0.000225"/>
+      <testcase name="testLargeColorMutation" class="ColorTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Color/ColorTest.php" line="89" assertions="1200" time="0.019233"/>
+      <testsuite name="ColorTest::testGenerateHexThenWithHSLWithDataProvider" tests="16" assertions="192" failures="0" errors="0" time="0.003809">
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #0" assertions="12" time="0.000328"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #1" assertions="12" time="0.000314"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #2" assertions="12" time="0.000297"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #3" assertions="12" time="0.000289"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #4" assertions="12" time="0.000280"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #5" assertions="12" time="0.000276"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #6" assertions="12" time="0.000220"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #7" assertions="12" time="0.000213"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #8" assertions="12" time="0.000196"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #9" assertions="12" time="0.000198"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #10" assertions="12" time="0.000201"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #11" assertions="12" time="0.000200"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #12" assertions="12" time="0.000200"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #13" assertions="12" time="0.000201"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #14" assertions="12" time="0.000198"/>
+        <testcase name="testGenerateHexThenWithHSLWithDataProvider with data set #15" assertions="12" time="0.000198"/>
+      </testsuite>
+      <testsuite name="ColorTest::testGenerateWithHsl" tests="16" assertions="96" failures="0" errors="0" time="0.001973">
+        <testcase name="testGenerateWithHsl with data set #0" assertions="6" time="0.000128"/>
+        <testcase name="testGenerateWithHsl with data set #1" assertions="6" time="0.000122"/>
+        <testcase name="testGenerateWithHsl with data set #2" assertions="6" time="0.000124"/>
+        <testcase name="testGenerateWithHsl with data set #3" assertions="6" time="0.000130"/>
+        <testcase name="testGenerateWithHsl with data set #4" assertions="6" time="0.000127"/>
+        <testcase name="testGenerateWithHsl with data set #5" assertions="6" time="0.000122"/>
+        <testcase name="testGenerateWithHsl with data set #6" assertions="6" time="0.000122"/>
+        <testcase name="testGenerateWithHsl with data set #7" assertions="6" time="0.000123"/>
+        <testcase name="testGenerateWithHsl with data set #8" assertions="6" time="0.000121"/>
+        <testcase name="testGenerateWithHsl with data set #9" assertions="6" time="0.000120"/>
+        <testcase name="testGenerateWithHsl with data set #10" assertions="6" time="0.000122"/>
+        <testcase name="testGenerateWithHsl with data set #11" assertions="6" time="0.000121"/>
+        <testcase name="testGenerateWithHsl with data set #12" assertions="6" time="0.000123"/>
+        <testcase name="testGenerateWithHsl with data set #13" assertions="6" time="0.000123"/>
+        <testcase name="testGenerateWithHsl with data set #14" assertions="6" time="0.000123"/>
+        <testcase name="testGenerateWithHsl with data set #15" assertions="6" time="0.000122"/>
+      </testsuite>
+      <testsuite name="ColorTest::testGenerateWithHsv" tests="16" assertions="96" failures="0" errors="0" time="0.002056">
+        <testcase name="testGenerateWithHsv with data set #0" assertions="6" time="0.000136"/>
+        <testcase name="testGenerateWithHsv with data set #1" assertions="6" time="0.000126"/>
+        <testcase name="testGenerateWithHsv with data set #2" assertions="6" time="0.000129"/>
+        <testcase name="testGenerateWithHsv with data set #3" assertions="6" time="0.000129"/>
+        <testcase name="testGenerateWithHsv with data set #4" assertions="6" time="0.000129"/>
+        <testcase name="testGenerateWithHsv with data set #5" assertions="6" time="0.000128"/>
+        <testcase name="testGenerateWithHsv with data set #6" assertions="6" time="0.000128"/>
+        <testcase name="testGenerateWithHsv with data set #7" assertions="6" time="0.000129"/>
+        <testcase name="testGenerateWithHsv with data set #8" assertions="6" time="0.000125"/>
+        <testcase name="testGenerateWithHsv with data set #9" assertions="6" time="0.000125"/>
+        <testcase name="testGenerateWithHsv with data set #10" assertions="6" time="0.000129"/>
+        <testcase name="testGenerateWithHsv with data set #11" assertions="6" time="0.000133"/>
+        <testcase name="testGenerateWithHsv with data set #12" assertions="6" time="0.000128"/>
+        <testcase name="testGenerateWithHsv with data set #13" assertions="6" time="0.000128"/>
+        <testcase name="testGenerateWithHsv with data set #14" assertions="6" time="0.000128"/>
+        <testcase name="testGenerateWithHsv with data set #15" assertions="6" time="0.000127"/>
+      </testsuite>
+      <testsuite name="ColorTest::testConvertToHex" tests="16" assertions="64" failures="0" errors="0" time="0.001856">
+        <testcase name="testConvertToHex with data set #0" assertions="4" time="0.000120"/>
+        <testcase name="testConvertToHex with data set #1" assertions="4" time="0.000097"/>
+        <testcase name="testConvertToHex with data set #2" assertions="4" time="0.000098"/>
+        <testcase name="testConvertToHex with data set #3" assertions="4" time="0.000098"/>
+        <testcase name="testConvertToHex with data set #4" assertions="4" time="0.000096"/>
+        <testcase name="testConvertToHex with data set #5" assertions="4" time="0.000118"/>
+        <testcase name="testConvertToHex with data set #6" assertions="4" time="0.000107"/>
+        <testcase name="testConvertToHex with data set #7" assertions="4" time="0.000108"/>
+        <testcase name="testConvertToHex with data set #8" assertions="4" time="0.000101"/>
+        <testcase name="testConvertToHex with data set #9" assertions="4" time="0.000102"/>
+        <testcase name="testConvertToHex with data set #10" assertions="4" time="0.000124"/>
+        <testcase name="testConvertToHex with data set #11" assertions="4" time="0.000136"/>
+        <testcase name="testConvertToHex with data set #12" assertions="4" time="0.000141"/>
+        <testcase name="testConvertToHex with data set #13" assertions="4" time="0.000135"/>
+        <testcase name="testConvertToHex with data set #14" assertions="4" time="0.000134"/>
+        <testcase name="testConvertToHex with data set #15" assertions="4" time="0.000141"/>
+      </testsuite>
+      <testsuite name="ColorTest::testGernerateFromHex3" tests="13" assertions="13" failures="0" errors="0" time="0.000937">
+        <testcase name="testGernerateFromHex3 with data set #0" assertions="1" time="0.000080"/>
+        <testcase name="testGernerateFromHex3 with data set #1" assertions="1" time="0.000073"/>
+        <testcase name="testGernerateFromHex3 with data set #2" assertions="1" time="0.000072"/>
+        <testcase name="testGernerateFromHex3 with data set #3" assertions="1" time="0.000072"/>
+        <testcase name="testGernerateFromHex3 with data set #4" assertions="1" time="0.000072"/>
+        <testcase name="testGernerateFromHex3 with data set #5" assertions="1" time="0.000077"/>
+        <testcase name="testGernerateFromHex3 with data set #6" assertions="1" time="0.000070"/>
+        <testcase name="testGernerateFromHex3 with data set #7" assertions="1" time="0.000071"/>
+        <testcase name="testGernerateFromHex3 with data set #8" assertions="1" time="0.000069"/>
+        <testcase name="testGernerateFromHex3 with data set #9" assertions="1" time="0.000069"/>
+        <testcase name="testGernerateFromHex3 with data set #10" assertions="1" time="0.000069"/>
+        <testcase name="testGernerateFromHex3 with data set #11" assertions="1" time="0.000069"/>
+        <testcase name="testGernerateFromHex3 with data set #12" assertions="1" time="0.000073"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="StyleTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Style/StyleTest.php" tests="1" assertions="1" failures="0" errors="0" time="0.000220">
+      <testcase name="testCreateStyle" class="StyleTest" file="/Users/philipnorton42/Development/webolution/tests/Type/Style/StyleTest.php" line="11" assertions="1" time="0.000220"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

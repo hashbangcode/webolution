@@ -1,16 +1,16 @@
 <?php
 
-require_once '../includes/Style.php';
+use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
 /**
- * Test class for Color
+ * Test class for ColorIndividual
  */
-class StyleTest extends PHPUnit_Framework_TestCase
+class ColorIndividualTest extends PHPUnit_Framework_TestCase
 {
 
-  public function testCreateStyle() {
-    $object = new Style('.element');
-    $this->assertInstanceOf('Style', $object);
+  public function testCreateColorIndividual() {
+    $object = new ColorIndividual();
+    $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
   }
 
   /**
