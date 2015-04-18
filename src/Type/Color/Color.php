@@ -37,16 +37,16 @@ class Color
    */
   public function __construct($red, $green, $blue)
   {
-    if ($red < 0 && $red > 255) {
-
+    if ($red < 0 || $red > 255) {
+        throw new Exception\InvalidRGBValueException('Incorrect value for Red in Color class');
     }
 
-    if ($green < 0 && $green > 255) {
-
+    if ($green < 0 || $green > 255) {
+        throw new Exception\InvalidRGBValueException('Incorrect value for Green in Color class');
     }
 
-    if ($blue < 0 && $blue > 255) {
-
+    if ($blue < 0 || $blue > 255) {
+        throw new Exception\InvalidRGBValueException('Incorrect value for Blue in Color class');
     }
 
     $this->red = $red;

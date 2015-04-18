@@ -1,6 +1,7 @@
 <?php
 
 use Hashbangcode\Wevolution\Type\Color\Color;
+use Hashbangcode\Wevolution\Type\Color\Exception;
 
 /**
  * Test class for Color
@@ -229,6 +230,18 @@ class ColorTest extends PHPUnit_Framework_TestCase
       array('hex3' => 'EFF', 'hex6' => 'EEFFFF'),
       array('hex3' => 'FFF', 'hex6' => 'FFFFFF'),
     );
+  }
+
+  public function testInvalidRBGValue() {
+
+    try {
+      $this->setExpectedException('Hashbangcode\Wevolution\Type\Color\Exception\InvalidRGBValueException');
+      $color = new Color(0, 1000, 1000);
+      $color = new Color(1000, 0, 1000);
+      $color = new Color(1000, 1000, 0);
+      $color = new Color(1000, 1000, 1000);
+    }catch(Exception $e) {
+    }
   }
 
   /**
