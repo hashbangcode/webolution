@@ -15,6 +15,7 @@ class ColorTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('100', $color->getRed());
     $this->assertEquals('100', $color->getGreen());
     $this->assertEquals('100', $color->getBlue());
+    $this->assertEquals('100100100', $color->getRGB());
   }
 
   public function testCreateColorFromIntegers()
@@ -23,6 +24,7 @@ class ColorTest extends PHPUnit_Framework_TestCase
     $this->assertEquals(100, $color->getRed());
     $this->assertEquals(100, $color->getGreen());
     $this->assertEquals(100, $color->getBlue());
+    $this->assertEquals('100100100', $color->getRGB());
   }
 
   public function testGenerateColorFromHex()
@@ -32,6 +34,7 @@ class ColorTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('255', $color->getRed());
     $this->assertEquals('255', $color->getGreen());
     $this->assertEquals('255', $color->getBlue());
+    $this->assertEquals('255255255', $color->getRGB());
   }
 
   public function testGenerateFromHSL()
@@ -41,6 +44,7 @@ class ColorTest extends PHPUnit_Framework_TestCase
     $this->assertEquals(128, $color->getRed());
     $this->assertEquals(128, $color->getGreen());
     $this->assertEquals(0, $color->getBlue());
+    $this->assertEquals('128128000', $color->getRGB());
   }
 
   public function testGenerateRandomColor()
@@ -58,7 +62,6 @@ class ColorTest extends PHPUnit_Framework_TestCase
 
   public function testRandomiseColor()
   {
-
     $color = new Color(0, 0, 0);
     $color->randomise();
 
@@ -74,17 +77,12 @@ class ColorTest extends PHPUnit_Framework_TestCase
 
   public function testColorMutation()
   {
-    $color = new Color(0, 0, 0);
+    $color = new Color(125, 125, 125);
     $color->mutateColor();
-
-    $this->assertGreaterThanOrEqual(0, $color->getRed());
-    $this->assertLessThanOrEqual(1, $color->getRed());
-
-    $this->assertGreaterThanOrEqual(0, $color->getGreen());
-    $this->assertLessThanOrEqual(1, $color->getGreen());
-
-    $this->assertGreaterThanOrEqual(0, $color->getBlue());
-    $this->assertLessThanOrEqual(1, $color->getBlue());
+    $this->assertNotEquals('125125125', $color->getRGB());
+    $new_rgb = $color->getRGB();
+    $color->mutateColor();
+    $this->assertNotEquals($new_rgb, $color->getRGB());
   }
 
   public function testLargeColorMutation()

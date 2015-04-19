@@ -9,8 +9,15 @@ class ColorIndividualTest extends PHPUnit_Framework_TestCase
 {
 
   public function testCreateColorIndividual() {
-    $object = new ColorIndividual();
+    $object = new ColorIndividual(0, 0, 0);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
+    $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $object->getObject());
+  }
+
+  public function testMutateColorThroughIndividual() {
+    $object = new ColorIndividual(125, 125, 125);
+    $object->mutateProperties();
+    $this->assertNotEquals('125125125', $object->getObject()->getRGB());
   }
 
   /**

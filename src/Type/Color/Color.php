@@ -202,6 +202,17 @@ class Color
   }
 
   /**
+   * Get the RGB Value of a Color.
+   *
+   * @return string The RGB value.
+   */
+  public function getRGB() {
+    return str_pad($this->getRed(), 3, STR_PAD_LEFT) .
+     str_pad($this->getGreen(), 3, STR_PAD_LEFT) .
+     str_pad($this->getBlue(), 3, STR_PAD_LEFT);
+  }
+
+  /**
    * @return null
    */
   public function getRed()
@@ -540,9 +551,17 @@ class Color
     $this->value = $value;
   }
 
+  /**
+   * Tweak a value in the RGB matrix for the color.
+   *
+   * @param int $amount The amount of alteration to make. Note that the RGB value of the color can't exceed 255 or be
+   * less than 0. If this situation occurs the amounts are restricted.
+   *
+   * @return $this The current object.
+   */
   public function mutateColor($amount = 1)
   {
-    $this->resetColorGemoetry();
+    $this->resetColorGeometry();
 
     $rgb = $this->getColorArray();
 
@@ -566,7 +585,14 @@ class Color
     return $this;
   }
 
-  private function resetColorGemoetry()
+  /**
+   * Utility function to reset all the calculated color geometry.
+   *
+   * This is used when alterations are made the the color that would mean the existing color geometry is incorrect.
+   * This doesn't calculate the new values as this is done when they are called for e.g. the lightness is calculated
+   * before being returned by the getLightness() method.
+   */
+  private function resetColorGeometry()
   {
     $this->hue = NULL;
     $this->hue2 = NULL;
@@ -626,7 +652,7 @@ class Color
     $this->green = NULL;
     $this->blue = NULL;
 
-    $this->resetColorGemoetry();
+    $this->resetColorGeometry();
   }
 
   /**
