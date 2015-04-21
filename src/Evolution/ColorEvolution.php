@@ -10,7 +10,7 @@ class ColorEvolution extends Evolution {
 
   protected $individualsPerGeneration = 5;
 
-  protected $individuals;
+  protected $individuals = array();
 
   public function runGeneration() {
 /*
