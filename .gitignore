@@ -45,3 +45,6 @@ Thumbs.db
 nbproject
 .komodotools
 .idea
+
+build
+build/*

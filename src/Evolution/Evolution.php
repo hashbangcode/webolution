@@ -28,7 +28,7 @@ abstract class Evolution implements EvolutionInterface
 
   public function renderGenerations() {
     foreach ($this->previousGenerations as $generation) {
-      
+
     }
   }
 }
