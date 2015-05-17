@@ -37,4 +37,8 @@ class NumberIndividual extends Individual
   public function getFitness() {
     return $this->getObject()->getNumber();
   }
+
+  public function toString() {
+    return $this->getObject()->getNumber();
+  }
 }

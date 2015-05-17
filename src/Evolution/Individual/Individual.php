@@ -17,4 +17,5 @@ abstract class Individual implements IndividualInterface
   }
 
   abstract public function getFitness();
+  abstract public function toString();
 }

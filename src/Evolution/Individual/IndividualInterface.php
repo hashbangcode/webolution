@@ -10,4 +10,6 @@ interface IndividualInterface {
   public function mutateProperties();
 
   public function getFitness();
+
+  public function toString();
 }

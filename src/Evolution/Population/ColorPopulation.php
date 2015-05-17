@@ -1,34 +1,17 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Color;
+namespace Hashbangcode\Wevolution\Evolution\Population;
+use Hashbangcode\Wevolution\Evolution\Individual\Individual;
+use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
-/**
- * Class Collection
- */
-class Collection
+class ColorPopulation extends Population
 {
-
-  private $length = 0;
-
-  private $colors = array();
-
-  public function __construct() {
-
-  }
-
-  public function getLength() {
-    return $this->length;
-  }
-
-  public function add(Color $color) {
-    $this->colors[] = $color;
-    $this->length++;
-  }
 
   public function sort($sortBy = 'hue', $direction = 'ASC') {
     $colors = array();
 
-    foreach ($this->colors as $color) {
+    foreach ($this->individuals as $individual) {
+      $color = $individual->getObject();
       switch ($sortBy) {
         case 'hue':
           $index = $color->getHue() * 100;
@@ -60,8 +43,14 @@ class Collection
     $this->colors = $colors;
   }
 
-  public function getColors() {
-    return $this->colors;
+  public function addIndividual(Individual $individual = NULL) {
+    if (is_null($individual)) {
+      $individual = ColorIndividual::generateRandomColor();
+        //Color::generateRandomColor();
+    }
+
+    $this->individuals[] = $individual;
+    $this->length++;
   }
 
   public function toString() {

@@ -37,4 +37,17 @@ class ColorIndividual extends Individual
   public function getFitness() {
 
   }
+
+  public function toString() {
+
+  }
+
+  public static function generateRandomColor() {
+    //Return an RGB array
+    $red = ceil(rand(0, 255));
+    $green = ceil(rand(0, 255));
+    $blue = ceil(rand(0, 255));
+
+    return new ColorIndividual($red, $blue, $green);
+  }
 }

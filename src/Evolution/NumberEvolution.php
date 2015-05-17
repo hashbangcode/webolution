@@ -6,6 +6,10 @@ use Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual;
 
 class NumberEvolution extends Evolution {
 
+  public function __construct() {
+
+  }
+
   public function runGeneration() {
 
     if ($this->generation == 0) {

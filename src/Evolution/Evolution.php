@@ -1,15 +1,22 @@
 <?php
 namespace Hashbangcode\Wevolution\Evolution;
 
-abstract class Evolution implements EvolutionInterface
+use Hashbangcode\Wevolution\Evolution\Population;
+
+class Evolution
 {
   protected $individualsPerGeneration = 10;
 
-  protected $individuals = array();
+  protected $allowedFitness = 8;
 
-  protected $previousGenerations = array();
+  /**
+   * @var Population\Population
+   */
+  protected $population;
 
-  public function __construct($maxGenerations = NULL, $individualsPerGeneration = NULL)
+  protected $previousPopulations = array();
+
+  public function __construct(Population\Population $population, $maxGenerations = NULL, $individualsPerGeneration = NULL)
   {
     if (!is_null($maxGenerations)) {
       $this->maxGenerations = $maxGenerations;
@@ -18,9 +25,89 @@ abstract class Evolution implements EvolutionInterface
     if (!is_null($individualsPerGeneration)) {
       $this->individualsPerGeneration = $individualsPerGeneration;
     }
+
+    // Setup initial Population.
+    if ($population->getLength() < $this->individualsPerGeneration) {
+      // Get the population object to generate individuals.
+      do {
+        $this->population->addIndividual();
+      } while ($this->population->getLength() <= $this->individualsPerGeneration);
+    }
   }
 
-  abstract public function runGeneration();
+  public function runGeneration() {
+
+    $this->previousGenerations[] = clone $this->population;
+
+    echo ' start ';
+
+    foreach ($this->population->getPopulation() as $key => $individual) {
+      print $individual->toString() . ' ';
+    }
+
+    // Ensure the population is at the right level.
+    if ($this->population->getLength() <= $this->individualsPerGeneration) {
+      echo ' more ';
+      //echo ' (' . count($this->individuals) . '[' .$this->individualsPerGeneration.'] ) ';
+      do {
+        $this->population->addIndividual();
+      } while ($this->population->getLength() <= $this->individualsPerGeneration);
+      echo ' (' . $this->population->getLength() . ') ';
+    }
+
+    // Mutate the population
+    foreach ($this->population->getPopulation() as $key => $individual) {
+      $individual->mutateProperties();
+    }
+
+    // Kill off any unfit individuals
+    foreach ($this->population->getPopulation() as $key => $individual) {
+      if ($individual->getFitness() < $this->allowedFitness) {
+        //echo 'killed! ' . $individual->getFitness();
+        $this->population->removeIndividual($key);
+      }
+    }
+
+    echo ' end ';
+
+    foreach ($this->population->getPopulation() as $key => $individual) {
+      print $individual->toString() . ' ';
+    }
+
+    $this->generation++;
+
+    /*
+        $colors = $this->individuals->getColors();
+
+        $new_colors = array();
+
+        foreach ($colors as $color) {
+          $new_color = Color::generateFromHex($color->getHex());
+          $new_color->mutateColor(50);
+          $new_colors[] = $new_color;
+        }
+
+        foreach ($new_colors as $color) {
+          $this->individuals->add($color);
+        }
+
+        $this->individuals->sort();//'hsi_saturation', 'DESC');
+
+        $tmp_individuals = new ColorCollection();
+
+        $count = 0;
+        foreach ($this->individuals->getColors() as $color) {
+          $tmp_individuals->add($color);
+          ++$count;
+          if ($count > $this->individualsPerGeneration) {
+            break;
+          }
+        }
+
+        $this->individuals = $tmp_individuals;
+    */
+
+  }
 
   public function getCurrentGeneration() {
     return $this->generation;
@@ -30,5 +117,13 @@ abstract class Evolution implements EvolutionInterface
     foreach ($this->previousGenerations as $generation) {
 
     }
+  }
+
+  public function getAllowedFitness() {
+    return $this->allowedFitness();
+  }
+
+  public function setAllowedFitness($allowedFitness) {
+    $this->allowedFitness = $allowedFitness;
   }
 }
