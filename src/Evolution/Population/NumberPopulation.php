@@ -2,16 +2,11 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Population;
 
-
+use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 use Hashbangcode\Wevolution\Type\Number\Number;
 
 class NumberPopulation extends Population
 {
-
-  private $length = 0;
-
-  private $individuals = array();
-
   public function getLength() {
     return $this->length;
   }

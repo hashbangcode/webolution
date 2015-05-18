@@ -5,7 +5,7 @@ class Manager
 {
 
 
-  public function start(Evolution $evolution) {
+  public function start() {
 
 /*    $this->individuals = new ColorCollection();
 

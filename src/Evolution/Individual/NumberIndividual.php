@@ -41,4 +41,9 @@ class NumberIndividual extends Individual
   public function toString() {
     return $this->getObject()->getNumber();
   }
+
+  public static function generateRandomNumber() {
+    $number = rand(1, 10);
+    return new NumberIndividual($number);
+  }
 }

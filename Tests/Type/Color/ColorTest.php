@@ -230,15 +230,77 @@ class ColorTest extends PHPUnit_Framework_TestCase
     );
   }
 
-  public function testInvalidRBGValue() {
+  /**
+   * @dataProvider invalidRGBValues
+   */
+  public function testInvalidRBGValue($r, $g, $b) {
 
     try {
       $this->setExpectedException('Hashbangcode\Wevolution\Type\Color\Exception\InvalidRGBValueException');
-      $color = new Color(0, 1000, 1000);
-      $color = new Color(1000, 0, 1000);
-      $color = new Color(1000, 1000, 0);
-      $color = new Color(1000, 1000, 1000);
+      $color = new Color($r, $g, $b);
     }catch(Exception $e) {
     }
+  }
+
+  public function invalidRGBValues() {
+    return array(
+      array('r' => 10000, 'g' => 0, 'b' => 0),
+      array('r' => 0, 'g' => 10000, 'b' => 0),
+      array('r' => 0, 'g' => 0, 'b' => 10000),
+      array('r' => 10000, 'g' => 10000, 'b' => 10000),
+      array('r' => -10, 'g' => 0, 'b' => 0),
+      array('r' => 0, 'g' => -10, 'b' => 0),
+      array('r' => 0, 'g' => 0, 'b' => -10),
+      array('r' => -10, 'g' => -10, 'b' => -10),
+      array('r' => -10, 'g' => 10000, 'b' => 0),
+      array('r' => 'red', 'g' => 0, 'b' => 0),
+    );
+  }
+
+  public function testSetCroma() {
+    $color = Color::generateRandomColor();
+    $croma = 1;
+    $color->setCroma($croma);
+    $this->assertEquals($croma, $color->getCroma());
+  }
+
+  public function testSetCroma2() {
+    $color = Color::generateRandomColor();
+    $croma2 = 1;
+    $color->setCroma2($croma2);
+    $this->assertEquals($croma2, $color->getCroma2());
+  }
+
+  public function testSetHsiSaturation() {
+    // Max colour sets the hsi saturation to 0.
+    $color = new Color(255, 255, 255);
+    $color->setHsiSaturation(1);
+    $this->assertEquals(0, $color->getHsiSaturation());
+
+    // Mixed colour values set the hsi saturation to 1.
+    $color = new Color(0, 125, 255);
+    $color->setHsiSaturation(1);
+    $this->assertEquals(1, $color->getHsiSaturation());
+  }
+
+  public function testSetHue2() {
+    $color = new Color(255, 255, 255);
+    $hue2 = 1;
+    $color->setHue2($hue2);
+    $this->assertEquals($hue2, $color->getHue2());
+  }
+
+  public function testSetIntensity() {
+    $color = new Color(255, 255, 255);
+    $intensity = 1;
+    $color->setIntensity($intensity);
+    $this->assertEquals($intensity, $color->getIntensity());
+  }
+
+  public function testSetLuma() {
+    $color = new Color(255, 255, 255);
+    $luma = 1;
+    $color->setLuma($luma);
+    $this->assertEquals($luma, $color->getLuma());
   }
 }

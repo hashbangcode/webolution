@@ -7,6 +7,22 @@ class Evolution
 {
   protected $individualsPerGeneration = 10;
 
+  /**
+   * @return int|null
+   */
+  public function getIndividualsPerGeneration()
+  {
+    return $this->individualsPerGeneration;
+  }
+
+  /**
+   * @param int|null $individualsPerGeneration
+   */
+  public function setIndividualsPerGeneration($individualsPerGeneration)
+  {
+    $this->individualsPerGeneration = $individualsPerGeneration;
+  }
+
   protected $allowedFitness = 8;
 
   /**
@@ -26,13 +42,19 @@ class Evolution
       $this->individualsPerGeneration = $individualsPerGeneration;
     }
 
+    $this->population = $population;
+
     // Setup initial Population.
-    if ($population->getLength() < $this->individualsPerGeneration) {
+    if ($this->population->getLength() < $this->individualsPerGeneration) {
       // Get the population object to generate individuals.
       do {
         $this->population->addIndividual();
-      } while ($this->population->getLength() <= $this->individualsPerGeneration);
+      } while ($this->population->getLength() < $this->individualsPerGeneration);
     }
+  }
+
+  public function getCurrentPopulation() {
+    return $this->population;
   }
 
   public function runGeneration() {

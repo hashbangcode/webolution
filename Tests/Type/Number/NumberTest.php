@@ -62,4 +62,45 @@ class NumberTest extends PHPUnit_Framework_TestCase
       array(TRUE)
     );
   }
+
+  /**
+   * @dataProvider numbersToAddProvider
+   */
+  public function testNumberAdd($number1, $number2, $result) {
+    $foo = self::getMethod('add');
+    $obj = new Number($number1);
+    $return = $foo->invokeArgs($obj, array($number1, $number2));
+    $this->assertEquals($result, $return);
+  }
+
+  public function numbersToAddProvider() {
+    return array(
+      array(1, 1, 2),
+      array(1, 2, 3),
+    );
+  }
+
+  /**
+   * @dataProvider numbersToSubtractProvider
+   */
+  public function testNumberSubtract($number1, $number2, $result) {
+    $foo = self::getMethod('subtract');
+    $obj = new Number($number1);
+    $return = $foo->invokeArgs($obj, array($number1, $number2));
+    $this->assertEquals($result, $return);
+  }
+
+  public function numbersToSubtractProvider() {
+    return array(
+      array(1, 1, 0),
+      array(2, 1, 1),
+    );
+  }
+
+  protected static function getMethod($name) {
+    $class = new ReflectionClass('Hashbangcode\Wevolution\Type\Number\Number');
+    $method = $class->getMethod($name);
+    $method->setAccessible(true);
+    return $method;
+  }
 }

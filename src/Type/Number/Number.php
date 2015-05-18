@@ -43,11 +43,11 @@ class Number
   }
 
   /**
-   * Helper function that adds two numbers together.
+   * Helper function that adds two numbers.
    *
    * @param $x integer The first number.
    * @param $y integer The second number.
-   * @return integer The result of adding the numbers together.
+   * @return integer The result of adding the numbers.
    */
   protected function add($x, $y)
   {
@@ -55,9 +55,11 @@ class Number
   }
 
   /**
-   * @param $x
-   * @param $y
-   * @return mixed
+   * Helper function that subtracts two numbers.
+   *
+   * @param $x integer The first number.
+   * @param $y integer The second number.
+   * @return integer The result of subtracting the numbers.
    */
   protected function subtract($x, $y)
   {

@@ -37,15 +37,15 @@ class Color
    */
   public function __construct($red, $green, $blue)
   {
-    if ($red < 0 || $red > 255) {
+    if (!is_numeric($red) || $red < 0 || $red > 255) {
         throw new Exception\InvalidRGBValueException('Incorrect value for Red in Color class');
     }
 
-    if ($green < 0 || $green > 255) {
+    if (!is_numeric($green) || $green < 0 || $green > 255) {
         throw new Exception\InvalidRGBValueException('Incorrect value for Green in Color class');
     }
 
-    if ($blue < 0 || $blue > 255) {
+    if (!is_numeric($blue) || $blue < 0 || $blue > 255) {
         throw new Exception\InvalidRGBValueException('Incorrect value for Blue in Color class');
     }
 
@@ -312,7 +312,7 @@ class Color
   /**
    *
    */
-  public function calculateHsiSaturation()
+  protected function calculateHsiSaturation()
   {
     $red = $this->red / 255;
     $green = $this->green / 255;
@@ -529,7 +529,7 @@ class Color
   /**
    * @param float $luma The luma to set
    */
-  protected function setLuma($luma)
+  public function setLuma($luma)
   {
     $this->luma = $luma;
   }
