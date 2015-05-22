@@ -22,4 +22,8 @@ abstract class Population implements PopulationInterface
   }
 
   abstract public function sort();
+
+  public function getRandomIndividual() {
+    return $this->individuals[array_rand($this->individuals)];
+  }
 }

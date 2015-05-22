@@ -1,6 +1,7 @@
 <?php
 
 namespace Hashbangcode\Wevolution\Evolution\Population;
+
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
@@ -46,7 +47,6 @@ class ColorPopulation extends Population
   public function addIndividual(Individual $individual = NULL) {
     if (is_null($individual)) {
       $individual = ColorIndividual::generateRandomColor();
-        //Color::generateRandomColor();
     }
 
     $this->individuals[] = $individual;

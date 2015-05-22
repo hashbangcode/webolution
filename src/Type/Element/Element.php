@@ -27,7 +27,7 @@ class Element
   public function setAttributes($attributes)
   {
     if (!is_array($attributes)) {
-      throw new Exception('Array of attributes required.');
+      throw new Exception\InvalidAttributesException('Array of attributes required.');
     }
 
     $this->attributes = $attributes;

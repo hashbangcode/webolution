@@ -81,4 +81,12 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('div', $inner_element2->getType('div'));
     $this->assertEquals('<div><div></div><div></div></div>', $outer_element->render());
   }
+
+  public function testSetIncorrectAttributes() {
+    $element = new Element();
+    $element->setType('p');
+
+    $this->setExpectedException('Hashbangcode\Wevolution\Type\Element\Exception\InvalidAttributesException');
+    $element->setAttributes(2);
+  }
 }

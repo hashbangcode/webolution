@@ -2,7 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Type\Number;
 
-use Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException;
+//use Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException;
 
 class Number
 {
@@ -22,7 +22,7 @@ class Number
   public function setNumber($number)
   {
     if (!is_int($number)) {
-      throw new InvalidNumberException($number . ' is not a number.');
+      throw new Exception\InvalidNumberException($number . ' is not a number.');
     } else {
       $this->number = $number;
     }
