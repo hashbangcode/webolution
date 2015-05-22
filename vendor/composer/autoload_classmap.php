@@ -406,5 +406,6 @@ return array(
     'SebastianBergmann\\Exporter\\Exception' => $vendorDir . '/sebastian/exporter/src/Exception.php',
     'SebastianBergmann\\Exporter\\Exporter' => $vendorDir . '/sebastian/exporter/src/Exporter.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
+    'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/Text/Template.php',
 );
