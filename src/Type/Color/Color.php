@@ -26,14 +26,15 @@ class Color
    * @var float The luma, based on Rec. 601 NTSC primaries.
    */
   private $luma = NULL;
+
   private $hsv_saturation = NULL;
   private $hsl_saturation = NULL;
   private $hsi_saturation = NULL;
 
   /**
-   * @param $red integer The red level.
-   * @param $green integer The green level.
-   * @param $blue integer The blue level.
+   * @param $red integer The red level, between 0 and 255.
+   * @param $green integer The green level, between 0 and 255.
+   * @param $blue integer The blue level, between 0 and 255.
    */
   public function __construct($red, $green, $blue)
   {
@@ -677,4 +678,7 @@ class Color
     return $x - $y;
   }
 
+  public function render() {
+    return $this->getRGB();
+  }
 }

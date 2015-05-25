@@ -17,25 +17,16 @@ class ColorIndividualTest extends PHPUnit_Framework_TestCase
   public function testMutateColorThroughIndividual() {
     $object = new ColorIndividual(125, 125, 125);
     $object->mutateProperties();
-    $this->assertNotEquals('125125125', $object->getObject()->getRGB());
+    $this->assertNotEquals('125125125', $object->getObject()->render());
+    $this->assertNotEquals('125125125', $object->render());
   }
 
-  /**
-   * Sets up the fixture, for example, opens a network connection.
-   * This method is called before a test is executed.
-   */
-  protected function setUp()
-  {
+  public function testColorFitness() {
+    $object = new ColorIndividual(255, 255, 255);
+    $this->assertEquals(10, $object->getFitness());
 
-  }
-
-  /**
-   * Tears down the fixture, for example, closes a network connection.
-   * This method is called after a test is executed.
-   */
-  protected function tearDown()
-  {
-
+    $object = new ColorIndividual(125, 125, 125);
+    $this->assertEquals(5, $object->getFitness());
   }
 
 }

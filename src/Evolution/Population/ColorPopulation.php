@@ -53,9 +53,11 @@ class ColorPopulation extends Population
     $this->length++;
   }
 
-  public function toString() {
-    foreach ($this->colors as $color) {
-      print $color->getHex() . PHP_EOL;
+  public function render() {
+    $output = '';
+    foreach ($this->individuals as $color) {
+      $output .= $color->render() . PHP_EOL;
     }
+    return $output;
   }
 }

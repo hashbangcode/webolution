@@ -53,4 +53,28 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase {
     }
   }
 
+  public function testGetRandomIndividual() {
+    $colorColorPopulation = new ColorPopulation();
+
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
+
+    $object = $colorColorPopulation->getRandomIndividual();
+    $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
+    $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $object->getObject());
+  }
+
+  public function testRenderTwoColors()
+  {
+    $colorColorPopulation = new ColorPopulation();
+
+    $colorColorPopulation->addIndividual(new ColorIndividual(255, 255, 255));
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
+
+    $this->assertEquals('255255255' . PHP_EOL . '000000000' . PHP_EOL, $colorColorPopulation->render());
+  }
+
 }

@@ -36,14 +36,15 @@ class ElementIndividual extends Individual
   }
 
   public function mutateProperties() {
-    $this->getObject()->mutateNumber($this->getMutationFactor());
+    $this->getObject()->mutateElement($this->getMutationFactor());
+    return $this;
   }
 
   public function getFitness() {
-    //return 1;//$this->getObject()->getNumber();
+    return 1;
   }
 
-  public function toString() {
-    //return 1;//$this->getObject()->getNumber();
+  public function render() {
+    return $this->getObject()->render();
   }
 }

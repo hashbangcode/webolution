@@ -38,4 +38,11 @@ class ElementPopulationTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('<html><head></head><body></body></html>', $page->render());
   }
 
+  public function testAddIndividual() {
+    $element = new Element();
+    $element->setType('html');
+    $element_individual = new ElementIndividual($element);
+    $page = new ElementPopulation($element_individual);
+  }
+
 }

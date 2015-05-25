@@ -8,23 +8,6 @@ use Hashbangcode\Wevolution\Type\Number\Number;
  */
 class NumberIndividual extends Individual
 {
-  protected $mutationFactor = 1;
-
-  /**
-   * @return int
-   */
-  public function getMutationFactor()
-  {
-    return $this->mutationFactor;
-  }
-
-  /**
-   * @param int $mutationFactor
-   */
-  public function setMutationFactor($mutationFactor)
-  {
-    $this->mutationFactor = $mutationFactor;
-  }
 
   public function __construct($number) {
     $this->object = new Number($number);
@@ -38,8 +21,8 @@ class NumberIndividual extends Individual
     return $this->getObject()->getNumber();
   }
 
-  public function toString() {
-    return $this->getObject()->getNumber();
+  public function render() {
+    return $this->getObject()->render();
   }
 
   public static function generateRandomNumber() {

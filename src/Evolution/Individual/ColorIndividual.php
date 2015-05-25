@@ -8,23 +8,6 @@ use Hashbangcode\Wevolution\Type\Color\Color;
  */
 class ColorIndividual extends Individual
 {
-  protected $mutationFactor = 1;
-
-  /**
-   * @return int
-   */
-  public function getMutationFactor()
-  {
-    return $this->mutationFactor;
-  }
-
-  /**
-   * @param int $mutationFactor
-   */
-  public function setMutationFactor($mutationFactor)
-  {
-    $this->mutationFactor = $mutationFactor;
-  }
 
   public function __construct($red, $green, $blue) {
     $this->object = new Color($red, $green, $blue);
@@ -35,11 +18,13 @@ class ColorIndividual extends Individual
   }
 
   public function getFitness() {
-
+    $color = $this->getObject();
+    $lightness = $color->getLightness();
+    return round($lightness * 10);
   }
 
-  public function toString() {
-
+  public function render() {
+    return $this->object->render();
   }
 
   public static function generateRandomColor() {

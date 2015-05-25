@@ -65,4 +65,8 @@ class Number
   {
     return $x - $y;
   }
+
+  public function render() {
+    return $this->getNumber();
+  }
 }

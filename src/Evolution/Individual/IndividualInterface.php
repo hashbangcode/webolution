@@ -11,5 +11,5 @@ interface IndividualInterface {
 
   public function getFitness();
 
-  public function toString();
+  public function render();
 }

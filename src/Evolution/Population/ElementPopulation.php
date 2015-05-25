@@ -45,10 +45,4 @@ class ElementPopulation extends Population
     $this->individuals[] = $individual;
     $this->length++;
   }
-
-  public function toString() {
-    foreach ($this->colors as $color) {
-     // print $color->getHex() . PHP_EOL;
-    }
-  }
 }

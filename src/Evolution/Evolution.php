@@ -64,7 +64,7 @@ class Evolution
     echo ' start ';
 
     foreach ($this->population->getPopulation() as $key => $individual) {
-      print $individual->toString() . ' ';
+      print $individual->render() . ' ';
     }
 
     // Ensure the population is at the right level.
@@ -93,7 +93,7 @@ class Evolution
     echo ' end ';
 
     foreach ($this->population->getPopulation() as $key => $individual) {
-      print $individual->toString() . ' ';
+      print $individual->render() . ' ';
     }
 
     $this->generation++;
