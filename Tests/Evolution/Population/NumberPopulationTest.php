@@ -16,6 +16,13 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(1, $numberPopulation->getLength());
   }
 
+  public function testGetRandomIndividual() {
+    $numberPopulation = new NumberPopulation();
+    $numberPopulation->addIndividual();
+    $this->assertEquals(1, $numberPopulation->getLength());
+    $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $numberPopulation->getRandomIndividual());
+  }
+
   public function testAddItemsToNumberPopulation() {
     $numberPopulation = new NumberPopulation();
 
@@ -38,7 +45,7 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase {
     $numberPopulation->sort();
   }
 
-  public function testColorIteration() {
+  public function testNumberIteration() {
     $numberPopulation = new NumberPopulation();
 
     $numberPopulation->addIndividual(NumberIndividual::generateRandomNumber());
@@ -47,8 +54,8 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase {
 
     $population = $numberPopulation->getPopulation();
 
-    foreach ($population[0]->getObject() as $color) {
-      $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Number\Number', $color);
+    foreach ($population[0]->getObject() as $number) {
+      $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Number\Number', $number);
     }
   }
 }

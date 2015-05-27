@@ -43,6 +43,5 @@ class ElementPopulation extends Population
     }
 
     $this->individuals[] = $individual;
-    $this->length++;
   }
 }

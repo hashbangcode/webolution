@@ -6,13 +6,10 @@ use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 
 abstract class Population implements PopulationInterface
 {
-
-  protected $length = 0;
-
   protected $individuals = array();
 
   public function getLength() {
-    return $this->length;
+    return count($this->individuals);
   }
 
   abstract public function addIndividual(Individual $individual = NULL);
@@ -24,6 +21,15 @@ abstract class Population implements PopulationInterface
   abstract public function sort();
 
   public function getRandomIndividual() {
+    if ($this->getLength() == 0) {
+      return FALSE;
+    }
     return $this->individuals[array_rand($this->individuals)];
+  }
+
+  public function removeIndividual($key) {
+    if (isset($this->individuals[$key])) {
+      unset($this->individuals[$key]);
+    }
   }
 }

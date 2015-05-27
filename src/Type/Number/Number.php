@@ -39,6 +39,7 @@ class Number
       $this->getNumber(), $amount
     ));
 
+    echo $value . ' ' . $this->getNumber() . '<br>';
     $this->setNumber($value);
   }
 

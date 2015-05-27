@@ -41,7 +41,7 @@ class ColorPopulation extends Population
       krsort($colors);
     }
 
-    $this->colors = $colors;
+    $this->individuals = $colors;
   }
 
   public function addIndividual(Individual $individual = NULL) {
@@ -50,7 +50,6 @@ class ColorPopulation extends Population
     }
 
     $this->individuals[] = $individual;
-    $this->length++;
   }
 
   public function render() {

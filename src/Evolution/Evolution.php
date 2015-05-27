@@ -5,6 +5,39 @@ use Hashbangcode\Wevolution\Evolution\Population;
 
 class Evolution
 {
+
+  protected $globalMutationFactor = null;
+
+  /**
+   * @return null
+   */
+  public function getGlobalMutationFactor() {
+    return $this->globalMutationFactor;
+  }
+
+  /**
+   * @param null $globalMutationFactor
+   */
+  public function setGlobalMutationFactor($globalMutationFactor) {
+    $this->globalMutationFactor = $globalMutationFactor;
+  }
+
+  protected $maxGenerations = 10;
+
+  /**
+   * @return int|null
+   */
+  public function getMaxGenerations() {
+    return $this->maxGenerations;
+  }
+
+  /**
+   * @param int|null $maxGenerations
+   */
+  public function setMaxGenerations($maxGenerations) {
+    $this->maxGenerations = $maxGenerations;
+  }
+
   protected $individualsPerGeneration = 10;
 
   /**
@@ -61,39 +94,33 @@ class Evolution
 
     $this->previousGenerations[] = clone $this->population;
 
-    echo ' start ';
-
-    foreach ($this->population->getPopulation() as $key => $individual) {
-      print $individual->render() . ' ';
+    if ($this->population->getLength() == 0) {
+      return FALSE;
     }
 
     // Ensure the population is at the right level.
-    if ($this->population->getLength() <= $this->individualsPerGeneration) {
-      echo ' more ';
+    if ($this->population->getLength() <= $this->getIndividualsPerGeneration()) {
       do {
         // Clone an individual from the current population to add back in.
-        $this->population->addIndividual(clone $this->population->getRandomIndividual());
-      } while ($this->population->getLength() <= $this->individualsPerGeneration);
-      echo ' (' . $this->population->getLength() . ') ';
+        $random_individual = $this->population->getRandomIndividual();
+        $this->population->addIndividual(clone $random_individual);
+      } while ($this->population->getLength() <= $this->getIndividualsPerGeneration());
     }
 
     // Mutate the population
     foreach ($this->population->getPopulation() as $key => $individual) {
+      if (!is_null($this->getGlobalMutationFactor())) {
+        $individual->setMutationFactor($this->getGlobalMutationFactor());
+      }
       $individual->mutateProperties();
     }
 
     // Kill off any unfit individuals
     foreach ($this->population->getPopulation() as $key => $individual) {
       if ($individual->getFitness() < $this->allowedFitness) {
-        //echo 'killed! ' . $individual->getFitness();
+        echo 'killed:' . $individual->render() . '<br>';
         $this->population->removeIndividual($key);
       }
-    }
-
-    echo ' end ';
-
-    foreach ($this->population->getPopulation() as $key => $individual) {
-      print $individual->render() . ' ';
     }
 
     $this->generation++;
@@ -105,7 +132,7 @@ class Evolution
 
   public function renderGenerations() {
     foreach ($this->previousGenerations as $generation) {
-
+      $generation->render() . PHP_EOL;
     }
   }
 
