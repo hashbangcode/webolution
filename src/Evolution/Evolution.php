@@ -6,6 +6,8 @@ use Hashbangcode\Wevolution\Evolution\Population;
 class Evolution
 {
 
+  protected $generation = 1;
+
   protected $globalMutationFactor = null;
 
   /**
@@ -22,7 +24,7 @@ class Evolution
     $this->globalMutationFactor = $globalMutationFactor;
   }
 
-  protected $maxGenerations = 10;
+  protected $maxGenerations;
 
   /**
    * @return int|null
@@ -38,7 +40,7 @@ class Evolution
     $this->maxGenerations = $maxGenerations;
   }
 
-  protected $individualsPerGeneration = 10;
+  protected $individualsPerGeneration;
 
   /**
    * @return int|null
@@ -70,19 +72,24 @@ class Evolution
     if (!is_null($maxGenerations)) {
       $this->maxGenerations = $maxGenerations;
     }
+    else {
+      $this->maxGenerations = 10;
+    }
 
     if (!is_null($individualsPerGeneration)) {
       $this->individualsPerGeneration = $individualsPerGeneration;
+    } else {
+      $this->individualsPerGeneration = 10;
     }
 
     $this->population = $population;
 
     // Setup initial Population.
-    if ($this->population->getLength() < $this->individualsPerGeneration) {
+    if ($this->population->getLength() < $this->getIndividualsPerGeneration()) {
       // Get the population object to generate individuals.
       do {
         $this->population->addIndividual();
-      } while ($this->population->getLength() < $this->individualsPerGeneration);
+      } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
     }
   }
 
@@ -92,21 +99,27 @@ class Evolution
 
   public function runGeneration() {
 
-    $this->previousGenerations[] = clone $this->population;
-
+    // Ensure the population has a length.
     if ($this->population->getLength() == 0) {
+      $this->generation = $this->getMaxGenerations();
       return FALSE;
     }
+
+    $this->previousGenerations[$this->generation] = clone $this->population;
 
     // Ensure the population is at the right level.
     if ($this->population->getLength() <= $this->getIndividualsPerGeneration()) {
       do {
         // Clone an individual from the current population to add back in.
         $random_individual = $this->population->getRandomIndividual();
-        $this->population->addIndividual(clone $random_individual);
+        if (is_object($random_individual)) {
+          echo 'created: ' . $random_individual->render() . '<br>';
+          $this->population->addIndividual(clone $random_individual);
+        }
       } while ($this->population->getLength() <= $this->getIndividualsPerGeneration());
     }
 
+    echo '<br>generation<br>';
     // Mutate the population
     foreach ($this->population->getPopulation() as $key => $individual) {
       if (!is_null($this->getGlobalMutationFactor())) {
@@ -131,9 +144,11 @@ class Evolution
   }
 
   public function renderGenerations() {
-    foreach ($this->previousGenerations as $generation) {
-      $generation->render() . PHP_EOL;
+    $output = '';
+    foreach ($this->previousGenerations as $generation_number => $population) {
+      $output .= $generation_number . ': ' . $population->render() . PHP_EOL;
     }
+    return $output;
   }
 
   public function getAllowedFitness() {

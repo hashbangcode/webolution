@@ -31,8 +31,8 @@ $app->get('/number_evolution', function () {
 
   $evolution = new Evolution($numberPopulation);
   $evolution->setIndividualsPerGeneration(6);
-  $evolution->setMaxGenerations(100);
-  $evolution->setAllowedFitness(6);
+  $evolution->setMaxGenerations(3);
+  $evolution->setAllowedFitness(5);
   $evolution->setGlobalMutationFactor(1);
 
   $population = $evolution->getCurrentPopulation();
@@ -41,8 +41,12 @@ $app->get('/number_evolution', function () {
 
   for ($i = 0; $i <= $evolution->getMaxGenerations(); ++$i) {
     $evolution->runGeneration();
-    $output .= $i . ' '. $population->getLength() . ': ' . $population->render() . '<br>';
+    $output .= $i . ' ' . ': ' . $population->render() . ' (' .$population->getLength() . ' items)<br>';
   }
+
+  $output .= '<br>';
+
+  $output .= nl2br($evolution->renderGenerations());
 
   return $output;
 });

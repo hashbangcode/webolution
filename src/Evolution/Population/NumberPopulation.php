@@ -27,9 +27,13 @@ class NumberPopulation extends Population
 
   public function render() {
     $output = '';
+
+    $this->sort();
+
     foreach ($this->individuals as $number) {
-      $output .= $number->render() . ' ' . PHP_EOL;
+      $output .= $number->render() . ' ';
     }
+    $output .= ' (' . $this->getLength() . ' items)';
     return $output;
   }
 }

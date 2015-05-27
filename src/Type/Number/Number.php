@@ -39,7 +39,12 @@ class Number
       $this->getNumber(), $amount
     ));
 
-    echo $value . ' ' . $this->getNumber() . '<br>';
+    if ($value > 10) {
+      $value = 10;
+    }
+
+    print 'mutated: '. $this->getNumber() . ' ' . $value . '<br>';
+
     $this->setNumber($value);
   }
 
