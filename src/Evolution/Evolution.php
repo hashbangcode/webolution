@@ -128,7 +128,7 @@ class Evolution
       $this->generation = $this->getMaxGenerations();
       return FALSE;
     }
-    
+
     $this->addPreviousGeneration(clone $this->getCurrentPopulation());
 
     // Ensure the population is at the right level.

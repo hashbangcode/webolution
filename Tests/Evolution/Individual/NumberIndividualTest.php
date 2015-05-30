@@ -16,6 +16,7 @@ class NumberIndividualTest extends PHPUnit_Framework_TestCase
 
   public function testMutateNumberThroughIndividual() {
     $object = new NumberIndividual(1);
+    $object->setMutationFactor(1);
     $object->mutateProperties();
     $this->assertNotEquals(1, $object->getObject()->getNumber());
   }
