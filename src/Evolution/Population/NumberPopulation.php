@@ -28,10 +28,10 @@ class NumberPopulation extends Population
   public function render() {
     $output = '';
 
-    $this->sort();
+    //$this->sort();
 
-    foreach ($this->individuals as $number) {
-      $output .= $number->render() . ' ';
+    foreach ($this->getPopulation() as $numberIndividual) {
+      $output .= $numberIndividual->render() .' ';
     }
     $output .= ' (' . $this->getLength() . ' items)';
     return $output;

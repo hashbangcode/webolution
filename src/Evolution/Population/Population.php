@@ -29,4 +29,12 @@ abstract class Population implements PopulationInterface
       unset($this->individuals[$key]);
     }
   }
+
+  public function __clone() {
+    foreach ($this->individuals as $key => $individual) {
+      $newIndividual = clone $individual;
+      unset($this->individuals[$key]);
+      $this->individuals[$key] = $newIndividual;
+    }
+  }
 }

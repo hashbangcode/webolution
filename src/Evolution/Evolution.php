@@ -8,19 +8,21 @@ class Evolution
 
   protected $generation = 1;
 
-  protected $globalMutationFactor = null;
+  protected $globalMutationFactor;
 
   /**
    * @return null
    */
-  public function getGlobalMutationFactor() {
+  public function getGlobalMutationFactor()
+  {
     return $this->globalMutationFactor;
   }
 
   /**
    * @param null $globalMutationFactor
    */
-  public function setGlobalMutationFactor($globalMutationFactor) {
+  public function setGlobalMutationFactor($globalMutationFactor)
+  {
     $this->globalMutationFactor = $globalMutationFactor;
   }
 
@@ -29,14 +31,16 @@ class Evolution
   /**
    * @return int|null
    */
-  public function getMaxGenerations() {
+  public function getMaxGenerations()
+  {
     return $this->maxGenerations;
   }
 
   /**
    * @param int|null $maxGenerations
    */
-  public function setMaxGenerations($maxGenerations) {
+  public function setMaxGenerations($maxGenerations)
+  {
     $this->maxGenerations = $maxGenerations;
   }
 
@@ -67,25 +71,25 @@ class Evolution
 
   protected $previousPopulations = array();
 
-  public function __construct(Population\Population $population, $maxGenerations = NULL, $individualsPerGeneration = NULL)
+  public function __construct(Population\Population $population, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = FALSE)
   {
     if (!is_null($maxGenerations)) {
-      $this->maxGenerations = $maxGenerations;
-    }
-    else {
-      $this->maxGenerations = 10;
+      $this->setMaxGenerations($maxGenerations);
+    } else {
+      $this->setMaxGenerations(10);
     }
 
     if (!is_null($individualsPerGeneration)) {
-      $this->individualsPerGeneration = $individualsPerGeneration;
+      $this->setIndividualsPerGeneration($individualsPerGeneration);
     } else {
-      $this->individualsPerGeneration = 10;
+      $this->setMaxGenerations(10);
     }
 
     $this->population = $population;
+    $this->previousGenerations[$this->generation] = clone $this->getCurrentPopulation();
 
     // Setup initial Population.
-    if ($this->population->getLength() < $this->getIndividualsPerGeneration()) {
+    if ($autoGeneratePopulation === TRUE && $this->population->getLength() < $this->getIndividualsPerGeneration()) {
       // Get the population object to generate individuals.
       do {
         $this->population->addIndividual();
@@ -93,33 +97,52 @@ class Evolution
     }
   }
 
-  public function getCurrentPopulation() {
+  /**
+   * @return Population\Population
+   */
+  public function getCurrentPopulation()
+  {
     return $this->population;
   }
 
-  public function runGeneration() {
+  /**
+   * @param Population\Population $population
+   */
+  public function setPopulation($population)
+  {
+    $this->population = $population;
+  }
 
+  public function addPreviousGeneration($population) {
+
+    $this->previousGenerations[$this->generation] = clone $population;
+  }
+
+  /**
+   * @return bool
+   */
+  public function runGeneration()
+  {
     // Ensure the population has a length.
     if ($this->population->getLength() == 0) {
       $this->generation = $this->getMaxGenerations();
       return FALSE;
     }
-
-    $this->previousGenerations[$this->generation] = clone $this->population;
+    
+    $this->addPreviousGeneration(clone $this->getCurrentPopulation());
 
     // Ensure the population is at the right level.
-    if ($this->population->getLength() <= $this->getIndividualsPerGeneration()) {
+    if ($this->population->getLength() < $this->getIndividualsPerGeneration()) {
       do {
         // Clone an individual from the current population to add back in.
         $random_individual = $this->population->getRandomIndividual();
         if (is_object($random_individual)) {
-          echo 'created: ' . $random_individual->render() . '<br>';
+          //echo 'created: ' . $random_individual->render() . '<br>';
           $this->population->addIndividual(clone $random_individual);
         }
-      } while ($this->population->getLength() <= $this->getIndividualsPerGeneration());
+      } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
     }
 
-    echo '<br>generation<br>';
     // Mutate the population
     foreach ($this->population->getPopulation() as $key => $individual) {
       if (!is_null($this->getGlobalMutationFactor())) {
@@ -128,10 +151,10 @@ class Evolution
       $individual->mutateProperties();
     }
 
-    // Kill off any unfit individuals
+    // Kill off any unfit individuals.
     foreach ($this->population->getPopulation() as $key => $individual) {
       if ($individual->getFitness() < $this->allowedFitness) {
-        echo 'killed:' . $individual->render() . '<br>';
+        //echo 'killed:' . $individual->render() . '<br>';
         $this->population->removeIndividual($key);
       }
     }
@@ -139,23 +162,28 @@ class Evolution
     $this->generation++;
   }
 
-  public function getCurrentGeneration() {
+  public function getGeneration()
+  {
     return $this->generation;
   }
 
-  public function renderGenerations() {
+  public function renderGenerations()
+  {
     $output = '';
+
     foreach ($this->previousGenerations as $generation_number => $population) {
       $output .= $generation_number . ': ' . $population->render() . PHP_EOL;
     }
     return $output;
   }
 
-  public function getAllowedFitness() {
+  public function getAllowedFitness()
+  {
     return $this->allowedFitness();
   }
 
-  public function setAllowedFitness($allowedFitness) {
+  public function setAllowedFitness($allowedFitness)
+  {
     $this->allowedFitness = $allowedFitness;
   }
 }

@@ -33,6 +33,7 @@ class Number
   }
 
   public function mutateNumber($amount = 1) {
+
     $operators = array('add', 'subtract');
 
     $value = call_user_func_array(array($this, $operators[array_rand($operators)]), array(
@@ -42,8 +43,6 @@ class Number
     if ($value > 10) {
       $value = 10;
     }
-
-    print 'mutated: '. $this->getNumber() . ' ' . $value . '<br>';
 
     $this->setNumber($value);
   }

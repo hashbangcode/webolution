@@ -8,7 +8,11 @@ abstract class Individual implements IndividualInterface
 
   protected $object;
 
-  protected $mutationFactor = 1;
+  protected $mutationFactor;
+
+  public function __construct() {
+    $this->mutationFactor = 0;
+  }
 
   /**
    * @return int
@@ -32,4 +36,9 @@ abstract class Individual implements IndividualInterface
 
   abstract public function getFitness();
   abstract public function render();
+
+  public function __clone() {
+    $object = $this->getObject();
+    $this->object = clone $object;
+  }
 }
