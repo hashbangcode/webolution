@@ -194,7 +194,6 @@ class Color
    */
   public function getHex()
   {
-
     $rgb['red'] = str_pad(dechex($this->getRed()), 2, '0', STR_PAD_LEFT);
     $rgb['green'] = str_pad(dechex($this->getGreen()), 2, '0', STR_PAD_LEFT);
     $rgb['blue'] = str_pad(dechex($this->getBlue()), 2, '0', STR_PAD_LEFT);
@@ -679,6 +678,6 @@ class Color
   }
 
   public function render() {
-    return $this->getRGB();
+    return $this->getHex();
   }
 }

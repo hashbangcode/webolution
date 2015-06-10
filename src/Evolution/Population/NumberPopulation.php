@@ -28,7 +28,7 @@ class NumberPopulation extends Population
   public function render() {
     $output = '';
 
-    //$this->sort();
+    $this->sort();
 
     foreach ($this->getPopulation() as $numberIndividual) {
       $output .= $numberIndividual->render() .' ';

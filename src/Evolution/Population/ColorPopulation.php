@@ -11,27 +11,27 @@ class ColorPopulation extends Population
   public function sort($sortBy = 'hue', $direction = 'ASC') {
     $colors = array();
 
-    foreach ($this->individuals as $individual) {
-      $color = $individual->getObject();
+    // @todo : this technically works, but is shit.
+    foreach ($this->individuals as $index => $individual) {
       switch ($sortBy) {
         case 'hue':
-          $index = $color->getHue() * 100;
+          $new_index = $individual->getObject()->getHue() * 100;
           break;
         case 'intensity':
-          $index = $color->getIntensity() * 100;
+          $new_index = $individual->getObject()->getIntensity() * 100;
           break;
         case 'hsi_saturation':
-          $index = $color->getHsiSaturation() * 100;
+          $new_index = $individual->getObject()->getHsiSaturation() * 100;
           break;
       }
 
-      if (isset($colors[$index])) {
-        while (isset($colors[$index])) {
-          $index++;
+      if (isset($colors[$new_index])) {
+        while (isset($colors[$new_index])) {
+          $new_index++;
         }
-        $colors[$index] = $color;
+        $colors[$new_index] = clone $individual;
       } else {
-        $colors[$index] = $color;
+        $colors[$new_index] = clone $individual;
       }
     }
 
@@ -54,8 +54,11 @@ class ColorPopulation extends Population
 
   public function render() {
     $output = '';
+
+    $this->sort();
+
     foreach ($this->individuals as $color) {
-      $output .= $color->render() . PHP_EOL;
+      $output .= $color->render() . ' ';
     }
     return $output;
   }

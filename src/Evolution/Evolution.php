@@ -143,7 +143,7 @@ class Evolution
       } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
     }
 
-    // Mutate the population
+    // Mutate the population.
     foreach ($this->population->getPopulation() as $key => $individual) {
       if (!is_null($this->getGlobalMutationFactor())) {
         $individual->setMutationFactor($this->getGlobalMutationFactor());
