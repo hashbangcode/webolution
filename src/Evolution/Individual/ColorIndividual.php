@@ -34,7 +34,7 @@ class ColorIndividual extends Individual
         return '<div style="background-color:#' . $this->object->render() . '"> </div>';
       case 'cli':
       default:
-        return $this->object->render();
+        return $this->object->render() . PHP_EOL;
     }
   }
 
