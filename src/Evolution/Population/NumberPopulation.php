@@ -26,14 +26,15 @@ class NumberPopulation extends Population
   }
 
   public function render() {
-    $output = '';
-
-    $this->sort();
-
-    foreach ($this->getPopulation() as $numberIndividual) {
-      $output .= $numberIndividual->render() .' ';
+    $output = parent::render();
+    switch ($this->getDefaultRenderType()) {
+      case 'html':
+        $output .= ' (' . $this->getLength() . ' items)<br>';
+        break;
+      case 'cli':
+        $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;
+        break;
     }
-    $output .= ' (' . $this->getLength() . ' items)';
     return $output;
   }
 }

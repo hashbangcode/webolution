@@ -7,6 +7,21 @@ use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 abstract class Population implements PopulationInterface
 {
   protected $individuals = array();
+  protected $defaultRenderType = '';
+
+  /**
+   * @return string
+   */
+  public function getDefaultRenderType() {
+    return $this->defaultRenderType;
+  }
+
+  /**
+   * @param string $defaultRender
+   */
+  public function setDefaultRenderType($defaultRenderType) {
+    $this->defaultRenderType = $defaultRenderType;
+  }
 
   public function getLength() {
     return count($this->individuals);
@@ -36,5 +51,17 @@ abstract class Population implements PopulationInterface
       unset($this->individuals[$key]);
       $this->individuals[$key] = $newIndividual;
     }
+  }
+
+  public function render() {
+    $output = '';
+
+    $this->sort();
+
+    foreach ($this->getPopulation() as $individual) {
+      $output .= $individual->render($this->getDefaultRenderType());
+    }
+
+    return $output;
   }
 }

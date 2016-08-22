@@ -44,7 +44,7 @@ class ElementIndividual extends Individual
     return 1;
   }
 
-  public function render() {
-    return $this->getObject()->render();
+  public function render($renderType) {
+    return $this->getObject()->render($renderType);
   }
 }

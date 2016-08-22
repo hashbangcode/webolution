@@ -9,4 +9,5 @@ interface PopulationInterface {
   public function sort();
   public function getLength();
   public function getPopulation();
+  public function render();
 }

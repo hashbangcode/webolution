@@ -35,7 +35,7 @@ abstract class Individual implements IndividualInterface
   }
 
   abstract public function getFitness();
-  abstract public function render();
+  abstract public function render($renderType);
 
   public function __clone() {
     $object = $this->getObject();

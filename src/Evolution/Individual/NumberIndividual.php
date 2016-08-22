@@ -21,12 +21,19 @@ class NumberIndividual extends Individual
     return $this->getObject()->getNumber();
   }
 
-  public function render() {
-    return $this->getObject()->render();
-  }
-
   public static function generateRandomNumber() {
     $number = rand(1, 10);
     return new NumberIndividual($number);
+  }
+
+  public function render($renderType)
+  {
+    switch ($renderType) {
+      case 'html':
+        return $this->object->render();
+      case 'cli':
+      default:
+        return $this->object->render();
+    }
   }
 }

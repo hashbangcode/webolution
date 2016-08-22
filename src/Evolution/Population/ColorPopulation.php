@@ -51,15 +51,4 @@ class ColorPopulation extends Population
 
     $this->individuals[] = $individual;
   }
-
-  public function render() {
-    $output = '';
-
-    $this->sort();
-
-    foreach ($this->individuals as $color) {
-      $output .= $color->render() . ' ';
-    }
-    return $output;
-  }
 }

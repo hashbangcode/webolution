@@ -37,6 +37,7 @@ class ElementIndividualTest extends PHPUnit_Framework_TestCase
 
   public function testElementIndividualRender() {
     $object = new ElementIndividual('html');
-    $this->assertEquals('<html></html>', $object->render());
+    $renderType = 'cli';
+    $this->assertEquals('<html></html>', $object->render($renderType));
   }
 }

@@ -18,8 +18,9 @@ class ColorIndividualTest extends PHPUnit_Framework_TestCase
     $object = new ColorIndividual(125, 125, 125);
     $object->setMutationFactor(1);
     $object->mutateProperties();
-    $this->assertNotEquals('125125125', $object->getObject()->render());
-    $this->assertNotEquals('125125125', $object->render());
+    $renderType = 'cli';
+    $this->assertNotEquals('125125125', $object->getObject()->render($renderType));
+    $this->assertNotEquals('125125125', $object->render($renderType));
   }
 
   public function testColorFitness() {

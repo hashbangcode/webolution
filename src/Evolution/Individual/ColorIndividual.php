@@ -27,12 +27,14 @@ class ColorIndividual extends Individual
     return round($lightness * 10);
   }
 
-  public function render($html = true)
+  public function render($renderType)
   {
-    if ($html === true) {
-      return '<div style="background-color:#' . $this->object->render() . '"> </div>';
-    } else {
-      return $this->object->render();
+    switch ($renderType) {
+      case 'html':
+        return '<div style="background-color:#' . $this->object->render() . '"> </div>';
+      case 'cli':
+      default:
+        return $this->object->render();
     }
   }
 

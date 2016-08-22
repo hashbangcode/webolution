@@ -74,7 +74,8 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase {
     $colorColorPopulation->addIndividual(new ColorIndividual(255, 255, 255));
     $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
 
-    $this->assertEquals('255255255' . PHP_EOL . '000000000' . PHP_EOL, $colorColorPopulation->render());
-  }
+    $colorColorPopulation->setDefaultRenderType('cli');
 
+    $this->assertEquals('FFFFFF' . PHP_EOL . '000000' . PHP_EOL, $colorColorPopulation->render());
+  }
 }
