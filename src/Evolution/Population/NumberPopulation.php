@@ -6,9 +6,16 @@ use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 use Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual;
 use Hashbangcode\Wevolution\Type\Number\Number;
 
+/**
+ * Class NumberPopulation
+ * @package Hashbangcode\Wevolution\Evolution\Population
+ */
 class NumberPopulation extends Population
 {
 
+  /**
+   * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
+   */
   public function addIndividual(Individual $individual = NULL) {
     if (is_null($individual)) {
       $number = rand(1, 10);
@@ -17,14 +24,23 @@ class NumberPopulation extends Population
     $this->individuals[] = $individual;
   }
 
-  public function getPopulation() {
+  /**
+   * @return array
+   */
+  public function getIndividuals() {
     return $this->individuals;
   }
 
+  /**
+   *
+   */
   public function sort() {
     sort($this->individuals);
   }
 
+  /**
+   * @return string
+   */
   public function render() {
     $output = parent::render();
     switch ($this->getDefaultRenderType()) {

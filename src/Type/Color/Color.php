@@ -4,22 +4,59 @@ namespace Hashbangcode\Wevolution\Type\Color;
 
 /**
  * Class Color
+ * @package Hashbangcode\Wevolution\Type\Color
  */
 class Color
 {
 
+  /**
+   * @var int|null|string
+   */
   private $red = NULL;
+
+  /**
+   * @var int|null|string
+   */
   private $green = NULL;
+
+  /**
+   * @var int|null|string
+   */
   private $blue = NULL;
 
+  /**
+   * @var null
+   */
   private $hue = NULL;
+
+  /**
+   * @var null
+   */
   private $hue2 = NULL;
 
+  /**
+   * @var null
+   */
   private $croma = NULL;
+
+  /**
+   * @var null
+   */
   private $croma2 = NULL;
 
+  /**
+   * @var null
+   */
   private $value = NULL;
+
+  /**
+   * @var null
+   */
   private $lightness = NULL;
+
+  /**
+   * @var null
+   */
   private $intensity = NULL;
 
   /**

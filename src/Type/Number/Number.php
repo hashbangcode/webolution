@@ -4,6 +4,10 @@ namespace Hashbangcode\Wevolution\Type\Number;
 
 //use Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException;
 
+/**
+ * Class Number
+ * @package Hashbangcode\Wevolution\Type\Number
+ */
 class Number
 {
   protected $number;
@@ -28,12 +32,20 @@ class Number
     }
   }
 
+  /**
+   * Number constructor.
+   * @param $number
+   */
   public function __construct($number) {
     $this->setNumber($number);
   }
 
+  /**
+   * @param int $amount
+   * @throws \Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException
+   */
   public function mutateNumber($amount = 1) {
-
+    // @todo should this be in the number invividual object as it has nothing to do with this class?
     $operators = array('add', 'subtract');
 
     $value = call_user_func_array(array($this, $operators[array_rand($operators)]), array(
@@ -71,6 +83,9 @@ class Number
     return $x - $y;
   }
 
+  /**
+   * @return mixed
+   */
   public function render() {
     return $this->getNumber();
   }

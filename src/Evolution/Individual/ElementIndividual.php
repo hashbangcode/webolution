@@ -4,10 +4,15 @@ namespace Hashbangcode\Wevolution\Evolution\Individual;
 use Hashbangcode\Wevolution\Type\Element\Element;
 
 /**
- * Class ColorIndividual
+ * Class ElementIndividual
+ * @package Hashbangcode\Wevolution\Evolution\Individual
  */
 class ElementIndividual extends Individual
 {
+
+  /**
+   * @var int
+   */
   protected $mutationFactor = 1;
 
   /**
@@ -35,15 +40,25 @@ class ElementIndividual extends Individual
     }
   }
 
+  /**
+   * @return $this
+   */
   public function mutateProperties() {
     $this->getObject()->mutateElement($this->getMutationFactor());
     return $this;
   }
 
+  /**
+   * @return int
+   */
   public function getFitness() {
     return 1;
   }
 
+  /**
+   * @param $renderType
+   * @return mixed
+   */
   public function render($renderType) {
     return $this->getObject()->render($renderType);
   }

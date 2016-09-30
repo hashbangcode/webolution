@@ -5,9 +5,17 @@ namespace Hashbangcode\Wevolution\Evolution\Population;
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
+/**
+ * Class ColorPopulation
+ * @package Hashbangcode\Wevolution\Evolution\Population
+ */
 class ColorPopulation extends Population
 {
 
+  /**
+   * @param string $sortBy
+   * @param string $direction
+   */
   public function sort($sortBy = 'hue', $direction = 'ASC') {
     $colors = array();
 
@@ -44,6 +52,9 @@ class ColorPopulation extends Population
     $this->individuals = $colors;
   }
 
+  /**
+   * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
+   */
   public function addIndividual(Individual $individual = NULL) {
     if (is_null($individual)) {
       $individual = ColorIndividual::generateRandomColor();

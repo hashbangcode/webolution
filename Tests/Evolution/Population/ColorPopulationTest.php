@@ -46,7 +46,7 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase {
     $colorColorPopulation->addIndividual(ColorIndividual::generateRandomColor());
     $colorColorPopulation->addIndividual(ColorIndividual::generateRandomColor());
 
-    $population = $colorColorPopulation->getPopulation();
+    $population = $colorColorPopulation->getIndividuals();
 
     foreach ($population[0]->getObject() as $color) {
       $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $color);

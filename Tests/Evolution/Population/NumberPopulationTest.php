@@ -52,7 +52,7 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase {
     $numberPopulation->addIndividual(NumberIndividual::generateRandomNumber());
     $numberPopulation->addIndividual(NumberIndividual::generateRandomNumber());
 
-    $population = $numberPopulation->getPopulation();
+    $population = $numberPopulation->getIndividuals();
 
     foreach ($population[0]->getObject() as $number) {
       $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Number\Number', $number);

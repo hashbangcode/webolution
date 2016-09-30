@@ -10,24 +10,40 @@ use Hashbangcode\Wevolution\Type\Color\Color;
 class ColorIndividual extends Individual
 {
 
+  /**
+   * ColorIndividual constructor.
+   * @param $red
+   * @param $green
+   * @param $blue
+   */
   public function __construct($red, $green, $blue)
   {
     $this->object = new Color($red, $green, $blue);
   }
 
+  /**
+   *
+   */
   public function mutateProperties()
   {
     $this->object->mutateColor($this->getMutationFactor());
   }
 
+  /**
+   * @return float
+   */
   public function getFitness()
   {
     $color = $this->getObject();
     $lightness = $color->getLightness();
-    return round($lightness * 10);
+    return abs(($lightness * 10) - 10);
   }
 
-  public function render($renderType)
+  /**
+   * @param $renderType
+   * @return string
+   */
+  public function render($renderType = 'cli')
   {
     switch ($renderType) {
       case 'html':
@@ -38,6 +54,9 @@ class ColorIndividual extends Individual
     }
   }
 
+  /**
+   * @return \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual
+   */
   public static function generateRandomColor()
   {
     // Return an RGB array.
