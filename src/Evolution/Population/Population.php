@@ -52,7 +52,16 @@ abstract class Population implements PopulationInterface
    * @return mixed
    */
   public function getRandomIndividual() {
-    return $this->individuals[array_rand($this->individuals)];
+    if ($this->getLength() == 0) {
+      return FALSE;
+    }
+
+    $random_key = array_rand($this->individuals);
+    if (!is_null($random_key)) {
+      return $this->individuals[$random_key];
+    }
+
+    return FALSE;
   }
 
   /**
@@ -91,7 +100,10 @@ abstract class Population implements PopulationInterface
   }
 
   public function copyIndividual() {
-    $this->individuals[] = clone $this->getRandomIndividual();
+    $individual = $this->getRandomIndividual();
+    if ($individual !== FALSE) {
+      $this->individuals[] = clone $individual;
+    }
   }
 
   /**

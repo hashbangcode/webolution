@@ -142,17 +142,24 @@ class Evolution {
 
    // echo '<br>';
 
-
+    if ($this->population->getLength() == 0) {
+      // If there is no population left then set the number of generations to max.
+      $this->generation = $this->getMaxGenerations();
+      return FALSE;
+    }
 
 
     // Ensure the population is at the right level.
-    // @todo disabled for now.
     if ($this->population->getLength() < $this->getIndividualsPerGeneration()) {
       do {
         // Clone an individual from the current population to add back in.
         $random_individual = $this->population->getRandomIndividual();
         if (is_object($random_individual)) {
           $this->population->addIndividual(clone $random_individual);
+        }
+        else {
+          // Add a radnom individual (not cloned from the current population).
+          $this->population->addIndividual();
         }
       } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
     }
