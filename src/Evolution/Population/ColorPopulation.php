@@ -13,43 +13,52 @@ class ColorPopulation extends Population
 {
 
   /**
+   * @var ColorIndividual
+   */
+  protected $individual;
+
+  /**
+   * Sort the population by a given parameter and in a certain direction.
+   *
    * @param string $sortBy
    * @param string $direction
    */
   public function sort($sortBy = 'hue', $direction = 'ASC') {
-    $colors = array();
-
-    // @todo : this technically works, but is shit.
-    foreach ($this->individuals as $index => $individual) {
+    
+    usort($this->individuals, function ($a, $b) use($sortBy, $direction) {
       switch ($sortBy) {
         case 'hue':
-          $new_index = $individual->getObject()->getHue() * 100;
+          $aValue = $a->getObject()->getHue();
+          $bValue = $b->getObject()->getHue();
           break;
         case 'intensity':
-          $new_index = $individual->getObject()->getIntensity() * 100;
+          $aValue = $a->getObject()->getIntensity();
+          $bValue = $b->getObject()->getIntensity();
           break;
         case 'hsi_saturation':
-          $new_index = $individual->getObject()->getHsiSaturation() * 100;
+          $aValue = $a->getObject()->getHsiSaturation();
+          $bValue = $b->getObject()->getHsiSaturation();
           break;
+        case 'lightness':
+          $aValue = $a->getObject()->getLightness();
+          $bValue = $b->getObject()->getLightness();
+          break;
+        case 'fitness':
+          $aValue = $a->getFitness();
+          $bValue = $b->getFitness();
       }
 
-      if (isset($colors[$new_index])) {
-        while (isset($colors[$new_index])) {
-          $new_index++;
-        }
-        $colors[$new_index] = clone $individual;
-      } else {
-        $colors[$new_index] = clone $individual;
+      if ($aValue == $bValue) {
+        return 0;
       }
-    }
 
-    if ($direction === 'ASC') {
-      ksort($colors);
-    } else {
-      krsort($colors);
-    }
-
-    $this->individuals = $colors;
+      if ($direction == 'ASC') {
+        return ($aValue < $bValue) ? -1 : 1;
+      }
+      else {
+        return ($aValue > $bValue) ? -1 : 1;
+      }
+    });
   }
 
   /**
