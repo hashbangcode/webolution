@@ -46,6 +46,9 @@ abstract class Population implements PopulationInterface
     return $this->individuals;
   }
 
+  /**
+   * @return mixed
+   */
   abstract public function sort();
 
   /**

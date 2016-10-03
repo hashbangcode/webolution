@@ -47,7 +47,7 @@ class ColorIndividual extends Individual
   {
     switch ($renderType) {
       case 'html':
-        return '<div style="background-color:#' . $this->object->render() . '"> </div>';
+        return '<span style="background-color:#' . $this->object->render() . '"> </span>';
       case 'cli':
       default:
         return $this->object->render() . PHP_EOL;

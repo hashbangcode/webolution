@@ -92,6 +92,10 @@ class Color
     $this->blue = $blue;
   }
 
+  /**
+   * @param $hex
+   * @return \Hashbangcode\Wevolution\Type\Color\Color
+   */
   public static function generateFromHex($hex)
   {
     $hex = str_replace("#", "", $hex);
@@ -110,6 +114,12 @@ class Color
     return new Color($red, $green, $blue);
   }
 
+  /**
+   * @param $hue
+   * @param $saturation
+   * @param $value
+   * @return \Hashbangcode\Wevolution\Type\Color\Color
+   */
   public static function generateFromHSV($hue, $saturation, $value)
   {
     $chroma = $value * $saturation;

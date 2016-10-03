@@ -10,44 +10,45 @@ use Hashbangcode\Wevolution\Type\Color\Color;
 
 date_default_timezone_set('Europe/London');
 define('WEVOLUTION_INDIVIDUALS_PER_GENERATION', 10);
-define('WEVOLUTION_MAX_GENERATIONS', 300);
+define('WEVOLUTION_MAX_GENERATIONS', 450);
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
+
+set_error_handler("myErrorHandler");
 
 $app = new Silex\Application();
 
 // Register TWIG
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-  'twig.path' => __DIR__.'/views',
+  'twig.path' => __DIR__ . '/views',
 ));
 
-$app['debug'] = true;
+$app['debug'] = TRUE;
 
+$app->get('/', function () {
+  $output = 'Hi';
 
-$app->get('/number_evolution', function () {
+  $output .= '<p><a href="/number_evolution">Number Evolution</a></p>';
+  $output .= '<p><a href="/color_evolution">Color Evolution</a></p>';
+  $output .= '<p><a href="/colour_evolution_interactive">Color Evolution Interactive</a></p>';
+
+  return $output;
+});
+
+$app->get('/number_evolution', function () use ($app) {
   $output = '';
 
-  //$output .= '<h1>Number Evolution Test</h1>';
+  $styles = '';
+
+  $output .= '<h1>Number Evolution Test</h1>';
 
   $population = new NumberPopulation();
   $population->setDefaultRenderType('html');
 
   for ($i = 0; $i < WEVOLUTION_INDIVIDUALS_PER_GENERATION; $i++) {
     $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(1));
-    //$population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual::generateRandomNumber());
   }
-
-
-  /*$population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(-2));
-  $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(2));
-  $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(3));
-  $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(4));
-  $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(5));*/
-  /*$population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(6));
-  $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(7));
-  $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(8));
-  $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(9));
-  */
 
   $evolution = new Evolution($population);
   $evolution->setIndividualsPerGeneration(WEVOLUTION_INDIVIDUALS_PER_GENERATION);
@@ -66,24 +67,17 @@ $app->get('/number_evolution', function () {
 
   $output .= $evolution->renderGenerations();
 
-  return $output;
+  return $app['twig']->render('main.twig', array(
+    'output' => $output,
+    'styles' => $styles,
+  ));
 });
 
 
-$app->get('/', function () {
-  $output = 'Hi';
+$app->get('/color_evolution', function () use ($app) {
+  $styles = '<style>div {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}</style>';
 
-  $output .= '<p><a href="/number_evolution">Number Evolution</a></p>';
-  $output .= '<p><a href="/color_evolution">Color Evolution</a></p>';
-  $output .= '<p><a href="/colour_evolution_interactive">Color Evolution Interactive</a></p>';
-
-  return $output;
-});
-
-$app->get('/color_evolution', function () {
   $output = '<h1>Color Evolution Test</h1>';
-
-  $output .= '<style>div {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}</style>';
 
   $population = new ColorPopulation();
   $population->setDefaultRenderType('html');
@@ -109,14 +103,22 @@ $app->get('/color_evolution', function () {
 
   $output .= nl2br($evolution->renderGenerations());
 
-  return $output;
+  return $app['twig']->render('main.twig', array(
+    'output' => $output,
+    'styles' => $styles,
+  ));
 });
+
 
 $app->get('/colour_evolution_interactive/{color}', function ($color) use ($app) {
 
-  $output = '<h1>Test</h1>';
+  $output = '<h1>Evolution Test</h1>';
 
-  $styles = '<style>div {width:50px;height:50px;display:inline-block;padding:0px;margin:0px;}</style>';
+  $styles = '<style>
+span {width:30px;height:30px;display:inline-block;padding:0px;margin:-2px;}
+a, a:link, a:visited, a:hover, a:active {padding:0px;margin:0px;}
+img {padding:0px;margin:0px;}
+</style>';
 
   $population = new ColorPopulation();
   $population->setDefaultRenderType('html');
@@ -126,49 +128,33 @@ $app->get('/colour_evolution_interactive/{color}', function ($color) use ($app) 
   }
   else {
     $colorObject = \Hashbangcode\Wevolution\Type\Color\Color::generateFromHex($color);
+    $output .= '<p><a href="/colour_evolution_interactive">Reset</a></a>';
   }
 
   $colorIndividual = new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual($colorObject->getRed(), $colorObject->getGreen(), $colorObject->getBlue());
 
   $population->addIndividual($colorIndividual);
-  $population->copyIndividual();
-  $population->copyIndividual();
-  $population->copyIndividual();
-  $population->copyIndividual();
-  $population->copyIndividual();
-  $population->copyIndividual();
-  $population->copyIndividual();
-  $population->copyIndividual();
-  $population->copyIndividual();
-  $population->copyIndividual();
 
   $evolution = new Evolution($population);
 
-  //$evolution->setIndividualsPerGeneration(WEVOLUTION_INDIVIDUALS_PER_GENERATION);
-  //$evolution->setMaxGenerations(WEVOLUTION_MAX_GENERATIONS);
-  $evolution->setGlobalMutationFactor(100);
+  $evolution->setGlobalMutationFactor(15);
+  $evolution->setIndividualsPerGeneration(1000);
+
   // Run one generation.
   $evolution->runGeneration(FALSE);
 
   $colorPopulation = $evolution->getCurrentPopulation();
 
-  $colorPopulation->sort();
+  $colorPopulation->sort('hue');
 
   $output .= '<p>' . PHP_EOL;
 
   foreach ($colorPopulation->getIndividuals() as $individual) {
-    $output .= $individual->getObject()->getHex() ;
     $output .= '<a href="/colour_evolution_interactive/' . $individual->getObject()->getHex() . '">' . $individual->render('html') . '</a>' . PHP_EOL;
   }
   $output .= '</p>';
 
-  //foreach ($evolution->getCurrentPopulation()->getIndividuals() as $individual) {
-    //$colorIndividual->setMutationFactor(10);
-    //$colorIndividual->mutateProperties();
-    //$output .= '<a href="/colour_evolution_interactive/' . $colorIndividual->getObject()->getHex() . '">' . $colorIndividual->render('html') . '</a>';
-  //}
-
-  $output .= '<p>Colour<pre>'.print_r($color, true).'</pre></p>';
+  $output .= '<p>Colour<pre>' . print_r($color, TRUE) . '</pre></p>';
 
   return $app['twig']->render('main.twig', array(
     'output' => $output,
@@ -178,7 +164,43 @@ $app->get('/colour_evolution_interactive/{color}', function ($color) use ($app) 
   ->value("color", '');
 
 
-
-
 $app->run();
 
+
+function myErrorHandler($errno, $errstr, $errfile, $errline) {
+  if (!(error_reporting() & $errno)) {
+    // This error code is not included in error_reporting
+    return;
+  }
+
+  switch ($errno) {
+    case E_USER_ERROR:
+      echo "<b>My ERROR</b> [$errno] $errstr<br />\n";
+      echo "  Fatal error on line $errline in file $errfile";
+      echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
+      echo "Aborting...<br />\n";
+      exit(1);
+      break;
+
+    case E_USER_WARNING:
+      echo "<b>My WARNING</b> [$errno] $errstr<br />\n";
+      echo "On line $errline in file $errfile<br>\n";
+      exit(1);
+      break;
+
+    case E_USER_NOTICE:
+      echo "<b>My NOTICE</b> [$errno] $errstr<br />\n";
+      echo "On line $errline in file $errfile<br>\n";
+      exit(1);
+      break;
+
+    default:
+      echo "Unknown error type: [$errno] $errstr<br />\n";
+      echo "On line $errline in file $errfile<br>\n";
+      exit(1);
+      break;
+  }
+
+  /* Don't execute PHP internal error handler */
+  return TRUE;
+}
