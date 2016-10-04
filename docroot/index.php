@@ -145,7 +145,7 @@ img {padding:0px;margin:0px;}
 
   $colorPopulation = $evolution->getCurrentPopulation();
 
-  $colorPopulation->sort('hue');
+  $colorPopulation->sort('hex');
 
   $output .= '<p>' . PHP_EOL;
 

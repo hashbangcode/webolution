@@ -24,12 +24,17 @@ class ColorPopulation extends Population
    * @param string $direction
    */
   public function sort($sortBy = 'hue', $direction = 'ASC') {
-    
+
     usort($this->individuals, function ($a, $b) use($sortBy, $direction) {
+
       switch ($sortBy) {
         case 'hue':
           $aValue = $a->getObject()->getHue();
           $bValue = $b->getObject()->getHue();
+          break;
+        case 'hex':
+          $aValue = $a->getObject()->getHex();
+          $bValue = $b->getObject()->getHex();
           break;
         case 'intensity':
           $aValue = $a->getObject()->getIntensity();
