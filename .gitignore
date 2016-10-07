@@ -49,4 +49,4 @@ nbproject
 build
 build/*
 composer.lock
-vendor/*
+/vendor/
