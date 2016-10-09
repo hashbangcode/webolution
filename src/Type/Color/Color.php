@@ -227,9 +227,9 @@ class Color
   public static function generateRandomColor()
   {
     //Return an RGB array
-    $red = ceil(rand(0, 255));
-    $green = ceil(rand(0, 255));
-    $blue = ceil(rand(0, 255));
+    $red = ceil(mt_rand(0, 255));
+    $green = ceil(mt_rand(0, 255));
+    $blue = ceil(mt_rand(0, 255));
 
     return new Color($red, $blue, $green);
   }
@@ -606,28 +606,38 @@ class Color
    *
    * @return $this The current object.
    */
-  public function mutateColor($amount = 1)
+  public function mutateColor($mutationFactor)
   {
-    $this->resetColorGeometry();
+    if (rand(0,1) < $mutationFactor) {
+      $amount = 5;
 
-    $rgb = $this->getColorArray();
+      $this->resetColorGeometry();
 
-    $rgb_key = $rgb[array_rand($rgb)];
+      $rgb = $this->getColorArray();
 
-    $operators = array('add', 'subtract');
+      $rgb_key = $rgb[array_rand($rgb)];
 
-    $value = call_user_func_array(array($this, $operators[array_rand($operators)]), array(
-      $this->$rgb_key, $amount
-    ));
+      $operators = array('add', 'subtract');
 
-    if (0 > $value) {
-      $value = 0;
+      $value = call_user_func_array(array(
+        $this,
+        $operators[array_rand($operators)]
+      ), array(
+        $this->$rgb_key,
+        $amount
+      ));
+
+      if (0 > $value) {
+        $value = 0;
+      }
+      else {
+        if (255 < $value) {
+          $value = 255;
+        }
+      }
+
+      $this->$rgb_key = $value;
     }
-    else if (255 < $value) {
-      $value = 255;
-    }
-
-    $this->$rgb_key = $value;
 
     return $this;
   }
@@ -683,9 +693,9 @@ class Color
     $this->resetcolor();
 
     //Return an RGB array
-    $this->setRed(ceil(rand(0, 255)));
-    $this->setGreen(ceil(rand(0, 255)));
-    $this->setBlue(ceil(rand(0, 255)));
+    $this->setRed(ceil(mt_rand(0, 255)));
+    $this->setGreen(ceil(mt_rand(0, 255)));
+    $this->setBlue(ceil(mt_rand(0, 255)));
 
     return $this->getColorArray();
   }

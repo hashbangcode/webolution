@@ -53,6 +53,7 @@ class Evolution {
 
     $this->population = $population;
     $this->population->generateStatistics();
+    // @todo : abtract this generation storage into it's own method.
     $this->previousGenerations[$this->generation] = clone $this->getCurrentPopulation();
 
     // Setup initial Population.
@@ -93,6 +94,23 @@ class Evolution {
     $this->population = $population;
   }
 
+  public $globalFitnessGoal;
+
+  /**
+   * @return mixed
+   */
+  public function getGlobalFitnessGoal() {
+    return $this->globalFitnessGoal;
+  }
+
+  /**
+   * @param mixed $fitnessGoal
+   */
+  public function setGlobalFitnessGoal($globalFitnessGoal) {
+    $this->globalFitnessGoal = $globalFitnessGoal;
+  }
+
+
   /**
    * @return bool
    */
@@ -115,24 +133,34 @@ class Evolution {
       // Kill off any unfit individuals.
       foreach ($this->population->getIndividuals() as $key => $individual) {
 
+        if (!is_null($this->getGlobalFitnessGoal())) {
+          $individual->setFitnessGoal($this->getGlobalFitnessGoal());
+        }
+
         $fitness = $individual->getFitness();
         $maxFitness =  $this->population->getStatistics()['max']->getFitness();
 
         // Figure out if this individual is close to the top of the list.
         if ($maxFitness != 0) {
-          $fitnessFactor = ($fitness / $maxFitness) * 100;
+          $fitnessFactor = ($fitness / $maxFitness);
         } else {
           $fitnessFactor = 0;
         }
 
         // The higher the allowed fitness then the greater the chance that the individual will survive.
         //$f = $key / $this->population->getLength();
-        $rand = (pow(mt_rand(-1, 1), 3)+1)/2 * 100; //cube function
+        $rand = (pow(mt_rand(-1, 1), 3)+1)/2; //cube function
         $keepAlive = ($fitnessFactor >= $rand);
 
-        //echo 'individual:' . $individual->render() . ' fitness:' . $fitness . ' max fitness:' . $maxFitness .' fitness factor:' . $fitnessFactor .'<br>';
-        //echo 'kill: ' . ($fitnessFactor * mt_rand(0,1)) .' <strong>' .(mt_rand(0,1) * $fitnessFactor). '</strong><br>';
-        //echo 'rand: '.$rand .' ' .var_export($keepAlive, true) . '<br>';
+
+        if ($fitness > 0) {
+          $log = '';
+          $log .= 'individual:' . $individual->render() . ' fitness:' . $fitness . ' max fitness:' . $maxFitness . ' fitness factor:' . $fitnessFactor . '<br>';
+          $log .= 'kill: ' . ($fitnessFactor * mt_rand(0, 1)) . ' <strong>' . (mt_rand(0, 1) * $fitnessFactor) . '</strong><br>';
+          $log .= 'rand: ' . $rand . ' ' . var_export($keepAlive, TRUE) . '<br>';
+          //print $log;
+        }
+
 
         if (!$keepAlive) {
           $this->population->removeIndividual($key);
@@ -140,14 +168,11 @@ class Evolution {
       }
     }
 
-   // echo '<br>';
-
     if ($this->population->getLength() == 0) {
       // If there is no population left then set the number of generations to max.
       $this->generation = $this->getMaxGenerations();
       return FALSE;
     }
-
 
     // Ensure the population is at the right level.
     if ($this->population->getLength() < $this->getIndividualsPerGeneration()) {
@@ -175,6 +200,8 @@ class Evolution {
       $individual->mutateProperties();
     }
 
+    // @todo consider crossover.
+
     // Store the current generation.
     $this->addPreviousGeneration(clone $this->getCurrentPopulation());
 
@@ -188,7 +215,7 @@ class Evolution {
     $output = '';
 
     foreach ($this->previousGenerations as $generation_number => $population) {
-      $output .= $generation_number . ': ' . $population->render() . PHP_EOL;
+      $output .= $generation_number . ':<br>' . $population->render() . PHP_EOL;
       $stats = $population->getStatistics();
       //$output .= 'MIN: ' . print_r($stats['min']->render(), TRUE) . '<br>';
       //$output .= 'MAX: ' . print_r($stats['max']->render(), TRUE) . '<br>';

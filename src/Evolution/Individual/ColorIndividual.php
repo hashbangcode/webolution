@@ -32,11 +32,10 @@ class ColorIndividual extends Individual
   /**
    * @return float
    */
-  public function getFitness()
-  {
+  public function getFitness() {
     $color = $this->getObject();
     $lightness = $color->getLightness();
-    return abs(($lightness * 10) - 10);
+    return round(abs(($lightness * 10) - 10));
   }
 
   /**
@@ -60,9 +59,9 @@ class ColorIndividual extends Individual
   public static function generateRandomColor()
   {
     // Return an RGB array.
-    $red = ceil(rand(0, 255));
-    $green = ceil(rand(0, 255));
-    $blue = ceil(rand(0, 255));
+    $red = ceil(mt_rand(0, 255));
+    $green = ceil(mt_rand(0, 255));
+    $blue = ceil(mt_rand(0, 255));
 
     return new ColorIndividual($red, $blue, $green);
   }

@@ -125,7 +125,7 @@ abstract class Population implements PopulationInterface
     return $output;
   }
 
-  protected $populationFitness;
+  protected $populationFitness = array();
   protected $meanFitness;
 
   protected $medianIndividual;
@@ -133,6 +133,11 @@ abstract class Population implements PopulationInterface
   protected $maxIndividual;
 
   public function generateStatistics() {
+
+    if ($this->getLength() == 0) {
+      // No population yet.
+      return FALSE;
+    }
 
     // Sort the current population.
     $this->sort();

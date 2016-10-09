@@ -52,10 +52,6 @@ class Number
       $this->getNumber(), $amount
     ));
 
-    if ($value > 10) {
-      $value = 10;
-    }
-
     $this->setNumber($value);
   }
 

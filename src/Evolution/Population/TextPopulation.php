@@ -3,23 +3,26 @@
 namespace Hashbangcode\Wevolution\Evolution\Population;
 
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
-use Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual;
-use Hashbangcode\Wevolution\Type\Number\Number;
+use Hashbangcode\Wevolution\Evolution\Individual\TextIndividual;
+use Hashbangcode\Wevolution\Type\Text\Text;
 
 /**
- * Class NumberPopulation
+ * Class TextPopulation
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
-class NumberPopulation extends Population
+class TextPopulation extends Population
 {
 
   /**
-   * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
+   * @param mixed $text
    */
+  public function setText($text) {
+    $this->text = $text;
+  }
+
   public function addIndividual(Individual $individual = NULL) {
     if (is_null($individual)) {
-      $number = mt_rand(1, 10);
-      $individual = new NumberIndividual($number);
+      $individual = TextIndividual::generateRandomText();
     }
     $this->individuals[] = $individual;
   }

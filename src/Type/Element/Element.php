@@ -100,9 +100,9 @@ class Element
    */
   public function mutateElement($factor)
   {
-    $action = rand(1, 10) + $factor;
+    $action = mt_rand(0, 1000) / 1000;
 
-    if ($action <= 9 && count($this->attributes) > 0) {
+    if ($action <= $factor && count($this->attributes) > 0) {
       // Mutate an attribute.
       $random_attribute = array_rand($this->attributes);
       $letters = range('a', 'z');
@@ -117,7 +117,7 @@ class Element
 
       $this->attributes[$random_attribute] = $attribute_value;
     }
-    else if ($action >= 10) {
+    else if ($action >= $factor) {
       // Add additional children elements.
       $child_types = $this->getChildTypes($this->getType());
       $this->addChild(new Element($child_types[array_rand($child_types)]));

@@ -39,6 +39,6 @@ class NumberIndividualTest extends PHPUnit_Framework_TestCase
   public function testRender() {
     $object = new NumberIndividual(1);
     $renderType = 'cli';
-    $this->assertEquals(1, $object->render($renderType));
+    $this->assertEquals('1 ', $object->render($renderType));
   }
 }

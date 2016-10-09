@@ -22,7 +22,7 @@ class NumberIndividual extends Individual {
    * @return \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual
    */
   public static function generateRandomNumber() {
-    $number = rand(1, 10);
+    $number = mt_rand(1, 10);
     return new NumberIndividual($number);
   }
 

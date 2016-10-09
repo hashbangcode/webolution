@@ -76,6 +76,6 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase {
 
     $colorColorPopulation->setDefaultRenderType('cli');
 
-    $this->assertEquals('FFFFFF' . PHP_EOL . '000000' . PHP_EOL, $colorColorPopulation->render());
+    $this->assertEquals('000000' . PHP_EOL . 'FFFFFF' . PHP_EOL, $colorColorPopulation->render());
   }
 }

@@ -25,7 +25,7 @@ class ColorIndividualTest extends PHPUnit_Framework_TestCase
 
   public function testColorFitness() {
     $object = new ColorIndividual(255, 255, 255);
-    $this->assertEquals(10, $object->getFitness());
+    $this->assertEquals(0, $object->getFitness());
 
     $object = new ColorIndividual(125, 125, 125);
     $this->assertEquals(5, $object->getFitness());

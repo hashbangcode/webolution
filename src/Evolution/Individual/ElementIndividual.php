@@ -31,7 +31,7 @@ class ElementIndividual extends Individual
     $this->mutationFactor = $mutationFactor;
   }
 
-  public function __construct($element) {
+  public function __construct(Element $element) {
     if (!($element instanceof Element)) {
       $this->object = new Element($element);
     }
