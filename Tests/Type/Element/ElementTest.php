@@ -115,36 +115,5 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('li', $child_types[0]);
   }
 
-  public function testMutateElementAttribute() {
-    $element = new Element('div');
-    $element->setAttributes(array('class' => 'test'));
-    $element->mutateElement(-10);
-    $this->assertNotEquals('test', $element->getAttributes()['class']);
-  }
 
-  public function testMutateElementAttributeLength() {
-    $element = new Element('div');
-    $element->setAttributes(array('class' => 'test'));
-    for ($i = 0; $i < 25; ++$i) {
-      $element->mutateElement(-10);
-    }
-    $this->assertNotEquals('test', $element->getAttributes()['class']);
-    $this->assertLessThanOrEqual(10, $element->getAttributes()['class']);
-  }
-
-  public function testMutateElementChild() {
-    $element = new Element('div');
-    $this->assertEquals(0, count($element->getChildren()));
-    $element->setAttributes(array('class' => 'test'));
-    $element->mutateElement(10);
-    $this->assertEquals('test', $element->getAttributes()['class']);
-    $this->assertEquals(1, count($element->getChildren()));
-  }
-
-  public function testMutateWithNoAttributes() {
-    $element = new Element('div');
-    $element->mutateElement(-10);
-    $this->assertNotEquals('test', $element->getAttributes()['class']);
-    $this->assertEquals(0, count($element->getChildren()));
-  }
 }

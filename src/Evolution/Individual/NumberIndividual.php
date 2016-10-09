@@ -30,7 +30,7 @@ class NumberIndividual extends Individual {
    *
    */
   public function mutateProperties() {
-    $this->getObject()->mutateNumber($this->getMutationFactor());
+    $this->mutateNumber($this->getMutationFactor());
   }
 
   /**
@@ -52,5 +52,27 @@ class NumberIndividual extends Individual {
       default:
         return $this->object->render() . ' ';
     }
+  }
+
+  /**
+   * @param int $amount
+   * @throws \Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException
+   */
+  public function mutateNumber($amount = 1) {
+
+    $operators = array('add', 'subtract');
+
+    $number = $this->getObject()->getNumber();
+
+    switch ($operators[array_rand($operators)]) {
+      case 'add':
+        $value = $number + $amount;
+        break;
+      case 'subtract':
+        $value = $number - $amount;
+        break;
+    }
+
+    $this->getObject()->setNumber($value);
   }
 }

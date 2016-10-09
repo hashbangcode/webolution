@@ -599,50 +599,6 @@ class Color
   }
 
   /**
-   * Tweak a value in the RGB matrix for the color.
-   *
-   * @param int $amount The amount of alteration to make. Note that the RGB value of the color can't exceed 255 or be
-   * less than 0. If this situation occurs the amounts are restricted.
-   *
-   * @return $this The current object.
-   */
-  public function mutateColor($mutationFactor)
-  {
-    if (rand(0,1) < $mutationFactor) {
-      $amount = 5;
-
-      $this->resetColorGeometry();
-
-      $rgb = $this->getColorArray();
-
-      $rgb_key = $rgb[array_rand($rgb)];
-
-      $operators = array('add', 'subtract');
-
-      $value = call_user_func_array(array(
-        $this,
-        $operators[array_rand($operators)]
-      ), array(
-        $this->$rgb_key,
-        $amount
-      ));
-
-      if (0 > $value) {
-        $value = 0;
-      }
-      else {
-        if (255 < $value) {
-          $value = 255;
-        }
-      }
-
-      $this->$rgb_key = $value;
-    }
-
-    return $this;
-  }
-
-  /**
    * Utility function to reset all the calculated color geometry.
    *
    * This is used when alterations are made the the color that would mean the existing color geometry is incorrect.
@@ -666,7 +622,6 @@ class Color
     $this->hsv_saturation = NULL;
     $this->hsl_saturation = NULL;
     $this->hsi_saturation = NULL;
-
   }
 
   /**
@@ -674,7 +629,7 @@ class Color
    *
    * @return array A standard RGB color array.
    */
-  protected function getColorArray()
+  public function getColorArray()
   {
     return array(
       'red',
@@ -710,28 +665,6 @@ class Color
     $this->blue = NULL;
 
     $this->resetColorGeometry();
-  }
-
-  /**
-   * Helper function that adds two numbers together.
-   *
-   * @param $x integer The first number.
-   * @param $y integer The second number.
-   * @return integer The result of adding the numbers together.
-   */
-  protected function add($x, $y)
-  {
-    return $x + $y;
-  }
-
-  /**
-   * @param $x
-   * @param $y
-   * @return mixed
-   */
-  protected function subtract($x, $y)
-  {
-    return $x - $y;
   }
 
   public function render() {

@@ -6,8 +6,7 @@ namespace Hashbangcode\Wevolution\Evolution\Individual;
  * Class Individual
  * @package Hashbangcode\Wevolution\Evolution\Individual
  */
-abstract class Individual implements IndividualInterface
-{
+abstract class Individual implements IndividualInterface {
 
   /**
    * @var
@@ -29,16 +28,14 @@ abstract class Individual implements IndividualInterface
   /**
    * @return int
    */
-  public function getMutationFactor()
-  {
+  public function getMutationFactor() {
     return $this->mutationFactor;
   }
 
   /**
    * @param int $mutationFactor
    */
-  public function setMutationFactor($mutationFactor)
-  {
+  public function setMutationFactor($mutationFactor) {
     $this->mutationFactor = $mutationFactor;
   }
 
@@ -50,6 +47,7 @@ abstract class Individual implements IndividualInterface
   }
 
   abstract public function getFitness();
+
   abstract public function render($renderType);
 
   /**

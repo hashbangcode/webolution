@@ -11,6 +11,11 @@ class ColorIndividual extends Individual
 {
 
   /**
+   * @var \Hashbangcode\Wevolution\Type\Color\Color
+   */
+  protected $object;
+
+  /**
    * ColorIndividual constructor.
    * @param $red
    * @param $green
@@ -26,7 +31,7 @@ class ColorIndividual extends Individual
    */
   public function mutateProperties()
   {
-    $this->object->mutateColor($this->getMutationFactor());
+    $this->mutateColor($this->getMutationFactor());
   }
 
   /**
@@ -64,5 +69,47 @@ class ColorIndividual extends Individual
     $blue = ceil(mt_rand(0, 255));
 
     return new ColorIndividual($red, $blue, $green);
+  }
+
+  /**
+   * Tweak a value in the RGB matrix for the color.
+   *
+   * @param int $amount The amount of alteration to make. Note that the RGB value of the color can't exceed 255 or be
+   * less than 0. If this situation occurs the amounts are restricted.
+   *
+   * @return $this The current object.
+   */
+  public function mutateColor($mutationFactor) {
+    if (rand(0,1) < $mutationFactor) {
+      $amount = 5;
+
+      $rgb = $this->getObject()->getColorArray();
+
+      $rgb_key = ucfirst($rgb[array_rand($rgb)]);
+
+      $operators = array('add', 'subtract');
+
+      switch ($operators[array_rand($operators)]) {
+        case 'add':
+          $value = $this->getObject()->{'get' . $rgb_key}() + $amount;
+          break;
+        case 'subtract':
+          $value = $this->getObject()->{'get' . $rgb_key}() - $amount;
+          break;
+      }
+
+      if (0 > $value) {
+        $value = 0;
+      }
+      else {
+        if (255 < $value) {
+          $value = 255;
+        }
+      }
+
+      $this->getObject()->{'set' . $rgb_key}($value);
+    }
+
+    return $this;
   }
 }

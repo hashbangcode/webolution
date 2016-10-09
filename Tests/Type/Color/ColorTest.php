@@ -75,33 +75,6 @@ class ColorTest extends PHPUnit_Framework_TestCase
     $this->assertLessThanOrEqual(255, $color->getBlue());
   }
 
-  public function testColorMutation()
-  {
-    $color = new Color(125, 125, 125);
-    $color->mutateColor();
-    $this->assertNotEquals('125125125', $color->getRGB());
-    $new_rgb = $color->getRGB();
-    $color->mutateColor();
-    $this->assertNotEquals($new_rgb, $color->getRGB());
-  }
-
-  public function testLargeColorMutation()
-  {
-    $color = new Color(0, 0, 0);
-    for ($i = 0; $i < 100; ++$i) {
-      $color->mutateColor(100);
-
-      $this->assertGreaterThanOrEqual(0, $color->getRed());
-      $this->assertLessThanOrEqual(255, $color->getRed());
-
-      $this->assertGreaterThanOrEqual(0, $color->getGreen());
-      $this->assertLessThanOrEqual(255, $color->getGreen());
-
-      $this->assertGreaterThanOrEqual(0, $color->getBlue());
-      $this->assertLessThanOrEqual(255, $color->getBlue());
-    }
-  }
-
   /**
    * @dataProvider colorData
    */

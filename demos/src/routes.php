@@ -135,7 +135,7 @@ $app->get('/color_evolution', function ($request, $response, $args) {
 
 $app->get('/colour_evolution_interactive[/{color}]', function ($request, $response, $args) {
 
-  $title = 'Evolution Test';
+  $title = 'Color Evolution Test';
 
   $styles = 'span {width:30px;height:30px;display:inline-block;padding:0px;margin:-2px;}
 a, a:link, a:visited, a:hover, a:active {padding:0px;margin:0px;}

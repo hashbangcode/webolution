@@ -41,21 +41,6 @@ class Number
   }
 
   /**
-   * @param int $amount
-   * @throws \Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException
-   */
-  public function mutateNumber($amount = 1) {
-    // @todo should this be in the number invividual object as it has nothing to do with this class?
-    $operators = array('add', 'subtract');
-
-    $value = call_user_func_array(array($this, $operators[array_rand($operators)]), array(
-      $this->getNumber(), $amount
-    ));
-
-    $this->setNumber($value);
-  }
-
-  /**
    * Helper function that adds two numbers.
    *
    * @param $x integer The first number.

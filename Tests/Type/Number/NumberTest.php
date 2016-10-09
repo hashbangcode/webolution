@@ -13,26 +13,6 @@ class NumberTest extends PHPUnit_Framework_TestCase
     $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Number\Number', $object);
   }
 
-  public function testMutateNumber() {
-    $object = new Number(1);
-    $this->assertEquals(1, $object->getNumber());
-    $object->mutateNumber();
-    $this->assertNotEquals(1, $object->getNumber());
-  }
-
-  public function testMutateZeroNumber() {
-    $object = new Number(1);
-    $this->assertEquals(1, $object->getNumber());
-    $object->mutateNumber(0);
-    $this->assertEquals(1, $object->getNumber());
-    $object->mutateNumber(0);
-    $this->assertEquals(1, $object->getNumber());
-    $object->mutateNumber(0);
-    $this->assertEquals(1, $object->getNumber());
-    $object->mutateNumber(0);
-    $this->assertEquals(1, $object->getNumber());
-  }
-
   /**
    * @dataProvider numbersProvider
    */

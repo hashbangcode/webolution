@@ -41,4 +41,24 @@ class NumberIndividualTest extends PHPUnit_Framework_TestCase
     $renderType = 'cli';
     $this->assertEquals('1 ', $object->render($renderType));
   }
+
+  public function testMutateNumber() {
+    $object = new NumberIndividual(1);
+    $this->assertEquals(1, $object->getObject()->getNumber());
+    $object->mutateNumber();
+    $this->assertNotEquals(1, $object->getObject()->getNumber());
+  }
+
+  public function testMutateZeroNumber() {
+    $object = new NumberIndividual(1);
+    $this->assertEquals(1, $object->getObject()->getNumber());
+    $object->mutateNumber(0);
+    $this->assertEquals(1, $object->getObject()->getNumber());
+    $object->mutateNumber(0);
+    $this->assertEquals(1, $object->getObject()->getNumber());
+    $object->mutateNumber(0);
+    $this->assertEquals(1, $object->getObject()->getNumber());
+    $object->mutateNumber(0);
+    $this->assertEquals(1, $object->getObject()->getNumber());
+  }
 }

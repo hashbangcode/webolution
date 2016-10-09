@@ -85,45 +85,6 @@ class Element
     return $this->children;
   }
 
-  /**
-   * Mutate the element.
-   *
-   * Possible actions to take during mutation.
-   * - Alter attributes (9/10).
-   * - Add additional children (1/10).
-   *
-   * This should not alter the tag itself. Also, certain elements
-   * should only get certain children. For example, a ul
-   * or a ol element should only get a li or a.
-   *
-   * @param $factor The amount of variance to apply.
-   */
-  public function mutateElement($factor)
-  {
-    $action = mt_rand(0, 1000) / 1000;
-
-    if ($action <= $factor && count($this->attributes) > 0) {
-      // Mutate an attribute.
-      $random_attribute = array_rand($this->attributes);
-      $letters = range('a', 'z');
-      $letter = $letters[array_rand($letters)];
-
-      $attribute_value = $this->attributes[$random_attribute] . $letter;
-
-      if (strlen($attribute_value) > 10) {
-        // Don't let the attribute get longer than 10 characters.
-        $attribute_value = substr($attribute_value, -8);
-      }
-
-      $this->attributes[$random_attribute] = $attribute_value;
-    }
-    else if ($action >= $factor) {
-      // Add additional children elements.
-      $child_types = $this->getChildTypes($this->getType());
-      $this->addChild(new Element($child_types[array_rand($child_types)]));
-    }
-  }
-
   public function getChildTypes($type) {
 
     switch ($type) {
