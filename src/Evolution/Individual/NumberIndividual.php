@@ -31,6 +31,7 @@ class NumberIndividual extends Individual {
    */
   public function mutateProperties() {
     $this->mutateNumber($this->getMutationFactor());
+    return $this;
   }
 
   /**
