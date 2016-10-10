@@ -4,8 +4,7 @@ namespace Hashbangcode\Wevolution\Evolution\Population;
 
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 
-abstract class Population implements PopulationInterface
-{
+abstract class Population implements PopulationInterface {
   /**
    * @var array
    */

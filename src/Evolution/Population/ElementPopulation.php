@@ -10,8 +10,7 @@ use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
  * Class ElementPopulation
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
-class ElementPopulation extends Population
-{
+class ElementPopulation extends Population {
 
   /**
    * @var \Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual
@@ -42,8 +41,7 @@ class ElementPopulation extends Population
   /**
    * @return Element
    */
-  public function getRootElement()
-  {
+  public function getRootElement() {
     return $this->rootElement;
   }
 

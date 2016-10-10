@@ -99,12 +99,13 @@ class TextIndividual extends Individual {
     $text_length = strlen($text);
 
     $random = mt_rand(0, 1000) / 1000;
-    if ($random < 0.1 && 1==2) {
+    if ($random < 0.1 && 1 == 2) {
 
       // @todo remove text as well..
       $this->getObject()->setText($text . $this->getRandomLetter());
 
-    } else {
+    }
+    else {
       // Ger a random letter from the current string.
       $letter_position = mt_rand(0, strlen($text) - 1);
 

@@ -9,8 +9,7 @@ use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
  * Class ColorPopulation
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
-class ColorPopulation extends Population
-{
+class ColorPopulation extends Population {
 
   /**
    * @var ColorIndividual
@@ -25,7 +24,7 @@ class ColorPopulation extends Population
    */
   public function sort($sortBy = 'hue', $direction = 'ASC') {
 
-    usort($this->individuals, function ($a, $b) use($sortBy, $direction) {
+    usort($this->individuals, function ($a, $b) use ($sortBy, $direction) {
 
       switch ($sortBy) {
         case 'hue':

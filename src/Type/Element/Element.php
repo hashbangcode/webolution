@@ -2,8 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Type\Element;
 
-class Element
-{
+class Element {
 
   protected $type;
   protected $attributes;
@@ -16,16 +15,14 @@ class Element
   /**
    * @return mixed
    */
-  public function getAttributes()
-  {
+  public function getAttributes() {
     return $this->attributes;
   }
 
   /**
    * @param mixed $attributes
    */
-  public function setAttributes($attributes)
-  {
+  public function setAttributes($attributes) {
     if (!is_array($attributes)) {
       throw new Exception\InvalidAttributesException('Array of attributes required.');
     }
@@ -40,16 +37,14 @@ class Element
   /**
    * @return mixed
    */
-  public function getType()
-  {
+  public function getType() {
     return $this->type;
   }
 
   /**
    * @param mixed $type
    */
-  public function setType($type)
-  {
+  public function setType($type) {
     $this->type = strtolower($type);
   }
 
@@ -60,7 +55,7 @@ class Element
     if ($this->getAttributes() > 0) {
       $attributes = array();
       foreach ($this->getAttributes() as $attribute => $value) {
-        $attributes[] = $attribute .'="' . $value . '"';
+        $attributes[] = $attribute . '="' . $value . '"';
       }
       $output .= ' ' . implode(' ', $attributes);
     }
@@ -73,7 +68,7 @@ class Element
     }
 
     $output .= '</' . $this->getType() . '>';
-    return  $output;
+    return $output;
   }
 
   public function addChild(Element $element) {

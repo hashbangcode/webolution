@@ -10,8 +10,7 @@ use Hashbangcode\Wevolution\Type\Number\Number;
  * Class NumberPopulation
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
-class NumberPopulation extends Population
-{
+class NumberPopulation extends Population {
 
   /**
    * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual

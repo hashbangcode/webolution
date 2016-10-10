@@ -10,8 +10,7 @@ use Hashbangcode\Wevolution\Type\Text\Text;
  * Class TextPopulation
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
-class TextPopulation extends Population
-{
+class TextPopulation extends Population {
 
   /**
    * @param mixed $text

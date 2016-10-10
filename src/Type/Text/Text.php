@@ -6,23 +6,20 @@ namespace Hashbangcode\Wevolution\Type\Text;
  * Class Text
  * @package Hashbangcode\Wevolution\Type\Text
  */
-class Text
-{
+class Text {
   protected $text;
 
   /**
    * @return mixed
    */
-  public function getText()
-  {
+  public function getText() {
     return $this->text;
   }
 
   /**
    * @param mixed $text
    */
-  public function setText($text)
-  {
+  public function setText($text) {
     $this->text = $text;
   }
 

@@ -6,8 +6,7 @@ namespace Hashbangcode\Wevolution\Type\Color;
  * Class Color
  * @package Hashbangcode\Wevolution\Type\Color
  */
-class Color
-{
+class Color {
 
   /**
    * @var int|null|string
@@ -73,18 +72,17 @@ class Color
    * @param $green integer The green level, between 0 and 255.
    * @param $blue integer The blue level, between 0 and 255.
    */
-  public function __construct($red, $green, $blue)
-  {
+  public function __construct($red, $green, $blue) {
     if (!is_numeric($red) || $red < 0 || $red > 255) {
-        throw new Exception\InvalidRGBValueException('Incorrect value for Red in Color class');
+      throw new Exception\InvalidRGBValueException('Incorrect value for Red in Color class');
     }
 
     if (!is_numeric($green) || $green < 0 || $green > 255) {
-        throw new Exception\InvalidRGBValueException('Incorrect value for Green in Color class');
+      throw new Exception\InvalidRGBValueException('Incorrect value for Green in Color class');
     }
 
     if (!is_numeric($blue) || $blue < 0 || $blue > 255) {
-        throw new Exception\InvalidRGBValueException('Incorrect value for Blue in Color class');
+      throw new Exception\InvalidRGBValueException('Incorrect value for Blue in Color class');
     }
 
     $this->red = $red;
@@ -96,8 +94,7 @@ class Color
    * @param $hex
    * @return \Hashbangcode\Wevolution\Type\Color\Color
    */
-  public static function generateFromHex($hex)
-  {
+  public static function generateFromHex($hex) {
     $hex = str_replace("#", "", $hex);
 
     if (strlen($hex) == 3) {
@@ -120,8 +117,7 @@ class Color
    * @param $value
    * @return \Hashbangcode\Wevolution\Type\Color\Color
    */
-  public static function generateFromHSV($hue, $saturation, $value)
-  {
+  public static function generateFromHSV($hue, $saturation, $value) {
     $chroma = $value * $saturation;
 
     $hue_value = $hue / 60.0;
@@ -135,30 +131,38 @@ class Color
       $green = $x;
       $blue = 0;
     }
-    else if ($hue_value >= 1 && $hue_value < 2) {
-      $red = $x;
-      $green = $chroma;
-      $blue = 0;
-    }
-    else if ($hue_value >= 2 && $hue_value < 3) {
-      $red = 0;
-      $green = $chroma;
-      $blue = $x;
-    }
-    else if ($hue_value >= 3 && $hue_value < 4) {
-      $red = 0;
-      $green = $x;
-      $blue = $chroma;
-    }
-    else if ($hue_value >= 4 && $hue_value < 5) {
-      $red = $x;
-      $green = 0;
-      $blue = $chroma;
-    }
     else {
-      $red = $chroma;
-      $green = 0;
-      $blue = $x;
+      if ($hue_value >= 1 && $hue_value < 2) {
+        $red = $x;
+        $green = $chroma;
+        $blue = 0;
+      }
+      else {
+        if ($hue_value >= 2 && $hue_value < 3) {
+          $red = 0;
+          $green = $chroma;
+          $blue = $x;
+        }
+        else {
+          if ($hue_value >= 3 && $hue_value < 4) {
+            $red = 0;
+            $green = $x;
+            $blue = $chroma;
+          }
+          else {
+            if ($hue_value >= 4 && $hue_value < 5) {
+              $red = $x;
+              $green = 0;
+              $blue = $chroma;
+            }
+            else {
+              $red = $chroma;
+              $green = 0;
+              $blue = $x;
+            }
+          }
+        }
+      }
     }
 
     $red = round(($red + $match) * 255);
@@ -172,8 +176,7 @@ class Color
     return $new_color;
   }
 
-  public static function generateFromHSL($hue, $saturation, $lightness)
-  {
+  public static function generateFromHSL($hue, $saturation, $lightness) {
     $chroma = (1 - abs(2 * $lightness - 1)) * $saturation;
 
     $match = $lightness - ($chroma / 2);
@@ -187,30 +190,38 @@ class Color
       $green = $x;
       $blue = 0;
     }
-    else if ($hue_value >= 1 && $hue_value < 2) {
-      $red = $x;
-      $green = $chroma;
-      $blue = 0;
-    }
-    else if ($hue_value >= 2 && $hue_value < 3) {
-      $red = 0;
-      $green = $chroma;
-      $blue = $x;
-    }
-    else if ($hue_value >= 3 && $hue_value < 4) {
-      $red = 0;
-      $green = $x;
-      $blue = $chroma;
-    }
-    else if ($hue_value >= 4 && $hue_value < 5) {
-      $red = $x;
-      $green = 0;
-      $blue = $chroma;
-    }
     else {
-      $red = $chroma;
-      $green = 0;
-      $blue = $x;
+      if ($hue_value >= 1 && $hue_value < 2) {
+        $red = $x;
+        $green = $chroma;
+        $blue = 0;
+      }
+      else {
+        if ($hue_value >= 2 && $hue_value < 3) {
+          $red = 0;
+          $green = $chroma;
+          $blue = $x;
+        }
+        else {
+          if ($hue_value >= 3 && $hue_value < 4) {
+            $red = 0;
+            $green = $x;
+            $blue = $chroma;
+          }
+          else {
+            if ($hue_value >= 4 && $hue_value < 5) {
+              $red = $x;
+              $green = 0;
+              $blue = $chroma;
+            }
+            else {
+              $red = $chroma;
+              $green = 0;
+              $blue = $x;
+            }
+          }
+        }
+      }
     }
 
     $red = round(($red + $match) * 255);
@@ -224,8 +235,7 @@ class Color
     return $new_color;
   }
 
-  public static function generateRandomColor()
-  {
+  public static function generateRandomColor() {
     //Return an RGB array
     $red = ceil(mt_rand(0, 255));
     $green = ceil(mt_rand(0, 255));
@@ -239,8 +249,7 @@ class Color
    *
    * @return string The hex value.
    */
-  public function getHex()
-  {
+  public function getHex() {
     $rgb['red'] = str_pad(dechex($this->getRed()), 2, '0', STR_PAD_LEFT);
     $rgb['green'] = str_pad(dechex($this->getGreen()), 2, '0', STR_PAD_LEFT);
     $rgb['blue'] = str_pad(dechex($this->getBlue()), 2, '0', STR_PAD_LEFT);
@@ -255,95 +264,84 @@ class Color
    */
   public function getRGB() {
     return str_pad($this->getRed(), 3, STR_PAD_LEFT) .
-     str_pad($this->getGreen(), 3, STR_PAD_LEFT) .
-     str_pad($this->getBlue(), 3, STR_PAD_LEFT);
+    str_pad($this->getGreen(), 3, STR_PAD_LEFT) .
+    str_pad($this->getBlue(), 3, STR_PAD_LEFT);
   }
 
   /**
    * @return null
    */
-  public function getRed()
-  {
+  public function getRed() {
     return $this->red;
   }
 
   /**
    * @param null $red
    */
-  public function setRed($red)
-  {
+  public function setRed($red) {
     $this->red = $red;
   }
 
   /**
    * @return null
    */
-  public function getGreen()
-  {
+  public function getGreen() {
     return $this->green;
   }
 
   /**
    * @param null $green
    */
-  public function setGreen($green)
-  {
+  public function setGreen($green) {
     $this->green = $green;
   }
 
   /**
    * @return null
    */
-  public function getBlue()
-  {
+  public function getBlue() {
     return $this->blue;
   }
 
   /**
    * @param null $blue
    */
-  public function setBlue($blue)
-  {
+  public function setBlue($blue) {
     $this->blue = $blue;
   }
 
   /**
    * @return null
    */
-  public function getCroma()
-  {
+  public function getCroma() {
     return $this->croma;
   }
 
   /**
    * @param null $croma
    */
-  public function setCroma($croma)
-  {
+  public function setCroma($croma) {
     $this->croma = $croma;
   }
 
   /**
    * @return null
    */
-  public function getCroma2()
-  {
+  public function getCroma2() {
     return $this->croma2;
   }
 
   /**
    * @param null $croma2
    */
-  public function setCroma2($croma2)
-  {
+  public function setCroma2($croma2) {
     $this->croma2 = $croma2;
   }
 
   /**
    * @return null
    */
-  public function getHsiSaturation()
-  {
+  public function getHsiSaturation() {
     $this->calculateHsiSaturation();
     return $this->hsi_saturation;
   }
@@ -351,16 +349,14 @@ class Color
   /**
    * @param null $hsi_saturation
    */
-  public function setHsiSaturation($hsi_saturation)
-  {
+  public function setHsiSaturation($hsi_saturation) {
     $this->hsi_saturation = $hsi_saturation;
   }
 
   /**
    *
    */
-  protected function calculateHsiSaturation()
-  {
+  protected function calculateHsiSaturation() {
     $red = $this->red / 255;
     $green = $this->green / 255;
     $blue = $this->blue / 255;
@@ -379,8 +375,7 @@ class Color
   /**
    * @return null
    */
-  public function getHslSaturation()
-  {
+  public function getHslSaturation() {
     $this->calculateHSL();
     return $this->hsl_saturation;
   }
@@ -388,16 +383,14 @@ class Color
   /**
    * @param null $hsl_saturation
    */
-  public function setHslSaturation($hsl_saturation)
-  {
+  public function setHslSaturation($hsl_saturation) {
     $this->hsl_saturation = $hsl_saturation;
   }
 
   /**
    *
    */
-  protected function calculateHSL()
-  {
+  protected function calculateHSL() {
     $hue = 0;
 
     $red = $this->red / 255;
@@ -442,8 +435,7 @@ class Color
   /**
    * @return null
    */
-  public function getHsvSaturation()
-  {
+  public function getHsvSaturation() {
     $this->calcualteHSV();
     return $this->hsv_saturation;
   }
@@ -451,16 +443,14 @@ class Color
   /**
    * @param null $hsv_saturation
    */
-  public function setHsvSaturation($hsv_saturation)
-  {
+  public function setHsvSaturation($hsv_saturation) {
     $this->hsv_saturation = $hsv_saturation;
   }
 
   /**
    *
    */
-  protected function calcualteHSV()
-  {
+  protected function calcualteHSV() {
     $red = $this->red / 255;
     $green = $this->green / 255;
     $blue = $this->blue / 255;
@@ -502,8 +492,7 @@ class Color
   /**
    * @return null
    */
-  public function getHue()
-  {
+  public function getHue() {
     $this->calcualteHSV();
     return $this->hue;
   }
@@ -511,48 +500,42 @@ class Color
   /**
    * @param null $hue
    */
-  public function setHue($hue)
-  {
+  public function setHue($hue) {
     $this->hue = $hue;
   }
 
   /**
    * @return null
    */
-  public function getHue2()
-  {
+  public function getHue2() {
     return $this->hue2;
   }
 
   /**
    * @param null $hue2
    */
-  public function setHue2($hue2)
-  {
+  public function setHue2($hue2) {
     $this->hue2 = $hue2;
   }
 
   /**
    * @return null
    */
-  public function getIntensity()
-  {
+  public function getIntensity() {
     return $this->intensity;
   }
 
   /**
    * @param null $intensity
    */
-  public function setIntensity($intensity)
-  {
+  public function setIntensity($intensity) {
     $this->intensity = $intensity;
   }
 
   /**
    * @return null
    */
-  public function getLightness()
-  {
+  public function getLightness() {
     $this->calculateHSL();
     return $this->lightness;
   }
@@ -560,32 +543,28 @@ class Color
   /**
    * @param null $lightness
    */
-  public function setLightness($lightness)
-  {
+  public function setLightness($lightness) {
     $this->lightness = $lightness;
   }
 
   /**
    * @return float The current luma.
    */
-  public function getLuma()
-  {
+  public function getLuma() {
     return $this->luma;
   }
 
   /**
    * @param float $luma The luma to set
    */
-  public function setLuma($luma)
-  {
+  public function setLuma($luma) {
     $this->luma = $luma;
   }
 
   /**
    * @return null
    */
-  public function getValue()
-  {
+  public function getValue() {
     $this->calcualteHSV();
     return $this->value;
   }
@@ -593,8 +572,7 @@ class Color
   /**
    * @param null $value
    */
-  public function setValue($value)
-  {
+  public function setValue($value) {
     $this->value = $value;
   }
 
@@ -605,8 +583,7 @@ class Color
    * This doesn't calculate the new values as this is done when they are called for e.g. the lightness is calculated
    * before being returned by the getLightness() method.
    */
-  private function resetColorGeometry()
-  {
+  private function resetColorGeometry() {
     $this->hue = NULL;
     $this->hue2 = NULL;
 
@@ -629,8 +606,7 @@ class Color
    *
    * @return array A standard RGB color array.
    */
-  public function getColorArray()
-  {
+  public function getColorArray() {
     return array(
       'red',
       'green',
@@ -643,8 +619,7 @@ class Color
    *
    * @return $this The current Colour object
    */
-  public function randomise()
-  {
+  public function randomise() {
     $this->resetcolor();
 
     //Return an RGB array
@@ -658,8 +633,7 @@ class Color
   /**
    * Reset the color values. Useful when randomising the color or calculating new values.
    */
-  private function resetColor()
-  {
+  private function resetColor() {
     $this->red = NULL;
     $this->green = NULL;
     $this->blue = NULL;

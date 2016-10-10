@@ -1,35 +1,19 @@
 <?php
 
 namespace Hashbangcode\Wevolution\Evolution\Individual;
+
 use Hashbangcode\Wevolution\Type\Element\Element;
 
 /**
  * Class ElementIndividual
  * @package Hashbangcode\Wevolution\Evolution\Individual
  */
-class ElementIndividual extends Individual
-{
+class ElementIndividual extends Individual {
 
   /**
    * @var int
    */
   protected $mutationFactor = 1;
-
-  /**
-   * @return int
-   */
-  public function getMutationFactor()
-  {
-    return $this->mutationFactor;
-  }
-
-  /**
-   * @param int $mutationFactor
-   */
-  public function setMutationFactor($mutationFactor)
-  {
-    $this->mutationFactor = $mutationFactor;
-  }
 
   public function __construct(Element $element) {
     if (!($element instanceof Element)) {
@@ -49,21 +33,6 @@ class ElementIndividual extends Individual
   }
 
   /**
-   * @return int
-   */
-  public function getFitness() {
-    return 1;
-  }
-
-  /**
-   * @param $renderType
-   * @return mixed
-   */
-  public function render($renderType) {
-    return $this->getObject()->render($renderType);
-  }
-
-  /**
    * Mutate the element.
    *
    * Possible actions to take during mutation.
@@ -76,8 +45,7 @@ class ElementIndividual extends Individual
    *
    * @param $factor The amount of variance to apply.
    */
-  public function mutateElement($factor)
-  {
+  public function mutateElement($factor) {
     $action = mt_rand(0, 1);
 
     if ($action <= $factor && count($this->getObject()->getAttributes()) > 0) {
@@ -100,10 +68,43 @@ class ElementIndividual extends Individual
 
       $this->getObject()->setAttributes($attributes);
     }
-    else if ($action >= $factor) {
-      // Add additional children elements.
-      $child_types = $this->getObject()->getChildTypes($this->getObject()->getType());
-      $this->getObject()->addChild(new Element($child_types[array_rand($child_types)]));
+    else {
+      if ($action >= $factor) {
+        // Add additional children elements.
+        $child_types = $this->getObject()->getChildTypes($this->getObject()
+          ->getType());
+        $this->getObject()
+          ->addChild(new Element($child_types[array_rand($child_types)]));
+      }
     }
+  }
+
+  /**
+   * @return int
+   */
+  public function getMutationFactor() {
+    return $this->mutationFactor;
+  }
+
+  /**
+   * @param int $mutationFactor
+   */
+  public function setMutationFactor($mutationFactor) {
+    $this->mutationFactor = $mutationFactor;
+  }
+
+  /**
+   * @return int
+   */
+  public function getFitness() {
+    return 1;
+  }
+
+  /**
+   * @param $renderType
+   * @return mixed
+   */
+  public function render($renderType) {
+    return $this->getObject()->render($renderType);
   }
 }
