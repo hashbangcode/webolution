@@ -18,10 +18,9 @@ $app->get('/color_evolution', function ($request, $response, $args) {
   $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual(255, 255, 255));
 
   $evolution = new Evolution($population);
-  $evolution->setIndividualsPerGeneration(10);
-  $evolution->setMaxGenerations(500);
-  $evolution->setAllowedFitness(8);
-  $evolution->setGlobalMutationFactor(1);
+  $evolution->setIndividualsPerGeneration(20);
+  $evolution->setMaxGenerations(250);
+  $evolution->setGlobalMutationFactor(0.5);
 
   $output = '';
 
