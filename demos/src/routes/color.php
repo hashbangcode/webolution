@@ -38,6 +38,8 @@ $app->get('/color_evolution', function ($request, $response, $args) {
   ]);
 });
 
+
+
 $app->get('/colour_evolution_interactive[/{color}]', function ($request, $response, $args) {
 
   $title = 'Color Evolution Test';
@@ -82,7 +84,7 @@ img {padding:0px;margin:0px;}';
   }
   $output .= '</p>';
 
-  $output .= '<p>Colour<pre>' . print_r($color, TRUE) . '</pre></p>';
+  $output .= '<p>Colour<pre>' . $colorObject->render() . '</pre></p>';
 
   return $this->view->render($response, 'demos.twig', [
     'title' => $title,
