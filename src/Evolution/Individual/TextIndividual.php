@@ -25,9 +25,8 @@ class TextIndividual extends Individual {
   /**
    * @return \Hashbangcode\Wevolution\Evolution\Individual\TextIndividual
    */
-  public static function generateRandomText() {
+  public static function generateRandomText($textLength = 7) {
     $text = "";
-    $textLength = 7;
     $charArray = array_merge(range('a', 'z'), range('A', 'Z'), [' ']);
     for ($i = 0; $i < $textLength; $i++) {
       $randItem = array_rand($charArray);
@@ -40,21 +39,21 @@ class TextIndividual extends Individual {
    *
    */
   public function mutateProperties() {
-    if ((mt_rand(0, 1)) < $this->getMutationFactor()) {
-      $this->mutateText();
-    }
+    $this->mutateText($this->getMutationFactor());
+    return $this;
   }
 
   /**
    * @return mixed
    */
   public function getFitness() {
-    $text = str_split($this->getObject()->getText());
 
+    $text = str_split($this->getObject()->getText());
     $goal = str_split($this->getFitnessGoal());
 
     $score = 0;
 
+    // Count the number of characters that are the same as our goal text.
     foreach ($text as $index => $character) {
       if (isset($goal[$index]) && $goal[$index] == $character) {
         $score = $score + 1;
@@ -95,22 +94,42 @@ class TextIndividual extends Individual {
   public function mutateText() {
 
     $text = $this->getObject()->getText();
+    $goal = $this->getFitnessGoal();
 
     $text_length = strlen($text);
+    $goal_length = strlen($goal);
 
-    $random = mt_rand(0, 1000) / 1000;
-    if ($random < 0.1 && 1 == 2) {
+    $random = mt_rand(0, 1);
+    if ($random < 0.0001 && $text_length != $goal_length) {
 
-      // @todo remove text as well..
-      $this->getObject()->setText($text . $this->getRandomLetter());
+      $operators = array('add', 'subtract');
 
+      switch ($operators[array_rand($operators)]) {
+        case 'add':
+          // Add a random letter.
+          $this->getObject()->setText($text . $this->getRandomLetter());
+          break;
+        case 'subtract':
+          // Remove a random letter.
+          $letter_position = mt_rand(0, strlen($text) - 1);
+          $text_array = str_split($this->getObject()->getText());
+          unset($text_array[$letter_position]);
+          $this->getObject()->setText(implode('', $text_array));
+          break;
+      }
     }
     else {
+
       // Ger a random letter from the current string.
       $letter_position = mt_rand(0, strlen($text) - 1);
 
       $text = str_split($text);
       $letter = $text[$letter_position];
+
+      $goal = str_split($goal);
+      if (isset($goal[$letter_position]) && $goal[$letter_position] == $letter) {
+        return;
+      }
 
       if ($letter == 'z') {
         $newletter = 'A';
@@ -129,10 +148,6 @@ class TextIndividual extends Individual {
       $text[$letter_position] = $newletter;
 
       $text = implode('', $text);
-
-      if (strlen($text) > 7) {
-        $something = 1 + 1;
-      }
 
       $this->getObject()->setText($text);
     }
