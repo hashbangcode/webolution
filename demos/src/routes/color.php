@@ -1,6 +1,7 @@
 <?php
 
 use Hashbangcode\Wevolution\Evolution\Evolution;
+use Hashbangcode\Wevolution\Evolution\EvolutionStorage;
 use Hashbangcode\Wevolution\Evolution\Population\ColorPopulation;
 
 $app->get('/color_evolution', function ($request, $response, $args) {
@@ -90,4 +91,13 @@ img {padding:0px;margin:0px;}';
     'output' => $output,
     'styles' => $styles
   ]);
+});
+
+
+$app->get('/color_evolution_storage', function ($request, $response, $args) {
+
+  $population = new ColorPopulation();
+
+  $evolution = new EvolutionStorage($population);
+
 });
