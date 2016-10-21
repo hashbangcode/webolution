@@ -2,6 +2,7 @@
 
 use Hashbangcode\Wevolution\Evolution\Evolution;
 use Hashbangcode\Wevolution\Evolution\Population\TextPopulation;
+use Hashbangcode\Wevolution\Evolution\Individual\TextIndividual;
 
 $app->get('/text_evolution', function ($request, $response, $args) {
 
@@ -13,7 +14,7 @@ $app->get('/text_evolution', function ($request, $response, $args) {
   $goal = 'Monkey say monkey do';
 
   for ($i = 0; $i < 10; $i++) {
-    $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\TextIndividual::generateRandomText(strlen($goal)));
+    $population->addIndividual(TextIndividual::generateRandomText(strlen($goal)));
   }
 
   $evolution = new Evolution($population);
@@ -51,7 +52,7 @@ $app->get('/text_evolution_length', function ($request, $response, $args) {
   $goal = 'monkey';
 
   for ($i = 0; $i < 10; $i++) {
-    $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\TextIndividual::generateRandomText(15));
+    $population->addIndividual(TextIndividual::generateRandomText(15));
   }
 
   $evolution = new Evolution($population);

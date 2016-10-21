@@ -101,6 +101,9 @@ abstract class Population implements PopulationInterface {
     }
   }
 
+  /**
+   *
+   */
   public function copyIndividual() {
     $individual = $this->getRandomIndividual();
     if ($individual !== FALSE) {

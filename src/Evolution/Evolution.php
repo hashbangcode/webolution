@@ -211,14 +211,16 @@ class Evolution {
   /**
    * @return string
    */
-  public function renderGenerations() {
+  public function renderGenerations($printStats = FALSE) {
     $output = '';
 
     foreach ($this->previousGenerations as $generation_number => $population) {
-      $output .= $generation_number . ':<br>' . $population->render() . PHP_EOL;
-      $stats = $population->getStatistics();
-      //$output .= 'MIN: ' . print_r($stats['min']->render(), TRUE) . '<br>';
-      //$output .= 'MAX: ' . print_r($stats['max']->render(), TRUE) . '<br>';
+      $output .= $generation_number . ':<br>' . $population->render() . PHP_EOL . '<br>';
+      if ($printStats === TRUE) {
+        $stats = $population->getStatistics();
+        $output .= 'MIN: ' . print_r($stats['min']->render(), TRUE) . '<br>';
+        $output .= 'MAX: ' . print_r($stats['max']->render(), TRUE) . '<br>';
+      }
     }
     return $output;
   }

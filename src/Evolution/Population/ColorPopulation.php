@@ -12,11 +12,6 @@ use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 class ColorPopulation extends Population {
 
   /**
-   * @var ColorIndividual
-   */
-  protected $individual;
-
-  /**
    * Sort the population by a given parameter and in a certain direction.
    *
    * @param string $sortBy
