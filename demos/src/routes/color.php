@@ -76,7 +76,7 @@ img {padding:0px;margin:0px;}';
 
   $colorPopulation->sort('hex');
 
-  $output .= '<p>' . PHP_EOL;
+  $output .= '<p>';
 
   foreach ($colorPopulation->getIndividuals() as $individual) {
     $output .= '<a href="/colour_evolution_interactive/' . $individual->getObject()->getHex() . '">' . $individual->render('html') . '</a>' . PHP_EOL;
