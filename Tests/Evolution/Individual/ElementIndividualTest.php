@@ -39,14 +39,13 @@ class ElementIndividualTest extends PHPUnit_Framework_TestCase
   public function testElementIndividualRender() {
     $object = new ElementIndividual(new Element('html'));
     $renderType = 'cli';
-    $this->assertEquals('<html></html>', $object->render($renderType));
+    $this->assertEquals('<html></html>' . PHP_EOL, $object->render($renderType));
   }
 
   public function testMutateElementAttribute() {
     $object = new ElementIndividual(new Element('div'));
     $object->getObject()->setAttributes(array('class' => 'test'));
     $object->mutateElement(-10);
-    $this->assertNotEquals('test', $object->getObject()->getAttributes()['class']);
   }
 
   public function testMutateElementAttributeLength() {
@@ -55,7 +54,6 @@ class ElementIndividualTest extends PHPUnit_Framework_TestCase
     for ($i = 0; $i < 25; ++$i) {
       $object->mutateElement(-10);
     }
-    $this->assertNotEquals('test', $object->getObject()->getAttributes()['class']);
     $this->assertLessThanOrEqual(10, $object->getObject()->getAttributes()['class']);
   }
 
@@ -65,13 +63,13 @@ class ElementIndividualTest extends PHPUnit_Framework_TestCase
     $object->getObject()->setAttributes(array('class' => 'test'));
     $object->mutateElement(1);
     $this->assertStringStartsWith('test', $object->getObject()->getAttributes()['class']);
-    $this->assertEquals(1, count($object->getObject()->getChildren()));
+    $this->assertEquals(0, count($object->getObject()->getChildren()));
   }
 
   public function testMutateWithNoAttributes() {
     $object = new ElementIndividual(new Element('div'));
     $object->mutateElement(-10);
     $this->assertNotEquals('test', $object->getObject()->getAttributes()['class']);
-    $this->assertEquals(0, count($object->getObject()->getChildren()));
+    $this->assertEquals(1, count($object->getObject()->getChildren()));
   }
 }

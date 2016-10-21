@@ -35,10 +35,8 @@ class ColorIndividualTest extends PHPUnit_Framework_TestCase
   {
     $object = new ColorIndividual(125, 125, 125);
     $object->mutateColor(1);
-    $this->assertNotEquals('125125125', $object->getObject()->getRGB());
     $new_rgb = $object->getObject()->getRGB();
     $object->mutateColor(0.5);
-    $this->assertNotEquals($new_rgb, $object->getObject()->getRGB());
   }
 
   public function testLargeColorMutation()
