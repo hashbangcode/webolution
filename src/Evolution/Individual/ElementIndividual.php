@@ -13,7 +13,7 @@ class ElementIndividual extends Individual {
   /**
    * @var int
    */
-  protected $mutationFactor = 1;
+  protected $mutationFactor = 0.05;
 
   public function __construct(Element $element) {
     if (!($element instanceof Element)) {
@@ -49,8 +49,8 @@ class ElementIndividual extends Individual {
     $action = mt_rand(0, 1);
 
     if ($action <= $factor && count($this->getObject()->getAttributes()) > 0) {
-      // Mutate an attribute.
 
+      // Mutate an attribute.
       $attributes = $this->getObject()->getAttributes();
 
       $random_attribute = array_rand($attributes);
@@ -68,14 +68,15 @@ class ElementIndividual extends Individual {
 
       $this->getObject()->setAttributes($attributes);
     }
-    else {
-      if ($action >= $factor) {
+    elseif ($action >= $factor) {
         // Add additional children elements.
-        $child_types = $this->getObject()->getChildTypes($this->getObject()
-          ->getType());
-        $this->getObject()
-          ->addChild(new Element($child_types[array_rand($child_types)]));
-      }
+        $child_types = $this->getObject()->getChildTypes($this->getObject()->getType());
+        $child_type = $child_types[array_rand($child_types)];
+        $newElement = new Element($child_type);
+
+        $newElement->setAttribute('class', 'test');
+
+        $this->getObject()->addChild($newElement);
     }
   }
 
@@ -104,7 +105,13 @@ class ElementIndividual extends Individual {
    * @param $renderType
    * @return mixed
    */
-  public function render($renderType) {
-    return $this->getObject()->render($renderType);
+  public function render($renderType = 'cli') {
+    switch ($renderType) {
+      case 'html':
+        return '<iframe height="100" width="100">' . $this->getObject()->render() . '</iframe>';
+      case 'cli':
+      default:
+        return $this->getObject()->render() . PHP_EOL;
+    }
   }
 }

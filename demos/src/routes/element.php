@@ -2,36 +2,44 @@
 
 use Hashbangcode\Wevolution\Evolution\Evolution;
 use Hashbangcode\Wevolution\Evolution\Population\ElementPopulation;
+use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
 
 $app->get('/element_evolution', function ($request, $response, $args) {
   $styles = 'div {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}';
 
   $title = 'Element Evolution Test';
 
-  $rootElement = new \Hashbangcode\Wevolution\Type\Element\Element('html');
-  $root = new \Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual($rootElement);
-  $population = new ElementPopulation($root);
+  $population = new ElementPopulation();
+  $population->addIndividual(new ElementIndividual(new Element('html')));
+  $population->addIndividual(new ElementIndividual(new Element('html')));
+  $population->addIndividual(new ElementIndividual(new Element('html')));
+  $population->addIndividual(new ElementIndividual(new Element('html')));
+  $population->addIndividual(new ElementIndividual(new Element('html')));
+
+  $population->addIndividual(new ElementIndividual(new Element('html')));
+  $population->addIndividual(new ElementIndividual(new Element('html')));
+  $population->addIndividual(new ElementIndividual(new Element('html')));
+  $population->addIndividual(new ElementIndividual(new Element('html')));
+  $population->addIndividual(new ElementIndividual(new Element('html')));
+
   $population->setDefaultRenderType('html');
-
-  $element = new \Hashbangcode\Wevolution\Type\Element\Element();
-
-  $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual($element));
+  $population->setDefaultRenderType('htmltextarea');
 
   $evolution = new Evolution($population);
-  $evolution->setIndividualsPerGeneration(5);
-  $evolution->setMaxGenerations(10);
-  $evolution->setGlobalMutationFactor(1);
+  $evolution->setIndividualsPerGeneration(10);
+  $evolution->setMaxGenerations(5);
+//  $evolution->setGlobalMutationFactor(1);
 
-  $output = '';
-
-  for ($i = 0; $i <= $evolution->getMaxGenerations(); ++$i) {
-    $evolution->runGeneration();
+  for ($i = 0; $i < $evolution->getMaxGenerations(); ++$i) {
+    if ($evolution->runGeneration() === FALSE) {
+      print '<p>Everyone is dead.</p>';
+      break;
+    }
   }
 
-
-  $output .= '<textarea>';
-  $output .= nl2br($evolution->renderGenerations());
-  $output .= '</textarea>';
+  $output = '';
+  $output .= $evolution->renderGenerations();
 
   return $this->view->render($response, 'demos.twig', [
     'title' => $title,

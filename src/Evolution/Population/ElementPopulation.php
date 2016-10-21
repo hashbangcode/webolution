@@ -13,36 +13,32 @@ use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
 class ElementPopulation extends Population {
 
   /**
-   * @var \Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual
-   */
-  protected $rootElement;
-
-  /**
-   * ElementPopulation constructor.
-   * @param \Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual $root
-   */
-  public function __construct(ElementIndividual $root) {
-
-    if ($root->getObject()->getType() !== 'html') {
-      throw new Exception\ElementPageRootException('Root page element must be of type "html"');
-    }
-    $this->rootElement = $root;
-  }
-
-  /**
    * @return string
    */
   public function render() {
     $output = '';
-    $output .= $this->rootElement->getObject()->render();
-    return $output;
-  }
 
-  /**
-   * @return Element
-   */
-  public function getRootElement() {
-    return $this->rootElement;
+    // Ensure that the items are sorted.
+    $this->sort();
+
+    foreach ($this->getIndividuals() as $individual) {
+
+      $renderType = $this->getDefaultRenderType();
+
+      switch ($renderType) {
+        case 'html':
+          $output .= '<iframe height="100" width="100">' . $individual->render() . '</iframe>';
+          break;
+        case 'htmltextarea':
+          $output .= '<textarea rows="10" cols="25">' . $individual->render() . '</textarea>';
+          break;
+        case 'cli':
+        default:
+          $output.= $individual->render() . PHP_EOL;
+      }
+    }
+
+    return $output;
   }
 
   /**
@@ -57,7 +53,11 @@ class ElementPopulation extends Population {
    */
   public function addIndividual(Individual $individual = NULL) {
     if (is_null($individual)) {
-      //$individual = ::hjgfhj();
+      $individual = new ElementIndividual('html');
+    }
+
+    if ($individual->getObject()->getType() !== 'html') {
+      throw new Exception\ElementPageRootException('Root page element must be of type "html"');
     }
 
     $this->individuals[] = $individual;
