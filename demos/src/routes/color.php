@@ -96,8 +96,14 @@ img {padding:0px;margin:0px;}';
 
 $app->get('/color_evolution_storage', function ($request, $response, $args) {
 
-  $population = new ColorPopulation();
+  $evolution = new EvolutionStorage();
 
-  $evolution = new EvolutionStorage($population);
+  $generation = $evolution->getGeneration();
+
+  if ($generation == 1) {
+    $population = new ColorPopulation();
+    $population->addIndividual();
+    $evolution->setPopulation($population);
+  }
 
 });
