@@ -36,7 +36,7 @@ class Evolution {
    * @param null $individualsPerGeneration
    * @param bool $autoGeneratePopulation
    */
-  public function __construct(Population\Population $population, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = FALSE) {
+  public function __construct(Population\Population $population = NULL, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = FALSE) {
     if (!is_null($maxGenerations)) {
       $this->setMaxGenerations($maxGenerations);
     }
@@ -51,18 +51,20 @@ class Evolution {
       $this->setMaxGenerations(10);
     }
 
-    $this->population = $population;
-    $this->population->generateStatistics();
-    // @todo : abtract this generation storage into it's own method.
-    $this->previousGenerations[$this->generation] = clone $this->getCurrentPopulation();
+    if (!is_null($population)) {
+      $this->population = $population;
+      $this->population->generateStatistics();
+      // @todo : abtract this generation storage into it's own method.
+      $this->previousGenerations[$this->generation] = clone $this->getCurrentPopulation();
 
-    // Setup initial Population.
-    if ($autoGeneratePopulation === TRUE && $this->population->getLength() < $this->getIndividualsPerGeneration()) {
-      // Get the population object to generate individuals.
-      do {
-        // @todo we should be cloning and then mutating these things if there is at least one individual present instead of just creating new ones.
-        $this->population->addIndividual();
-      } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
+      // Setup initial Population.
+      if ($autoGeneratePopulation === TRUE && $this->population->getLength() < $this->getIndividualsPerGeneration()) {
+        // Get the population object to generate individuals.
+        do {
+          // @todo we should be cloning and then mutating these things if there is at least one individual present instead of just creating new ones.
+          $this->population->addIndividual();
+        } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
+      }
     }
   }
 
