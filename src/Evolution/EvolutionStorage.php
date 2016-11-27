@@ -26,21 +26,23 @@ class EvolutionStorage extends Evolution {
     $this->databaseName = $databaseName;
   }
 
-  public function __construct(Population\Population $population = NULL, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = FALSE) {
+  public function __construct($databaseName, Population\Population $population = NULL, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = FALSE) {
     parent::__construct($population, $maxGenerations, $individualsPerGeneration, $autoGeneratePopulation);
 
-    // Set up the database file.
-    $this->database = new \PDO($this->getDatabaseName());
+    $this->setDatabaseName($databaseName);
 
-    // Get the evolution item
-    $evolution = $this->retrieveEvolution(1);
-    if ($evolution == false) {
-      // Create database.
-      // $this->createDatabase();
+    $this->database = new \PDO($this->getDatabaseName());
+    
+    $count = $this->database->query("SELECT count(1) FROM evolution");
+
+    // Get or create the evolution item
+    if ($count == false) {
+      $this->createDatabase();
       $this->createEvolution(1);
       // Save the initial generation to the database.
       // $this->storeGeneration($this->previousGenerations[$this->generation]);
     } else {
+      $evolution = $this->retrieveEvolution(1);
       $this->generation = $evolution['current_generation'];
     }
   }
@@ -55,6 +57,11 @@ class EvolutionStorage extends Evolution {
     $sql = "SELECT * FROM evolution WHERE evolution_id = :evolution_id";
 
     $stmt = $this->database->prepare($sql);
+
+    if ($stmt == false) {
+      return false;
+    }
+
     $stmt->execute(array('evolution_id' => $evolution_id));
     return $stmt->fetch();
   }

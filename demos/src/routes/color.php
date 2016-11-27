@@ -96,7 +96,10 @@ img {padding:0px;margin:0px;}';
 
 $app->get('/color_evolution_storage', function ($request, $response, $args) {
 
-  $evolution = new EvolutionStorage();
+  $database = realpath(__DIR__ . '/../../database') . '/database.sqlite';
+
+  $evolution = new EvolutionStorage('sqlite:'.$database);
+  //$evolution->setDatabaseName('sqlite:' . $database);
 
   $generation = $evolution->getGeneration();
 
