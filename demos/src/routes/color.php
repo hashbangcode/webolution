@@ -94,19 +94,52 @@ img {padding:0px;margin:0px;}';
 });
 
 
-$app->get('/color_evolution_storage', function ($request, $response, $args) {
+$app->get('/color_evolution_storage[/{evolutionid}]', function ($request, $response, $args) {
+
+  $title = 'Colour Evolution Database Test';
+
+  $styles = 'span {width:30px;height:30px;display:inline-block;padding:0px;margin:-2px;}
+a, a:link, a:visited, a:hover, a:active {padding:0px;margin:0px;}
+img {padding:0px;margin:0px;}';
 
   $database = realpath(__DIR__ . '/../../database') . '/database.sqlite';
+  $evolution = new EvolutionStorage();
 
-  $evolution = new EvolutionStorage('sqlite:'.$database);
-  //$evolution->setDatabaseName('sqlite:' . $database);
+  $evolution->setEvolutionId(1);
+
+  $evolution->setupDatabase('sqlite:' . $database);
+
+  $evolution->setIndividualsPerGeneration(5000);
+  $evolution->setGlobalMutationFactor(0.5);
 
   $generation = $evolution->getGeneration();
 
+  $population = new ColorPopulation();
+  $population->setDefaultRenderType('html');
+
   if ($generation == 1) {
-    $population = new ColorPopulation();
     $population->addIndividual();
+
     $evolution->setPopulation($population);
   }
+  else {
+    $evolution->setPopulation($population);
+    $evolution->loadPopulation();
+  }
+
+  $evolution->runGeneration();
+
+  $output = '';
+
+  $output .= '<p>Generation: ' . $evolution->getGeneration() . '</p>';
+
+  $output .= nl2br($evolution->renderGenerations());
+
+
+  return $this->view->render($response, 'demos.twig', [
+    'title' => $title,
+    'output' => $output,
+    'styles' => $styles
+  ]);
 
 });
