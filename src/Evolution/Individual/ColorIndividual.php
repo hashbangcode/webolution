@@ -33,7 +33,18 @@ class ColorIndividual extends Individual {
     $green = ceil(mt_rand(0, 255));
     $blue = ceil(mt_rand(0, 255));
 
-    return new ColorIndividual($red, $blue, $green);
+    return new ColorIndividual($red, $green, $blue);
+  }
+
+  /**
+   * @param $color \Hashbangcode\Wevolution\Type\Color\Color
+   *   The Colour object to use when creating the ColorIndividual.
+   *
+   * @return ColorIndividual
+   *   A new ColorIndividual object.
+   */
+  public static function generateFromColor($color) {
+    return new ColorIndividual($color->getRed(), $color->getGreen(), $color->getBlue());
   }
 
   /**

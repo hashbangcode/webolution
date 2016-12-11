@@ -4,6 +4,48 @@ use Hashbangcode\Wevolution\Evolution\Evolution;
 use Hashbangcode\Wevolution\Evolution\EvolutionStorage;
 use Hashbangcode\Wevolution\Evolution\Population\ColorPopulation;
 
+$app->get('/color_sort', function ($request, $response, $args) {
+  $styles = 'span {width:30px;height:30px;display:inline-block;padding:0px;margin:-2px;}
+a, a:link, a:visited, a:hover, a:active {padding:0px;margin:0px;}
+img {padding:0px;margin:0px;}';
+
+  $title = 'Color Evolution Sort';
+
+  $population = new ColorPopulation();
+  $population->setDefaultRenderType('html');
+
+  /*
+   for ($i = 0; $i < 1000; ++$i) {
+    $population->addIndividual();
+  }
+  */
+
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("777777")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("000000")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("FFFFFF")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("A70605")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA66")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("AAAAAA")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("111111")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("999999")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("555555")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA44")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("987865")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("123345")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA55")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA55")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("EEEEEE")));
+
+  $output = '';
+
+  $output .= nl2br($population->render());
+
+  return $this->view->render($response, 'demos.twig', [
+    'title' => $title,
+    'output' => $output,
+    'styles' => $styles
+  ]);
+});
 $app->get('/color_evolution', function ($request, $response, $args) {
   $styles = 'span {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}';
 
@@ -110,7 +152,7 @@ img {padding:0px;margin:0px;}';
   $evolution->setupDatabase('sqlite:' . $database);
 
   $evolution->setIndividualsPerGeneration(5000);
-  $evolution->setGlobalMutationFactor(0.5);
+  $evolution->setGlobalMutationFactor(0.1);
 
   $generation = $evolution->getGeneration();
 
