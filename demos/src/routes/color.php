@@ -4,8 +4,8 @@ use Hashbangcode\Wevolution\Evolution\Evolution;
 use Hashbangcode\Wevolution\Evolution\EvolutionStorage;
 use Hashbangcode\Wevolution\Evolution\Population\ColorPopulation;
 
-$app->get('/color_sort', function ($request, $response, $args) {
-  $styles = 'span {width:30px;height:30px;display:inline-block;padding:0px;margin:-2px;}
+$app->get('/color_sort[/{type}]', function ($request, $response, $args) {
+  $styles = 'span {width:1px;height:10px;display:inline-block;padding:0px;margin:0px;}
 a, a:link, a:visited, a:hover, a:active {padding:0px;margin:0px;}
 img {padding:0px;margin:0px;}';
 
@@ -14,12 +14,13 @@ img {padding:0px;margin:0px;}';
   $population = new ColorPopulation();
   $population->setDefaultRenderType('html');
 
-  /*
-   for ($i = 0; $i < 1000; ++$i) {
-    $population->addIndividual();
-  }
-  */
 
+   for ($i = 0; $i < 1200; ++$i) {
+     $population->addIndividual();
+     //$population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex($i)));
+  }
+
+/*
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("777777")));
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("000000")));
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("FFFFFF")));
@@ -28,17 +29,66 @@ img {padding:0px;margin:0px;}';
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("AAAAAA")));
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("111111")));
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("999999")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("AADA55")));
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("555555")));
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA44")));
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("987865")));
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("123345")));
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA55")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA55")));
   $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("EEEEEE")));
+  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA55")));
+*/
+
+  if (!isset($args['type'])) {
+    $args['type'] = '';
+  }
+
+  switch ($args['type']) {
+    case 'hue':
+      $population->sort('hue');
+      break;
+    case 'hex':
+      $population->sort('hex');
+      break;
+    case 'intensity':
+      $population->sort('intensity');
+      break;
+    case 'hsi_saturation':
+      $population->sort('hsi_saturation');
+      break;
+    case 'lightness':
+      $population->sort('lightness');
+      break;
+    case 'fitness':
+      $population->sort('fitness');
+      break;
+    case 'none':
+      break;
+    default:
+      $population->sort();
+  }
+
 
   $output = '';
 
-  $output .= nl2br($population->render());
+  foreach ($population->getIndividuals() as $individual) {
+    $output .= $individual->render($population->getDefaultRenderType());
+  }
+
+  ///$output .= nl2br($population->render());
+
+
+  $output .= '<p>Sort by:';
+  $output .= '<ul>';
+  $output .= '<li><a href="/color_sort/hue">hue</a></li>';
+  $output .= '<li><a href="/color_sort/hex">hex</a></li>';
+  $output .= '<li><a href="/color_sort/intensity">intensity</a></li>';
+  $output .= '<li><a href="/color_sort/hsi_saturation">hsi_saturation</a></li>';
+  $output .= '<li><a href="/color_sort/lightness">lightness</a></li>';
+  $output .= '<li><a href="/color_sort/fitness">fitness (i.e. backwards lightness)</a></li>';
+  $output .= '<li><a href="/color_sort">default (i.e. hue)</a></li>';
+  $output .= '<li><a href="/color_sort/none">no sort</a></li>';
+  $output .= '</p>';
 
   return $this->view->render($response, 'demos.twig', [
     'title' => $title,
