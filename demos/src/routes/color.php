@@ -14,30 +14,33 @@ img {padding:0px;margin:0px;}';
   $population = new ColorPopulation();
   $population->setDefaultRenderType('html');
 
-
-   for ($i = 0; $i < 1200; ++$i) {
-     $population->addIndividual();
-     //$population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex($i)));
+  for ($i = 0; $i < 1500; ++$i) {
+    $population->addIndividual();
+    //$population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex($i)));
   }
 
-/*
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("777777")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("000000")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("FFFFFF")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("A70605")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA66")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("AAAAAA")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("111111")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("999999")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("AADA55")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("555555")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA44")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("987865")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("123345")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA55")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("EEEEEE")));
-  $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex("BADA55")));
-*/
+  $colours = [
+    "777777",
+    "000000",
+    "FFFFFF",
+    "A70605",
+    "BADA66",
+    "AAAAAA",
+    "111111",
+    "999999",
+    "AADA55",
+    "555555",
+    "BADA44",
+    "987865",
+    "123345",
+    "BADA55",
+    "EEEEEE",
+    "BADA55",
+  ];
+  /*
+  foreach ($colours as $color) {
+    $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex($color)));
+  }*/
 
   if (!isset($args['type'])) {
     $args['type'] = '';
@@ -55,6 +58,18 @@ img {padding:0px;margin:0px;}';
       break;
     case 'hsi_saturation':
       $population->sort('hsi_saturation');
+      break;
+    case 'hsl_saturation':
+      $population->sort('hsl_saturation');
+      break;
+    case 'hsv_saturation':
+      $population->sort('hsv_saturation');
+      break;
+    case 'luma':
+      $population->sort('luma');
+      break;
+    case 'value':
+      $population->sort('value');
       break;
     case 'lightness':
       $population->sort('lightness');
@@ -84,6 +99,10 @@ img {padding:0px;margin:0px;}';
   $output .= '<li><a href="/color_sort/hex">hex</a></li>';
   $output .= '<li><a href="/color_sort/intensity">intensity</a></li>';
   $output .= '<li><a href="/color_sort/hsi_saturation">hsi_saturation</a></li>';
+  $output .= '<li><a href="/color_sort/hsl_saturation">hsl_saturation</a></li>';
+  $output .= '<li><a href="/color_sort/hsv_saturation">hsv_saturation</a></li>';
+  $output .= '<li><a href="/color_sort/luma">luma</a></li>';
+  $output .= '<li><a href="/color_sort/value">value</a></li>';
   $output .= '<li><a href="/color_sort/lightness">lightness</a></li>';
   $output .= '<li><a href="/color_sort/fitness">fitness (i.e. backwards lightness)</a></li>';
   $output .= '<li><a href="/color_sort">default (i.e. hue)</a></li>';
@@ -131,7 +150,6 @@ $app->get('/color_evolution', function ($request, $response, $args) {
 });
 
 
-
 $app->get('/colour_evolution_interactive[/{color}]', function ($request, $response, $args) {
 
   $title = 'Color Evolution Test';
@@ -147,8 +165,7 @@ img {padding:0px;margin:0px;}';
 
   if (!isset($args['color'])) {
     $colorObject = \Hashbangcode\Wevolution\Type\Color\Color::generateFromHex('000000');
-  }
-  else {
+  } else {
     $colorObject = \Hashbangcode\Wevolution\Type\Color\Color::generateFromHex($args['color']);
     $output .= '<p><a href="/colour_evolution_interactive">Reset</a></a>';
   }
@@ -213,8 +230,7 @@ img {padding:0px;margin:0px;}';
     $population->addIndividual();
 
     $evolution->setPopulation($population);
-  }
-  else {
+  } else {
     $evolution->setPopulation($population);
     $evolution->loadPopulation();
   }
