@@ -27,14 +27,14 @@ class ElementPopulation extends Population {
 
       switch ($renderType) {
         case 'html':
-          $output .= '<iframe height="100" width="100">' . $individual->render() . '</iframe>';
+          $output .= '<iframe height="200" width="200" srcdoc="' . $individual->render($renderType) . '"></iframe>';
           break;
         case 'htmltextarea':
-          $output .= '<textarea rows="10" cols="25">' . $individual->render() . '</textarea>';
+          $output .= '<textarea rows="10" cols="25">' . $individual->render($renderType) . '</textarea>';
           break;
         case 'cli':
         default:
-          $output.= $individual->render() . PHP_EOL;
+          $output.= $individual->render($renderType) . PHP_EOL;
       }
     }
 

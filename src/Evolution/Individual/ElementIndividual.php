@@ -108,7 +108,7 @@ class ElementIndividual extends Individual {
   public function render($renderType = 'cli') {
     switch ($renderType) {
       case 'html':
-        return '<iframe height="100" width="100">' . $this->getObject()->render() . '</iframe>';
+        return $this->getObject()->render();
       case 'cli':
       default:
         return $this->getObject()->render() . PHP_EOL;
