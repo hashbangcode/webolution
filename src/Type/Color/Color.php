@@ -712,4 +712,29 @@ class Color
 
     return strtoupper(implode($rgb));
   }
+
+  /**
+   * @return string
+   */
+  public function renderColorStatistics()
+  {
+    $output = '';
+
+    $output .= 'Red: ' . $this->getRed() . PHP_EOL;
+    $output .= 'Green: ' . $this->getGreen() . PHP_EOL;
+    $output .= 'Blue: ' . $this->getBlue() . PHP_EOL;
+    $output .= 'Hex: ' . $this->getHex() . PHP_EOL;
+    $output .= 'Croma: ' . $this->getCroma() . PHP_EOL;
+    $output .= 'Croma2: ' . $this->getCroma2() . PHP_EOL;
+    $output .= 'Hue: ' . $this->getHue() . PHP_EOL;
+    $output .= 'Hue2: ' . $this->getHue2() . PHP_EOL;
+    $output .= 'Hsi Saturation: ' . $this->getHsiSaturation() . PHP_EOL;
+    $output .= 'Hsl Saturation: ' . $this->getHslSaturation() . PHP_EOL;
+    $output .= 'Hsv Saturation: ' . $this->getHsvSaturation() . PHP_EOL;
+    $output .= 'Intensity: ' . $this->getIntensity() . PHP_EOL;
+    $output .= 'Lightness: ' . $this->getLightness() . PHP_EOL;
+    $output .= 'Value: ' . $this->getValue() . PHP_EOL;
+
+    return $output;
+  }
 }
