@@ -4,7 +4,7 @@
 
 $app->get('/', function ($request, $response, $args) {
   // Sample log message
-  $this->logger->info("Index '/' route");
+  //$this->logger->info("Index '/' route");
 
   // Render index view
   return $this->view->render($response, 'index.twig');

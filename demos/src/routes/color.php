@@ -243,7 +243,6 @@ img {padding:0px;margin:0px;}';
 
   $output .= nl2br($evolution->renderGenerations());
 
-
   return $this->view->render($response, 'demos.twig', [
     'title' => $title,
     'output' => $output,
