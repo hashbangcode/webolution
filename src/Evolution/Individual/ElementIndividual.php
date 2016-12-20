@@ -15,7 +15,7 @@ class ElementIndividual extends Individual {
    */
   protected $mutationFactor = 0.05;
 
-  public function __construct(Element $element) {
+  public function __construct($element) {
     if (!($element instanceof Element)) {
       $this->object = new Element($element);
     }
@@ -48,10 +48,14 @@ class ElementIndividual extends Individual {
   public function mutateElement($factor) {
     $action = mt_rand(0, 1);
 
-    if ($action <= $factor && count($this->getObject()->getAttributes()) > 0) {
+    // The root element will be a HTML with a body tag child, so we grab the first body element (the useful bit).
+    $rootElement = $this->getObject();
+    $element = $rootElement->getChildren()[0];
+
+    if ($action <= $factor && count($element->getAttributes()) > 0) {
 
       // Mutate an attribute.
-      $attributes = $this->getObject()->getAttributes();
+      $attributes = $element->getAttributes();
 
       $random_attribute = array_rand($attributes);
       $letters = range('a', 'z');
@@ -66,17 +70,17 @@ class ElementIndividual extends Individual {
 
       $attributes[$random_attribute] = $attribute_value;
 
-      $this->getObject()->setAttributes($attributes);
+      $element->setAttributes($attributes);
     }
     elseif ($action >= $factor) {
         // Add additional children elements.
-        $child_types = $this->getObject()->getChildTypes($this->getObject()->getType());
+        $child_types = $element->getChildTypes($element->getType());
         $child_type = $child_types[array_rand($child_types)];
         $newElement = new Element($child_type);
 
         $newElement->setAttribute('class', 'test');
 
-        $this->getObject()->addChild($newElement);
+      $element->addChild($newElement);
     }
   }
 

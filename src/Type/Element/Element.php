@@ -4,7 +4,8 @@ namespace Hashbangcode\Wevolution\Type\Element;
 
 use Hashbangcode\Wevolution\Utilities\TextUtilities;
 
-class Element {
+class Element
+{
 
   use TextUtilities;
 
@@ -29,26 +30,11 @@ class Element {
   protected $elementText = '';
 
   /**
-   * @return string
-   */
-  public function getElementText()
-  {
-    return $this->elementText;
-  }
-
-  /**
-   * @param string $elementText
-   */
-  public function setElementText($elementText)
-  {
-    $this->elementText = $elementText;
-  }
-
-  /**
    * Element constructor.
    * @param string $type
    */
-  public function __construct($type = 'div') {
+  public function __construct($type = 'div')
+  {
     $this->type = $type;
 
     if (in_array($type, $this->getTextTypes())) {
@@ -57,47 +43,27 @@ class Element {
   }
 
   /**
-   * @return mixed
+   * @return array
    */
-  public function getAttributes() {
-    return $this->attributes;
-  }
-
-  /**
-   * @param $attributes
-   * @throws Exception\InvalidAttributesException
-   */
-  public function setAttributes($attributes) {
-    if (!is_array($attributes)) {
-      throw new Exception\InvalidAttributesException('Array of attributes required.');
-    }
-
-    $this->attributes = $attributes;
+  public function getTextTypes()
+  {
+    return array('p', 'li', 'h1', 'h2');
   }
 
   /**
    * @param $key
    * @param $value
    */
-  public function setAttribute($key, $value) {
+  public function setAttribute($key, $value)
+  {
     $this->attributes[$key] = $value;
   }
 
   /**
-   * @return mixed
+   * @return string
    */
-  public function getType() {
-    return $this->type;
-  }
-
-  /**
-   * @param mixed $type
-   */
-  public function setType($type) {
-    $this->type = strtolower($type);
-  }
-
-  public function render() {
+  public function render()
+  {
     $output = '';
     $output .= '<' . $this->getType();
 
@@ -124,18 +90,73 @@ class Element {
   }
 
   /**
-   * @param Element $element
+   * @return mixed
    */
-  public function addChild(Element $element) {
-    // @todo : validate the child element type
-    $this->children[] = $element;
+  public function getType()
+  {
+    return $this->type;
+  }
+
+  /**
+   * @param mixed $type
+   */
+  public function setType($type)
+  {
+    $this->type = strtolower($type);
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getAttributes()
+  {
+    return $this->attributes;
+  }
+
+  /**
+   * @param $attributes
+   * @throws Exception\InvalidAttributesException
+   */
+  public function setAttributes($attributes)
+  {
+    if (!is_array($attributes)) {
+      throw new Exception\InvalidAttributesException('Array of attributes required.');
+    }
+
+    $this->attributes = $attributes;
   }
 
   /**
    * @return array
    */
-  public function getChildren() {
+  public function getChildren()
+  {
     return $this->children;
+  }
+
+  /**
+   * @return string
+   */
+  public function getElementText()
+  {
+    return $this->elementText;
+  }
+
+  /**
+   * @param string $elementText
+   */
+  public function setElementText($elementText)
+  {
+    $this->elementText = $elementText;
+  }
+
+  /**
+   * @param Element $element
+   */
+  public function addChild(Element $element)
+  {
+    // @todo : validate the child element type
+    $this->children[] = $element;
   }
 
   /**
@@ -147,7 +168,8 @@ class Element {
    * @param $type
    * @return array
    */
-  public function getChildTypes($type) {
+  public function getChildTypes($type)
+  {
 
     switch ($type) {
 
@@ -160,9 +182,14 @@ class Element {
   }
 
   /**
-   * @return array
+   *
    */
-  public function getTextTypes() {
-    return array('p', 'li', 'h1', 'h2');
+  public function __clone()
+  {
+    // Clone the children of this object.
+    foreach ($this->children as $key => $child) {
+      // When cloning a child all children will also be cloned.
+      $this->children[$key] = clone $child;
+    }
   }
 }

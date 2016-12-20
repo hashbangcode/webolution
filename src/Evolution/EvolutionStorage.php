@@ -36,11 +36,10 @@ class EvolutionStorage extends Evolution
     $createDatabase = false;
 
     if (!file_exists(str_replace('sqlite:', '', $this->databaseName))) {
-    //if (!file_exists($this->databaseName)) {
       $createDatabase = true;
     }
 
-    $this->database = new \PDO($this->getDatabaseName());
+    $this->database = new \PDO($this->getDatabaseName(), '', '', array(\PDO::ATTR_PERSISTENT => false));
 
     if ($createDatabase == true) {
       $this->createDatabase();
@@ -59,8 +58,7 @@ class EvolutionStorage extends Evolution
     // Get or create the evolution item
     if ($evolution_count['evolution_count'] == 0) {
       $this->createEvolution($this->getEvolutionId());
-    }
-    else {
+    } else {
       $evolution = $this->retrieveEvolution($this->getEvolutionId());
       $this->generation = (int)$evolution['current_generation'];
     }
@@ -93,7 +91,6 @@ CREATE TABLE "evolution" (
   "current_generation" integer NOT NULL
 );
 
-
 DROP TABLE IF EXISTS "individuals";
 CREATE TABLE "individuals" (
   "individual_id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -101,7 +98,6 @@ CREATE TABLE "individuals" (
   "population_id" integer NOT NULL,
   "individual" blob NOT NULL
 );
-
 
 DROP TABLE IF EXISTS "populations";
 CREATE TABLE "populations" (
@@ -111,15 +107,6 @@ CREATE TABLE "populations" (
   "min_fitness" real NULL
 );';
     $this->database->exec($sql);
-  }
-
-  /**
-   * @param $evolution_id
-   */
-  private function createEvolution($evolution_id)
-  {
-    $query = $this->database->prepare('INSERT INTO evolution(evolution_id, current_generation) VALUES(:evolution_id, 1)');
-    $query->execute(array('evolution_id' => $evolution_id));
   }
 
   /**
@@ -147,6 +134,15 @@ CREATE TABLE "populations" (
   public function setEvolutionId($evolutionId)
   {
     $this->evolutionId = $evolutionId;
+  }
+
+  /**
+   * @param $evolution_id
+   */
+  private function createEvolution($evolution_id)
+  {
+    $query = $this->database->prepare('INSERT INTO evolution(evolution_id, current_generation) VALUES(:evolution_id, 1)');
+    $query->execute(array('evolution_id' => $evolution_id));
   }
 
   /**
@@ -241,7 +237,8 @@ CREATE TABLE "populations" (
   /**
    *
    */
-  public function loadPopulation() {
+  public function loadPopulation()
+  {
     $sql = "SELECT * FROM individuals WHERE evolution_id = :evolution_id AND population_id = :population_id";
 
     $stmt = $this->database->prepare($sql);
@@ -268,7 +265,8 @@ CREATE TABLE "populations" (
   /**
    * @return string
    */
-  public function renderGenerations($printStats = FALSE) {
+  public function renderGenerations($printStats = FALSE)
+  {
     $output = '';
 
     foreach ($this->previousGenerations as $generation_number => $population) {
@@ -280,5 +278,22 @@ CREATE TABLE "populations" (
       }
     }
     return $output;
+  }
+
+  /**
+   * Cleares out the database.
+   */
+  public function clearDatabase()
+  {
+    $tables = [
+      'evolution',
+      'individuals',
+      'populations',
+    ];
+
+    foreach ($tables as $table) {
+      $sql = 'DELETE FROM ' . $table;
+      $result = $this->database->exec($sql);
+    }
   }
 }

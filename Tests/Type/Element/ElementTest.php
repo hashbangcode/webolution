@@ -115,5 +115,53 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('li', $child_types[0]);
   }
 
+  public function testCloneElement() {
+    $element = new Element();
+    $element->setType('div');
+
+    $element_clone = clone $element;
+
+    $element_clone->setAttribute('class', 'wibble');
+
+    $this->assertEquals('<div></div>', $element->render());
+    $this->assertEquals('<div class="wibble"></div>', $element_clone->render());
+  }
+
+  public function testCloneElementWithChild() {
+    $outer_element = new Element();
+    $outer_element->setType('div');
+
+    $inner_element = new Element();
+    $inner_element->setType('div');
+
+    $outer_element->addChild($inner_element);
+
+    $element_clone = clone $outer_element;
+
+    $element_clone->setAttribute('class', 'wibble');
+
+    $element_clone->getChildren()[0]->setAttribute('class', 'wobble');
+
+    $this->assertEquals('<div><div></div></div>', $outer_element->render());
+    $this->assertEquals('<div class="wibble"><div class="wobble"></div></div>', $element_clone->render());
+  }
+
+  public function testCloneElementWithTwoLevelsChild() {
+    $outer_element = new Element('div');
+    $inner_element = new Element('div');
+    $inner_inner_element = new Element('div');
+
+    $outer_element->addChild($inner_element);
+    $inner_element->addChild($inner_inner_element);
+
+    $element_clone = clone $outer_element;
+
+    $element_clone->setAttribute('class', 'wibble');
+    $element_clone->getChildren()[0]->setAttribute('class', 'wobble');
+    $element_clone->getChildren()[0]->getChildren()[0]->setAttribute('class', 'foo');
+
+    $this->assertEquals('<div><div><div></div></div></div>', $outer_element->render());
+    $this->assertEquals('<div class="wibble"><div class="wobble"><div class="foo"></div></div></div>', $element_clone->render());
+  }
 
 }

@@ -2,9 +2,9 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Population;
 
-//use Hashbangcode\Wevolution\Population\Exception\ElementPageRootException;
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
+use Hashbangcode\Wevolution\Type\Element\Element;
 
 /**
  * Class ElementPopulation
@@ -27,7 +27,7 @@ class ElementPopulation extends Population {
 
       switch ($renderType) {
         case 'html':
-          $output .= '<iframe height="200" width="200" srcdoc="' . $individual->render($renderType) . '"></iframe>';
+          $output .= '<iframe height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
           break;
         case 'htmltextarea':
           $output .= '<textarea rows="10" cols="25">' . $individual->render($renderType) . '</textarea>';
@@ -53,7 +53,11 @@ class ElementPopulation extends Population {
    */
   public function addIndividual(Individual $individual = NULL) {
     if (is_null($individual)) {
-      $individual = new ElementIndividual('html');
+      $html = new Element('html');
+      $body = new Element('body');
+      $html->addChild($body);
+
+      $individual = new ElementIndividual($html);
     }
 
     if ($individual->getObject()->getType() !== 'html') {

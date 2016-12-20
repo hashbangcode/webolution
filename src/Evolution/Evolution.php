@@ -3,13 +3,14 @@ namespace Hashbangcode\Wevolution\Evolution;
 
 use Hashbangcode\Wevolution\Evolution\Population;
 
-class Evolution {
+class Evolution
+{
 
+  public $globalFitnessGoal;
   /**
    * @var int
    */
   protected $generation = 1;
-
   /**
    * @var
    */
@@ -36,18 +37,17 @@ class Evolution {
    * @param null $individualsPerGeneration
    * @param bool $autoGeneratePopulation
    */
-  public function __construct(Population\Population $population = NULL, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = FALSE) {
+  public function __construct(Population\Population $population = NULL, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = FALSE)
+  {
     if (!is_null($maxGenerations)) {
       $this->setMaxGenerations($maxGenerations);
-    }
-    else {
+    } else {
       $this->setMaxGenerations(10);
     }
 
     if (!is_null($individualsPerGeneration)) {
       $this->setIndividualsPerGeneration($individualsPerGeneration);
-    }
-    else {
+    } else {
       $this->setMaxGenerations(10);
     }
 
@@ -71,52 +71,40 @@ class Evolution {
   /**
    * @return Population\Population
    */
-  public function getCurrentPopulation() {
+  public function getCurrentPopulation()
+  {
     return $this->population;
   }
 
   /**
    * @return int|null
    */
-  public function getIndividualsPerGeneration() {
+  public function getIndividualsPerGeneration()
+  {
     return $this->individualsPerGeneration;
   }
 
   /**
    * @param int|null $individualsPerGeneration
    */
-  public function setIndividualsPerGeneration($individualsPerGeneration) {
+  public function setIndividualsPerGeneration($individualsPerGeneration)
+  {
     $this->individualsPerGeneration = $individualsPerGeneration;
   }
 
   /**
    * @param Population\Population $population
    */
-  public function setPopulation($population) {
+  public function setPopulation($population)
+  {
     $this->population = $population;
   }
-
-  public $globalFitnessGoal;
-
-  /**
-   * @return mixed
-   */
-  public function getGlobalFitnessGoal() {
-    return $this->globalFitnessGoal;
-  }
-
-  /**
-   * @param mixed $fitnessGoal
-   */
-  public function setGlobalFitnessGoal($globalFitnessGoal) {
-    $this->globalFitnessGoal = $globalFitnessGoal;
-  }
-
 
   /**
    * @return bool
    */
-  public function runGeneration($kill = TRUE) {
+  public function runGeneration($kill = TRUE)
+  {
     // Ensure the population has a length.
     if ($this->population->getLength() == 0) {
       // If there is no population left then set the number of generations to max.
@@ -140,7 +128,7 @@ class Evolution {
         }
 
         $fitness = $individual->getFitness();
-        $maxFitness =  $this->population->getStatistics()['max']->getFitness();
+        $maxFitness = $this->population->getStatistics()['max']->getFitness();
 
         // Figure out if this individual is close to the top of the list.
         if ($maxFitness != 0) {
@@ -151,7 +139,7 @@ class Evolution {
 
         // The higher the allowed fitness then the greater the chance that the individual will survive.
         //$f = $key / $this->population->getLength();
-        $rand = (pow(mt_rand(-1, 1), 3)+1)/2; //cube function
+        $rand = (pow(mt_rand(-1, 1), 3) + 1) / 2; //cube function
         $keepAlive = ($fitnessFactor >= $rand);
 
 
@@ -183,9 +171,8 @@ class Evolution {
         $random_individual = $this->population->getRandomIndividual();
         if (is_object($random_individual)) {
           $this->population->addIndividual(clone $random_individual);
-        }
-        else {
-          // Add a radnom individual (not cloned from the current population).
+        } else {
+          // Add a random individual (not cloned from the current population).
           $this->population->addIndividual();
         }
       } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
@@ -211,9 +198,66 @@ class Evolution {
   }
 
   /**
+   * @return int|null
+   */
+  public function getMaxGenerations()
+  {
+    return $this->maxGenerations;
+  }
+
+  /**
+   * @param int|null $maxGenerations
+   */
+  public function setMaxGenerations($maxGenerations)
+  {
+    $this->maxGenerations = $maxGenerations;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getGlobalFitnessGoal()
+  {
+    return $this->globalFitnessGoal;
+  }
+
+  /**
+   * @param mixed $fitnessGoal
+   */
+  public function setGlobalFitnessGoal($globalFitnessGoal)
+  {
+    $this->globalFitnessGoal = $globalFitnessGoal;
+  }
+
+  /**
+   * @return null
+   */
+  public function getGlobalMutationFactor()
+  {
+    return $this->globalMutationFactor;
+  }
+
+  /**
+   * @param null $globalMutationFactor
+   */
+  public function setGlobalMutationFactor($globalMutationFactor)
+  {
+    $this->globalMutationFactor = $globalMutationFactor;
+  }
+
+  /**
+   * @param $population
+   */
+  public function addPreviousGeneration($population)
+  {
+    $this->previousGenerations[$this->generation] = clone $population;
+  }
+
+  /**
    * @return string
    */
-  public function renderGenerations($printStats = FALSE) {
+  public function renderGenerations($printStats = FALSE)
+  {
     $output = '';
 
     foreach ($this->previousGenerations as $generation_number => $population) {
@@ -228,58 +272,26 @@ class Evolution {
   }
 
   /**
-   * @return int|null
-   */
-  public function getMaxGenerations() {
-    return $this->maxGenerations;
-  }
-
-  /**
-   * @param int|null $maxGenerations
-   */
-  public function setMaxGenerations($maxGenerations) {
-    $this->maxGenerations = $maxGenerations;
-  }
-
-  /**
-   * @param $population
-   */
-  public function addPreviousGeneration($population) {
-    $this->previousGenerations[$this->generation] = clone $population;
-  }
-
-  /**
-   * @return null
-   */
-  public function getGlobalMutationFactor() {
-    return $this->globalMutationFactor;
-  }
-
-  /**
-   * @param null $globalMutationFactor
-   */
-  public function setGlobalMutationFactor($globalMutationFactor) {
-    $this->globalMutationFactor = $globalMutationFactor;
-  }
-
-  /**
    * @return int
    */
-  public function getGeneration() {
+  public function getGeneration()
+  {
     return $this->generation;
   }
 
   /**
    * @return mixed
    */
-  public function getAllowedFitness() {
+  public function getAllowedFitness()
+  {
     return $this->allowedFitness();
   }
 
   /**
    * @param $allowedFitness
    */
-  public function setAllowedFitness($allowedFitness) {
+  public function setAllowedFitness($allowedFitness)
+  {
     $this->allowedFitness = $allowedFitness;
   }
 }
