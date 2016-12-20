@@ -1,5 +1,6 @@
 <?php
 
+use Hashbangcode\Wevolution\Evolution\EvolutionStorage;
 
 function adminer_object() {
 
@@ -23,4 +24,15 @@ $app->any('/adminer', function ($request, $response, $args) {
   }
 
   include __DIR__ . "/../../database/adminer.php";
+});
+
+
+$app->any('/clear_database', function ($request, $response) {
+
+  $database = realpath(__DIR__ . '/../../database') . '/database.sqlite';
+  $evolution = new EvolutionStorage();
+  $evolution->setupDatabase('sqlite:' . $database);
+  $evolution->clearDatabase();
+
+  return $response->withStatus(302)->withHeader('Location', '/');
 });
