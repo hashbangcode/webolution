@@ -601,6 +601,7 @@ class Color
    */
   public function setLuma($luma)
   {
+    // @toto : is this needed?
     $this->luma = $luma;
   }
 

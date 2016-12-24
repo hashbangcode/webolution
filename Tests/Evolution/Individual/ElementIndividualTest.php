@@ -16,16 +16,28 @@ class ElementIndividualTest extends PHPUnit_Framework_TestCase
   }
 
   public function testMutateElementThroughIndividual() {
-    $object = new ElementIndividual(new Element('div'));
+    $html = new Element('html');
+    $body = new Element('body');
+    $html->addChild($body);
+
+    $object = new ElementIndividual($html);
+
     $object->mutateProperties();
-    $this->assertEquals('div', $object->getObject()->getType());
+    $this->assertEquals('html', $object->getObject()->getType());
   }
 
   public function testMutateElementThroughIndividualWithDifferentFactor() {
-    $object = new ElementIndividual(new Element('div'));
+
+    $html = new Element('html');
+    $body = new Element('body');
+    $html->addChild($body);
+
+    $object = new ElementIndividual($html);
+
     $object->setMutationFactor(-10);
     $object->mutateProperties();
-    $this->assertEquals('div', $object->getObject()->getType());
+    $this->assertEquals('html', $object->getObject()->getType());
+
     $this->assertEquals(-10, $object->getMutationFactor());
   }
 
@@ -43,31 +55,60 @@ class ElementIndividualTest extends PHPUnit_Framework_TestCase
   }
 
   public function testMutateElementAttribute() {
-    $object = new ElementIndividual(new Element('div'));
-    $object->getObject()->setAttributes(array('class' => 'test'));
+    $html = new Element('html');
+    $body = new Element('body');
+    $html->addChild($body);
+
+    $object = new ElementIndividual($html);
+
+    $rootElement = $object->getObject();
+    $element = $rootElement->getChildren()[0];
+    $element->setAttributes(array('class' => 'test'));
+
     $object->mutateElement(-10);
   }
 
   public function testMutateElementAttributeLength() {
-    $object = new ElementIndividual(new Element('div'));
-    $object->getObject()->setAttributes(array('class' => 'test'));
+    $html = new Element('html');
+    $body = new Element('body');
+    $html->addChild($body);
+
+    $object = new ElementIndividual($html);
+
+    $rootElement = $object->getObject();
+    $element = $rootElement->getChildren()[0];
+    $element->setAttributes(array('class' => 'test'));
+
     for ($i = 0; $i < 25; ++$i) {
       $object->mutateElement(-10);
     }
+
     $this->assertLessThanOrEqual(10, $object->getObject()->getAttributes()['class']);
   }
 
   public function testMutateElementChild() {
-    $object = new ElementIndividual(new Element('div'));
-    $this->assertEquals(0, count($object->getObject()->getChildren()));
+    $html = new Element('html');
+    $body = new Element('body');
+    $html->addChild($body);
+
+    $object = new ElementIndividual($html);
+
+    $this->assertEquals(1, count($object->getObject()->getChildren()));
+
     $object->getObject()->setAttributes(array('class' => 'test'));
     $object->mutateElement(1);
     $this->assertStringStartsWith('test', $object->getObject()->getAttributes()['class']);
-    $this->assertEquals(0, count($object->getObject()->getChildren()));
+
+    $this->assertEquals(1, count($object->getObject()->getChildren()));
   }
 
   public function testMutateWithNoAttributes() {
-    $object = new ElementIndividual(new Element('div'));
+    $html = new Element('html');
+    $body = new Element('body');
+    $html->addChild($body);
+
+    $object = new ElementIndividual($html);
+
     $object->mutateElement(-10);
     $this->assertNotEquals('test', $object->getObject()->getAttributes()['class']);
     $this->assertEquals(1, count($object->getObject()->getChildren()));

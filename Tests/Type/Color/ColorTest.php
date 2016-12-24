@@ -271,10 +271,9 @@ class ColorTest extends PHPUnit_Framework_TestCase
   }
 
   public function testSetLuma() {
-    $color = new Color(255, 255, 255);
-    $luma = 1;
-    $color->setLuma($luma);
-    $this->assertEquals($luma, $color->getLuma());
+    $color = new Color(0, 0, 0);
+    $color->setLuma(1);
+    $this->assertEquals(0.0, $color->getLuma());
   }
 
   public function testRenderColor() {
