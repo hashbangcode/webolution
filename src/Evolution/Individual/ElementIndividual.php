@@ -114,6 +114,7 @@ class ElementIndividual extends Individual {
     switch ($renderType) {
       case 'html':
         $output .= $this->getObject()->render();
+        break;
       case 'cli':
       default:
         $output.= $this->getObject()->render() . PHP_EOL;

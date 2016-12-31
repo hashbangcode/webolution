@@ -96,7 +96,7 @@ class Element
   public function render()
   {
     $output = '';
-    if ($this->getType() === false) {
+    if ($this->getType() === false && is_object($this->getObject())) {
       return $this->getObject()->render();
     }
 
