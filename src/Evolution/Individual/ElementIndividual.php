@@ -110,12 +110,14 @@ class ElementIndividual extends Individual {
    * @return mixed
    */
   public function render($renderType = 'cli') {
+    $output = '';
     switch ($renderType) {
       case 'html':
-        return $this->getObject()->render();
+        $output .= $this->getObject()->render();
       case 'cli':
       default:
-        return $this->getObject()->render() . PHP_EOL;
+        $output.= $this->getObject()->render() . PHP_EOL;
     }
+    return $output;
   }
 }

@@ -27,7 +27,7 @@ class ElementPopulation extends Population {
 
       switch ($renderType) {
         case 'html':
-          $output .= '<iframe height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
+          $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
           break;
         case 'htmltextarea':
           $output .= '<textarea rows="10" cols="25">' . $individual->render($renderType) . '</textarea>';

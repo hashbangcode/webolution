@@ -30,15 +30,46 @@ class Element
   protected $elementText = '';
 
   /**
+   * An object.
+   *
+   * @var bool|object
+   */
+  protected $object = FALSE;
+
+  /**
+   * @return bool|object
+   */
+  public function getObject()
+  {
+    return $this->object;
+  }
+
+  /**
+   * @param bool|object $object
+   */
+  public function setObject($object)
+  {
+    $this->object = $object;
+  }
+
+  /**
    * Element constructor.
    * @param string $type
    */
-  public function __construct($type = 'div')
+  public function __construct($arg = 'div')
   {
-    $this->type = $type;
+    if (is_object($arg)) {
+      // This is an object so we store it differently.
+      $this->type = false;
+      $this->object = $arg;
+    }
+    else {
+      // This is a string so we create a normal Element object.
+      $this->type = $arg;
 
-    if (in_array($type, $this->getTextTypes())) {
-      $this->elementText = $this->generateRandomText(10);
+      if (in_array($arg, $this->getTextTypes())) {
+        $this->elementText = $this->generateRandomText(10);
+      }
     }
   }
 
@@ -47,7 +78,7 @@ class Element
    */
   public function getTextTypes()
   {
-    return array('p', 'li', 'h1', 'h2');
+    return array('p', 'li', 'h1', 'h2', 'h3', 'h4', 'h5');
   }
 
   /**
@@ -65,6 +96,10 @@ class Element
   public function render()
   {
     $output = '';
+    if ($this->getType() === false) {
+      return $this->getObject()->render();
+    }
+
     $output .= '<' . $this->getType();
 
     if ($this->getAttributes() > 0) {
@@ -170,9 +205,11 @@ class Element
    */
   public function getChildTypes($type)
   {
+    if ($type === false) {
+      return false;
+    }
 
     switch ($type) {
-
       case 'ul':
       case 'ol':
         return array('li');
