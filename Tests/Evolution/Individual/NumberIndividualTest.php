@@ -36,10 +36,21 @@ class NumberIndividualTest extends PHPUnit_Framework_TestCase
     $this->assertEquals(8, $object->getFitness());
   }
 
-  public function testRender() {
+  public function testCliRender() {
     $object = new NumberIndividual(1);
     $renderType = 'cli';
     $this->assertEquals('1 ', $object->render($renderType));
+  }
+
+  public function testHtmlRender() {
+    $object = new NumberIndividual(1);
+    $renderType = 'html';
+    $this->assertEquals('1 ', $object->render($renderType));
+  }
+
+  public function testDefaultRender() {
+    $object = new NumberIndividual(1);
+    $this->assertEquals('1 ', $object->render());
   }
 
   public function testMutateNumber() {

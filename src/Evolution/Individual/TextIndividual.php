@@ -156,6 +156,9 @@ class TextIndividual extends Individual {
     }
   }
 
+  /**
+   * @return mixed
+   */
   public function getRandomLetter() {
     $charArray = array_merge(range('a', 'z'), range('A', 'Z'));
     $charArray[] = ' ';

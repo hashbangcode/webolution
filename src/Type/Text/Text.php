@@ -31,7 +31,6 @@ class Text {
     $this->setText($text);
   }
 
-
   /**
    * @return mixed
    */

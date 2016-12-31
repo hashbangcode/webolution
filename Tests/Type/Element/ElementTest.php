@@ -164,4 +164,13 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('<div class="wibble"><div class="wobble"><div class="foo"></div></div></div>', $element_clone->render());
   }
 
+  public function testSetElementText() {
+    $object = new Element();
+    $object->setType('div');
+    $object->setElementText('sometext');
+    $this->assertEquals('div', $object->getType('div'));
+    $this->assertEquals('<div>sometext</div>', $object->render());
+    $this->assertEquals('sometext', $object->getElementText());
+  }
+
 }

@@ -48,10 +48,16 @@ class ElementIndividualTest extends PHPUnit_Framework_TestCase
     $this->assertEquals(1, $object->getFitness());
   }
 
-  public function testElementIndividualRender() {
+  public function testElementIndividualCliRender() {
     $object = new ElementIndividual(new Element('html'));
     $renderType = 'cli';
     $this->assertEquals('<html></html>' . PHP_EOL, $object->render($renderType));
+  }
+
+  public function testElementIndividualHtmlRender() {
+    $object = new ElementIndividual(new Element('html'));
+    $renderType = 'html';
+    $this->assertEquals('<html></html>', $object->render($renderType));
   }
 
   public function testMutateElementAttribute() {

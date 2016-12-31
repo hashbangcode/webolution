@@ -35,14 +35,6 @@ class StyleIndividual extends Individual {
   /**
    * Mutate the element.
    *
-   * Possible actions to take during mutation.
-   * - Alter attributes (9/10).
-   * - Add additional children (1/10).
-   *
-   * This should not alter the tag itself. Also, certain elements
-   * should only get certain children. For example, a ul
-   * or a ol element should only get a li or a.
-   *
    * @param $factor The amount of variance to apply.
    */
   public function mutateElement($factor) {

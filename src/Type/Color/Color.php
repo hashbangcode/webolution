@@ -719,6 +719,7 @@ class Color
    */
   public function renderColorStatistics()
   {
+
     $output = '';
 
     $output .= 'Red: ' . $this->getRed() . PHP_EOL;
