@@ -173,4 +173,30 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('sometext', $object->getElementText());
   }
 
+  public function testRenderInnerObject() {
+    $innerObject = new Element('div');
+    $outerObject = new Element($innerObject);
+    $this->assertEquals('<div></div>', $outerObject->render());
+  }
+
+  public function testRenderInnerObjectAfterSettingType() {
+    $innerObject = new Element('div');
+    $outerObject = new Element($innerObject);
+    $outerObject->setType('p');
+    $this->assertEquals('<div></div>', $outerObject->render());
+  }
+
+  public function testGetChildTypesOfOuterObject() {
+    $innerObject = new Element('div');
+    $outerObject = new Element($innerObject);
+    $this->assertEquals(false, $outerObject->getChildTypes());
+  }
+
+  public function test() {
+    $innerObject = new Element('div');
+    $outerObject = new Element();
+    $outerObject->setObject($innerObject);
+    $this->assertEquals(false, $outerObject->getChildTypes());
+    $this->assertEquals('<div></div>', $outerObject->render());
+  }
 }

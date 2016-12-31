@@ -49,7 +49,10 @@ class Element
    */
   public function setObject($object)
   {
-    $this->object = $object;
+    if (is_object($object)) {
+      $this->type = false;
+      $this->object = $object;
+    }
   }
 
   /**
@@ -95,10 +98,11 @@ class Element
    */
   public function render()
   {
-    $output = '';
     if ($this->getType() === false && is_object($this->getObject())) {
       return $this->getObject()->render();
     }
+
+    $output = '';
 
     $output .= '<' . $this->getType();
 
@@ -137,7 +141,9 @@ class Element
    */
   public function setType($type)
   {
-    $this->type = strtolower($type);
+    if ($this->type !== false) {
+      $this->type = strtolower($type);
+    }
   }
 
   /**
@@ -203,13 +209,13 @@ class Element
    * @param $type
    * @return array
    */
-  public function getChildTypes($type)
+  public function getChildTypes()
   {
-    if ($type === false) {
+    if ($this->type === false) {
       return false;
     }
 
-    switch ($type) {
+    switch ($this->type) {
       case 'ul':
       case 'ol':
         return array('li');
