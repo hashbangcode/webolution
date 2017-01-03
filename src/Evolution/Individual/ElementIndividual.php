@@ -103,7 +103,7 @@ class ElementIndividual extends Individual {
         break;
       case 'cli':
       default:
-        $output.= $this->getObject()->render() . PHP_EOL;
+        $output .= $this->getObject()->render() . PHP_EOL;
     }
     return $output;
   }
