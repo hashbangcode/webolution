@@ -3,12 +3,15 @@
 namespace Hashbangcode\Wevolution\Evolution\Individual;
 
 use Hashbangcode\Wevolution\Type\Text\Text;
+use Hashbangcode\Wevolution\Utilities\TextUtilities;
 
 /**
  * Class TextIndividual
  * @package Hashbangcode\Wevolution\Evolution\Individual
  */
 class TextIndividual extends Individual {
+
+  use TextUtilities;
 
   protected $textLength = 10;
 
@@ -20,19 +23,6 @@ class TextIndividual extends Individual {
    */
   public function __construct($text) {
     $this->object = new Text($text);
-  }
-
-  /**
-   * @return \Hashbangcode\Wevolution\Evolution\Individual\TextIndividual
-   */
-  public static function generateRandomText($textLength = 7) {
-    $text = "";
-    $charArray = array_merge(range('a', 'z'), range('A', 'Z'), [' ']);
-    for ($i = 0; $i < $textLength; $i++) {
-      $randItem = array_rand($charArray);
-      $text .= $charArray[$randItem];
-    }
-    return new TextIndividual($text);
   }
 
   /**
@@ -82,13 +72,16 @@ class TextIndividual extends Individual {
    * @return mixed
    */
   public function render($renderType = 'cli') {
+    $output = '';
     switch ($renderType) {
       case 'html':
-        return $this->object->render() . '<br>';
+        $output .= $this->object->render() . '<br>';
+        break;
       case 'cli':
       default:
-        return $this->object->render() . ' ';
+        $output .= $this->object->render() . ' ';
     }
+    return $output;
   }
 
   /**
@@ -154,15 +147,5 @@ class TextIndividual extends Individual {
 
       $this->getObject()->setText($text);
     }
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getRandomLetter() {
-    $charArray = array_merge(range('a', 'z'), range('A', 'Z'));
-    $charArray[] = ' ';
-    $randItem = array_rand($charArray);
-    return $charArray[$randItem];
   }
 }
