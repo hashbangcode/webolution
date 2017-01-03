@@ -8,7 +8,7 @@ use Hashbangcode\Wevolution\Evolution\Individual\TextIndividual;
 class TextIndividualTest extends PHPUnit_Framework_TestCase
 {
 
-  public function testCreateTextIndividual() {
+  public function testCreateIndividual() {
     $object = new TextIndividual(1);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual', $object);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Text\Text', $object->getObject());
@@ -48,6 +48,12 @@ class TextIndividualTest extends PHPUnit_Framework_TestCase
   public function testGetFitness() {
     $object = new TextIndividual(1);
     $this->assertEquals(0, $object->getFitness());
+  }
+
+  public function testGetFitnessWithGoal() {
+    $object = new TextIndividual(1);
+    $object->setFitnessGoal(1);
+    $this->assertEquals(1, $object->getFitness());
   }
 
   public function testCliRender() {

@@ -8,7 +8,7 @@ use Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual;
 class NumberIndividualTest extends PHPUnit_Framework_TestCase
 {
 
-  public function testCreateNumberIndividual() {
+  public function testCreateIndividual() {
     $object = new NumberIndividual(1);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $object);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Number\Number', $object->getObject());

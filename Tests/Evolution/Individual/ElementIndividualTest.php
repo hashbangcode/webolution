@@ -9,7 +9,7 @@ use Hashbangcode\Wevolution\Type\Element\Element;
 class ElementIndividualTest extends PHPUnit_Framework_TestCase
 {
 
-  public function testCreateElementIndividual() {
+  public function testCreateIndividual() {
     $object = new ElementIndividual(new Element('div'));
     $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual', $object);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Element\Element', $object->getObject());

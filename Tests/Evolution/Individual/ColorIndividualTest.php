@@ -8,7 +8,7 @@ use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 class ColorIndividualTest extends PHPUnit_Framework_TestCase
 {
 
-  public function testCreateColorIndividual() {
+  public function testCreateIndividual() {
     $object = new ColorIndividual(0, 0, 0);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $object->getObject());
