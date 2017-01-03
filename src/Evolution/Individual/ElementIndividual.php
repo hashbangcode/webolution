@@ -87,20 +87,6 @@ class ElementIndividual extends Individual {
   /**
    * @return int
    */
-  public function getMutationFactor() {
-    return $this->mutationFactor;
-  }
-
-  /**
-   * @param int $mutationFactor
-   */
-  public function setMutationFactor($mutationFactor) {
-    $this->mutationFactor = $mutationFactor;
-  }
-
-  /**
-   * @return int
-   */
   public function getFitness() {
     return 1;
   }
