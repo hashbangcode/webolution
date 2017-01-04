@@ -88,6 +88,11 @@ class ElementIndividual extends Individual {
    * @return int
    */
   public function getFitness() {
+    // @todo see how we can get a better fitness for elements.
+    // Possible candidates include:
+    // - number of children
+    // - rendered length
+    // - number of tags directly under html>body
     return 1;
   }
 
