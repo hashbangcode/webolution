@@ -113,7 +113,13 @@ class Style
     $output .= $this->getSelector() . '{';
 
     foreach ($this->getAttributes() as $attribute => $value) {
-      $output .= $attribute . ':' . $value . ';';
+      // Render the style.
+      if (is_object($value)) {
+        $output .= $attribute . ':' . $value->render('css') . ';';
+      }
+      else {
+        $output .= $attribute . ':' . $value . ';';
+      }
     }
 
     $output .= '}';

@@ -28,7 +28,7 @@ class StyleIndividual extends Individual {
    * @return $this
    */
   public function mutateProperties() {
-    $this->mutateElement($this->getMutationFactor());
+    $this->mutateStyle($this->getMutationFactor());
     return $this;
   }
 
@@ -37,25 +37,33 @@ class StyleIndividual extends Individual {
    *
    * @param $factor The amount of variance to apply.
    */
-  public function mutateElement($factor) {
+  public function mutateStyle($factor) {
     $action = mt_rand(0, 1);
 
-    // The root element will be a HTML with a body tag child, so we grab the first body element (the useful bit).
+    $style = $this->getObject();
 
+    if ($action <= $factor && count($style->getAttributes()) > 0) {
+      // Select an attribute and mutate it.
+      $attributes = $style->getAttributes();
+      $selectedAttribute = array_rand($attributes);
+      $attributes[$selectedAttribute] = $this->mutateAttribute($selectedAttribute, $attributes[$selectedAttribute]);
+    }
+    elseif ($action >= $factor) {
+      // Mutate selector
+      $selector = $style->getSelector();
+
+      // ???
+
+      $this->getObject()->setSelector($selector);
+    }
+    else {
+      // Add a attribute to the Style.
+
+    }
   }
 
-  /**
-   * @return int
-   */
-  public function getMutationFactor() {
-    return $this->mutationFactor;
-  }
+  public function mutateAttribute($attribute, $attributeProperty) {
 
-  /**
-   * @param int $mutationFactor
-   */
-  public function setMutationFactor($mutationFactor) {
-    $this->mutationFactor = $mutationFactor;
   }
 
   /**
@@ -70,12 +78,15 @@ class StyleIndividual extends Individual {
    * @return mixed
    */
   public function render($renderType = 'cli') {
+    $output = '';
     switch ($renderType) {
       case 'html':
-        return $this->getObject()->render();
+        $output .= $this->getObject()->render() . '<br>';
+        break;
       case 'cli':
       default:
-        return $this->getObject()->render() . PHP_EOL;
+        $output .= $this->getObject()->render() . PHP_EOL;
     }
+    return $output;
   }
 }

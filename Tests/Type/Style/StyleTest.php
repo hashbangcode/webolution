@@ -1,6 +1,7 @@
 <?php
 
 use Hashbangcode\Wevolution\Type\Style\Style;
+use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
 /**
  * Test class for Color
@@ -54,5 +55,14 @@ class StyleTest extends PHPUnit_Framework_TestCase
     $object->setAttrbute('padding', '0px');
     $renderedStyle = $object->render();
     $this->assertEquals('.element{background:black;color:red;padding:0px;}', $renderedStyle);
+  }
+
+  public function testRenderStyleWithObjectAttribute() {
+    $object = new Style('.element');
+    $object->setAttrbute('background', ColorIndividual::generateFromHex('000000'));
+    $object->setAttrbute('color', ColorIndividual::generateFromHex('555555'));
+    $object->setAttrbute('padding', '0px');
+    $renderedStyle = $object->render();
+    $this->assertEquals('.element{background:#000000;color:#555555;padding:0px;}', $renderedStyle);
   }
 }
