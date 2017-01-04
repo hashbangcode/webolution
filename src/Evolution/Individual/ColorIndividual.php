@@ -48,6 +48,17 @@ class ColorIndividual extends Individual {
   }
 
   /**
+   * Generate a ColorIndividual object from a hex value.
+   *
+   * @param $hex
+   * @return ColorIndividual
+   */
+  public static function generateFromHex($hex) {
+    $color = Color::generateFromHex($hex);
+    return self::generateFromColor($color);
+  }
+
+  /**
    *
    */
   public function mutateProperties() {
@@ -114,6 +125,8 @@ class ColorIndividual extends Individual {
     switch ($renderType) {
       case 'html':
         return '<span style="background-color:#' . $this->object->render() . '"> </span>';
+      case 'css':
+        return '#' . $this->object->render();
       case 'cli':
       default:
         return $this->object->render() . PHP_EOL;

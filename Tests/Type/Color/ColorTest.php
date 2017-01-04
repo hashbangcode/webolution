@@ -281,6 +281,11 @@ class ColorTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('000000000', $color->render());
   }
 
+  public function testRenderHexColor() {
+    $color = new Color(255, 255, 255);
+    $this->assertEquals('FFFFFF', $color->render());
+  }
+
   public function testRenderColorStatistics() {
     $color = new Color(0, 0, 0);
     $statistics = $color->renderColorStatistics();

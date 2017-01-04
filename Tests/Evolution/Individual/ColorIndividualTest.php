@@ -14,13 +14,31 @@ class ColorIndividualTest extends PHPUnit_Framework_TestCase
     $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $object->getObject());
   }
 
+  public function testGenerateFromHex() {
+    $object = ColorIndividual::generateFromHex('123456');
+    $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
+    $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $object->getObject());
+    $renderType = 'cli';
+    $this->assertEquals('123456', $object->getObject()->render($renderType));
+    $this->assertEquals('123456' . PHP_EOL, $object->render($renderType));
+  }
+
+  public function testRenderIndividual() {
+    $object = new ColorIndividual(125, 125, 125);
+    $object->setMutationFactor(1);
+    $object->mutateProperties();
+    $renderType = 'cli';
+    $this->assertEquals('7D7D7D', $object->getObject()->render($renderType));
+    $this->assertEquals('7D7D7D' . PHP_EOL, $object->render($renderType));
+  }
+
   public function testMutateColorThroughIndividual() {
     $object = new ColorIndividual(125, 125, 125);
     $object->setMutationFactor(1);
     $object->mutateProperties();
     $renderType = 'cli';
     $this->assertNotEquals('125125125', $object->getObject()->render($renderType));
-    $this->assertNotEquals('125125125', $object->render($renderType));
+    $this->assertNotEquals('125125125' . PHP_EOL, $object->render($renderType));
   }
 
   public function testColorFitness() {
