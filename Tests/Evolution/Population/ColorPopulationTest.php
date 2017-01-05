@@ -1,7 +1,6 @@
 <?php
 
 use Hashbangcode\Wevolution\Evolution\Population\ColorPopulation;
-use Hashbangcode\Wevolution\Type\Color\Color;
 use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
 class ColorPopulationTest extends \PHPUnit_Framework_TestCase {
