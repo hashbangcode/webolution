@@ -4,7 +4,12 @@ namespace Hashbangcode\Wevolution\Evolution\Population;
 
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 
-abstract class Population implements PopulationInterface {
+/**
+ * Class Population
+ * @package Hashbangcode\Wevolution\Evolution\Population
+ */
+abstract class Population implements PopulationInterface
+{
   /**
    * @var array
    */
@@ -16,60 +21,41 @@ abstract class Population implements PopulationInterface {
   protected $defaultRenderType = '';
 
   /**
-   * @return string
+   * @var array
    */
-  public function getDefaultRenderType() {
-    return $this->defaultRenderType;
-  }
+  protected $populationFitness = array();
 
   /**
-   * @param string $defaultRender
+   * @var
    */
-  public function setDefaultRenderType($defaultRenderType) {
-    $this->defaultRenderType = $defaultRenderType;
-  }
+  protected $meanFitness;
 
   /**
-   * @return int
+   * @var
    */
-  public function getLength() {
-    return count($this->individuals);
-  }
+  protected $medianIndividual;
 
+  /**
+   * @var
+   */
+  protected $minIndividual;
+
+  /**
+   * @var
+   */
+  protected $maxIndividual;
+
+  /**
+   * @param Individual|NULL $individual
+   * @return mixed
+   */
   abstract public function addIndividual(Individual $individual = NULL);
-
-  /**
-   * @return array
-   */
-  public function getIndividuals() {
-    return $this->individuals;
-  }
-
-  /**
-   * @return mixed
-   */
-  abstract public function sort();
-
-  /**
-   * @return mixed
-   */
-  public function getRandomIndividual() {
-    if ($this->getLength() == 0) {
-      return FALSE;
-    }
-
-    $random_key = array_rand($this->individuals);
-    if (!is_null($random_key)) {
-      return $this->individuals[$random_key];
-    }
-
-    return FALSE;
-  }
 
   /**
    * @param $key
    */
-  public function removeIndividual($key) {
+  public function removeIndividual($key)
+  {
     if (isset($this->individuals[$key])) {
       unset($this->individuals[$key]);
     }
@@ -78,7 +64,8 @@ abstract class Population implements PopulationInterface {
   /**
    *
    */
-  public function __clone() {
+  public function __clone()
+  {
     foreach ($this->individuals as $key => $individual) {
       $newIndividual = clone $individual;
       unset($this->individuals[$key]);
@@ -104,7 +91,8 @@ abstract class Population implements PopulationInterface {
   /**
    *
    */
-  public function copyIndividual() {
+  public function copyIndividual()
+  {
     $individual = $this->getRandomIndividual();
     if ($individual !== FALSE) {
       $this->individuals[] = clone $individual;
@@ -112,9 +100,35 @@ abstract class Population implements PopulationInterface {
   }
 
   /**
+   * @return mixed
+   */
+  public function getRandomIndividual()
+  {
+    if ($this->getLength() == 0) {
+      return FALSE;
+    }
+
+    $random_key = array_rand($this->individuals);
+    if (!is_null($random_key)) {
+      return $this->individuals[$random_key];
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * @return int
+   */
+  public function getLength()
+  {
+    return count($this->individuals);
+  }
+
+  /**
    * @return string
    */
-  public function render() {
+  public function render()
+  {
     $output = '';
 
     // Ensure that the items are sorted.
@@ -127,14 +141,40 @@ abstract class Population implements PopulationInterface {
     return $output;
   }
 
-  protected $populationFitness = array();
-  protected $meanFitness;
+  /**
+   * @return mixed
+   */
+  abstract public function sort();
 
-  protected $medianIndividual;
-  protected $minIndividual;
-  protected $maxIndividual;
+  /**
+   * @return array
+   */
+  public function getIndividuals()
+  {
+    return $this->individuals;
+  }
 
-  public function generateStatistics() {
+  /**
+   * @return string
+   */
+  public function getDefaultRenderType()
+  {
+    return $this->defaultRenderType;
+  }
+
+  /**
+   * @param string $defaultRender
+   */
+  public function setDefaultRenderType($defaultRenderType)
+  {
+    $this->defaultRenderType = $defaultRenderType;
+  }
+
+  /**
+   * @return bool
+   */
+  public function generateStatistics()
+  {
 
     if ($this->getLength() == 0) {
       // No population yet.
@@ -167,7 +207,11 @@ abstract class Population implements PopulationInterface {
     //$this->medianIndividual = array_slice($this->getIndividuals(), $this->getIndividuals()[floor(($this->getLength() - 1) / 2)], 1);
   }
 
-  public function getStatistics() {
+  /**
+   * @return array
+   */
+  public function getStatistics()
+  {
     return [
       'min' => $this->minIndividual,
       'max' => $this->maxIndividual,

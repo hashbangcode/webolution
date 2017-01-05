@@ -21,7 +21,7 @@ class TextPopulation extends Population {
 
   public function addIndividual(Individual $individual = NULL) {
     if (is_null($individual)) {
-      $individual = TextIndividual::generateRandomText();
+      $individual = TextIndividual::generateRandomTextIndividual();
     }
     $this->individuals[] = $individual;
   }
@@ -43,6 +43,7 @@ class TextPopulation extends Population {
         $output .= ' (' . $this->getLength() . ' items)<br>';
         break;
       case 'cli':
+      default:
         $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;
         break;
     }

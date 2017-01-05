@@ -34,9 +34,45 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase {
     $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
     $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
     $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
+    $colorColorPopulation->addIndividual(new ColorIndividual(255, 0, 0));
     $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
 
     $colorColorPopulation->sort();
+
+    $this->assertEquals("FF0000
+000000
+00FF00
+00FF00
+0000FF
+0000FF
+", $colorColorPopulation->render());
+  }
+
+  public function testSortByHueDescending() {
+    $colorColorPopulation = new ColorPopulation();
+
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
+    $colorColorPopulation->addIndividual(new ColorIndividual(255, 0, 0));
+    $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
+
+    $colorColorPopulation->sort('hue', 'DESC');
+
+    // Need to bypass the normal render helper as there is an internal sort.
+    $output = '';
+    foreach ($colorColorPopulation->getIndividuals() as $individual) {
+      $output .= $individual->render();
+    }
+
+    $this->assertEquals("0000FF
+0000FF
+00FF00
+00FF00
+000000
+FF0000
+", $output);
   }
 
   public function testColorIteration() {

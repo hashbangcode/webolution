@@ -16,9 +16,7 @@ class StylePopulation extends Population {
    * @return string
    */
   public function render() {
-    $output = '';
-
-
+    $output = parent::render();
 
     return $output;
   }

@@ -3,28 +3,48 @@ namespace Hashbangcode\Wevolution\Evolution;
 
 use Hashbangcode\Wevolution\Evolution\Population;
 
+/**
+ * Class Evolution
+ * @package Hashbangcode\Wevolution\Evolution
+ */
 class Evolution
 {
 
+  /**
+   * @var
+   */
   public $globalFitnessGoal;
+
   /**
    * @var int
    */
   protected $generation = 1;
+
   /**
    * @var
    */
   protected $globalMutationFactor;
+
   /**
    * @var
    */
   protected $maxGenerations;
+
+  /**
+   * @var
+   */
   protected $individualsPerGeneration;
+
+  /**
+   * @var int
+   */
   protected $allowedFitness = 8;
+
   /**
    * @var Population\Population
    */
   protected $population;
+
   /**
    * @var array
    */
@@ -37,7 +57,7 @@ class Evolution
    * @param null $individualsPerGeneration
    * @param bool $autoGeneratePopulation
    */
-  public function __construct(Population\Population $population = NULL, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = FALSE)
+  public function __construct(Population\Population $population = NULL, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = false)
   {
     if (!is_null($maxGenerations)) {
       $this->setMaxGenerations($maxGenerations);
@@ -256,7 +276,7 @@ class Evolution
   /**
    * @return string
    */
-  public function renderGenerations($printStats = FALSE)
+  public function renderGenerations($printStats = FALSE, $format = 'html')
   {
     $output = '';
 
@@ -268,6 +288,11 @@ class Evolution
         $output .= 'MAX: ' . print_r($stats['max']->render(), TRUE) . '<br>';
       }
     }
+
+    if ($format == 'cli') {
+      $output = preg_replace('/\<br(\s*)?\/?\>/i', "\n", $output);
+    }
+
     return $output;
   }
 
@@ -284,7 +309,7 @@ class Evolution
    */
   public function getAllowedFitness()
   {
-    return $this->allowedFitness();
+    return $this->allowedFitness;
   }
 
   /**

@@ -33,7 +33,7 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(3, $numberPopulation->getLength());
   }
 
-  public function testSortByHue() {
+  public function testDefaultSort() {
     $numberPopulation = new NumberPopulation();
 
     $numberPopulation->addIndividual(new NumberIndividual(1));
