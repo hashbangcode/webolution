@@ -40,6 +40,5 @@ class ElementPopulationTest extends PHPUnit_Framework_TestCase
     $element_individual = new ElementIndividual($element);
     $page = new ElementPopulation();
     $page->addIndividual($element_individual);
-    //$output = $page->render();
   }
 }
