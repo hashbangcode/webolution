@@ -3,7 +3,8 @@
 namespace Hashbangcode\Wevolution\Evolution\Individual;
 
 
-interface IndividualInterface {
+interface IndividualInterface
+{
 
   /**
    * @return mixed

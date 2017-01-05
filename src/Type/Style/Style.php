@@ -116,8 +116,7 @@ class Style
       // Render the style.
       if (is_object($value)) {
         $output .= $attribute . ':' . $value->render('css') . ';';
-      }
-      else {
+      } else {
         $output .= $attribute . ':' . $value . ';';
       }
     }

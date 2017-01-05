@@ -8,18 +8,19 @@ use Hashbangcode\Wevolution\Type\Element\Element;
  * Class ElementIndividual
  * @package Hashbangcode\Wevolution\Evolution\Individual
  */
-class ElementIndividual extends Individual {
+class ElementIndividual extends Individual
+{
 
   /**
    * @var int
    */
   protected $mutationFactor = 0.05;
 
-  public function __construct($element) {
+  public function __construct($element)
+  {
     if (!($element instanceof Element)) {
       $this->object = new Element($element);
-    }
-    else {
+    } else {
       $this->object = $element;
     }
   }
@@ -27,7 +28,8 @@ class ElementIndividual extends Individual {
   /**
    * @return $this
    */
-  public function mutateProperties() {
+  public function mutateProperties()
+  {
     $this->mutateElement($this->getMutationFactor());
     return $this;
   }
@@ -45,7 +47,8 @@ class ElementIndividual extends Individual {
    *
    * @param $factor The amount of variance to apply.
    */
-  public function mutateElement($factor) {
+  public function mutateElement($factor)
+  {
     $action = mt_rand(0, 1);
 
     // The root element will be a HTML with a body tag child, so we grab the first body element (the useful bit).
@@ -71,14 +74,13 @@ class ElementIndividual extends Individual {
       $attributes[$random_attribute] = $attribute_value;
 
       $element->setAttributes($attributes);
-    }
-    elseif ($action >= $factor) {
-        // Add additional children elements.
-        $child_types = $element->getChildTypes($element->getType());
-        $child_type = $child_types[array_rand($child_types)];
-        $newElement = new Element($child_type);
+    } elseif ($action >= $factor) {
+      // Add additional children elements.
+      $child_types = $element->getChildTypes($element->getType());
+      $child_type = $child_types[array_rand($child_types)];
+      $newElement = new Element($child_type);
 
-        $newElement->setAttribute('class', 'test');
+      $newElement->setAttribute('class', 'test');
 
       $element->addChild($newElement);
     }
@@ -87,7 +89,8 @@ class ElementIndividual extends Individual {
   /**
    * @return int
    */
-  public function getFitness() {
+  public function getFitness()
+  {
     // @todo see how we can get a better fitness for elements.
     // Possible candidates include:
     // - number of children
@@ -100,7 +103,8 @@ class ElementIndividual extends Individual {
    * @param $renderType
    * @return mixed
    */
-  public function render($renderType = 'cli') {
+  public function render($renderType = 'cli')
+  {
     $output = '';
     switch ($renderType) {
       case 'html':

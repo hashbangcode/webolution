@@ -10,12 +10,14 @@ use Hashbangcode\Wevolution\Type\Element\Element;
  * Class ElementPopulation
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
-class ElementPopulation extends Population {
+class ElementPopulation extends Population
+{
 
   /**
    * @return string
    */
-  public function render() {
+  public function render()
+  {
     $output = '';
 
     // Ensure that the items are sorted.
@@ -34,7 +36,7 @@ class ElementPopulation extends Population {
           break;
         case 'cli':
         default:
-          $output.= $individual->render($renderType) . PHP_EOL;
+          $output .= $individual->render($renderType) . PHP_EOL;
       }
     }
 
@@ -44,14 +46,16 @@ class ElementPopulation extends Population {
   /**
    *
    */
-  public function sort() {
+  public function sort()
+  {
 
   }
 
   /**
    * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
    */
-  public function addIndividual(Individual $individual = NULL) {
+  public function addIndividual(Individual $individual = NULL)
+  {
     if (is_null($individual)) {
       $html = new Element('html');
       $body = new Element('body');

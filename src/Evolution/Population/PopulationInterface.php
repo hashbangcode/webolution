@@ -4,7 +4,8 @@ namespace Hashbangcode\Wevolution\Evolution\Population;
 
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 
-interface PopulationInterface {
+interface PopulationInterface
+{
 
   /**
    * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual

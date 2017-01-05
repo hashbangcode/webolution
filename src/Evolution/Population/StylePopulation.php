@@ -10,12 +10,14 @@ use Hashbangcode\Wevolution\Type\Style\Style;
  * Class StylePopulation
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
-class StylePopulation extends Population {
+class StylePopulation extends Population
+{
 
   /**
    * @return string
    */
-  public function render() {
+  public function render()
+  {
     $output = parent::render();
 
     return $output;
@@ -24,14 +26,16 @@ class StylePopulation extends Population {
   /**
    *
    */
-  public function sort() {
+  public function sort()
+  {
     // Don't sort style elements.
   }
 
   /**
    * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
    */
-  public function addIndividual(Individual $individual = NULL) {
+  public function addIndividual(Individual $individual = NULL)
+  {
     if (is_null($individual)) {
       $style = new Style();
 

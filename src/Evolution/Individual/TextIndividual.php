@@ -9,7 +9,8 @@ use Hashbangcode\Wevolution\Utilities\TextUtilities;
  * Class TextIndividual
  * @package Hashbangcode\Wevolution\Evolution\Individual
  */
-class TextIndividual extends Individual {
+class TextIndividual extends Individual
+{
 
   use TextUtilities;
 
@@ -21,11 +22,13 @@ class TextIndividual extends Individual {
    * TextIndividual constructor.
    * @param $text
    */
-  public function __construct($text) {
+  public function __construct($text)
+  {
     $this->object = new Text($text);
   }
 
-  public static function generateRandomTextIndividual() {
+  public static function generateRandomTextIndividual()
+  {
     $randomText = self::generateRandomText();
     return new self($randomText);
   }
@@ -33,7 +36,8 @@ class TextIndividual extends Individual {
   /**
    *
    */
-  public function mutateProperties() {
+  public function mutateProperties()
+  {
     $this->mutateText($this->getMutationFactor());
     return $this;
   }
@@ -41,7 +45,8 @@ class TextIndividual extends Individual {
   /**
    * @return mixed
    */
-  public function getFitness() {
+  public function getFitness()
+  {
 
     $text = str_split($this->getObject()->getText());
     $goal = str_split($this->getFitnessGoal());
@@ -61,14 +66,16 @@ class TextIndividual extends Individual {
   /**
    * @return mixed
    */
-  public function getFitnessGoal() {
+  public function getFitnessGoal()
+  {
     return $this->fitnessGoal;
   }
 
   /**
    * @param mixed $fitnessGoal
    */
-  public function setFitnessGoal($fitnessGoal) {
+  public function setFitnessGoal($fitnessGoal)
+  {
     $this->fitnessGoal = $fitnessGoal;
   }
 
@@ -76,7 +83,8 @@ class TextIndividual extends Individual {
    * @param $renderType
    * @return mixed
    */
-  public function render($renderType = 'cli') {
+  public function render($renderType = 'cli')
+  {
     $output = '';
     switch ($renderType) {
       case 'html':
@@ -92,7 +100,8 @@ class TextIndividual extends Individual {
   /**
    *
    */
-  public function mutateText() {
+  public function mutateText()
+  {
 
     $text = $this->getObject()->getText();
     $goal = $this->getFitnessGoal();
@@ -118,8 +127,7 @@ class TextIndividual extends Individual {
           $this->getObject()->setText(implode('', $text_array));
           break;
       }
-    }
-    else {
+    } else {
 
       // Ger a random letter from the current string.
       $letter_position = mt_rand(0, strlen($text) - 1);
@@ -134,14 +142,11 @@ class TextIndividual extends Individual {
 
       if ($letter == 'z') {
         $newletter = 'A';
-      }
-      elseif ($letter == 'Z') {
+      } elseif ($letter == 'Z') {
         $newletter = ' ';
-      }
-      elseif ($letter == ' ') {
+      } elseif ($letter == ' ') {
         $newletter = 'a';
-      }
-      else {
+      } else {
         $newletter = chr(ord($letter) + 1);
       }
 

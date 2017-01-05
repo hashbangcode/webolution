@@ -7,7 +7,8 @@ use Hashbangcode\Wevolution\Type\Color\Color;
 /**
  * Class ColorIndividual
  */
-class ColorIndividual extends Individual {
+class ColorIndividual extends Individual
+{
 
   /**
    * @var \Hashbangcode\Wevolution\Type\Color\Color
@@ -20,14 +21,16 @@ class ColorIndividual extends Individual {
    * @param $green
    * @param $blue
    */
-  public function __construct($red, $green, $blue) {
+  public function __construct($red, $green, $blue)
+  {
     $this->object = new Color($red, $green, $blue);
   }
 
   /**
    * @return \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual
    */
-  public static function generateRandomColor() {
+  public static function generateRandomColor()
+  {
     // Return an RGB array.
     $red = ceil(mt_rand(0, 255));
     $green = ceil(mt_rand(0, 255));
@@ -43,7 +46,8 @@ class ColorIndividual extends Individual {
    * @return ColorIndividual
    *   A new ColorIndividual object.
    */
-  public static function generateFromColor($color) {
+  public static function generateFromColor($color)
+  {
     return new ColorIndividual($color->getRed(), $color->getGreen(), $color->getBlue());
   }
 
@@ -53,7 +57,8 @@ class ColorIndividual extends Individual {
    * @param $hex
    * @return ColorIndividual
    */
-  public static function generateFromHex($hex) {
+  public static function generateFromHex($hex)
+  {
     $color = Color::generateFromHex($hex);
     return self::generateFromColor($color);
   }
@@ -61,7 +66,8 @@ class ColorIndividual extends Individual {
   /**
    *
    */
-  public function mutateProperties() {
+  public function mutateProperties()
+  {
     $this->mutateColor($this->getMutationFactor());
     return $this;
   }
@@ -74,8 +80,10 @@ class ColorIndividual extends Individual {
    *
    * @return $this The current object.
    */
-  public function mutateColor($mutationFactor) {
-    if (rand(0, 1) < $mutationFactor) {
+  public function mutateColor($mutationFactor)
+  {
+
+    if (mt_rand(0, 1) < $mutationFactor) {
       $amount = mt_rand(0, 15);
 
       $rgb = $this->getObject()->getColorArray();
@@ -95,8 +103,7 @@ class ColorIndividual extends Individual {
 
       if (0 > $value) {
         $value = 0;
-      }
-      else {
+      } else {
         if (255 < $value) {
           $value = 255;
         }
@@ -111,7 +118,8 @@ class ColorIndividual extends Individual {
   /**
    * @return float
    */
-  public function getFitness() {
+  public function getFitness()
+  {
     $color = $this->getObject();
     $lightness = $color->getLightness();
     return round(abs(($lightness * 10) - 10));
@@ -121,7 +129,8 @@ class ColorIndividual extends Individual {
    * @param $renderType
    * @return string
    */
-  public function render($renderType = 'cli') {
+  public function render($renderType = 'cli')
+  {
     switch ($renderType) {
       case 'html':
         return '<span style="background-color:#' . $this->object->render() . '"> </span>';

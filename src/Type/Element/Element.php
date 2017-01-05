@@ -65,8 +65,7 @@ class Element
       // This is an object so we store it differently.
       $this->type = false;
       $this->object = $arg;
-    }
-    else {
+    } else {
       // This is a string so we create a normal Element object.
       $this->type = $arg;
 

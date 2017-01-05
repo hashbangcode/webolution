@@ -9,7 +9,8 @@ use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
  * Class ColorPopulation
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
-class ColorPopulation extends Population {
+class ColorPopulation extends Population
+{
 
   /**
    * Sort the population by a given parameter and in a certain direction.
@@ -17,7 +18,8 @@ class ColorPopulation extends Population {
    * @param string $sortBy
    * @param string $direction
    */
-  public function sort($sortBy = 'hue', $direction = 'ASC') {
+  public function sort($sortBy = 'hue', $direction = 'ASC')
+  {
 
     usort($this->individuals, function ($a, $b) use ($sortBy, $direction) {
 
@@ -69,8 +71,7 @@ class ColorPopulation extends Population {
 
       if ($direction == 'ASC') {
         return ($aValue < $bValue) ? -1 : 1;
-      }
-      else {
+      } else {
         return ($aValue > $bValue) ? -1 : 1;
       }
     });
@@ -79,7 +80,8 @@ class ColorPopulation extends Population {
   /**
    * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
    */
-  public function addIndividual(Individual $individual = NULL) {
+  public function addIndividual(Individual $individual = NULL)
+  {
     if (is_null($individual)) {
       $individual = ColorIndividual::generateRandomColor();
     }

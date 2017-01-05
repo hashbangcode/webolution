@@ -2,6 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Type\Color\Exception;
 
-class InvalidRGBValueException extends \Exception {
+class InvalidRGBValueException extends \Exception
+{
 
 }

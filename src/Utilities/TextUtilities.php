@@ -2,12 +2,14 @@
 
 namespace Hashbangcode\Wevolution\Utilities;
 
-trait TextUtilities {
+trait TextUtilities
+{
 
   /**
    * @return mixed
    */
-  public function getRandomLetter() {
+  public function getRandomLetter()
+  {
     $charArray = array_merge(range('a', 'z'), range('A', 'Z'));
     $charArray[] = ' ';
     $randItem = array_rand($charArray);
@@ -18,7 +20,8 @@ trait TextUtilities {
    * @param int $textLength
    * @return string
    */
-  public static function generateRandomText($textLength = 7) {
+  public static function generateRandomText($textLength = 7)
+  {
     $text = "";
     $charArray = array_merge(range('a', 'z'), range('A', 'Z'), [' ']);
     for ($i = 0; $i < $textLength; $i++) {

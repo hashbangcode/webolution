@@ -10,16 +10,19 @@ use Hashbangcode\Wevolution\Type\Text\Text;
  * Class TextPopulation
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
-class TextPopulation extends Population {
+class TextPopulation extends Population
+{
 
   /**
    * @param mixed $text
    */
-  public function setText($text) {
+  public function setText($text)
+  {
     $this->text = $text;
   }
 
-  public function addIndividual(Individual $individual = NULL) {
+  public function addIndividual(Individual $individual = NULL)
+  {
     if (is_null($individual)) {
       $individual = TextIndividual::generateRandomTextIndividual();
     }
@@ -29,14 +32,16 @@ class TextPopulation extends Population {
   /**
    *
    */
-  public function sort() {
+  public function sort()
+  {
     sort($this->individuals);
   }
 
   /**
    * @return string
    */
-  public function render() {
+  public function render()
+  {
     $output = parent::render();
     switch ($this->getDefaultRenderType()) {
       case 'html':

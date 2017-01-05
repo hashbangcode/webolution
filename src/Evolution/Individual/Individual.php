@@ -6,7 +6,8 @@ namespace Hashbangcode\Wevolution\Evolution\Individual;
  * Class Individual
  * @package Hashbangcode\Wevolution\Evolution\Individual
  */
-abstract class Individual implements IndividualInterface {
+abstract class Individual implements IndividualInterface
+{
 
   /**
    * @var
@@ -21,28 +22,32 @@ abstract class Individual implements IndividualInterface {
   /**
    * Individual constructor.
    */
-  public function __construct() {
+  public function __construct()
+  {
     $this->mutationFactor = 0;
   }
 
   /**
    * @return int
    */
-  public function getMutationFactor() {
+  public function getMutationFactor()
+  {
     return $this->mutationFactor;
   }
 
   /**
    * @param int $mutationFactor
    */
-  public function setMutationFactor($mutationFactor) {
+  public function setMutationFactor($mutationFactor)
+  {
     $this->mutationFactor = $mutationFactor;
   }
 
   /**
    * @return mixed
    */
-  public function getObject() {
+  public function getObject()
+  {
     return $this->object;
   }
 
@@ -53,7 +58,8 @@ abstract class Individual implements IndividualInterface {
   /**
    *
    */
-  public function __clone() {
+  public function __clone()
+  {
     $object = $this->getObject();
     $this->object = clone $object;
   }
