@@ -25,9 +25,10 @@ class ColorIndividualTest extends PHPUnit_Framework_TestCase
 
   public function testRenderIndividual() {
     $object = new ColorIndividual(125, 125, 125);
-    $object->setMutationFactor(1);
+    $object->setMutationFactor(0);
     $object->mutateProperties();
     $renderType = 'cli';
+
     $this->assertEquals('7D7D7D', $object->getObject()->render($renderType));
     $this->assertEquals('7D7D7D' . PHP_EOL, $object->render($renderType));
   }
