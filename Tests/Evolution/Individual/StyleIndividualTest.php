@@ -2,6 +2,7 @@
 
 use Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual;
 use Hashbangcode\Wevolution\Type\Style\Style;
+use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
 /**
  * Test class for ColorIndividual
@@ -47,14 +48,18 @@ class StyleIndividualTest extends PHPUnit_Framework_TestCase
   public function testSetProperties () {
     $object = new StyleIndividual('.div');
     $object->getObject()->setAttrbute('color', 'black');
-    $this->assertEquals('.div{color:black;}' . PHP_EOL, $object->render());
+    $this->assertContains('.div{color:black;}', $object->render());
   }
 
   public function testMutateStyle() {
     $object = new StyleIndividual('.div');
-    //$object->getObject()->setAttrbute('color', '000000');
-    $object->getObject()->setAttrbute('margin', '0px');
-    $object->mutateStyle(1);
-    //$this->assertEquals('.div{color:000000;}' . PHP_EOL, $object->render());
+    $object->getObject()->setAttrbute('color', ColorIndividual::generateFromHex('000000'));
+    //$object->getObject()->setAttrbute('margin', '0px');
+
+    $object->mutateStyle(50);
+
+    $output = $object->render();
+
+    $this->assertNotContains('color:#000000;', $output);
   }
 }

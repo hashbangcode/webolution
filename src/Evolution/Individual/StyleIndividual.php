@@ -5,21 +5,26 @@ namespace Hashbangcode\Wevolution\Evolution\Individual;
 use Hashbangcode\Wevolution\Type\Style\Style;
 
 /**
- * Class ElementIndividual
+ * Class StyleIndividual
  * @package Hashbangcode\Wevolution\Evolution\Individual
  */
-class StyleIndividual extends Individual {
+class StyleIndividual extends Individual
+{
 
   /**
    * @var int
    */
   protected $mutationFactor = 0.05;
 
-  public function __construct($element) {
+  /**
+   * StyleIndividual constructor.
+   * @param $element
+   */
+  public function __construct($element)
+  {
     if (!($element instanceof Style)) {
       $this->object = new Style($element);
-    }
-    else {
+    } else {
       $this->object = $element;
     }
   }
@@ -27,7 +32,8 @@ class StyleIndividual extends Individual {
   /**
    * @return $this
    */
-  public function mutateProperties() {
+  public function mutateProperties()
+  {
     $this->mutateStyle($this->getMutationFactor());
     return $this;
   }
@@ -37,39 +43,56 @@ class StyleIndividual extends Individual {
    *
    * @param $factor The amount of variance to apply.
    */
-  public function mutateStyle($factor) {
-    $action = mt_rand(0, 1);
+  public function mutateStyle($factor)
+  {
+    $action = mt_rand(0, 100);
+
+    $action = $action + $factor;
 
     $style = $this->getObject();
 
-    if ($action <= $factor && count($style->getAttributes()) > 0) {
+    if ($action <= 5 && count($style->getAttributes()) > 0) {
+      // Mutate selector
+      $selector = $style->getSelector();
+
+      //$selector = $this->mutateSelector();
+
+      $this->getObject()->setSelector($selector);
+    } elseif ($action > 5 && $action <= 50) {
+      // Add a attribute to the Style.
+
+    } else {
       // Select an attribute and mutate it.
       $attributes = $style->getAttributes();
       $selectedAttribute = array_rand($attributes);
       $attributes[$selectedAttribute] = $this->mutateAttribute($selectedAttribute, $attributes[$selectedAttribute]);
     }
-    elseif ($action >= $factor) {
-      // Mutate selector
-      $selector = $style->getSelector();
-
-      // ???
-
-      $this->getObject()->setSelector($selector);
-    }
-    else {
-      // Add a attribute to the Style.
-
-    }
   }
 
-  public function mutateAttribute($attribute, $attributeProperty) {
+  /**
+   * @param $attribute
+   * @param $attributeProperty
+   * @return mixed
+   */
+  public function mutateAttribute($attribute, $attributeProperty)
+  {
 
+    switch ($attribute) {
+      case 'color':
+
+        $attributeProperty->mutateColor(1000);
+
+        break;
+    }
+
+    return $attributeProperty;
   }
 
   /**
    * @return int
    */
-  public function getFitness() {
+  public function getFitness()
+  {
     return 1;
   }
 
@@ -77,7 +100,8 @@ class StyleIndividual extends Individual {
    * @param $renderType
    * @return mixed
    */
-  public function render($renderType = 'cli') {
+  public function render($renderType = 'cli')
+  {
     $output = '';
     switch ($renderType) {
       case 'html':
