@@ -229,6 +229,10 @@ class Element
    */
   public function __clone()
   {
+    if (is_object($this->object)) {
+      $this->object = clone $this->object;
+    }
+
     // Clone the children of this object.
     foreach ($this->children as $key => $child) {
       // When cloning a child all children will also be cloned.

@@ -192,11 +192,26 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->assertEquals(false, $outerObject->getChildTypes());
   }
 
-  public function test() {
+  public function testEmbedObjectInElement() {
     $innerObject = new Element('div');
     $outerObject = new Element();
     $outerObject->setObject($innerObject);
     $this->assertEquals(false, $outerObject->getChildTypes());
     $this->assertEquals('<div></div>', $outerObject->render());
+  }
+
+  public function testCloneEmbeddedObjectElement() {
+    $innerObject = new Element('div');
+    $outerObject = new Element();
+    $outerObject->setObject($innerObject);
+
+    $element_clone = clone $outerObject;
+
+    $outerObject->getObject()->setAttribute('class', 'test');
+
+    $element_clone->getObject()->setAttribute('class', 'wobble');
+
+    $this->assertEquals('<div class="test"></div>', $outerObject->render());
+    $this->assertEquals('<div class="wobble"></div>', $element_clone->render());
   }
 }
