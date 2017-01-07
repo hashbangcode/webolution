@@ -58,7 +58,8 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase {
     $numberPopulation->addIndividual(new NumberIndividual(5));
 
     $numberPopulation->sort();
-    $output = $numberPopulation->render('html');
+    $numberPopulation->setDefaultRenderType('html');
+    $output = $numberPopulation->render();
 
     $this->assertContains('1 2 3 4 5', $output);
   }
