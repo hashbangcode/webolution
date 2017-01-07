@@ -44,6 +44,7 @@ class NumberPopulation extends Population
         $output .= ' (' . $this->getLength() . ' items)<br>';
         break;
       case 'cli':
+        // Intentional fall through.
       default:
         $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;
         break;
