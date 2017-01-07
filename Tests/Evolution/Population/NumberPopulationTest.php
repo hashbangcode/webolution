@@ -48,6 +48,21 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase {
     $this->assertContains('1 2 3 4 5', $output);
   }
 
+  public function testHtmlRendering() {
+    $numberPopulation = new NumberPopulation();
+
+    $numberPopulation->addIndividual(new NumberIndividual(1));
+    $numberPopulation->addIndividual(new NumberIndividual(2));
+    $numberPopulation->addIndividual(new NumberIndividual(3));
+    $numberPopulation->addIndividual(new NumberIndividual(4));
+    $numberPopulation->addIndividual(new NumberIndividual(5));
+
+    $numberPopulation->sort();
+    $output = $numberPopulation->render('html');
+
+    $this->assertContains('1 2 3 4 5', $output);
+  }
+
   public function testNumberIteration() {
     $numberPopulation = new NumberPopulation();
 
