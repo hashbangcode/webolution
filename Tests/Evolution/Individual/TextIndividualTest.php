@@ -21,16 +21,16 @@ class TextIndividualTest extends PHPUnit_Framework_TestCase
     $this->assertNotEquals(1, $object->getObject()->getText());
   }
 
-  public function textGenerateRandomText() {
-    $object = TextIndividual::generateRandomText();
+  public function testGenerateRandomText() {
+    $object = TextIndividual::generateRandomTextIndividual();
     $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual', $object);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Text\Text', $object->getObject());
     $text = $object->getObject()->getText();
     $this->assertEquals(7, strlen($text));
   }
 
-  public function textGenerateRandomTextWithArguments() {
-    $object = TextIndividual::generateRandomText(20);
+  public function testGenerateRandomTextWithArguments() {
+    $object = TextIndividual::generateRandomTextIndividual(20);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual', $object);
     $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Text\Text', $object->getObject());
     $text = $object->getObject()->getText();
