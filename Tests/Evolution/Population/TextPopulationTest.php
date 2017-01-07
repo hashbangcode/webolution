@@ -36,14 +36,16 @@ class TextPopulationTest extends \PHPUnit_Framework_TestCase {
   public function testDefaultSort() {
     $population = new TextPopulation();
 
-    $population->addIndividual(new TextIndividual(1));
-    $population->addIndividual(new TextIndividual(2));
-    $population->addIndividual(new TextIndividual(3));
-    $population->addIndividual(new TextIndividual(4));
-    $population->addIndividual(new TextIndividual(5));
+    $population->addIndividual(new TextIndividual('A'));
+    $population->addIndividual(new TextIndividual('B'));
+    $population->addIndividual(new TextIndividual('C'));
+    $population->addIndividual(new TextIndividual('D'));
+    $population->addIndividual(new TextIndividual('E'));
 
     $population->sort();
 
+    $output = $population->render();
+    $this->assertContains('A B C D E', $output);
   }
 
   public function testPopulationLength() {

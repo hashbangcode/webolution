@@ -43,6 +43,9 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase {
     $numberPopulation->addIndividual(new NumberIndividual(5));
 
     $numberPopulation->sort();
+    $output = $numberPopulation->render();
+
+    $this->assertContains('1 2 3 4 5', $output);
   }
 
   public function testNumberIteration() {
@@ -54,8 +57,8 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase {
 
     $population = $numberPopulation->getIndividuals();
 
-    foreach ($population[0]->getObject() as $number) {
-      $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Number\Number', $number);
+    foreach ($population as $number) {
+      $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Number\Number', $number->getObject());
     }
   }
 }

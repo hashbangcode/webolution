@@ -83,8 +83,8 @@ FF0000
 
     $population = $colorColorPopulation->getIndividuals();
 
-    foreach ($population[0]->getObject() as $color) {
-      $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $color);
+    foreach ($population as $color) {
+      $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $color->getObject());
     }
   }
 

@@ -84,6 +84,7 @@ class ElementIndividualTest extends PHPUnit_Framework_TestCase
     $element->setAttributes(array('class' => 'test'));
 
     $object->mutateElement(-10);
+    $this->assertContains('<html><body class="test"><', $object->render());
   }
 
   public function testMutateElementAttributeLength() {

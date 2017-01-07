@@ -53,9 +53,10 @@ class ColorIndividualTest extends PHPUnit_Framework_TestCase
   public function testColorMutation()
   {
     $object = new ColorIndividual(125, 125, 125);
-    $object->mutateColor(1);
+    $old_rgb = $object->getObject()->getRGB();
+    $object->mutateColor(100);
     $new_rgb = $object->getObject()->getRGB();
-    $object->mutateColor(0.5);
+    $this->assertNotContains($new_rgb, $old_rgb);
   }
 
   public function testLargeColorMutation()
