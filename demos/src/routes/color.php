@@ -16,31 +16,7 @@ img {padding:0px;margin:0px;}';
 
   for ($i = 0; $i < 1500; ++$i) {
     $population->addIndividual();
-    //$population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex($i)));
   }
-
-  $colours = [
-    "777777",
-    "000000",
-    "FFFFFF",
-    "A70605",
-    "BADA66",
-    "AAAAAA",
-    "111111",
-    "999999",
-    "AADA55",
-    "555555",
-    "BADA44",
-    "987865",
-    "123345",
-    "BADA55",
-    "EEEEEE",
-    "BADA55",
-  ];
-  /*
-  foreach ($colours as $color) {
-    $population->addIndividual(\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual::generateFromColor(\Hashbangcode\Wevolution\Type\Color\Color::generateFromHex($color)));
-  }*/
 
   if (!isset($args['type'])) {
     $args['type'] = '';
@@ -83,15 +59,11 @@ img {padding:0px;margin:0px;}';
       $population->sort();
   }
 
-
   $output = '';
 
   foreach ($population->getIndividuals() as $individual) {
     $output .= $individual->render($population->getDefaultRenderType());
   }
-
-  ///$output .= nl2br($population->render());
-
 
   $output .= '<p>Sort by:';
   $output .= '<ul>';
@@ -115,6 +87,7 @@ img {padding:0px;margin:0px;}';
     'styles' => $styles
   ]);
 });
+
 $app->get('/color_evolution', function ($request, $response, $args) {
   $styles = 'span {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}';
 
@@ -202,7 +175,6 @@ img {padding:0px;margin:0px;}';
   ]);
 });
 
-
 $app->get('/color_evolution_storage[/{evolutionid}]', function ($request, $response, $args) {
 
   $title = 'Colour Evolution Database Test';
@@ -248,5 +220,4 @@ img {padding:0px;margin:0px;}';
     'output' => $output,
     'styles' => $styles
   ]);
-
 });
