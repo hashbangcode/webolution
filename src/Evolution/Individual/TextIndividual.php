@@ -27,9 +27,12 @@ class TextIndividual extends Individual
     $this->object = new Text($text);
   }
 
-  public static function generateRandomTextIndividual()
+  /**
+   * @return TextIndividual
+   */
+  public static function generateRandomTextIndividual($length = 7)
   {
-    $randomText = self::generateRandomText();
+    $randomText = self::generateRandomText($length);
     return new self($randomText);
   }
 

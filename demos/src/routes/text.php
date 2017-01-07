@@ -14,7 +14,7 @@ $app->get('/text_evolution', function ($request, $response, $args) {
   $goal = 'Monkey say monkey do';
 
   for ($i = 0; $i < 10; $i++) {
-    $population->addIndividual(TextIndividual::generateRandomText(strlen($goal)));
+    $population->addIndividual(TextIndividual::generateRandomTextIndividual(strlen($goal)));
   }
 
   $evolution = new Evolution($population);
@@ -52,7 +52,7 @@ $app->get('/text_evolution_length', function ($request, $response, $args) {
   $goal = 'monkey';
 
   for ($i = 0; $i < 10; $i++) {
-    $population->addIndividual(TextIndividual::generateRandomText(15));
+    $population->addIndividual(TextIndividual::generateRandomTextIndividual(15));
   }
 
   $evolution = new Evolution($population);
