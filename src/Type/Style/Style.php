@@ -94,7 +94,7 @@ class Style
    *
    * @return bool|mixed The attribute value, or false if the attribute is not present.
    */
-  public function getAttrbute($name)
+  public function getAttribute($name)
   {
     if (isset($this->attributes[$name])) {
       return $this->attributes[$name];

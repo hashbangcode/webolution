@@ -41,12 +41,12 @@ class StyleTest extends PHPUnit_Framework_TestCase
 
   public function testGetAttribute() {
     $object = new Style('.element', ['background' => 'black']);
-    $this->assertEquals('black', $object->getAttrbute('background'));
+    $this->assertEquals('black', $object->getAttribute('background'));
   }
 
   public function testGetNonExistingAttribute() {
     $object = new Style('.element', ['background' => 'black']);
-    $this->assertEquals(false, $object->getAttrbute('color'));
+    $this->assertEquals(false, $object->getAttribute('color'));
   }
 
   public function testRenderMoreComplexStyle() {

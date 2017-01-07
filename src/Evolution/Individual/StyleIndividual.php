@@ -4,6 +4,8 @@ namespace Hashbangcode\Wevolution\Evolution\Individual;
 
 use Hashbangcode\Wevolution\Type\Style\Style;
 
+use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
+
 /**
  * Class StyleIndividual
  * @package Hashbangcode\Wevolution\Evolution\Individual
@@ -51,17 +53,23 @@ class StyleIndividual extends Individual
 
     $style = $this->getObject();
 
-    if ($action <= 5 && count($style->getAttributes()) > 0) {
+    if ($action <= 5) {
       // Mutate selector
-      $selector = $style->getSelector();
+      //$selector = $style->getSelector();
+
+      $this->mutateSelector();
 
       //$selector = $this->mutateSelector();
 
-      $this->getObject()->setSelector($selector);
+      //$this->getObject()->setSelector($selector);
+
     } elseif ($action > 5 && $action <= 50) {
       // Add a attribute to the Style.
+      if ($style->getAttribute('color') == false) {
+        $style->setAttrbute('color', ColorIndividual::generateRandomColor());
+      }
 
-    } else {
+    } elseif (count($style->getAttributes()) > 0) {
       // Select an attribute and mutate it.
       $attributes = $style->getAttributes();
       $selectedAttribute = array_rand($attributes);
@@ -86,6 +94,31 @@ class StyleIndividual extends Individual
     }
 
     return $attributeProperty;
+  }
+
+  public function mutateSelector()
+  {
+    $style = $this->getObject();
+    $selector = $style->getSelector();
+
+    $selector = explode(' ', $selector);
+
+    $action = mt_rand(0, 100);
+
+    if ($action < 10 && isset($selector[1])) {
+      // Alter the class being selected.
+      $selector[1] = '.wibble';
+    } elseif ($action < 10 && !isset($selector[1])) {
+      // Add a class attribute.
+      $selector[1] = '.test';
+    } elseif ($action > 10 && $action <= 75) {
+      // Alter the type of attribute being selected
+      $element = ['body', 'div', 'p', 'ol', 'ul', 'li'];
+
+      $selector[0] = $element[array_rand($element)];
+    }
+
+    $this->getObject()->setSelector(implode(' ', $selector));
   }
 
   /**
