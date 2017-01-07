@@ -78,24 +78,8 @@ class StyleIndividual extends Individual
   }
 
   /**
-   * @param $attribute
-   * @param $attributeProperty
-   * @return mixed
+   *
    */
-  public function mutateAttribute($attribute, $attributeProperty)
-  {
-
-    switch ($attribute) {
-      case 'color':
-
-        $attributeProperty->mutateColor(1000);
-
-        break;
-    }
-
-    return $attributeProperty;
-  }
-
   public function mutateSelector()
   {
     $style = $this->getObject();
@@ -119,6 +103,25 @@ class StyleIndividual extends Individual
     }
 
     $this->getObject()->setSelector(implode(' ', $selector));
+  }
+
+  /**
+   * @param $attribute
+   * @param $attributeProperty
+   * @return mixed
+   */
+  public function mutateAttribute($attribute, $attributeProperty)
+  {
+
+    switch ($attribute) {
+      case 'color':
+
+        $attributeProperty->mutateColor(1000);
+
+        break;
+    }
+
+    return $attributeProperty;
   }
 
   /**
