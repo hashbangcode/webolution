@@ -65,4 +65,24 @@ class StyleTest extends PHPUnit_Framework_TestCase
     $renderedStyle = $object->render();
     $this->assertEquals('.element{background:#000000;color:#555555;padding:0px;}', $renderedStyle);
   }
+
+  public function testCloneStyleObject() {
+    $object = new Style('.element');
+    $object->setAttrbute('background', ColorIndividual::generateFromHex('000000'));
+    $object->setAttrbute('color', ColorIndividual::generateFromHex('555555'));
+    $object->setAttrbute('padding', '0px');
+
+    $new_object = clone $object;
+
+    $color = $new_object->getAttribute('color');
+    $color->getObject()->setRed('000');
+
+    // Original object should have the same attributes.
+    $renderedStyle = $object->render();
+    $this->assertEquals('.element{background:#000000;color:#555555;padding:0px;}', $renderedStyle);
+
+    // New object should have new color.
+    $newRenderedStyle = $new_object->render();
+    $this->assertEquals('.element{background:#000000;color:#005555;padding:0px;}', $newRenderedStyle);
+  }
 }

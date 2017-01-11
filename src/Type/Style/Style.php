@@ -125,4 +125,16 @@ class Style
 
     return $output;
   }
+
+  /**
+   *
+   */
+  public function __clone()
+  {
+    foreach ($this->getAttributes() as $key => $attribute) {
+      if (is_object($attribute)) {
+        $this->setAttrbute($key, clone $attribute);
+      }
+    }
+  }
 }
