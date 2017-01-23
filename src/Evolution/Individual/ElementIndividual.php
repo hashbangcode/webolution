@@ -49,7 +49,7 @@ class ElementIndividual extends Individual
    */
   public function mutateElement($factor)
   {
-    $action = mt_rand(0, 1);
+    $action = mt_rand(0, 100);
 
     // The root element will be a HTML with a body tag child, so we grab the first body element (the useful bit).
     $rootElement = $this->getObject();

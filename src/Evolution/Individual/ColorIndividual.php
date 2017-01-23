@@ -83,7 +83,7 @@ class ColorIndividual extends Individual
   public function mutateColor($mutationFactor)
   {
 
-    if (mt_rand(0, 1) < $mutationFactor) {
+    if (mt_rand(0, 100) < $mutationFactor) {
       $amount = mt_rand(1, 15);
 
       $rgb = $this->getObject()->getColorArray();

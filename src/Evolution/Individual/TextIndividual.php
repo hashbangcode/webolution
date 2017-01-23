@@ -112,8 +112,8 @@ class TextIndividual extends Individual
     $text_length = strlen($text);
     $goal_length = strlen($goal);
 
-    $random = mt_rand(0, 1000) / 1000;
-    if ($random < 0.0001 && $text_length != $goal_length) {
+    $action = mt_rand(0, 100);
+    if ($action < 1 && $text_length != $goal_length) {
 
       $operators = array('add', 'subtract');
 
