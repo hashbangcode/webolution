@@ -44,7 +44,6 @@ class NumberIndividual extends Individual
    */
   public function mutateNumber($amount = 1)
   {
-
     $operators = array('add', 'subtract');
 
     $number = $this->getObject()->getNumber();

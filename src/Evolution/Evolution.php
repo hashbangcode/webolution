@@ -162,16 +162,6 @@ class Evolution
         $rand = (pow(mt_rand(-1, 1), 3) + 1) / 2; //cube function
         $keepAlive = ($fitnessFactor >= $rand);
 
-
-        if ($fitness > 0) {
-          $log = '';
-          $log .= 'individual:' . $individual->render() . ' fitness:' . $fitness . ' max fitness:' . $maxFitness . ' fitness factor:' . $fitnessFactor . '<br>';
-          $log .= 'kill: ' . ($fitnessFactor * mt_rand(0, 1)) . ' <strong>' . (mt_rand(0, 1) * $fitnessFactor) . '</strong><br>';
-          $log .= 'rand: ' . $rand . ' ' . var_export($keepAlive, TRUE) . '<br>';
-          //print $log;
-        }
-
-
         if (!$keepAlive) {
           $this->population->removeIndividual($key);
         }
