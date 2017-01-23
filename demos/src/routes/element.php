@@ -68,7 +68,6 @@ $app->get('/element_evolution', function ($request, $response, $args) {
   $evolution = new Evolution($population);
   $evolution->setIndividualsPerGeneration(10);
   $evolution->setMaxGenerations(5);
-//  $evolution->setGlobalMutationFactor(1);
 
   for ($i = 0; $i < $evolution->getMaxGenerations(); ++$i) {
     if ($evolution->runGeneration() === FALSE) {
@@ -100,7 +99,7 @@ $app->get('/element_evolution_storage', function ($request, $response, $args) {
   $evolution->setupDatabase('sqlite:' . $database);
 
   $evolution->setIndividualsPerGeneration(200);
-  $evolution->setGlobalMutationFactor(0.1);
+  $evolution->setGlobalMutationFactor(100);
 
   $generation = $evolution->getGeneration();
 

@@ -21,7 +21,7 @@ $app->get('/text_evolution', function ($request, $response, $args) {
   $evolution->setGlobalFitnessGoal($goal);
   $evolution->setIndividualsPerGeneration(10);
   $evolution->setMaxGenerations(1000);
-  $evolution->setGlobalMutationFactor(1);
+  $evolution->setGlobalMutationFactor(100);
 
   $output = '';
 
@@ -59,7 +59,7 @@ $app->get('/text_evolution_length', function ($request, $response, $args) {
   $evolution->setGlobalFitnessGoal($goal);
   $evolution->setIndividualsPerGeneration(10);
   $evolution->setMaxGenerations(1000);
-  $evolution->setGlobalMutationFactor(1);
+  $evolution->setGlobalMutationFactor(100);
 
   $output = '';
 

@@ -105,7 +105,7 @@ $app->get('/color_evolution', function ($request, $response, $args) {
   $evolution = new Evolution($population);
   $evolution->setIndividualsPerGeneration(20);
   $evolution->setMaxGenerations(250);
-  $evolution->setGlobalMutationFactor(0.5);
+  $evolution->setGlobalMutationFactor(50);
 
   $output = '';
 
@@ -191,7 +191,7 @@ img {padding:0px;margin:0px;}';
   $evolution->setupDatabase('sqlite:' . $database);
 
   $evolution->setIndividualsPerGeneration(5000);
-  $evolution->setGlobalMutationFactor(0.1);
+  $evolution->setGlobalMutationFactor(1);
 
   $generation = $evolution->getGeneration();
 
