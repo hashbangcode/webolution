@@ -2,13 +2,13 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Wevolution\Type\Page\Page;
 
 /**
- * Class ElementIndividual
+ * Class PageIndividual
  * @package Hashbangcode\Wevolution\Evolution\Individual
  */
-class ElementIndividual extends Individual
+class PageIndividual extends Individual
 {
 
   /**
@@ -16,13 +16,8 @@ class ElementIndividual extends Individual
    */
   protected $mutationFactor = 0.05;
 
-  public function __construct($element)
+  public function __construct()
   {
-    if (!($element instanceof Element)) {
-      $this->object = new Element($element);
-    } else {
-      $this->object = $element;
-    }
   }
 
   /**

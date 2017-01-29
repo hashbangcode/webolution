@@ -9,6 +9,11 @@ use Hashbangcode\Wevolution\Type\Color\Exception;
 class ColorTest extends PHPUnit_Framework_TestCase
 {
 
+  public function testCreateColour() {
+    $color = new Color('100', '100', '100');
+    $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $color);
+  }
+
   public function testCreateColorFromStrings()
   {
     $color = new Color('100', '100', '100');

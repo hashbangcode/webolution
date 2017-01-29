@@ -3,14 +3,14 @@
 namespace Hashbangcode\Wevolution\Evolution\Population;
 
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
-use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
-use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Wevolution\Evolution\Individual\PageIndividual;
+use Hashbangcode\Wevolution\Type\Page\Page;
 
 /**
  * Class ElementPopulation
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
-class ElementPopulation extends Population
+class PagePopulation extends Population
 {
 
   /**

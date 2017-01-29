@@ -158,7 +158,7 @@ class Evolution
         }
 
         // The higher the allowed fitness then the greater the chance that the individual will survive.
-        //$f = $key / $this->population->getLength();
+
         $rand = (pow(mt_rand(-1, 1), 3) + 1) / 2; //cube function
         $keepAlive = ($fitnessFactor >= $rand);
 

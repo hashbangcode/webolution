@@ -115,7 +115,7 @@ class ElementIndividualTest extends PHPUnit_Framework_TestCase
     $this->assertEquals(1, count($object->getObject()->getChildren()));
 
     $object->getObject()->setAttributes(array('class' => 'test'));
-    $object->mutateElement(1);
+    $object->mutateElement(100);
     $this->assertStringStartsWith('test', $object->getObject()->getAttributes()['class']);
 
     $this->assertEquals(1, count($object->getObject()->getChildren()));
@@ -130,6 +130,6 @@ class ElementIndividualTest extends PHPUnit_Framework_TestCase
 
     $object->mutateElement(-10);
     $this->assertNotEquals('test', $object->getObject()->getAttributes()['class']);
-    $this->assertEquals(1, count($object->getObject()->getChildren()));
+    $this->assertEquals(2, count($object->getObject()->getChildren()));
   }
 }
