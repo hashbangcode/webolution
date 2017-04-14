@@ -59,7 +59,14 @@ class PagePopulation extends Population
   }
 
   /**
+   * Add an individual.
+   *
    * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
+   *   Add an individual.
+   *
+   * @return $this The current object.
+   *
+   * @throws Exception\ElementPageRootException
    */
   public function addIndividual(Individual $individual = NULL)
   {
@@ -76,5 +83,7 @@ class PagePopulation extends Population
     }
 
     $this->individuals[] = $individual;
+
+    return $this;
   }
 }

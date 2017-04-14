@@ -18,6 +18,7 @@ class PageIndividual extends Individual
 
   public function __construct()
   {
+    $this->object = new Page();
   }
 
   /**
@@ -30,15 +31,11 @@ class PageIndividual extends Individual
   }
 
   /**
-   * Mutate the element.
+   * Mutate the page.
    *
    * Possible actions to take during mutation.
-   * - Alter attributes (9/10).
-   * - Add additional children (1/10).
-   *
-   * This should not alter the tag itself. Also, certain elements
-   * should only get certain children. For example, a ul
-   * or a ol element should only get a li or a.
+   * - Chance to mutate body (9/10).
+   * - Chance to mutate styles (1/10).
    *
    * @param $factor The amount of variance to apply.
    */
@@ -46,46 +43,18 @@ class PageIndividual extends Individual
   {
     $action = mt_rand(0, 100);
 
-    // The root element will be a HTML with a body tag child, so we grab the first body element (the useful bit).
-    /*foreach ($this->getObject()->getChildren() as $child) {
-      if ($child->getType() == 'body') {
-        $element = $child;
-        break;
-      }
-    }*/
-
     // Get the element.
     $element = $this->getObject();
 
     if ($action <= $factor && count($element->getAttributes()) > 0) {
 
-      // Mutate an attribute.
-      $attributes = $element->getAttributes();
+      // Mutate styles.
+      $element->getStyles()->mutate();
 
-      $random_attribute = array_rand($attributes);
-      $letters = range('a', 'z');
-      $letter = $letters[array_rand($letters)];
-
-      $attribute_value = $attributes[$random_attribute] . $letter;
-
-      if (strlen($attribute_value) > 10) {
-        // Don't let the attribute get longer than 10 characters.
-        $attribute_value = substr($attribute_value, -8);
-      }
-
-      $attributes[$random_attribute] = $attribute_value;
-
-      $element->setAttributes($attributes);
     } elseif ($action >= $factor) {
 
-      // Add additional children elements.
-      $child_types = $element->getChildTypes($element->getType());
-      $child_type = $child_types[array_rand($child_types)];
-      $newElement = new Element($child_type);
-
-      $newElement->setAttribute('class', 'test');
-
-      $element->addChild($newElement);
+      // Mutate body.
+      $element->getBody()->mutate();
     }
   }
 
