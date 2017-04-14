@@ -20,7 +20,6 @@ class ColorPopulation extends Population
    */
   public function sort($sortBy = 'hue', $direction = 'ASC')
   {
-
     usort($this->individuals, function ($a, $b) use ($sortBy, $direction) {
 
       switch ($sortBy) {
@@ -61,8 +60,10 @@ class ColorPopulation extends Population
           $bValue = $b->getObject()->getLightness();
           break;
         case 'fitness':
+        default:
           $aValue = $a->getFitness();
           $bValue = $b->getFitness();
+          break;
       }
 
       if ($aValue == $bValue) {

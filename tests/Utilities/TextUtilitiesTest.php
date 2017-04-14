@@ -1,5 +1,7 @@
 <?php
 
+namespace Hashbangcode\Wevolution\Test\Utilities;
+
 use Hashbangcode\Wevolution\Utilities\TextUtilities;
 
 /**
@@ -7,17 +9,19 @@ use Hashbangcode\Wevolution\Utilities\TextUtilities;
  */
 class TextUtilitiesTest extends PHPUnit_Framework_TestCase
 {
-  use TextUtilities;
+    use TextUtilities;
 
-  public function testCreateLetter() {
-    $letter = $this->getRandomLetter();
-    $this->assertTrue(is_string($letter));
-    $this->assertEquals(1, strlen($letter));
-  }
+    public function testCreateLetter()
+    {
+        $letter = $this->getRandomLetter();
+        $this->assertTrue(is_string($letter));
+        $this->assertEquals(1, strlen($letter));
+    }
 
-  public function testCreateText() {
-    $letter = $this->generateRandomText();
-    $this->assertTrue(is_string($letter));
-    $this->assertEquals(7, strlen($letter));
-  }
+    public function testCreateText()
+    {
+        $letter = $this->generateRandomText();
+        $this->assertTrue(is_string($letter));
+        $this->assertEquals(7, strlen($letter));
+    }
 }

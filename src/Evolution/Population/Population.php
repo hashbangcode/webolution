@@ -204,6 +204,7 @@ abstract class Population implements PopulationInterface
     $this->meanFitness = array_sum($this->populationFitness) / $this->getLength();
 
     // Get Median.
+    // @todo cehck this.
     //$this->medianIndividual = array_slice($this->getIndividuals(), $this->getIndividuals()[floor(($this->getLength() - 1) / 2)], 1);
   }
 

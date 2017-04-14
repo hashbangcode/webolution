@@ -10,15 +10,20 @@
     }
   ],
   "require-dev": {
-    "phpunit/phpunit": ">=4.8 < 6.0"
+    "phpunit/phpunit": ">=4.8 < 6.0",
+    "squizlabs/php_codesniffer": "^2.8.0"
   },
   "autoload": {
     "psr-4": {
-      "Hashbangcode\\Wevolution\\": "src"
+      "Hashbangcode\\Wevolution\\": "src",
+      "Hashbangcode\\Wevolution\\Test\\": "tests"
     }
   },
   "scripts": {
     "start": "php -S 0.0.0.0:8000 -t demos/public demos/public/index.php",
     "test": "./vendor/bin/phpunit"
+  },
+  "require": {
+    "squizlabs/php_codesniffer": "^2.8"
   }
 }
