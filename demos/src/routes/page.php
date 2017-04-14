@@ -7,80 +7,66 @@ use Hashbangcode\Wevolution\Type\Style\Style;
 use Hashbangcode\Wevolution\Evolution\EvolutionStorage;
 use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
 use Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual;
-
-
-
+use Hashbangcode\Wevolution\Evolution\Individual\PageIndividual;
+use Hashbangcode\Wevolution\Evolution\Population\PagePopulation;
 
 $app->get('/page_evolution[/{evolutionid}]', function ($request, $response, $args) {
-  $styles = 'div {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}.elementframe{width:500px;height:500px;}';
+    $styles = 'div {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}.elementframe{width:500px;height:500px;}';
 
-  $title = 'Page Storage Test';
+    $title = 'Page Storage Test';
 
+    $population = new PagePopulation();
 
-  $output = '';
+    $population->setDefaultRenderType('htmlfull');
 
-  return $this->view->render($response, 'demos.twig', [
-    'title' => $title,
-    'output' => $output,
-    'styles' => $styles
-  ]);
+    // Setup evolution storage.
+    $database = realpath(__DIR__ . '/../../database') . '/database.sqlite';
+    $evolution = new EvolutionStorage();
 
+    $evolution->setEvolutionId(4);
 
+    $evolution->setupDatabase('sqlite:' . $database);
 
-  // Setup Element.
-  $population = new ElementPopulation();
+    $evolution->setIndividualsPerGeneration(10);
 
-  $population->setDefaultRenderType('htmlfull');
+    // Get generation.
+    $generation = $evolution->getGeneration();
 
-  // Setup evolution storage.
-  $database = realpath(__DIR__ . '/../../database') . '/database.sqlite';
-  $evolution = new EvolutionStorage();
+    if ($generation == 1) {
+        $html = new Element('html');
+        $head = new Element('head');
+        $body = new Element('body');
 
-  $evolution->setEvolutionId(3);
+        $style = new Element('style');
+        $style_object = new StyleIndividual('.text');
+        $style_element = new Element($style_object);
 
-  $evolution->setupDatabase('sqlite:' . $database);
+        $style->addChild($style_element);
 
-  $evolution->setIndividualsPerGeneration(10);
+        $head->addChild($style);
+        $html->addChild($head);
+        $html->addChild($body);
 
-  // Get generation.
-  $generation = $evolution->getGeneration();
+        $population->addIndividual(new ElementIndividual($html));
 
-  if ($generation == 1) {
+        $evolution->setPopulation($population);
+    } else {
+        $evolution->setPopulation($population);
+        $evolution->loadPopulation();
+    }
 
-    $html = new Element('html');
-    $head = new Element('head');
-    $body = new Element('body');
+    // Run generation.
+    $evolution->runGeneration();
 
-    $style = new Element('style');
-    $style_object = new StyleIndividual('.text');
-    $style_element = new Element($style_object);
+    $output = '';
 
-    $style->addChild($style_element);
+    $output .= '<p>Generation: ' . $evolution->getGeneration() . '</p>';
 
-    $head->addChild($style);
-    $html->addChild($head);
-    $html->addChild($body);
+    $output .= nl2br($evolution->renderGenerations());
 
-    $population->addIndividual(new ElementIndividual($html));
-
-    $evolution->setPopulation($population);
-  } else {
-    $evolution->setPopulation($population);
-    $evolution->loadPopulation();
-  }
-
-  // Run generation.
-  $evolution->runGeneration();
-
-  $output = '';
-
-  $output .= '<p>Generation: ' . $evolution->getGeneration() . '</p>';
-
-  $output .= nl2br($evolution->renderGenerations());
-
-  return $this->view->render($response, 'demos.twig', [
-    'title' => $title,
-    'output' => $output,
-    'styles' => $styles
-  ]);
+    return $this->view->render($response, 'demos.twig', [
+        'title' => $title,
+        'output' => $output,
+        'styles' => $styles
+    ]);
 });
