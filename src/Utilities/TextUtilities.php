@@ -2,11 +2,19 @@
 
 namespace Hashbangcode\Wevolution\Utilities;
 
+/**
+ * Class TextUtilities. Stores some text utilities that can be used elsewhere in the application.
+ *
+ * @package Hashbangcode\Wevolution\Utilities
+ */
 trait TextUtilities
 {
 
     /**
+     * Generate a random letter. This will be in the range a - z and A - Z.
+     *
      * @return mixed
+     *   A random letter.
      */
     public function getRandomLetter()
     {
@@ -17,8 +25,13 @@ trait TextUtilities
     }
 
     /**
+     * Generate a random string of a specified length.
+     *
      * @param int $textLength
+     *   Length of string to generate.
+     *
      * @return string
+     *   The random string.
      */
     public static function generateRandomText($textLength = 7)
     {

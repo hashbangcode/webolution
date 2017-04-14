@@ -24,7 +24,6 @@ class PagePopulation extends Population
         $this->sort();
 
         foreach ($this->getIndividuals() as $individual) {
-
             $renderType = $this->getDefaultRenderType();
 
             switch ($renderType) {
@@ -55,20 +54,19 @@ class PagePopulation extends Population
      */
     public function sort()
     {
-
     }
 
     /**
      * Add an individual.
      *
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
+     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
      *   Add an individual.
      *
      * @return $this The current object.
      *
      * @throws Exception\ElementPageRootException
      */
-    public function addIndividual(Individual $individual = NULL)
+    public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
             $html = new Element('html');

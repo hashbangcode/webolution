@@ -59,9 +59,9 @@ class ElementPopulation extends Population
     }
 
     /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
+     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
      */
-    public function addIndividual(Individual $individual = NULL)
+    public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
             $html = new Element('html');

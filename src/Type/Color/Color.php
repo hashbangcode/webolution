@@ -12,72 +12,72 @@ class Color
     /**
      * @var int|null|string
      */
-    private $red = NULL;
+    private $red = null;
 
     /**
      * @var int|null|string
      */
-    private $green = NULL;
+    private $green = null;
 
     /**
      * @var int|null|string
      */
-    private $blue = NULL;
+    private $blue = null;
 
     /**
      * @var null
      */
-    private $hue = NULL;
+    private $hue = null;
 
     /**
      * @var null
      */
-    private $hue2 = NULL;
+    private $hue2 = null;
 
     /**
      * @var null
      */
-    private $croma = NULL;
+    private $croma = null;
 
     /**
      * @var null
      */
-    private $croma2 = NULL;
+    private $croma2 = null;
 
     /**
      * @var null
      */
-    private $value = NULL;
+    private $value = null;
 
     /**
      * @var null
      */
-    private $lightness = NULL;
+    private $lightness = null;
 
     /**
      * @var null
      */
-    private $intensity = NULL;
+    private $intensity = null;
 
     /**
      * @var float The luma, based on Rec. 601 NTSC primaries.
      */
-    private $luma = NULL;
+    private $luma = null;
 
     /**
      * @var null
      */
-    private $hsv_saturation = NULL;
+    private $hsv_saturation = null;
 
     /**
      * @var null
      */
-    private $hsl_saturation = NULL;
+    private $hsl_saturation = null;
 
     /**
      * @var null
      */
-    private $hsi_saturation = NULL;
+    private $hsi_saturation = null;
 
     /**
      * @param $red integer The red level, between 0 and 255.
@@ -643,9 +643,9 @@ class Color
      */
     private function resetColor()
     {
-        $this->red = NULL;
-        $this->green = NULL;
-        $this->blue = NULL;
+        $this->red = null;
+        $this->green = null;
+        $this->blue = null;
 
         $this->resetColorGeometry();
     }
@@ -659,21 +659,21 @@ class Color
      */
     private function resetColorGeometry()
     {
-        $this->hue = NULL;
-        $this->hue2 = NULL;
+        $this->hue = null;
+        $this->hue2 = null;
 
-        $this->croma = NULL;
-        $this->croma2 = NULL;
+        $this->croma = null;
+        $this->croma2 = null;
 
-        $this->value = NULL;
-        $this->lightness = NULL;
-        $this->intensity = NULL;
+        $this->value = null;
+        $this->lightness = null;
+        $this->intensity = null;
 
-        $this->luma = NULL;
+        $this->luma = null;
 
-        $this->hsv_saturation = NULL;
-        $this->hsl_saturation = NULL;
-        $this->hsi_saturation = NULL;
+        $this->hsv_saturation = null;
+        $this->hsl_saturation = null;
+        $this->hsi_saturation = null;
     }
 
     /**

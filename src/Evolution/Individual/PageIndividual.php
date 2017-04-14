@@ -16,6 +16,9 @@ class PageIndividual extends Individual
      */
     protected $mutationFactor = 0.05;
 
+    /**
+     * PageIndividual constructor.
+     */
     public function __construct()
     {
         $this->object = new Page();
@@ -37,7 +40,8 @@ class PageIndividual extends Individual
      * - Chance to mutate body (9/10).
      * - Chance to mutate styles (1/10).
      *
-     * @param $factor The amount of variance to apply.
+     * @param $factor
+     *   Amount of variance to apply.
      */
     public function mutateElement($factor)
     {
@@ -47,14 +51,13 @@ class PageIndividual extends Individual
         $element = $this->getObject();
 
         if ($action <= $factor && count($element->getAttributes()) > 0) {
-
             // Mutate styles.
             $element->getStyles()->mutate();
 
         } elseif ($action >= $factor) {
-
             // Mutate body.
             $element->getBody()->mutate();
+
         }
     }
 
@@ -72,7 +75,8 @@ class PageIndividual extends Individual
     }
 
     /**
-     * @param $renderType
+     * @param string $renderType
+     *   What type of render to perform.
      * @return mixed
      */
     public function render($renderType = 'cli')
@@ -83,6 +87,7 @@ class PageIndividual extends Individual
                 $output .= $this->getObject()->render();
                 break;
             case 'cli':
+                // Intentional fall through.
             default:
                 $output .= $this->getObject()->render() . PHP_EOL;
         }

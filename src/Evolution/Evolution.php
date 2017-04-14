@@ -58,7 +58,7 @@ class Evolution
      * @param null $individualsPerGeneration
      * @param bool $autoGeneratePopulation
      */
-    public function __construct(Population\Population $population = NULL, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = false)
+    public function __construct(Population\Population $population = null, $maxGenerations = null, $individualsPerGeneration = null, $autoGeneratePopulation = false)
     {
         if (!is_null($maxGenerations)) {
             $this->setMaxGenerations($maxGenerations);
@@ -79,7 +79,7 @@ class Evolution
             $this->previousGenerations[$this->generation] = clone $this->getCurrentPopulation();
 
             // Setup initial Population.
-            if ($autoGeneratePopulation === TRUE && $this->population->getLength() < $this->getIndividualsPerGeneration()) {
+            if ($autoGeneratePopulation === true && $this->population->getLength() < $this->getIndividualsPerGeneration()) {
                 // Get the population object to generate individuals.
                 do {
                     // @todo we should be cloning and then mutating these things if there is at least one individual present instead of just creating new ones.
@@ -124,13 +124,13 @@ class Evolution
     /**
      * @return bool
      */
-    public function runGeneration($kill = TRUE)
+    public function runGeneration($kill = true)
     {
         // Ensure the population has a length.
         if ($this->population->getLength() == 0) {
             // If there is no population left then set the number of generations to max.
             $this->generation = $this->getMaxGenerations();
-            return FALSE;
+            return false;
         }
 
         $this->generation++;
@@ -143,7 +143,6 @@ class Evolution
         if ($kill) {
             // Kill off any unfit individuals.
             foreach ($this->population->getIndividuals() as $key => $individual) {
-
                 if (!is_null($this->getGlobalFitnessGoal())) {
                     $individual->setFitnessGoal($this->getGlobalFitnessGoal());
                 }
@@ -172,7 +171,7 @@ class Evolution
         if ($this->population->getLength() == 0) {
             // If there is no population left then set the number of generations to max.
             $this->generation = $this->getMaxGenerations();
-            return FALSE;
+            return false;
         }
 
         // Ensure the population is at the right level.
@@ -205,7 +204,7 @@ class Evolution
         // Store the current generation.
         $this->addPreviousGeneration(clone $this->getCurrentPopulation());
 
-        return TRUE;
+        return true;
     }
 
     /**
@@ -267,16 +266,16 @@ class Evolution
     /**
      * @return string
      */
-    public function renderGenerations($printStats = FALSE, $format = 'html')
+    public function renderGenerations($printStats = false, $format = 'html')
     {
         $output = '';
 
         foreach ($this->previousGenerations as $generation_number => $population) {
             $output .= $generation_number . ':<br>' . $population->render() . PHP_EOL . '<br>';
-            if ($printStats === TRUE) {
+            if ($printStats === true) {
                 $stats = $population->getStatistics();
-                $output .= 'MIN: ' . print_r($stats['min']->render(), TRUE) . '<br>';
-                $output .= 'MAX: ' . print_r($stats['max']->render(), TRUE) . '<br>';
+                $output .= 'MIN: ' . print_r($stats['min']->render(), true) . '<br>';
+                $output .= 'MAX: ' . print_r($stats['max']->render(), true) . '<br>';
             }
         }
 

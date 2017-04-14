@@ -46,10 +46,10 @@ abstract class Population implements PopulationInterface
     protected $maxIndividual;
 
     /**
-     * @param Individual|NULL $individual
+     * @param Individual|null $individual
      * @return mixed
      */
-    abstract public function addIndividual(Individual $individual = NULL);
+    abstract public function addIndividual(Individual $individual = null);
 
     /**
      * @param $key
@@ -94,7 +94,7 @@ abstract class Population implements PopulationInterface
     public function copyIndividual()
     {
         $individual = $this->getRandomIndividual();
-        if ($individual !== FALSE) {
+        if ($individual !== false) {
             $this->individuals[] = clone $individual;
         }
     }
@@ -105,7 +105,7 @@ abstract class Population implements PopulationInterface
     public function getRandomIndividual()
     {
         if ($this->getLength() == 0) {
-            return FALSE;
+            return false;
         }
 
         $random_key = array_rand($this->individuals);
@@ -113,7 +113,7 @@ abstract class Population implements PopulationInterface
             return $this->individuals[$random_key];
         }
 
-        return FALSE;
+        return false;
     }
 
     /**
@@ -131,7 +131,7 @@ abstract class Population implements PopulationInterface
     {
         $output = '';
 
-        // Ensure that the items are sorted.
+        // Ensure that the items are sorted before rendering.
         $this->sort();
 
         foreach ($this->getIndividuals() as $individual) {
@@ -156,6 +156,7 @@ abstract class Population implements PopulationInterface
 
     /**
      * @return string
+     *   The current default render type.
      */
     public function getDefaultRenderType()
     {
@@ -163,7 +164,8 @@ abstract class Population implements PopulationInterface
     }
 
     /**
-     * @param string $defaultRender
+     * @param string $defaultRenderType
+     *   What the default render type should be.
      */
     public function setDefaultRenderType($defaultRenderType)
     {
@@ -178,7 +180,7 @@ abstract class Population implements PopulationInterface
 
         if ($this->getLength() == 0) {
             // No population yet.
-            return FALSE;
+            return false;
         }
 
         // Sort the current population.

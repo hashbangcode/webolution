@@ -21,7 +21,7 @@ class TextPopulation extends Population
         $this->text = $text;
     }
 
-    public function addIndividual(Individual $individual = NULL)
+    public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
             $individual = TextIndividual::generateRandomTextIndividual();

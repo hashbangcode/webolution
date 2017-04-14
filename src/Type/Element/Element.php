@@ -34,7 +34,7 @@ class Element
      *
      * @var bool|object
      */
-    protected $object = FALSE;
+    protected $object = false;
 
     /**
      * @return bool|object

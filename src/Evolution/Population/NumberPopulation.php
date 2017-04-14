@@ -14,9 +14,9 @@ class NumberPopulation extends Population
 {
 
     /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
+     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
      */
-    public function addIndividual(Individual $individual = NULL)
+    public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
             $number = mt_rand(1, 10);

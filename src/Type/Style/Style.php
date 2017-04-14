@@ -45,7 +45,7 @@ class Style
      * @param null $selector
      * @param null $attributes
      */
-    public function __construct($selector = NULL, $attributes = NULL)
+    public function __construct($selector = null, $attributes = null)
     {
         if (!is_null($selector)) {
             $this->selector = $selector;

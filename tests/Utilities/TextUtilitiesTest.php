@@ -7,7 +7,7 @@ use Hashbangcode\Wevolution\Utilities\TextUtilities;
 /**
  * Test class for Color
  */
-class TextUtilitiesTest extends PHPUnit_Framework_TestCase
+class TextUtilitiesTest extends \PHPUnit_Framework_TestCase
 {
     use TextUtilities;
 

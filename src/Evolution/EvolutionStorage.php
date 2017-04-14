@@ -11,17 +11,17 @@ class EvolutionStorage extends Evolution
 
     protected $database;
 
-    protected $evolutionId = NULL;
+    protected $evolutionId = null;
 
     /**
      * EvolutionStorage constructor.
      *
-     * @param Population\Population|NULL $population
+     * @param Population\Population|null $population
      * @param null $maxGenerations
      * @param null $individualsPerGeneration
      * @param bool $autoGeneratePopulation
      */
-    public function __construct(Population\Population $population = NULL, $maxGenerations = NULL, $individualsPerGeneration = NULL, $autoGeneratePopulation = FALSE)
+    public function __construct(Population\Population $population = null, $maxGenerations = null, $individualsPerGeneration = null, $autoGeneratePopulation = false)
     {
         parent::__construct($population, $maxGenerations, $individualsPerGeneration, $autoGeneratePopulation);
     }
@@ -173,7 +173,7 @@ CREATE TABLE "populations" (
     /**
      * @param bool $kill
      */
-    public function runGeneration($kill = TRUE)
+    public function runGeneration($kill = true)
     {
         parent::runGeneration($kill);
 
@@ -265,16 +265,16 @@ CREATE TABLE "populations" (
     /**
      * @return string
      */
-    public function renderGenerations($printStats = FALSE)
+    public function renderGenerations($printStats = false)
     {
         $output = '';
 
         foreach ($this->previousGenerations as $generation_number => $population) {
             $output .= $population->render() . PHP_EOL . '<br>';
-            if ($printStats === TRUE) {
+            if ($printStats === true) {
                 $stats = $population->getStatistics();
-                $output .= 'MIN: ' . print_r($stats['min']->render(), TRUE) . '<br>';
-                $output .= 'MAX: ' . print_r($stats['max']->render(), TRUE) . '<br>';
+                $output .= 'MIN: ' . print_r($stats['min']->render(), true) . '<br>';
+                $output .= 'MAX: ' . print_r($stats['max']->render(), true) . '<br>';
             }
         }
         return $output;
