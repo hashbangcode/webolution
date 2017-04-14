@@ -9,15 +9,15 @@ namespace Hashbangcode\Wevolution\Type\Image;
 class Image
 {
 
-  public function __construct()
-  {
-  }
+    public function __construct()
+    {
+    }
 
-  /**
-   * @return mixed
-   */
-  public function render()
-  {
-    return '';
-  }
+    /**
+     * @return mixed
+     */
+    public function render()
+    {
+        return '';
+    }
 }

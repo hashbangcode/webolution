@@ -13,42 +13,42 @@ use Hashbangcode\Wevolution\Type\Number\Number;
 class NumberPopulation extends Population
 {
 
-  /**
-   * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
-   */
-  public function addIndividual(Individual $individual = NULL)
-  {
-    if (is_null($individual)) {
-      $number = mt_rand(1, 10);
-      $individual = new NumberIndividual($number);
+    /**
+     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
+     */
+    public function addIndividual(Individual $individual = NULL)
+    {
+        if (is_null($individual)) {
+            $number = mt_rand(1, 10);
+            $individual = new NumberIndividual($number);
+        }
+        $this->individuals[] = $individual;
     }
-    $this->individuals[] = $individual;
-  }
 
-  /**
-   *
-   */
-  public function sort()
-  {
-    sort($this->individuals);
-  }
-
-  /**
-   * @return string
-   */
-  public function render()
-  {
-    $output = parent::render();
-    switch ($this->getDefaultRenderType()) {
-      case 'html':
-        $output .= ' (' . $this->getLength() . ' items)<br>';
-        break;
-      case 'cli':
-        // Intentional fall through.
-      default:
-        $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;
-        break;
+    /**
+     *
+     */
+    public function sort()
+    {
+        sort($this->individuals);
     }
-    return $output;
-  }
+
+    /**
+     * @return string
+     */
+    public function render()
+    {
+        $output = parent::render();
+        switch ($this->getDefaultRenderType()) {
+            case 'html':
+                $output .= ' (' . $this->getLength() . ' items)<br>';
+                break;
+            case 'cli':
+                // Intentional fall through.
+            default:
+                $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;
+                break;
+        }
+        return $output;
+    }
 }

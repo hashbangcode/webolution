@@ -13,45 +13,45 @@ use Hashbangcode\Wevolution\Type\Text\Text;
 class TextPopulation extends Population
 {
 
-  /**
-   * @param mixed $text
-   */
-  public function setText($text)
-  {
-    $this->text = $text;
-  }
-
-  public function addIndividual(Individual $individual = NULL)
-  {
-    if (is_null($individual)) {
-      $individual = TextIndividual::generateRandomTextIndividual();
+    /**
+     * @param mixed $text
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
     }
-    $this->individuals[] = $individual;
-  }
 
-  /**
-   *
-   */
-  public function sort()
-  {
-    sort($this->individuals);
-  }
-
-  /**
-   * @return string
-   */
-  public function render()
-  {
-    $output = parent::render();
-    switch ($this->getDefaultRenderType()) {
-      case 'html':
-        $output .= ' (' . $this->getLength() . ' items)<br>';
-        break;
-      case 'cli':
-      default:
-        $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;
-        break;
+    public function addIndividual(Individual $individual = NULL)
+    {
+        if (is_null($individual)) {
+            $individual = TextIndividual::generateRandomTextIndividual();
+        }
+        $this->individuals[] = $individual;
     }
-    return $output;
-  }
+
+    /**
+     *
+     */
+    public function sort()
+    {
+        sort($this->individuals);
+    }
+
+    /**
+     * @return string
+     */
+    public function render()
+    {
+        $output = parent::render();
+        switch ($this->getDefaultRenderType()) {
+            case 'html':
+                $output .= ' (' . $this->getLength() . ' items)<br>';
+                break;
+            case 'cli':
+            default:
+                $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;
+                break;
+        }
+        return $output;
+    }
 }

@@ -13,35 +13,35 @@ use Hashbangcode\Wevolution\Type\Style\Style;
 class StylePopulation extends Population
 {
 
-  /**
-   * @return string
-   */
-  public function render()
-  {
-    $output = parent::render();
+    /**
+     * @return string
+     */
+    public function render()
+    {
+        $output = parent::render();
 
-    return $output;
-  }
-
-  /**
-   *
-   */
-  public function sort()
-  {
-    // Don't sort style elements.
-  }
-
-  /**
-   * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
-   */
-  public function addIndividual(Individual $individual = NULL)
-  {
-    if (is_null($individual)) {
-      $style = new Style();
-
-      $individual = new StyleIndividual($style);
+        return $output;
     }
 
-    $this->individuals[] = $individual;
-  }
+    /**
+     *
+     */
+    public function sort()
+    {
+        // Don't sort style elements.
+    }
+
+    /**
+     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
+     */
+    public function addIndividual(Individual $individual = NULL)
+    {
+        if (is_null($individual)) {
+            $style = new Style();
+
+            $individual = new StyleIndividual($style);
+        }
+
+        $this->individuals[] = $individual;
+    }
 }

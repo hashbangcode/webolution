@@ -13,68 +13,68 @@ use Hashbangcode\Wevolution\Type\Element\Element;
 class ElementPopulation extends Population
 {
 
-  /**
-   * @return string
-   */
-  public function render()
-  {
-    $output = '';
+    /**
+     * @return string
+     */
+    public function render()
+    {
+        $output = '';
 
-    // Ensure that the items are sorted.
-    $this->sort();
+        // Ensure that the items are sorted.
+        $this->sort();
 
-    foreach ($this->getIndividuals() as $individual) {
+        foreach ($this->getIndividuals() as $individual) {
 
-      $renderType = $this->getDefaultRenderType();
+            $renderType = $this->getDefaultRenderType();
 
-      switch ($renderType) {
-        case 'html':
-          $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
-          break;
+            switch ($renderType) {
+                case 'html':
+                    $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
+                    break;
 
-        case 'htmltextarea':
-          $output .= '<textarea rows="10" cols="25">' . $individual->render($renderType) . '</textarea>';
-          break;
+                case 'htmltextarea':
+                    $output .= '<textarea rows="10" cols="25">' . $individual->render($renderType) . '</textarea>';
+                    break;
 
-        case 'htmlfull':
-          $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
-          $output .= '<textarea rows="35" cols="35">' . $individual->render($renderType) . '</textarea>';
-          break;
+                case 'htmlfull':
+                    $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
+                    $output .= '<textarea rows="35" cols="35">' . $individual->render($renderType) . '</textarea>';
+                    break;
 
-        case 'cli':
-        default:
-          $output .= $individual->render($renderType) . PHP_EOL;
-      }
+                case 'cli':
+                default:
+                    $output .= $individual->render($renderType) . PHP_EOL;
+            }
+        }
+
+        return $output;
     }
 
-    return $output;
-  }
+    /**
+     *
+     */
+    public function sort()
+    {
 
-  /**
-   *
-   */
-  public function sort()
-  {
-
-  }
-
-  /**
-   * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
-   */
-  public function addIndividual(Individual $individual = NULL)
-  {
-    if (is_null($individual)) {
-      $html = new Element('html');
-      $body = new Element('body');
-      $html->addChild($body);
-
-      $individual = new ElementIndividual($html);
     }
 
-    if ($individual->getObject()->getType() !== 'html') {
-      throw new Exception\ElementPageRootException('Root page element must be of type "html"');
-    }
+    /**
+     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|NULL $individual
+     */
+    public function addIndividual(Individual $individual = NULL)
+    {
+        if (is_null($individual)) {
+            $html = new Element('html');
+            $body = new Element('body');
+            $html->addChild($body);
 
-    $this->individuals[] = $individual;
-  }
+            $individual = new ElementIndividual($html);
+        }
+
+        if ($individual->getObject()->getType() !== 'html') {
+            throw new Exception\ElementPageRootException('Root page element must be of type "html"');
+        }
+
+        $this->individuals[] = $individual;
+    }
 }
