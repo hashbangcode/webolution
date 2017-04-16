@@ -196,7 +196,7 @@ CREATE TABLE "populations" (
      *
      * @param $population
      */
-    private function storeGeneration($population)
+    public function storeGeneration($population)
     {
         $sql = 'INSERT INTO populations(population_id, evolution_id) VALUES (:population_id, :evolution_id)';
         $query = $this->database->prepare($sql);
@@ -208,7 +208,6 @@ CREATE TABLE "populations" (
         );
 
         foreach ($population->getIndividuals() as $individual) {
-
             $serializedIndividual = serialize($individual);
 
             $sql = 'INSERT INTO individuals(evolution_id, population_id, individual) VALUES (:evolution_id, :population_id, :individual)';

@@ -2,7 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Evolution;
 
-use Hashbangcode\Wevolution\Evolution\Population;
+use Hashbangcode\Wevolution\Evolution\Population\Population;
 
 /**
  * Class Evolution
@@ -42,7 +42,8 @@ class Evolution
     protected $allowedFitness = 8;
 
     /**
-     * @var Population\Population
+     * @var Population
+     *   The current Population object.
      */
     protected $population;
 
@@ -53,12 +54,17 @@ class Evolution
 
     /**
      * Evolution constructor.
-     * @param \Hashbangcode\Wevolution\Evolution\Population\Population $population
-     * @param null $maxGenerations
-     * @param null $individualsPerGeneration
+     *
+     * @param Population|null $population
+     *   The Population object to start off things with.
+     * @param int|null $maxGenerations
+     *   The maximum number of generations to run.
+     * @param int|null $individualsPerGeneration
+     *   Set how many individuals are allowed per generation.
      * @param bool $autoGeneratePopulation
+     *   Wheather to auto generate the population. Defaults to false.
      */
-    public function __construct(Population\Population $population = null, $maxGenerations = null, $individualsPerGeneration = null, $autoGeneratePopulation = false)
+    public function __construct(Population $population = null, $maxGenerations = null, $individualsPerGeneration = null, $autoGeneratePopulation = false)
     {
         if (!is_null($maxGenerations)) {
             $this->setMaxGenerations($maxGenerations);
@@ -75,11 +81,12 @@ class Evolution
         if (!is_null($population)) {
             $this->population = $population;
             $this->population->generateStatistics();
-            // @todo : abtract this generation storage into it's own method.
-            $this->previousGenerations[$this->generation] = clone $this->getCurrentPopulation();
+
+            self::storeGeneration($population);
 
             // Setup initial Population.
-            if ($autoGeneratePopulation === true && $this->population->getLength() < $this->getIndividualsPerGeneration()) {
+            if ($autoGeneratePopulation === true
+                && $this->population->getLength() < $this->getIndividualsPerGeneration()) {
                 // Get the population object to generate individuals.
                 do {
                     // @todo we should be cloning and then mutating these things if there is at least one individual present instead of just creating new ones.
@@ -90,7 +97,21 @@ class Evolution
     }
 
     /**
-     * @return Population\Population
+     * Store the current population in the previous generations array.
+     *
+     * @param Population $population
+     *   The current population.
+     */
+    public function storeGeneration(Population $population)
+    {
+        $this->previousGenerations[$this->generation] = clone $population;
+    }
+
+    /**
+     * Get the current Population object.
+     *
+     * @return Population
+     *   The current Population object.
      */
     public function getCurrentPopulation()
     {
@@ -114,7 +135,10 @@ class Evolution
     }
 
     /**
-     * @param Population\Population $population
+     * Set the Population object.
+     *
+     * @param Population $population
+     *   The Population object.
      */
     public function setPopulation($population)
     {
@@ -200,6 +224,7 @@ class Evolution
         }
 
         // @todo consider crossover.
+        //$this->population->crossover();
 
         // Store the current generation.
         $this->addPreviousGeneration(clone $this->getCurrentPopulation());
