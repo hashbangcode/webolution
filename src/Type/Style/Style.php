@@ -2,20 +2,23 @@
 
 namespace Hashbangcode\Wevolution\Type\Style;
 
+/**
+ * Class Style. This class represents the css style object.
+ *
+ * @package Hashbangcode\Wevolution\Type\Style
+ */
 class Style
 {
 
     /**
-     * The style selector.
-     *
      * @var null|string
+     *   The style selector.
      */
     protected $selector = '';
 
     /**
-     * Get the selector.
-     *
      * @return null|string
+     *   Get the selector.
      */
     public function getSelector()
     {
@@ -23,9 +26,8 @@ class Style
     }
 
     /**
-     * Get the selector.
-     *
      * @param null|string $selector
+     *   Get the selector.
      */
     public function setSelector($selector)
     {
@@ -33,17 +35,18 @@ class Style
     }
 
     /**
-     * The style attributes.
-     *
      * @var array
+     *   The style attributes.
      */
     protected $attributes = [];
 
     /**
      * Style constructor.
      *
-     * @param null $selector
-     * @param null $attributes
+     * @param string|null $selector
+     *   The selector.
+     * @param array|null $attributes
+     *   A list of attributes to set with the selector.
      */
     public function __construct($selector = null, $attributes = null)
     {
@@ -60,6 +63,7 @@ class Style
      * Get all attributes.
      *
      * @return array
+     *   A list of attributes to replace the current attributes list.
      */
     public function getAttributes()
     {
@@ -70,6 +74,7 @@ class Style
      * Set all attributes.
      *
      * @param array $attributes
+     *   Array of attibutes, as a key value set.
      */
     public function setAttributes($attributes)
     {
@@ -79,8 +84,8 @@ class Style
     /**
      * Set an attrobite.
      *
-     * @param $name The name of the attribute.
-     * @param $value The value to set the attribute to.
+     * @param string $name Name of the attribute.
+     * @param string $value Value to set the attribute to.
      */
     public function setAttrbute($name, $value)
     {
@@ -90,9 +95,9 @@ class Style
     /**
      * Get a single attribute value.
      *
-     * @param $name The attribute name.
+     * @param string $name Attribute name.
      *
-     * @return bool|mixed The attribute value, or false if the attribute is not present.
+     * @return bool|mixed Attribute value, or false if the attribute is not present.
      */
     public function getAttribute($name)
     {

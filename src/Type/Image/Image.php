@@ -4,6 +4,7 @@ namespace Hashbangcode\Wevolution\Type\Image;
 
 /**
  * Class Image
+ *
  * @package Hashbangcode\Wevolution\Type\Image
  */
 class Image

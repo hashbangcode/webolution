@@ -2,10 +2,9 @@
 
 namespace Hashbangcode\Wevolution\Type\Number;
 
-//use Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException;
-
 /**
- * Class Number
+ * Class Number.
+ *
  * @package Hashbangcode\Wevolution\Type\Number
  */
 class Number
@@ -13,7 +12,10 @@ class Number
     protected $number;
 
     /**
+     * Get the number.
+     *
      * @return mixed
+     *   The number.
      */
     public function getNumber()
     {
@@ -21,7 +23,12 @@ class Number
     }
 
     /**
-     * @param mixed $number
+     * Set the number.
+     *
+     * @param integer $number
+     *   The number.
+     *
+     * @throws Exception\InvalidNumberException
      */
     public function setNumber($number)
     {
@@ -34,7 +41,9 @@ class Number
 
     /**
      * Number constructor.
-     * @param $number
+     *
+     * @param integer $number
+     *   The number.
      */
     public function __construct($number)
     {

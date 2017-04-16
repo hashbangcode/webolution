@@ -12,17 +12,20 @@ use Hashbangcode\Wevolution\Type\Element\Element;
 class Page
 {
     /**
-     * @var Hashbangcode\Wevolution\Type\Style
+     * @var Style
+     *   The Style object.
      */
     protected $style;
 
     /**
-     * @var Hashbangcode\Wevolution\Type\Element
+     * @var Element
+     *   The root Element object.
      */
     protected $body;
 
     /**
-     * @return Hashbangcode\Wevolution\Type\Style
+     * @return Style
+     *   The Style object.
      */
     public function getStyle()
     {
@@ -30,7 +33,10 @@ class Page
     }
 
     /**
-     * @param Hashbangcode\Wevolution\Type\Style $style
+     * Set the Style object.
+     *
+     * @param Style $style
+     *   Set the Style object.
      */
     public function setStyle($style)
     {
@@ -38,7 +44,10 @@ class Page
     }
 
     /**
-     * @return Hashbangcode\Wevolution\Type\Element
+     * Get the body Element Object.
+     *
+     * @return Element
+     *   The Element.
      */
     public function getBody()
     {
@@ -46,7 +55,10 @@ class Page
     }
 
     /**
-     * @param Hashbangcode\Wevolution\Type\Element $body
+     * Set the Element object.
+     *
+     * @param Element $body
+     *   The Element object.
      */
     public function setBody($body)
     {
@@ -54,7 +66,10 @@ class Page
     }
 
     /**
-     * @return mixed
+     * Render the page.
+     *
+     * @return string
+     *   The rendered page.
      */
     public function render()
     {
