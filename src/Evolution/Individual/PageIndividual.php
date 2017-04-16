@@ -66,11 +66,9 @@ class PageIndividual extends Individual
      */
     public function getFitness()
     {
-        // @todo see how we can get a better fitness for elements.
+        // @todo see how we can get a better fitness for pages.
         // Possible candidates include:
-        // - number of children
-        // - rendered length
-        // - number of tags directly under html>body
+        // - number of elements
         return 1;
     }
 
