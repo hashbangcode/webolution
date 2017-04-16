@@ -24,6 +24,14 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('<div></div>', $object->render());
     }
 
+    public function testGetAttribute()
+    {
+        $object = new Element();
+        $object->setType('div');
+        $object->setAttributes(array('id' => 'test'));
+        $this->assertEquals('test', $object->getAttribute('id'));
+    }
+
     public function testCreateDivElementWithAttribute()
     {
         $object = new Element();
@@ -123,7 +131,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     public function testSetChildElement()
     {
         $element = new Element('ul');
-        $child_types = $element->getChildTypes($element->getType());
+        $child_types = $element->getAvailableChildTypes($element->getType());
         $this->assertEquals('li', $child_types[0]);
     }
 
@@ -175,8 +183,46 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $element_clone->getChildren()[0]->setAttribute('class', 'wobble');
         $element_clone->getChildren()[0]->getChildren()[0]->setAttribute('class', 'foo');
 
-        $this->assertEquals('<div><div><div></div></div></div>', $outer_element->render());
-        $this->assertEquals('<div class="wibble"><div class="wobble"><div class="foo"></div></div></div>', $element_clone->render());
+        $expected = '<div><div><div></div></div></div>';
+        $this->assertEquals($expected, $outer_element->render());
+        $expected = '<div class="wibble"><div class="wobble"><div class="foo"></div></div></div>';
+        $this->assertEquals($expected, $element_clone->render());
+    }
+
+    public function testGetChildTypes()
+    {
+        $outer_element = new Element('div');
+        $inner_element = new Element('ul');
+        $inner_inner_element = new Element('li');
+
+        $outer_element->addChild($inner_element);
+        $inner_element->addChild($inner_inner_element);
+
+        $outer_element->setAttribute('class', 'wibble');
+        $inner_element->setAttribute('class', 'wobble');
+        $inner_inner_element->setAttribute('class', 'foo');
+
+        $childrenTypes = $outer_element->getChildTypes();
+        $this->assertEquals('ul', $childrenTypes[0]);
+        $this->assertEquals('li', $childrenTypes[1]);
+    }
+
+    public function testGetChildClasses()
+    {
+        $outer_element = new Element('div');
+        $inner_element = new Element('ul');
+        $inner_inner_element = new Element('li');
+
+        $outer_element->addChild($inner_element);
+        $inner_element->addChild($inner_inner_element);
+
+        $outer_element->setAttribute('class', 'wibble');
+        $inner_element->setAttribute('class', 'wobble');
+        $inner_inner_element->setAttribute('class', 'foo');
+
+        $childrenTypes = $outer_element->getChildClasses();
+        $this->assertEquals('wobble', $childrenTypes[0]);
+        $this->assertEquals('foo', $childrenTypes[1]);
     }
 
     public function testSetElementText()
@@ -208,7 +254,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     {
         $innerObject = new Element('div');
         $outerObject = new Element($innerObject);
-        $this->assertEquals(false, $outerObject->getChildTypes());
+        $this->assertEquals(false, $outerObject->getAvailableChildTypes());
     }
 
     public function testEmbedObjectInElement()
@@ -216,7 +262,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $innerObject = new Element('div');
         $outerObject = new Element();
         $outerObject->setObject($innerObject);
-        $this->assertEquals(false, $outerObject->getChildTypes());
+        $this->assertEquals(false, $outerObject->getAvailableChildTypes());
         $this->assertEquals('<div></div>', $outerObject->render());
     }
 

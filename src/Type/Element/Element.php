@@ -168,11 +168,28 @@ class Element
 
     /**
      * Get the attributes of an Element.
-     * @return mixed
+     *
+     * @return array|null
+     *   All of the attributes for the Element, or null if none are set.
      */
     public function getAttributes()
     {
         return $this->attributes;
+    }
+
+    /**
+     * Get a specific attribute of an Element.
+     *
+     * @return mixed
+     *   The value of the attribute, or false if that attribute isn't set.
+     */
+    public function getAttribute($type)
+    {
+        if (isset($this->attributes[$type])) {
+            return $this->attributes[$type];
+        }
+
+        return false;
     }
 
     /**
@@ -235,7 +252,7 @@ class Element
      */
     public function addChild(Element $element)
     {
-        if (!in_array($element->getType(), $this->getChildTypes())) {
+        if (!in_array($element->getType(), $this->getAvailableChildTypes())) {
             // Invalid child Element.
             $message = 'Cant add child of type ' . $element->getType() . ' to ' . $this->getType();
             throw new Exception\InvalidChildTypeException($message);
@@ -253,7 +270,7 @@ class Element
      * @return array
      *   The child types that can be used.
      */
-    public function getChildTypes()
+    public function getAvailableChildTypes()
     {
         if ($this->type === false) {
             return false;
@@ -284,5 +301,44 @@ class Element
             // When cloning a child all children will also be cloned.
             $this->children[$key] = clone $child;
         }
+    }
+
+    /**
+     * Get the available child types for the Element.
+     *
+     * @return array
+     *   The child types.
+     */
+    public function getChildTypes()
+    {
+        $types = [];
+
+        foreach ($this->getChildren() as $child) {
+            $types[] = $child->getType();
+            if (count($child->getChildren() > 0)) {
+                $children = $child->getChildTypes();
+                $types = array_merge($types, $children);
+            }
+        }
+
+        return $types;
+    }
+
+    public function getChildClasses()
+    {
+        $types = [];
+
+        foreach ($this->getChildren() as $child) {
+            $class = $child->getAttribute('class');
+            if ($class !== false) {
+                $types[] = $class;
+            }
+            if (count($child->getChildren() > 0)) {
+                $children = $child->getChildClasses();
+                $types = array_merge($types, $children);
+            }
+        }
+
+        return $types;
     }
 }
