@@ -2,6 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Type\Element;
 
+use Hashbangcode\Wevolution\Type\Element\Exception\InvalidChildTypeException;
 use Hashbangcode\Wevolution\Utilities\TextUtilities;
 
 class Element
@@ -57,7 +58,9 @@ class Element
 
     /**
      * Element constructor.
+     *
      * @param string $type
+     *   The element type.
      */
     public function __construct($arg = 'div')
     {
@@ -76,7 +79,10 @@ class Element
     }
 
     /**
+     * Get the types of element that should have text values within then.
+     *
      * @return array
+     *   The list of text elements.
      */
     public function getTextTypes()
     {
@@ -84,8 +90,13 @@ class Element
     }
 
     /**
-     * @param $key
-     * @param $value
+     * Get the attributes for the Element. For example, setting the key to "class" and the value to "test" will
+     * translate into 'class="test"' when rendered.
+     *
+     * @param string $key
+     *   The key of the attribute.
+     * @param string $value
+     *   The value of the attribute.
      */
     public function setAttribute($key, $value)
     {
@@ -93,7 +104,10 @@ class Element
     }
 
     /**
+     * Render the element.
+     *
      * @return string
+     *   The rendered element.
      */
     public function render()
     {
@@ -128,7 +142,10 @@ class Element
     }
 
     /**
+     * Get the type of element.
+     *
      * @return mixed
+     *   The element type.
      */
     public function getType()
     {
@@ -136,16 +153,21 @@ class Element
     }
 
     /**
+     * Set the type of Element.
+     *
      * @param mixed $type
+     *   The type of element to set.
      */
     public function setType($type)
     {
         if ($this->type !== false) {
+            // Ensure that all element types are lower case.
             $this->type = strtolower($type);
         }
     }
 
     /**
+     * Get the attributes of an Element.
      * @return mixed
      */
     public function getAttributes()
@@ -154,7 +176,11 @@ class Element
     }
 
     /**
-     * @param $attributes
+     * Set the attributes of an Element.
+     *
+     * @param array $attributes
+     *   The attributes as a key/value array.
+     *
      * @throws Exception\InvalidAttributesException
      */
     public function setAttributes($attributes)
@@ -167,7 +193,10 @@ class Element
     }
 
     /**
+     * Get the children of this Element.
+     *
      * @return array
+     *   The Element children.
      */
     public function getChildren()
     {
@@ -175,7 +204,10 @@ class Element
     }
 
     /**
+     * Get the Element text.
+     *
      * @return string
+     *   The Element text.
      */
     public function getElementText()
     {
@@ -183,7 +215,10 @@ class Element
     }
 
     /**
+     * Set the text of the Element.
+     *
      * @param string $elementText
+     *   The text to set.
      */
     public function setElementText($elementText)
     {
@@ -191,11 +226,21 @@ class Element
     }
 
     /**
+     * Add a child to the Element.
+     *
      * @param Element $element
+     *   The Element to add as a child.
+     *
+     * @throws Exception\InvalidChildTypeException
      */
     public function addChild(Element $element)
     {
-        // @todo : validate the child element type
+        if (!in_array($element->getType(), $this->getChildTypes())) {
+            // Invalid child Element.
+            $message = 'Cant add child of type ' . $element->getType() . ' to ' . $this->getType();
+            throw new Exception\InvalidChildTypeException($message);
+        }
+
         $this->children[] = $element;
     }
 
@@ -205,8 +250,8 @@ class Element
      * This method is intended to stop (for example) li elements being children of
      * div elements and allows a more symantically correct page to be generated.
      *
-     * @param $type
      * @return array
+     *   The child types that can be used.
      */
     public function getChildTypes()
     {
@@ -215,16 +260,18 @@ class Element
         }
 
         switch ($this->type) {
+            case 'html':
+                return array('body');
             case 'ul':
             case 'ol':
                 return array('li');
-            default :
+            default:
                 return array('ul', 'ol', 'div', 'p', 'h1', 'h2');
         }
     }
 
     /**
-     *
+     * Implements __clone().
      */
     public function __clone()
     {
