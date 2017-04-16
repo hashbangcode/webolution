@@ -19,7 +19,10 @@ interface PopulationInterface
     public function sort();
 
     /**
-     * @return mixed
+     * Get the current population level.
+     *
+     * @return int
+     *   The number of Individuals in the population.
      */
     public function getLength();
 
@@ -32,4 +35,9 @@ interface PopulationInterface
      * @return mixed
      */
     public function render();
+
+    /**
+     * Perform a crossover function on certain members of the population.
+     */
+    public function crossover();
 }

@@ -79,7 +79,7 @@ class ColorPopulation extends Population
     }
 
     /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
+     * {@inheritdoc}
      */
     public function addIndividual(Individual $individual = null)
     {
@@ -88,5 +88,13 @@ class ColorPopulation extends Population
         }
 
         $this->individuals[] = $individual;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function crossover()
+    {
+        // @todo implement this.
     }
 }

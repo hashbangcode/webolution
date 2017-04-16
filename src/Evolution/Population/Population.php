@@ -45,11 +45,21 @@ abstract class Population implements PopulationInterface
      */
     protected $maxIndividual;
 
+
     /**
+     * Add an individual.
+     *
      * @param Individual|null $individual
-     * @return mixed
+     *   The individual to add.
+     *
+     * @return null
      */
     abstract public function addIndividual(Individual $individual = null);
+
+    /**
+     * Perform a crossover function on certain members of the population.
+     */
+    abstract public function crossover();
 
     /**
      * @param $key
@@ -206,7 +216,7 @@ abstract class Population implements PopulationInterface
         $this->meanFitness = array_sum($this->populationFitness) / $this->getLength();
 
         // Get Median.
-        // @todo cehck this.
+        // @todo check this.
         //$this->medianIndividual = array_slice($this->getIndividuals(), $this->getIndividuals()[floor(($this->getLength() - 1) / 2)], 1);
     }
 

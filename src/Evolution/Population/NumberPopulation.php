@@ -51,4 +51,12 @@ class NumberPopulation extends Population
         }
         return $output;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function crossover()
+    {
+        // @todo implement this.
+    }
 }

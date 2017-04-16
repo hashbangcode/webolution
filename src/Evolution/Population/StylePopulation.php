@@ -44,4 +44,12 @@ class StylePopulation extends Population
 
         $this->individuals[] = $individual;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function crossover()
+    {
+        // @todo implement this.
+    }
 }
