@@ -84,7 +84,7 @@ class ElementIndividual extends Individual
         } elseif ($action >= $factor) {
 
             // Add additional children elements.
-            $child_types = $element->getChildTypes($element->getType());
+            $child_types = $element->getAvailableChildTypes($element->getType());
             $child_type = $child_types[array_rand($child_types)];
             $newElement = new Element($child_type);
 
@@ -104,6 +104,7 @@ class ElementIndividual extends Individual
         // - number of children
         // - rendered length
         // - number of tags directly under html>body
+        // - length of text attribute.
         return 1;
     }
 
