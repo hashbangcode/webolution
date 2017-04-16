@@ -3,11 +3,11 @@
 // Routes
 
 $app->get('/', function ($request, $response, $args) {
-  // Sample log message
-  //$this->logger->info("Index '/' route");
+    // Sample log message
+    //$this->logger->info("Index '/' route");
 
-  // Render index view
-  return $this->view->render($response, 'index.twig');
+    // Render index view
+    return $this->view->render($response, 'index.twig');
 });
 
 require __DIR__ . '/../../src/routes/color.php';
