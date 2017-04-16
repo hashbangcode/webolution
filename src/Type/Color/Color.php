@@ -3,86 +3,109 @@
 namespace Hashbangcode\Wevolution\Type\Color;
 
 /**
- * Class Color
+ * Class Color.
+ *
  * @package Hashbangcode\Wevolution\Type\Color
  */
 class Color
 {
 
     /**
-     * @var int|null|string
+     * @var int|null
+     *   The amount of red.
      */
     private $red = null;
 
     /**
-     * @var int|null|string
+     * @var int|null
+     *   The amount of green.
      */
     private $green = null;
 
     /**
-     * @var int|null|string
+     * @var int|null
+     *   The amount of blue.
      */
     private $blue = null;
 
     /**
      * @var null
+     *   The hue of the color.
      */
     private $hue = null;
 
     /**
      * @var null
+     *   The hue2 value of the color.
      */
     private $hue2 = null;
 
     /**
      * @var null
+     *   The croma value of the color.
      */
     private $croma = null;
 
     /**
      * @var null
+     *   The croma2 value of the color.
      */
     private $croma2 = null;
 
     /**
      * @var null
+     *   The value of the color.
      */
     private $value = null;
 
     /**
      * @var null
+     *   The lightness of the color.
      */
     private $lightness = null;
 
     /**
      * @var null
+     *   The intensity of the color.
      */
     private $intensity = null;
 
     /**
-     * @var float The luma, based on Rec. 601 NTSC primaries.
+     * @var float
+     *   The luma, based on Rec. 601 NTSC primaries.
      */
     private $luma = null;
 
     /**
      * @var null
+     *   The HSV saturation value of the color.
      */
     private $hsv_saturation = null;
 
     /**
      * @var null
+     *   The HSL saturation value of the color.
      */
     private $hsl_saturation = null;
 
     /**
      * @var null
+     *   The HSI saturation value of the color.
      */
     private $hsi_saturation = null;
 
     /**
-     * @param $red integer The red level, between 0 and 255.
-     * @param $green integer The green level, between 0 and 255.
-     * @param $blue integer The blue level, between 0 and 255.
+     * Color contrsuctor.
+     *
+     * @param int $red
+     *   The red level, between 0 and 255.
+     * @param int $green
+     *   The green level, between 0 and 255.
+     * @param int $blue
+     *   The blue level, between 0 and 255.
+     *
+     * @throws Exception\InvalidRGBValueException
+     *   If invalid numbers are given for color values.
      */
     public function __construct($red, $green, $blue)
     {
@@ -104,8 +127,13 @@ class Color
     }
 
     /**
-     * @param $hex
+     * Generate a Color object from a hex value.
+     *
+     * @param string $hex
+     *   The vex value. May, or may not contain a # in front.
+     *
      * @return \Hashbangcode\Wevolution\Type\Color\Color
+     *   The new colour object.
      */
     public static function generateFromHex($hex)
     {
@@ -125,6 +153,8 @@ class Color
     }
 
     /**
+     * Generate a Color from HSV values.
+     *
      * @param $hue
      * @param $saturation
      * @param $value
@@ -186,7 +216,9 @@ class Color
     }
 
     /**
-     * @param $hue
+     * Generate the color from HSL values.
+     *
+     * @param int $hue
      * @param $saturation
      * @param $lightness
      * @return Color
@@ -273,7 +305,10 @@ class Color
     }
 
     /**
-     * @return null
+     * Get the red value of the color.
+     *
+     * @return int|null
+     *   The red value.
      */
     public function getRed()
     {
@@ -281,7 +316,10 @@ class Color
     }
 
     /**
-     * @param null $red
+     * Set the red value of the color.
+     *
+     * @param int $red
+     *   The red value.
      */
     public function setRed($red)
     {
@@ -289,7 +327,10 @@ class Color
     }
 
     /**
-     * @return null
+     * Get the green value of the color.
+     *
+     * @return int|null
+     *   The green value.
      */
     public function getGreen()
     {
@@ -297,7 +338,10 @@ class Color
     }
 
     /**
-     * @param null $green
+     * Set the green value of the color.
+     *
+     * @param int $green
+     *   The green value.
      */
     public function setGreen($green)
     {
@@ -305,7 +349,10 @@ class Color
     }
 
     /**
-     * @return null
+     * Get the blue value of the color.
+     *
+     * @return int|null
+     *   The blue value.
      */
     public function getBlue()
     {
@@ -313,7 +360,10 @@ class Color
     }
 
     /**
-     * @param null $blue
+     * Set the blue value of the color.
+     *
+     * @param int $blue
+     *   The blue value.
      */
     public function setBlue($blue)
     {
@@ -321,7 +371,10 @@ class Color
     }
 
     /**
+     * Get the croma value of the color.
+     *
      * @return null
+     *   The croma value.
      */
     public function getCroma()
     {
@@ -370,7 +423,7 @@ class Color
     }
 
     /**
-     *
+     * Calculate the HSI saturation values for the color.
      */
     protected function calculateHsiSaturation()
     {
@@ -389,7 +442,10 @@ class Color
     }
 
     /**
-     * @return null
+     * Get the HSL saturation value for the color. This method calculates the value if it isn't set.
+     *
+     * @return null|int
+     *   The HSL saturation value.
      */
     public function getHslSaturation()
     {
@@ -406,7 +462,7 @@ class Color
     }
 
     /**
-     *
+     * Calculate the HSL saturation values for the color.
      */
     protected function calculateHSL()
     {
@@ -468,7 +524,7 @@ class Color
     }
 
     /**
-     *
+     * Calculate the HSV  values for the color.
      */
     protected function calcualteHSV()
     {
@@ -507,12 +563,12 @@ class Color
                 $this->value = round($max, 4);
         }
 
-        // Ensure that Luma is also calcualted.
+        // Ensure that Luma is also calculated.
         $this->calculateLuma();
     }
 
     /**
-     *
+     * Calculate the luma value for the color.
      */
     public function calculateLuma()
     {
@@ -601,7 +657,7 @@ class Color
      */
     public function setLuma($luma)
     {
-        // @toto : is this needed?
+        // @todo : is this needed?
         $this->luma = $luma;
     }
 
@@ -616,6 +672,7 @@ class Color
 
     /**
      * @param null $value
+     *   The value of the color.
      */
     public function setValue($value)
     {
@@ -626,6 +683,7 @@ class Color
      * Randomise the color.
      *
      * @return array
+     *   The random color.
      */
     public function randomise()
     {
@@ -691,9 +749,10 @@ class Color
     }
 
     /**
-     * Render the colour as a string.
+     * Render the colour as a hex string.
      *
      * @return string
+     *   The hex value of the color.
      */
     public function render()
     {
@@ -703,7 +762,8 @@ class Color
     /**
      * Generate a hex value of the color based on the current RGB values.
      *
-     * @return string The hex value.
+     * @return string
+     *   The hex value.
      */
     public function getHex()
     {
@@ -715,11 +775,13 @@ class Color
     }
 
     /**
+     * Convenience method that renders out the color statistics for this color.
+     *
      * @return string
+     *   The full statistics of the color.
      */
     public function renderColorStatistics()
     {
-
         $output = '';
 
         $output .= 'Red: ' . $this->getRed() . PHP_EOL;
