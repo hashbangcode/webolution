@@ -3,7 +3,7 @@ Webolution
 
 An experimental set of classes that attempts to put together an application that will evolve a webpage. This is intended
 to be a test application that allows me to learn the techniques involved in genetic algorithms as well as how to to
-put together a modern PHP application with composer.
+put together a modern PHP application with composer. As a result things might change significantly without warning.
 
 
 The following data structures are used here:
