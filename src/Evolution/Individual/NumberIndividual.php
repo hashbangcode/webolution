@@ -40,7 +40,7 @@ class NumberIndividual extends Individual
 
     /**
      * @param int $amount
-     * @throws \Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException
+     * @throws \Hashbangcode\Wevolution\Type\Number\Exception\InvalidPixelException
      */
     public function mutateNumber($amount = 1)
     {
@@ -74,10 +74,10 @@ class NumberIndividual extends Individual
      */
     public function render($renderType = 'cli')
     {
-        $output = '';
         switch ($renderType) {
             case 'html':
                 $output = $this->object->render() . ' ';
+                break;
             case 'cli':
             default:
                 $output = $this->object->render() . ' ';

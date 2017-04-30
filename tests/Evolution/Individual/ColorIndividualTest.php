@@ -38,6 +38,16 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('7D7D7D' . PHP_EOL, $object->render($renderType));
     }
 
+    public function testRenderIndividualHtml()
+    {
+        $object = new ColorIndividual(125, 125, 125);
+        $object->setMutationFactor(0);
+        $object->mutateProperties();
+        $renderType = 'html';
+
+        $this->assertEquals('<span style="background-color:#7D7D7D"> </span>', $object->render($renderType));
+    }
+
     public function testMutateColorThroughIndividual()
     {
         $object = new ColorIndividual(125, 125, 125);
@@ -60,10 +70,28 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
     public function testColorMutation()
     {
         $object = new ColorIndividual(125, 125, 125);
-        $old_rgb = $object->getObject()->getRGB();
         $object->mutateColor(100);
-        $new_rgb = $object->getObject()->getRGB();
-        // @todo : add assertion...
+
+        $this->assertGreaterThanOrEqual(0, $object->getObject()->getRed());
+        $this->assertLessThanOrEqual(255, $object->getObject()->getRed());
+    }
+
+    public function testColorMutationLowerRange()
+    {
+        $object = new ColorIndividual(0, 0, 0);
+        $object->mutateColor(100);
+
+        $this->assertGreaterThanOrEqual(0, $object->getObject()->getRed());
+        $this->assertLessThanOrEqual(255, $object->getObject()->getRed());
+    }
+
+    public function testColorMutationUpperRange()
+    {
+        $object = new ColorIndividual(255, 255, 255);
+        $object->mutateColor(100);
+
+        $this->assertGreaterThanOrEqual(0, $object->getObject()->getRed());
+        $this->assertLessThanOrEqual(255, $object->getObject()->getRed());
     }
 
     public function testLargeColorMutation()
@@ -82,4 +110,5 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
             $this->assertLessThanOrEqual(255, $object->getObject()->getBlue());
         }
     }
+
 }

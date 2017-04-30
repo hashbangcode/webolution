@@ -32,6 +32,14 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('test', $object->getAttribute('id'));
     }
 
+    public function testGetInvalidAttribute()
+    {
+        $object = new Element();
+        $object->setType('div');
+        $object->setAttributes(array('id' => 'test'));
+        $this->assertEquals(false, $object->getAttribute('monkey'));
+    }
+
     public function testCreateDivElementWithAttribute()
     {
         $object = new Element();
@@ -76,6 +84,19 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('div', $outer_element->getType('div'));
         $this->assertEquals('div', $inner_element->getType('div'));
         $this->assertEquals('<div><div></div></div>', $outer_element->render());
+    }
+
+    public function testAddInvalidChild()
+    {
+        $outer_element = new Element();
+        $outer_element->setType('ol');
+
+        $inner_element = new Element();
+        $inner_element->setType('div');
+
+        $message = 'Cant add child of type div to ol';
+        $this->setExpectedException('Hashbangcode\Wevolution\Type\Element\Exception\InvalidChildTypeException', $message);
+        $outer_element->addChild($inner_element);
     }
 
     public function testCreateDoublyNestedDivElement()
