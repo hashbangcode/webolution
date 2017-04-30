@@ -2,12 +2,14 @@
 
 namespace Hashbangcode\Wevolution\Type\Style;
 
+use Hashbangcode\Wevolution\Type\TypeInterface;
+
 /**
  * Class Style. This class represents the css style object.
  *
  * @package Hashbangcode\Wevolution\Type\Style
  */
-class Style
+class Style implements TypeInterface
 {
 
     /**

@@ -2,12 +2,14 @@
 
 namespace Hashbangcode\Wevolution\Type\Number;
 
+use Hashbangcode\Wevolution\Type\TypeInterface;
+
 /**
  * Class Number.
  *
  * @package Hashbangcode\Wevolution\Type\Number
  */
-class Number
+class Number implements TypeInterface
 {
     protected $number;
 

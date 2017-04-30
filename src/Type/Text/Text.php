@@ -2,11 +2,13 @@
 
 namespace Hashbangcode\Wevolution\Type\Text;
 
+use Hashbangcode\Wevolution\Type\TypeInterface;
+
 /**
  * Class Text
  * @package Hashbangcode\Wevolution\Type\Text
  */
-class Text
+class Text implements TypeInterface
 {
     protected $text;
 

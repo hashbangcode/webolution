@@ -4,8 +4,9 @@ namespace Hashbangcode\Wevolution\Type\Element;
 
 use Hashbangcode\Wevolution\Type\Element\Exception\InvalidChildTypeException;
 use Hashbangcode\Wevolution\Utilities\TextUtilities;
+use Hashbangcode\Wevolution\Type\TypeInterface;
 
-class Element
+class Element implements TypeInterface
 {
 
     use TextUtilities;

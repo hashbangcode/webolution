@@ -4,12 +4,13 @@ namespace Hashbangcode\Wevolution\Type\Page;
 
 use Hashbangcode\Wevolution\Type\Style\Style;
 use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Wevolution\Type\TypeInterface;
 
 /**
  * Class Page
  * @package Hashbangcode\Wevolution\Type\Page
  */
-class Page
+class Page implements TypeInterface
 {
     /**
      * @var Style

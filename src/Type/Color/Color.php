@@ -2,12 +2,14 @@
 
 namespace Hashbangcode\Wevolution\Type\Color;
 
+use Hashbangcode\Wevolution\Type\TypeInterface;
+
 /**
  * Class Color.
  *
  * @package Hashbangcode\Wevolution\Type\Color
  */
-class Color
+class Color implements TypeInterface
 {
 
     /**
