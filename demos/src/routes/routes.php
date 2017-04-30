@@ -16,4 +16,5 @@ require __DIR__ . '/../../src/routes/number.php';
 require __DIR__ . '/../../src/routes/text.php';
 require __DIR__ . '/../../src/routes/style.php';
 require __DIR__ . '/../../src/routes/adminer.php';
+require __DIR__ . '/../../src/routes/image.php';
 require __DIR__ . '/../../src/routes/page.php';
