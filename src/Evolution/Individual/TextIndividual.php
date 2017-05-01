@@ -105,7 +105,6 @@ class TextIndividual extends Individual
      */
     public function mutateText()
     {
-
         $text = $this->getObject()->getText();
         $goal = $this->getFitnessGoal();
 
@@ -114,7 +113,6 @@ class TextIndividual extends Individual
 
         $action = mt_rand(0, 100);
         if ($action < 1 && $text_length != $goal_length) {
-
             $operators = array('add', 'subtract');
 
             switch ($operators[array_rand($operators)]) {
@@ -131,7 +129,6 @@ class TextIndividual extends Individual
                     break;
             }
         } else {
-
             // Ger a random letter from the current string.
             $letter_position = mt_rand(0, strlen($text) - 1);
 

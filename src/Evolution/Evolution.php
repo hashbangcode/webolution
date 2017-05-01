@@ -12,32 +12,38 @@ class Evolution
 {
 
     /**
-     * @var
+     * @var mixed|null
+     *   The global fitness goal.
      */
-    public $globalFitnessGoal;
+    public $globalFitnessGoal = null;
 
     /**
      * @var int
+     *   The current generation.
      */
     protected $generation = 1;
 
     /**
-     * @var
+     * @var int
+     *   The global mutation factor.
      */
     protected $globalMutationFactor;
 
     /**
-     * @var
+     * @var int
+     *   The maximum number of generations to run.
      */
     protected $maxGenerations;
 
     /**
-     * @var
+     * @var int
+     *   The minimum number of individuals per generation.
      */
     protected $individualsPerGeneration;
 
     /**
      * @var int
+     *   The allowed fitness value.
      */
     protected $allowedFitness = 8;
 
@@ -49,6 +55,7 @@ class Evolution
 
     /**
      * @var array
+     *   A store of the previous generations.
      */
     protected $previousGenerations = array();
 
@@ -62,7 +69,7 @@ class Evolution
      * @param int|null $individualsPerGeneration
      *   Set how many individuals are allowed per generation.
      * @param bool $autoGeneratePopulation
-     *   Wheather to auto generate the population. Defaults to false.
+     *   Whether to auto generate the population. Defaults to false.
      */
     public function __construct(Population $population = null, $maxGenerations = null, $individualsPerGeneration = null, $autoGeneratePopulation = false)
     {
@@ -223,8 +230,8 @@ class Evolution
             $individual->mutateProperties();
         }
 
-        // @todo consider crossover.
-        //$this->population->crossover();
+        // Run the crossover function.
+        $this->population->crossover();
 
         // Store the current generation.
         $this->addPreviousGeneration(clone $this->getCurrentPopulation());
@@ -233,7 +240,10 @@ class Evolution
     }
 
     /**
+     * Get the maximum number of generations.
+     *
      * @return int|null
+     *   The maximum number of generations.
      */
     public function getMaxGenerations()
     {
@@ -241,7 +251,10 @@ class Evolution
     }
 
     /**
+     * Set the maximum number of generations.
+     *
      * @param int|null $maxGenerations
+     *   The maximum number of generations.
      */
     public function setMaxGenerations($maxGenerations)
     {
@@ -249,7 +262,10 @@ class Evolution
     }
 
     /**
+     * Get the global fitness goal.
+     *
      * @return mixed
+     *   The global fitness goal.
      */
     public function getGlobalFitnessGoal()
     {
@@ -257,7 +273,10 @@ class Evolution
     }
 
     /**
-     * @param mixed $fitnessGoal
+     * Set the global fitness goal.
+     *
+     * @param mixed $globalFitnessGoal
+     *   The global fitness goal.
      */
     public function setGlobalFitnessGoal($globalFitnessGoal)
     {
@@ -265,7 +284,10 @@ class Evolution
     }
 
     /**
-     * @return null
+     * Get the global mutation factor.
+     *
+     * @return int|null
+     *   The global mutation factor.
      */
     public function getGlobalMutationFactor()
     {
@@ -289,7 +311,15 @@ class Evolution
     }
 
     /**
+     * Render the entire thing.
+     *
+     * @param bool $printStats
+     *   Print the stats.
+     * @param string $format
+     *   What format to print the
+     *
      * @return string
+     *   The rendered output.
      */
     public function renderGenerations($printStats = false, $format = 'html')
     {
@@ -312,7 +342,10 @@ class Evolution
     }
 
     /**
+     * Get the current generation.
+     *
      * @return int
+     *   The current generation.
      */
     public function getGeneration()
     {
@@ -320,7 +353,10 @@ class Evolution
     }
 
     /**
-     * @return mixed
+     * Get the allowed fitness value.
+     *
+     * @return int
+     *   The current allowed fitness.
      */
     public function getAllowedFitness()
     {
@@ -328,10 +364,14 @@ class Evolution
     }
 
     /**
-     * @param $allowedFitness
+     * Set the allowed fitness.
+     *
+     * @param int $allowedFitness
+     *   The allowed fitness.
      */
     public function setAllowedFitness($allowedFitness)
     {
         $this->allowedFitness = $allowedFitness;
     }
+
 }

@@ -51,19 +51,10 @@ class ElementIndividual extends Individual
     {
         $action = mt_rand(0, 100);
 
-        // The root element will be a HTML with a body tag child, so we grab the first body element (the useful bit).
-        /*foreach ($this->getObject()->getChildren() as $child) {
-          if ($child->getType() == 'body') {
-            $element = $child;
-            break;
-          }
-        }*/
-
         // Get the element.
         $element = $this->getObject();
 
         if ($action <= $factor && count($element->getAttributes()) > 0) {
-
             // Mutate an attribute.
             $attributes = $element->getAttributes();
 
@@ -82,7 +73,6 @@ class ElementIndividual extends Individual
 
             $element->setAttributes($attributes);
         } elseif ($action >= $factor) {
-
             // Add additional children elements.
             $child_types = $element->getAvailableChildTypes($element->getType());
             $child_type = $child_types[array_rand($child_types)];
