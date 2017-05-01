@@ -52,22 +52,26 @@ class ImageIndividual extends Individual
      */
     public function mutateImage($amount = 1)
     {
-        $image = $this->getObject();
+        $action = mt_rand(0, 100);
 
-        $imageMatrix = $image->getImageMatrix();
+        if ($action <= 1) {
+            $image = $this->getObject();
 
-        $x = array_rand($imageMatrix);
-        $y = array_rand($imageMatrix[$x]);
+            $imageMatrix = $image->getImageMatrix();
 
-        $value = $image->getPixel($x, $y);
+            $x = array_rand($imageMatrix);
+            $y = array_rand($imageMatrix[$x]);
 
-        if ($value == 0) {
-            $value = 1;
-        } else {
-            $value = 1;
+            $value = $image->getPixel($x, $y);
+
+            if ($value == 0) {
+                $value = 1;
+            } else {
+                $value = 1;
+            }
+
+            $image->setPixel($x, $y, $value);
         }
-
-        $image->setPixel($x, $y, $value);
     }
 
     /**
@@ -91,16 +95,64 @@ class ImageIndividual extends Individual
     }
 
     /**
-     * @param $renderType
-     * @return mixed
+     * Render the image.
+     *
+     * @param string $renderType
+     *   The image render type.
+     *
+     * @return string
+     *   The rendered output.
      */
     public function render($renderType = 'cli')
     {
         switch ($renderType) {
+            case 'image':
+                $imageX = 100;
+                $imageY = 100;
+
+                $pixelSize = 10;
+
+                $im = imagecreatetruecolor($imageX, $imageY);
+
+                $backgroundColor = imagecolorallocate($im, 255, 255, 255);
+                $filledColor = imagecolorallocate($im, 132, 135, 28);
+
+                $xCoord = 0;
+
+                $imageMatrix = $this->object->getImageMatrix();
+
+                foreach ($imageMatrix as $xId => $x) {
+                    $yCoord = 0;
+                    foreach ($x as $yId => $y) {
+                        // Find out the end of the rectangle.
+                        $xEnd = $xCoord + $pixelSize;
+                        $yEnd = $yCoord + $pixelSize;
+
+                        // Pick the right color.
+                        if ($y == 1) {
+                            imagefilledrectangle($im, $yCoord, $xCoord, $yEnd, $xEnd, $filledColor);
+                        } else {
+                            imagefilledrectangle($im, $yCoord, $xCoord, $yEnd, $xEnd, $backgroundColor);
+                        }
+                        $yCoord = $yCoord + $pixelSize;
+                    }
+                    $xCoord = $xCoord + $pixelSize;
+                }
+
+                ob_start();
+                imagejpeg($im, null, 75);
+                $rawImage = ob_get_contents();
+                ob_end_clean();
+
+                $image = base64_encode($rawImage);
+                $output = '<img width="100" height="100" src="data:image/jpg;base64,' . $image . '" /> ';
+
+                break;
             case 'html':
                 $output = '<p>' . nl2br($this->object->render()) . '</p>';
                 break;
             case 'cli':
+                // Default fall through.
             default:
                 $output = $this->object->render() . ' ';
         }

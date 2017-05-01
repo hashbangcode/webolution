@@ -14,23 +14,33 @@ class ImagePopulation extends Population
 {
 
     /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
+     * Add an individual.
+     *
+     * @param Individual|null $individual
+     *   The Individual to add (optional).
+     *
+     * @return $this
+     *   The current object.
      */
     public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
-            $image = mt_rand(1, 10);
-            $individual = new ImageIndividual($image);
+            $individual = new ImageIndividual();
         }
         $this->individuals[] = $individual;
+
+        return $this;
     }
 
     /**
+     * Sort the population.
      *
+     * @return $this
+     *   The current object.
      */
     public function sort()
     {
-        sort($this->individuals);
+        return $this;
     }
 
     /**
@@ -57,6 +67,12 @@ class ImagePopulation extends Population
      */
     public function crossover()
     {
-        // @todo implement this.
+        $individuals = $this->getIndividuals();
+
+        $action = mt_rand(0, 100);
+
+        if ($action <= 1) {
+        }
     }
+
 }

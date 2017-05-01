@@ -10,8 +10,10 @@ $app->get('/image_evolution', function ($request, $response, $args) {
 
     $title = 'Image Evolution Test';
 
+    $styles = "img{border:1px solid black;}";
+
     $population = new ImagePopulation();
-    $population->setDefaultRenderType('html');
+    $population->setDefaultRenderType('image');
 
     for ($i = 0; $i < 10; $i++) {
         $population->addIndividual(new ImageIndividual(10, 10));
@@ -36,6 +38,7 @@ $app->get('/image_evolution', function ($request, $response, $args) {
 
     return $this->view->render($response, 'demos.twig', [
         'title' => $title,
-        'output' => $output
+        'output' => $output,
+        'styles' => $styles,
     ]);
 });
