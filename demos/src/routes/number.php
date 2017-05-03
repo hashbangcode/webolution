@@ -21,11 +21,12 @@ $app->get('/number_evolution', function ($request, $response, $args) {
     $evolution->setMaxGenerations(500);
     $evolution->setAllowedFitness(1);
     $evolution->setGlobalMutationFactor(1);
+    $evolution->setGlobalMutationAmount(1);
 
     $output = '';
 
     for ($i = 0; $i < $evolution->getMaxGenerations(); ++$i) {
-        if ($evolution->runGeneration() === FALSE) {
+        if ($evolution->runGeneration() === false) {
             $output .= '<p>Everyone is dead.</p>';
             break;
         }

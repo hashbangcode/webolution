@@ -82,6 +82,7 @@ class ColorIndividual extends Individual
                     $value = $this->getObject()->{'get' . $rgb_key}() + $amount;
                     break;
                 case 'subtract':
+                default:
                     $value = $this->getObject()->{'get' . $rgb_key}() - $amount;
                     break;
             }

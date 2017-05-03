@@ -34,7 +34,7 @@ class ImageIndividual extends Individual
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
@@ -62,7 +62,9 @@ class ImageIndividual extends Individual
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
+     *
+     * For Image types we return the number of "on" pixels in the image.
      */
     public function getFitness()
     {
@@ -82,13 +84,7 @@ class ImageIndividual extends Individual
     }
 
     /**
-     * Render the image.
-     *
-     * @param string $renderType
-     *   The image render type.
-     *
-     * @return string
-     *   The rendered output.
+     * {@inheritdoc}
      */
     public function render($renderType = 'cli')
     {

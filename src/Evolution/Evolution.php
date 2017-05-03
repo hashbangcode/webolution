@@ -30,29 +30,30 @@ class Evolution
     protected $globalMutationFactor;
 
     /**
+     * The global mutation amount.
+     * @var int
+     */
+    protected $globalMutationAmount;
+    /**
      * @var int
      *   The maximum number of generations to run.
      */
     protected $maxGenerations;
-
     /**
      * @var int
      *   The minimum number of individuals per generation.
      */
     protected $individualsPerGeneration;
-
     /**
      * @var int
      *   The allowed fitness value.
      */
     protected $allowedFitness = 8;
-
     /**
      * @var Population
      *   The current Population object.
      */
     protected $population;
-
     /**
      * @var array
      *   A store of the previous generations.
@@ -93,7 +94,8 @@ class Evolution
 
             // Setup initial Population.
             if ($autoGeneratePopulation === true
-                && $this->population->getLength() < $this->getIndividualsPerGeneration()) {
+                && $this->population->getLength() < $this->getIndividualsPerGeneration()
+            ) {
                 // Get the population object to generate individuals.
                 do {
                     // @todo we should be cloning and then mutating these things if there is at least one individual present instead of just creating new ones.
@@ -115,17 +117,6 @@ class Evolution
     }
 
     /**
-     * Get the current Population object.
-     *
-     * @return Population
-     *   The current Population object.
-     */
-    public function getCurrentPopulation()
-    {
-        return $this->population;
-    }
-
-    /**
      * @return int|null
      */
     public function getIndividualsPerGeneration()
@@ -139,6 +130,22 @@ class Evolution
     public function setIndividualsPerGeneration($individualsPerGeneration)
     {
         $this->individualsPerGeneration = $individualsPerGeneration;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGlobalMutationAmount()
+    {
+        return $this->globalMutationAmount;
+    }
+
+    /**
+     * @param int $globalMutationAmount
+     */
+    public function setGlobalMutationAmount($globalMutationAmount)
+    {
+        $this->globalMutationAmount = $globalMutationAmount;
     }
 
     /**
@@ -227,6 +234,9 @@ class Evolution
             if (!is_null($this->getGlobalMutationFactor())) {
                 $individual->setMutationFactor($this->getGlobalMutationFactor());
             }
+            if (!is_null($this->getGlobalMutationAmount())) {
+                $individual->setMutationAmount($this->getGlobalMutationAmount());
+            }
             $individual->mutate($individual->getMutationFactor(), $individual->getMutationAmount());
         }
 
@@ -308,6 +318,17 @@ class Evolution
     public function addPreviousGeneration($population)
     {
         $this->previousGenerations[$this->generation] = clone $population;
+    }
+
+    /**
+     * Get the current Population object.
+     *
+     * @return Population
+     *   The current Population object.
+     */
+    public function getCurrentPopulation()
+    {
+        return $this->population;
     }
 
     /**
