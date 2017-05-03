@@ -39,71 +39,7 @@ class TextIndividual extends Individual
     /**
      *
      */
-    public function mutateProperties()
-    {
-        $this->mutateText($this->getMutationFactor());
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFitness()
-    {
-
-        $text = str_split($this->getObject()->getText());
-        $goal = str_split($this->getFitnessGoal());
-
-        $score = 0;
-
-        // Count the number of characters that are the same as our goal text.
-        foreach ($text as $index => $character) {
-            if (isset($goal[$index]) && $goal[$index] == $character) {
-                $score = $score + 1;
-            }
-        }
-
-        return $score;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFitnessGoal()
-    {
-        return $this->fitnessGoal;
-    }
-
-    /**
-     * @param mixed $fitnessGoal
-     */
-    public function setFitnessGoal($fitnessGoal)
-    {
-        $this->fitnessGoal = $fitnessGoal;
-    }
-
-    /**
-     * @param $renderType
-     * @return mixed
-     */
-    public function render($renderType = 'cli')
-    {
-        $output = '';
-        switch ($renderType) {
-            case 'html':
-                $output .= $this->object->render() . '<br>';
-                break;
-            case 'cli':
-            default:
-                $output .= $this->object->render() . ' ';
-        }
-        return $output;
-    }
-
-    /**
-     *
-     */
-    public function mutateText()
+    public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         $text = $this->getObject()->getText();
         $goal = $this->getFitnessGoal();
@@ -158,4 +94,59 @@ class TextIndividual extends Individual
             $this->getObject()->setText($text);
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFitness()
+    {
+        $text = str_split($this->getObject()->getText());
+        $goal = str_split($this->getFitnessGoal());
+
+        $score = 0;
+
+        // Count the number of characters that are the same as our goal text.
+        foreach ($text as $index => $character) {
+            if (isset($goal[$index]) && $goal[$index] == $character) {
+                $score = $score + 1;
+            }
+        }
+
+        return $score;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFitnessGoal()
+    {
+        return $this->fitnessGoal;
+    }
+
+    /**
+     * @param mixed $fitnessGoal
+     */
+    public function setFitnessGoal($fitnessGoal)
+    {
+        $this->fitnessGoal = $fitnessGoal;
+    }
+
+    /**
+     * @param $renderType
+     * @return mixed
+     */
+    public function render($renderType = 'cli')
+    {
+        $output = '';
+        switch ($renderType) {
+            case 'html':
+                $output .= $this->object->render() . '<br>';
+                break;
+            case 'cli':
+            default:
+                $output .= $this->object->render() . ' ';
+        }
+        return $output;
+    }
+
 }

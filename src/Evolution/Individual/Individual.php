@@ -10,25 +10,64 @@ abstract class Individual implements IndividualInterface
 {
 
     /**
-     * @var
+     * The type object.
+     * @var object
      */
     protected $object;
 
     /**
+     * The mutation factor.
      * @var int
      */
     protected $mutationFactor;
 
     /**
-     * Individual constructor.
+     * The mutation amount.
+     * @var int
      */
-    public function __construct()
+    protected $mutationAmount;
+
+    /**
+     * Individual constructor.
+     *
+     * @param int $mutationFactor
+     *   The mutation factor.
+     * @param int $mutationAmount
+     *   The mutation amount.
+     */
+    public function __construct($mutationFactor = 0, $mutationAmount = 0)
     {
-        $this->mutationFactor = 0;
+        $this->mutationFactor = $mutationFactor;
+        $this->mutationAmount = $mutationAmount;
     }
 
     /**
+     * Get the mutation amount.
+     *
+     * @return integer
+     *   The mutation amount.
+     */
+    public function getMutationAmount()
+    {
+        return $this->mutationAmount;
+    }
+
+    /**
+     * Set the mutation amount.
+     *
+     * @param int $mutationAmount
+     *   The mutation amount.
+     */
+    public function setMutationAmount($mutationAmount)
+    {
+        $this->mutationAmount = $mutationAmount;
+    }
+
+    /**
+     * Get the mutation factor.
+     *
      * @return int
+     *   The mutation factor.
      */
     public function getMutationFactor()
     {
@@ -36,7 +75,10 @@ abstract class Individual implements IndividualInterface
     }
 
     /**
+     * Set the mutation factor.
+     *
      * @param int $mutationFactor
+     *   The mutation factor.
      */
     public function setMutationFactor($mutationFactor)
     {
@@ -44,23 +86,34 @@ abstract class Individual implements IndividualInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function getObject()
-    {
-        return $this->object;
-    }
-
     abstract public function getFitness();
 
+    /**
+     * {@inheritdoc}
+     */
     abstract public function render($renderType);
 
     /**
-     *
+     * {@inheritdoc}
+     */
+    abstract public function mutate($mutationFactor = 0, $mutationAmount = 1);
+
+    /**
+     * Magic method when the object is being cloned.
      */
     public function __clone()
     {
         $object = $this->getObject();
         $this->object = clone $object;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getObject()
+    {
+        return $this->object;
     }
 }

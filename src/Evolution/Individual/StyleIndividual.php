@@ -32,24 +32,13 @@ class StyleIndividual extends Individual
     }
 
     /**
-     * @return $this
+     * {@inheritdoc}
      */
-    public function mutateProperties()
-    {
-        $this->mutateStyle($this->getMutationFactor());
-        return $this;
-    }
-
-    /**
-     * Mutate the element.
-     *
-     * @param $factor The amount of variance to apply.
-     */
-    public function mutateStyle($factor)
+    public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         $action = mt_rand(0, 100);
 
-        $action = $action + $factor;
+        $action = $action + $mutationFactor;
 
         $style = $this->getObject();
 
@@ -115,8 +104,7 @@ class StyleIndividual extends Individual
 
         switch ($attribute) {
             case 'color':
-
-                $attributeProperty->mutateColor(1000);
+                $attributeProperty->mutate(0, 1000);
 
                 break;
         }

@@ -21,7 +21,7 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
     {
         $object = new TextIndividual(1);
         $object->setMutationFactor(1);
-        $object->mutateProperties();
+        $object->mutate();
         $this->assertNotEquals(1, $object->getObject()->getText());
     }
 
@@ -47,7 +47,7 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
     {
         $object = new TextIndividual(1);
         $object->setMutationFactor(2);
-        $object->mutateProperties();
+        $object->mutate();
         $this->assertNotEquals(1, $object->getObject()->getText());
         $this->assertEquals(2, $object->getMutationFactor());
     }
@@ -89,7 +89,7 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
     {
         $object = new TextIndividual(1);
         $this->assertEquals(1, $object->getObject()->getText());
-        $object->mutateText();
+        $object->mutate();
         $this->assertNotEquals(1, $object->getObject()->getText());
     }
 }

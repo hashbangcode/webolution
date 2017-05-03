@@ -21,7 +21,7 @@ class NumberIndividualTest extends \PHPUnit_Framework_TestCase
     {
         $object = new NumberIndividual(1);
         $object->setMutationFactor(1);
-        $object->mutateProperties();
+        $object->mutate();
         $this->assertNotEquals(1, $object->getObject()->getNumber());
     }
 
@@ -29,7 +29,7 @@ class NumberIndividualTest extends \PHPUnit_Framework_TestCase
     {
         $object = new NumberIndividual(1);
         $object->setMutationFactor(2);
-        $object->mutateProperties();
+        $object->mutate();
         $this->assertNotEquals(1, $object->getObject()->getNumber());
         $this->assertEquals(2, $object->getMutationFactor());
     }
@@ -66,7 +66,7 @@ class NumberIndividualTest extends \PHPUnit_Framework_TestCase
     {
         $object = new NumberIndividual(1);
         $this->assertEquals(1, $object->getObject()->getNumber());
-        $object->mutateNumber();
+        $object->mutate();
         $this->assertNotEquals(1, $object->getObject()->getNumber());
     }
 
@@ -74,13 +74,13 @@ class NumberIndividualTest extends \PHPUnit_Framework_TestCase
     {
         $object = new NumberIndividual(1);
         $this->assertEquals(1, $object->getObject()->getNumber());
-        $object->mutateNumber(0);
+        $object->mutate(0, 0);
         $this->assertEquals(1, $object->getObject()->getNumber());
-        $object->mutateNumber(0);
+        $object->mutate(0, 0);
         $this->assertEquals(1, $object->getObject()->getNumber());
-        $object->mutateNumber(0);
+        $object->mutate(0, 0);
         $this->assertEquals(1, $object->getObject()->getNumber());
-        $object->mutateNumber(0);
+        $object->mutate(0, 0);
         $this->assertEquals(1, $object->getObject()->getNumber());
     }
 }

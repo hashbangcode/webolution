@@ -36,23 +36,9 @@ class ImageIndividual extends Individual
     /**
      *
      */
-    public function mutateProperties()
+    public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
-        $this->mutateImage($this->getMutationFactor());
-        return $this;
-    }
-
-    /**
-     * Mutate the image.
-     *
-     * @param int $factor
-     *   The amount.
-     *
-     * @throws \Hashbangcode\Wevolution\Type\Image\Exception\InvalidPixelException
-     */
-    public function mutateImage($factor = 0)
-    {
-        $action = mt_rand(0, 100) + $factor;
+        $action = mt_rand(0, 100) + $mutationFactor;
 
         if ($action <= 1) {
             $image = $this->getObject();

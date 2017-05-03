@@ -26,7 +26,7 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
 
         $object = new ElementIndividual($html);
 
-        $object->mutateProperties();
+        $object->mutate();
         $this->assertEquals('html', $object->getObject()->getType());
     }
 
@@ -40,7 +40,7 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
         $object = new ElementIndividual($html);
 
         $object->setMutationFactor(-10);
-        $object->mutateProperties();
+        $object->mutate();
         $this->assertEquals('html', $object->getObject()->getType());
 
         $this->assertEquals(-10, $object->getMutationFactor());
@@ -94,7 +94,7 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
         $element = $rootElement->getChildren()[0];
         $element->setAttributes(array('class' => 'test'));
 
-        $object->mutateElement(-10);
+        $object->mutate(-10);
         $this->assertContains('<html><body class="test"><', $object->render());
     }
 
@@ -111,7 +111,7 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
         $element->setAttributes(array('class' => 'test'));
 
         for ($i = 0; $i < 25; ++$i) {
-            $object->mutateElement(-10);
+            $object->mutate(-10);
         }
 
         $this->assertLessThanOrEqual(10, $object->getObject()->getAttributes()['class']);
@@ -128,7 +128,7 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($object->getObject()->getChildren()));
 
         $object->getObject()->setAttributes(array('class' => 'test'));
-        $object->mutateElement(100);
+        $object->mutate(100);
         $this->assertStringStartsWith('test', $object->getObject()->getAttributes()['class']);
 
         $this->assertEquals(1, count($object->getObject()->getChildren()));
@@ -142,7 +142,7 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
 
         $object = new ElementIndividual($html);
 
-        $object->mutateElement(-10);
+        $object->mutate(-10);
         $this->assertNotEquals('test', $object->getObject()->getAttributes()['class']);
         $this->assertEquals(2, count($object->getObject()->getChildren()));
     }

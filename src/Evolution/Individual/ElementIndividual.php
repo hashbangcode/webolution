@@ -26,16 +26,7 @@ class ElementIndividual extends Individual
     }
 
     /**
-     * @return $this
-     */
-    public function mutateProperties()
-    {
-        $this->mutateElement($this->getMutationFactor());
-        return $this;
-    }
-
-    /**
-     * Mutate the element.
+     * {@inheritdoc}
      *
      * Possible actions to take during mutation.
      * - Alter attributes (9/10).
@@ -44,17 +35,15 @@ class ElementIndividual extends Individual
      * This should not alter the tag itself. Also, certain elements
      * should only get certain children. For example, a ul
      * or a ol element should only get a li or a.
-     *
-     * @param $factor The amount of variance to apply.
      */
-    public function mutateElement($factor)
+    public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         $action = mt_rand(0, 100);
 
         // Get the element.
         $element = $this->getObject();
 
-        if ($action <= $factor && count($element->getAttributes()) > 0) {
+        if ($action <= $mutationFactor && count($element->getAttributes()) > 0) {
             // Mutate an attribute.
             $attributes = $element->getAttributes();
 
@@ -72,7 +61,7 @@ class ElementIndividual extends Individual
             $attributes[$random_attribute] = $attribute_value;
 
             $element->setAttributes($attributes);
-        } elseif ($action >= $factor) {
+        } elseif ($action >= $mutationFactor) {
             // Add additional children elements.
             $child_types = $element->getAvailableChildTypes($element->getType());
             $child_type = $child_types[array_rand($child_types)];

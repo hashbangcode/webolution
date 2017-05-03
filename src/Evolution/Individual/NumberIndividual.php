@@ -30,19 +30,9 @@ class NumberIndividual extends Individual
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
-    public function mutateProperties()
-    {
-        $this->mutateNumber($this->getMutationFactor());
-        return $this;
-    }
-
-    /**
-     * @param int $amount
-     * @throws \Hashbangcode\Wevolution\Type\Number\Exception\InvalidPixelException
-     */
-    public function mutateNumber($amount = 1)
+    public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         $operators = array('add', 'subtract');
 
@@ -50,10 +40,10 @@ class NumberIndividual extends Individual
 
         switch ($operators[array_rand($operators)]) {
             case 'add':
-                $value = $number + $amount;
+                $value = $number + $mutationAmount;
                 break;
             case 'subtract':
-                $value = $number - $amount;
+                $value = $number - $mutationAmount;
                 break;
         }
 
@@ -61,7 +51,7 @@ class NumberIndividual extends Individual
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getFitness()
     {
@@ -84,4 +74,5 @@ class NumberIndividual extends Individual
         }
         return $output;
     }
+
 }

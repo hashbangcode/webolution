@@ -227,7 +227,7 @@ class Evolution
             if (!is_null($this->getGlobalMutationFactor())) {
                 $individual->setMutationFactor($this->getGlobalMutationFactor());
             }
-            $individual->mutateProperties();
+            $individual->mutate($individual->getMutationFactor(), $individual->getMutationAmount());
         }
 
         // Run the crossover function.

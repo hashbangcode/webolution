@@ -25,36 +25,24 @@ class PageIndividual extends Individual
     }
 
     /**
-     * @return $this
-     */
-    public function mutateProperties()
-    {
-        $this->mutateElement($this->getMutationFactor());
-        return $this;
-    }
-
-    /**
-     * Mutate the page.
+     * {@inheritdoc}
      *
      * Possible actions to take during mutation.
      * - Chance to mutate body (9/10).
      * - Chance to mutate styles (1/10).
-     *
-     * @param $factor
-     *   Amount of variance to apply.
      */
-    public function mutateElement($factor)
+    public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         $action = mt_rand(0, 100);
 
         // Get the element.
         $element = $this->getObject();
 
-        if ($action <= $factor && count($element->getAttributes()) > 0) {
+        if ($action <= $mutationFactor && count($element->getAttributes()) > 0) {
             // Mutate styles.
             $element->getStyles()->mutate();
 
-        } elseif ($action >= $factor) {
+        } elseif ($action >= $mutationFactor) {
             // Mutate body.
             $element->getBody()->mutate();
 

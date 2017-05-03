@@ -64,25 +64,10 @@ class ColorIndividual extends Individual
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
-    public function mutateProperties()
+    public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
-        $this->mutateColor($this->getMutationFactor());
-        return $this;
-    }
-
-    /**
-     * Tweak a value in the RGB matrix for the color.
-     *
-     * @param int $amount The amount of alteration to make. Note that the RGB value of the color can't exceed 255 or be
-     * less than 0. If this situation occurs the amounts are restricted.
-     *
-     * @return $this The current object.
-     */
-    public function mutateColor($mutationFactor)
-    {
-
         if (mt_rand(0, 100) < $mutationFactor) {
             $amount = mt_rand(1, 15);
 

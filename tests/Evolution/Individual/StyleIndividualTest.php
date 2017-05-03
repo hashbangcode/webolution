@@ -65,7 +65,7 @@ class StyleIndividualTest extends \PHPUnit_Framework_TestCase
         $object = new StyleIndividual('.div');
         $object->getObject()->setAttrbute('color', ColorIndividual::generateFromHex('000000'));
 
-        $object->mutateStyle(50);
+        $object->mutate(0, 50);
 
         $output = $object->render();
 
