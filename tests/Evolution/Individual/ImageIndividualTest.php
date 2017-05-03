@@ -24,7 +24,7 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
         $render = $object->getObject()->render();
         $this->assertNotRegExp('/1/', $render);
 
-        $object->setMutationFactor(1);
+        $object->setMutationFactor(-100);
         $object->mutateProperties();
 
         $render = $object->getObject()->render();

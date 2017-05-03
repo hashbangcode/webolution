@@ -124,4 +124,89 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $output = $object->render();
         $this->assertStringEqualsFile('tests/Type/Image/image02.txt', $output);
     }
+
+    public function testAdjacentPixelsWith1Pixel()
+    {
+        $object = new Image(5, 5);
+
+        /*
+         * 01234
+         * 00000 0 (0,0) (0,1) (0,2)
+         * 01000 1 (1,0)       (1,2)
+         * 00000 2 (2,0) (2,1) (2,2)
+         * 00000 3
+         * 00000 4
+         */
+
+        $object->setPixel(1, 1, 1);
+
+        $adjacentPixels = $object->getAdjacentPixels();
+
+        $this->assertEquals(8, count($adjacentPixels));
+    }
+
+    public function testAdjacentPixelsWithEdgePixel()
+    {
+        $object = new Image(5, 5);
+
+        /*
+         * 01234
+         * 10000 0 (0,1)
+         * 00000 1 (1,0) (1,1)
+         * 00000 2
+         * 00000 3
+         * 00000 4
+         */
+
+        $object->setPixel(0, 0, 1);
+
+        $adjacentPixels = $object->getAdjacentPixels();
+
+        $this->assertEquals(3, count($adjacentPixels));
+    }
+
+    public function testAdjacentPixelsWith2Pixels()
+    {
+        $object = new Image(5, 5);
+
+        /*
+         * 01234
+         * 00000 0 (0,0) (0,1) (0,2) (0,3)
+         * 01100 1 (1,0)             (1,3)
+         * 00000 2 (2,0) (2,1) (2,2) (2,3)
+         * 00000 3
+         * 00000 4
+         */
+
+        $object->setPixel(1, 1, 1);
+        $object->setPixel(1, 2, 1);
+
+        $adjacentPixels = $object->getAdjacentPixels();
+
+        $this->assertEquals(10, count($adjacentPixels));
+    }
+
+    public function testAdjacentPixelsWithFourCorners()
+    {
+        $object = new Image(5, 5);
+
+        /*
+         * 01234
+         * 10001 0       (0,1)   (0,3)
+         * 00000 1 (1,0) (1,1)   (1,3) (1,4)
+         * 00000 2
+         * 00000 3 (3,0) (3,1)   (3,3) (3,4)
+         * 10001 4       (4,1)   (4,3)
+         */
+
+        $object->setPixel(0, 0, 1);
+        $object->setPixel(4, 0, 1);
+        $object->setPixel(0, 4, 1);
+        $object->setPixel(4, 4, 1);
+
+
+        $adjacentPixels = $object->getAdjacentPixels();
+
+        $this->assertEquals(12, count($adjacentPixels));
+    }
 }

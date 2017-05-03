@@ -45,20 +45,21 @@ class ImageIndividual extends Individual
     /**
      * Mutate the image.
      *
-     * @param int $amount
+     * @param int $factor
      *   The amount.
      *
      * @throws \Hashbangcode\Wevolution\Type\Image\Exception\InvalidPixelException
      */
-    public function mutateImage($amount = 1)
+    public function mutateImage($factor = 0)
     {
-        $action = mt_rand(0, 100);
+        $action = mt_rand(0, 100) + $factor;
 
         if ($action <= 1) {
             $image = $this->getObject();
 
             $imageMatrix = $image->getImageMatrix();
 
+            // Select a random pixel.
             $x = array_rand($imageMatrix);
             $y = array_rand($imageMatrix[$x]);
 

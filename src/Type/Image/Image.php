@@ -137,4 +137,62 @@ class Image implements TypeInterface
         return trim($output);
     }
 
+    /**
+     * Find all of the pixels in the image that are blank, but adjacent to other pixels.
+     *
+     * @return array
+     *   The coordinates of the adjacent pixels.
+     */
+    public function getAdjacentPixels()
+    {
+        $adjacentPixels = [];
+
+        foreach ($this->imageMatrix as $xId => $x) {
+            foreach ($x as $yId => $y) {
+                if ($y == 1) {
+                    /*
+                     * This is a pixel so we look around to find adjacent pixels.
+                     * (-1,-1)( 0,-1)(+1,-1)
+                     * (-1, 0)       (+1, 0)
+                     * (-1,+1)( 0,+1)(+1,+1)
+                     */
+
+                    // Upper left.
+                    if (isset($this->imageMatrix[$xId - 1][$yId - 1]) && $this->imageMatrix[$xId - 1][$yId - 1] == 0) {
+                        $adjacentPixels[($xId - 1)  . ($yId - 1)] = ['x' => $xId - 1, 'y' => $yId - 1];
+                    }
+                    // Upper middle.
+                    if (isset($this->imageMatrix[$xId][$yId - 1]) && $this->imageMatrix[$xId][$yId - 1] == 0) {
+                        $adjacentPixels[$xId . ($yId - 1)] = ['x' => $xId, 'y' => $yId - 1];
+                    }
+                    // Upper right.
+                    if (isset($this->imageMatrix[$xId + 1][$yId - 1]) && $this->imageMatrix[$xId + 1][$yId - 1] == 0) {
+                        $adjacentPixels[($xId + 1) . ($yId - 1)] = ['x' => $xId + 1, 'y' => $yId - 1];
+                    }
+                    // Middle left.
+                    if (isset($this->imageMatrix[$xId - 1][$yId]) && $this->imageMatrix[$xId - 1][$yId] == 0) {
+                        $adjacentPixels[($xId - 1) . $yId] = ['x' => $xId - 1, 'y' => $yId];
+                    }
+                    // Middle Right.
+                    if (isset($this->imageMatrix[$xId + 1][$yId]) && $this->imageMatrix[$xId + 1][$yId] == 0) {
+                        $adjacentPixels[($xId + 1) . $yId] = ['x' => $xId + 1, 'y' => $yId];
+                    }
+                    // Lower left.
+                    if (isset($this->imageMatrix[$xId - 1][$yId + 1]) && $this->imageMatrix[$xId - 1][$yId + 1] == 0) {
+                        $adjacentPixels[($xId - 1) . ($yId + 1)] = ['x' => $xId - 1, 'y' => $yId + 1];
+                    }
+                    // Lower middle.
+                    if (isset($this->imageMatrix[$xId][$yId + 1]) && $this->imageMatrix[$xId][$yId + 1] == 0) {
+                        $adjacentPixels[$xId . ($yId + 1)] = ['x' => $xId, 'y' => $yId + 1];
+                    }
+                    // Lower right.
+                    if (isset($this->imageMatrix[$xId + 1][$yId + 1]) && $this->imageMatrix[$xId + 1][$yId + 1] == 0) {
+                        $adjacentPixels[($xId + 1) . ($yId + 1)] = ['x' => $xId + 1, 'y' => $yId + 1];
+                    }
+                }
+            }
+        }
+
+        return $adjacentPixels;
+    }
 }
