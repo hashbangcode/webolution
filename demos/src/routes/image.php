@@ -24,7 +24,6 @@ $app->get('/image_evolution', function ($request, $response, $args) {
     $evolution = new Evolution($population);
     $evolution->setIndividualsPerGeneration(10);
     $evolution->setMaxGenerations(300);
-    $evolution->setGlobalMutationFactor(-25);
 
     $output = '';
 
