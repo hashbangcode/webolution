@@ -40,21 +40,32 @@ class ImageIndividual extends Individual
     {
         $action = mt_rand(0, 100) + $mutationFactor;
 
-        if ($action <= 1) {
+        if ($action <= 50) {
             $image = $this->getObject();
 
             $imageMatrix = $image->getImageMatrix();
 
-            // Select a random pixel.
-            $x = array_rand($imageMatrix);
-            $y = array_rand($imageMatrix[$x]);
+            $pixels = $image->getAdjacentPixels();
+
+            if (count($pixels) > 0) {
+                // Get a pixel from the adjacent pixels.
+                $randomAdjacentPixel = array_rand($pixels);
+                $randomAdjacentPixel = $pixels[$randomAdjacentPixel];
+
+                $x = $randomAdjacentPixel['x'];
+                $y = $randomAdjacentPixel['y'];
+            } else {
+                // Select a random pixel.
+                $x = array_rand($imageMatrix);
+                $y = array_rand($imageMatrix[$x]);
+            }
 
             $value = $image->getPixel($x, $y);
 
             if ($value == 0) {
                 $value = 1;
             } else {
-                $value = 1;
+                $value = 0;
             }
 
             $image->setPixel($x, $y, $value);
@@ -90,10 +101,12 @@ class ImageIndividual extends Individual
     {
         switch ($renderType) {
             case 'image':
-                $imageX = 100;
-                $imageY = 100;
+                $imageMatrix = $this->object->getImageMatrix();
 
-                $pixelSize = 10;
+                $imageX = (count($imageMatrix) + 100);
+                $imageY = (count($imageMatrix[0]) + 100);
+
+                $pixelSize = $imageX / count($imageMatrix);
 
                 $im = imagecreatetruecolor($imageX, $imageY);
 
@@ -128,7 +141,7 @@ class ImageIndividual extends Individual
                 ob_end_clean();
 
                 $image = base64_encode($rawImage);
-                $output = '<img width="100" height="100" src="data:image/jpg;base64,' . $image . '" /> ';
+                $output = '<img width="' . $imageX . '" height="' . $imageY . '" src="data:image/jpg;base64,' . $image . '" /> ';
 
                 break;
             case 'html':

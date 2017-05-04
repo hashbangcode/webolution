@@ -16,14 +16,15 @@ $app->get('/image_evolution', function ($request, $response, $args) {
     $population->setDefaultRenderType('image');
 
     for ($i = 0; $i < 10; $i++) {
-        $population->addIndividual(new ImageIndividual(10, 10));
+        $image = new ImageIndividual(25, 25);
+        $image->getObject()->setPixel(24, 12, 1);
+        $population->addIndividual($image);
     }
 
     $evolution = new Evolution($population);
     $evolution->setIndividualsPerGeneration(10);
-    $evolution->setMaxGenerations(100);
-    $evolution->setAllowedFitness(1);
-    $evolution->setGlobalMutationFactor(1);
+    $evolution->setMaxGenerations(300);
+    $evolution->setGlobalMutationFactor(-25);
 
     $output = '';
 
