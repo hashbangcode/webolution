@@ -153,7 +153,7 @@ img {padding:0px;margin:0px;}';
     $evolution->setIndividualsPerGeneration(1000);
 
     // Run one generation.
-    $evolution->runGeneration(FALSE);
+    $evolution->runGeneration(false);
 
     $colorPopulation = $evolution->getCurrentPopulation();
 

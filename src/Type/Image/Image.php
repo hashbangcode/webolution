@@ -12,8 +12,20 @@ use Hashbangcode\Wevolution\Type\TypeInterface;
 class Image implements TypeInterface
 {
 
+    /**
+     * @var array
+     *   The image matrix.
+     */
     private $imageMatrix = [];
 
+    /**
+     * Image constructor.
+     *
+     * @param int $x
+     *   The width.
+     * @param int $y
+     *   The height.
+     */
     public function __construct($x = 20, $y = 20)
     {
         $this->createImageMatrix($x, $y);

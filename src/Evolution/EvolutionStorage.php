@@ -171,7 +171,7 @@ CREATE TABLE "populations" (
     }
 
     /**
-     * @param bool $kill
+     * {@inheritdoc}
      */
     public function runGeneration($kill = true)
     {
