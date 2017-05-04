@@ -58,7 +58,7 @@ a, a:link, a:visited, a:hover, a:active {padding:0px;margin:0px;}';
 
     $evolution->setupDatabase('sqlite:' . $database);
 
-    $evolution->setIndividualsPerGeneration(10);
+    $evolution->setIndividualsPerGeneration(100);
 
     $generation = $evolution->getGeneration();
 
@@ -101,6 +101,7 @@ a, a:link, a:visited, a:hover, a:active {padding:0px;margin:0px;}';
     return $this->view->render($response, 'demos.twig', [
         'title' => $title,
         'output' => $output,
-        'styles' => $styles
+        'styles' => $styles,
+        'meta' => '<meta http-equiv="refresh" content="5" >',
     ]);
 });
