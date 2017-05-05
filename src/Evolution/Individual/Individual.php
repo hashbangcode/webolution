@@ -16,18 +16,6 @@ abstract class Individual implements IndividualInterface
     protected $object;
 
     /**
-     * The mutation factor.
-     * @var int
-     */
-    protected $mutationFactor;
-
-    /**
-     * The mutation amount.
-     * @var int
-     */
-    protected $mutationAmount;
-
-    /**
      * Individual constructor.
      *
      * @param int $mutationFactor
@@ -39,50 +27,6 @@ abstract class Individual implements IndividualInterface
     {
         $this->mutationFactor = $mutationFactor;
         $this->mutationAmount = $mutationAmount;
-    }
-
-    /**
-     * Get the mutation amount.
-     *
-     * @return integer
-     *   The mutation amount.
-     */
-    public function getMutationAmount()
-    {
-        return $this->mutationAmount;
-    }
-
-    /**
-     * Set the mutation amount.
-     *
-     * @param int $mutationAmount
-     *   The mutation amount.
-     */
-    public function setMutationAmount($mutationAmount)
-    {
-        $this->mutationAmount = $mutationAmount;
-    }
-
-    /**
-     * Get the mutation factor.
-     *
-     * @return int
-     *   The mutation factor.
-     */
-    public function getMutationFactor()
-    {
-        return $this->mutationFactor;
-    }
-
-    /**
-     * Set the mutation factor.
-     *
-     * @param int $mutationFactor
-     *   The mutation factor.
-     */
-    public function setMutationFactor($mutationFactor)
-    {
-        $this->mutationFactor = $mutationFactor;
     }
 
     /**

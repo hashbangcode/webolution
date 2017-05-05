@@ -30,8 +30,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
     public function testRenderIndividual()
     {
         $object = new ColorIndividual(125, 125, 125);
-        $object->setMutationFactor(0);
-        $object->mutate();
+        $object->mutate(0);
         $renderType = 'cli';
 
         $this->assertEquals('7D7D7D', $object->getObject()->render($renderType));
@@ -41,8 +40,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
     public function testRenderIndividualHtml()
     {
         $object = new ColorIndividual(125, 125, 125);
-        $object->setMutationFactor(0);
-        $object->mutate();
+        $object->mutate(0);
         $renderType = 'html';
 
         $this->assertEquals('<span style="background-color:#7D7D7D"> </span>', $object->render($renderType));
@@ -51,8 +49,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
     public function testMutateColorThroughIndividual()
     {
         $object = new ColorIndividual(125, 125, 125);
-        $object->setMutationFactor(1);
-        $object->mutate();
+        $object->mutate(1);
         $renderType = 'cli';
         $this->assertNotEquals('125125125', $object->getObject()->render($renderType));
         $this->assertNotEquals('125125125' . PHP_EOL, $object->render($renderType));

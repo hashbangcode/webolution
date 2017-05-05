@@ -39,11 +39,8 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
 
         $object = new ElementIndividual($html);
 
-        $object->setMutationFactor(-10);
-        $object->mutate();
+        $object->mutate(-10);
         $this->assertEquals('html', $object->getObject()->getType());
-
-        $this->assertEquals(-10, $object->getMutationFactor());
     }
 
     public function testGetElementIndividualFitness()

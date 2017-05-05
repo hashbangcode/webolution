@@ -11,40 +11,67 @@ use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 abstract class Population implements PopulationInterface
 {
     /**
+     * The individuals of this population.
+     *
      * @var array
      */
     protected $individuals = array();
 
     /**
+     * The default render type.
+     *
      * @var string
      */
     protected $defaultRenderType = '';
 
     /**
+     * The population fitness.
+     *
      * @var array
      */
     protected $populationFitness = array();
 
     /**
-     * @var
+     * The mean fitness.
+     *
+     * @var int
      */
     protected $meanFitness;
 
     /**
-     * @var
+     * The median fitness individual object.
+     *
+     * @var Individual
      */
     protected $medianIndividual;
 
     /**
-     * @var
+     * The minimum fitness individual object.
+     *
+     * @var Individual
      */
     protected $minIndividual;
 
     /**
-     * @var
+     * The maximum fitness individual object.
+     *
+     * @var Individual
      */
     protected $maxIndividual;
 
+    /**
+     * The mutation factor.
+     *
+     * @var int
+     */
+    protected $mutationFactor;
+
+    /**
+     * The mutation amount.
+     *
+     * @var int
+     */
+    protected $mutationAmount;
 
     /**
      * Add an individual.
@@ -57,12 +84,10 @@ abstract class Population implements PopulationInterface
     abstract public function addIndividual(Individual $individual = null);
 
     /**
-     * Perform a crossover function on certain members of the population.
-     */
-    abstract public function crossover();
-
-    /**
-     * @param $key
+     * Remove an individual from the population.
+     *
+     * @param int $key
+     *   The key of the individual in the individuals array.
      */
     public function removeIndividual($key)
     {
@@ -99,7 +124,7 @@ abstract class Population implements PopulationInterface
     }
 
     /**
-     *
+     * Make a copy of an individual.
      */
     public function copyIndividual()
     {
@@ -110,7 +135,10 @@ abstract class Population implements PopulationInterface
     }
 
     /**
-     * @return mixed
+     * Get a random individual from the population.
+     *
+     * @return Individual|bool
+     *   An individual from the population. False if failure.
      */
     public function getRandomIndividual()
     {
@@ -127,7 +155,10 @@ abstract class Population implements PopulationInterface
     }
 
     /**
+     * Get the length of the population.
+     *
      * @return int
+     *   Length of population.
      */
     public function getLength()
     {
@@ -135,7 +166,10 @@ abstract class Population implements PopulationInterface
     }
 
     /**
+     * Render the entire population.
+     *
      * @return string
+     *   The rendered population.
      */
     public function render()
     {
@@ -181,6 +215,68 @@ abstract class Population implements PopulationInterface
     {
         $this->defaultRenderType = $defaultRenderType;
     }
+
+    /**
+     * Mutate the population.
+     */
+    public function mutatePopulation()
+    {
+        foreach ($this->getIndividuals() as $key => $individual) {
+            $individual->mutate($this->getMutationFactor(), $this->getMutationAmount());
+        }
+
+        // Run the crossover function.
+        $this->crossover();
+    }
+
+    /**
+     * Get the mutation factor.
+     *
+     * @return int
+     *   The mutation factor.
+     */
+    public function getMutationFactor()
+    {
+        return $this->mutationFactor;
+    }
+
+    /**
+     * Set the mutation factor.
+     *
+     * @param int $mutationFactor
+     *   The mutation factor.
+     */
+    public function setMutationFactor($mutationFactor)
+    {
+        $this->mutationFactor = $mutationFactor;
+    }
+
+    /**
+     * Get the mutation amount.
+     *
+     * @return integer
+     *   The mutation amount.
+     */
+    public function getMutationAmount()
+    {
+        return $this->mutationAmount;
+    }
+
+    /**
+     * Set the mutation amount.
+     *
+     * @param int $mutationAmount
+     *   The mutation amount.
+     */
+    public function setMutationAmount($mutationAmount)
+    {
+        $this->mutationAmount = $mutationAmount;
+    }
+
+    /**
+     * Perform a crossover function on certain members of the population.
+     */
+    abstract public function crossover();
 
     /**
      * @return bool

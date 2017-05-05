@@ -12,51 +12,65 @@ class Evolution
 {
 
     /**
+     * The global fitness goal.
+     *
      * @var mixed|null
-     *   The global fitness goal.
      */
     public $globalFitnessGoal = null;
 
     /**
+     * The current generation.
+     *
      * @var int
-     *   The current generation.
      */
     protected $generation = 1;
 
     /**
+     * The global mutation factor.
+     *
      * @var int
-     *   The global mutation factor.
      */
     protected $globalMutationFactor;
 
     /**
      * The global mutation amount.
+     *
      * @var int
      */
     protected $globalMutationAmount;
+
     /**
+     * The maximum number of generations to run.
+     *
      * @var int
-     *   The maximum number of generations to run.
      */
     protected $maxGenerations;
+
     /**
+     * The minimum number of individuals per generation.
+     *
      * @var int
-     *   The minimum number of individuals per generation.
      */
     protected $individualsPerGeneration;
+
     /**
+     * The allowed fitness value.
+     *
      * @var int
-     *   The allowed fitness value.
      */
     protected $allowedFitness = 8;
+
     /**
+     * The current Population object.
+     *
      * @var Population
-     *   The current Population object.
      */
     protected $population;
+
     /**
+     * A store of the previous generations.
+     *
      * @var array
-     *   A store of the previous generations.
      */
     protected $previousGenerations = array();
 
@@ -133,22 +147,6 @@ class Evolution
     }
 
     /**
-     * @return int
-     */
-    public function getGlobalMutationAmount()
-    {
-        return $this->globalMutationAmount;
-    }
-
-    /**
-     * @param int $globalMutationAmount
-     */
-    public function setGlobalMutationAmount($globalMutationAmount)
-    {
-        $this->globalMutationAmount = $globalMutationAmount;
-    }
-
-    /**
      * Set the Population object.
      *
      * @param Population $population
@@ -160,7 +158,10 @@ class Evolution
     }
 
     /**
+     * Run a generation.
+     *
      * @return bool
+     *   True if successful. False if everyone dies.
      */
     public function runGeneration($kill = true)
     {
@@ -226,22 +227,16 @@ class Evolution
             } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
         }
 
-        //print 'PRE TEST: <pre>'.print_r($this->population->getStatistics(), true) . '</pre>';
 
-        // Mutate the population.
-        // @todo should this be part of the population class?
-        foreach ($this->population->getIndividuals() as $key => $individual) {
-            if (!is_null($this->getGlobalMutationFactor())) {
-                $individual->setMutationFactor($this->getGlobalMutationFactor());
-            }
-            if (!is_null($this->getGlobalMutationAmount())) {
-                $individual->setMutationAmount($this->getGlobalMutationAmount());
-            }
-            $individual->mutate($individual->getMutationFactor(), $individual->getMutationAmount());
+        if (!is_null($this->getGlobalMutationFactor())) {
+            $this->population->setMutationFactor($this->getGlobalMutationFactor());
+        }
+        if (!is_null($this->getGlobalMutationAmount())) {
+            $this->population->setMutationAmount($this->getGlobalMutationAmount());
         }
 
-        // Run the crossover function.
-        $this->population->crossover();
+        // Mutate the population.
+        $this->population->mutatePopulation();
 
         // Store the current generation.
         $this->addPreviousGeneration(clone $this->getCurrentPopulation());
@@ -313,7 +308,26 @@ class Evolution
     }
 
     /**
-     * @param $population
+     * @return int
+     */
+    public function getGlobalMutationAmount()
+    {
+        return $this->globalMutationAmount;
+    }
+
+    /**
+     * @param int $globalMutationAmount
+     */
+    public function setGlobalMutationAmount($globalMutationAmount)
+    {
+        $this->globalMutationAmount = $globalMutationAmount;
+    }
+
+    /**
+     * Add a population to the previous list of populations.
+     *
+     * @param Population $population
+     *   The population object to add.
      */
     public function addPreviousGeneration($population)
     {
@@ -394,5 +408,4 @@ class Evolution
     {
         $this->allowedFitness = $allowedFitness;
     }
-
 }

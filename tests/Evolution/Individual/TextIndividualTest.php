@@ -20,8 +20,7 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
     public function testMutateTextThroughIndividual()
     {
         $object = new TextIndividual(1);
-        $object->setMutationFactor(1);
-        $object->mutate();
+        $object->mutate(1);
         $this->assertNotEquals(1, $object->getObject()->getText());
     }
 
@@ -46,10 +45,8 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
     public function testMutateTextThroughIndividualWithDifferentFactor()
     {
         $object = new TextIndividual(1);
-        $object->setMutationFactor(2);
-        $object->mutate();
+        $object->mutate(2);
         $this->assertNotEquals(1, $object->getObject()->getText());
-        $this->assertEquals(2, $object->getMutationFactor());
     }
 
     public function testGetFitness()
