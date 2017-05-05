@@ -10,7 +10,7 @@ use Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual;
 use Hashbangcode\Wevolution\Evolution\Individual\PageIndividual;
 use Hashbangcode\Wevolution\Evolution\Population\PagePopulation;
 
-$app->get('/page_evolution[/{evolutionid}]', function ($request, $response, $args) {
+$app->get('/page_evolution_storage[/{evolutionid}]', function ($request, $response, $args) {
     $styles = 'div {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}.elementframe{width:500px;height:500px;}';
 
     $title = 'Page Storage Test';
@@ -33,21 +33,21 @@ $app->get('/page_evolution[/{evolutionid}]', function ($request, $response, $arg
     $generation = $evolution->getGeneration();
 
     if ($generation == 1) {
-        $html = new Element('html');
-        $head = new Element('head');
-        $body = new Element('body');
+        $pageIndividual = new PageIndividual();
 
-        $style = new Element('style');
+        $p = new ElementIndividual('p');
+        $ul = new Element('ul');
+        $li = new Element('li');
+
+        $p->getObject()->addChild($ul);
+        $ul->addChild($li);
+
+        $pageIndividual->getObject()->setBody($p);
+
         $style_object = new StyleIndividual('.text');
-        $style_element = new Element($style_object);
+        $pageIndividual->getObject()->setStyle($style_object);
 
-        $style->addChild($style_element);
-
-        $head->addChild($style);
-        $html->addChild($head);
-        $html->addChild($body);
-
-        $population->addIndividual(new ElementIndividual($html));
+        $population->addIndividual($pageIndividual);
 
         $evolution->setPopulation($population);
     } else {
@@ -62,7 +62,7 @@ $app->get('/page_evolution[/{evolutionid}]', function ($request, $response, $arg
 
     $output .= '<p>Generation: ' . $evolution->getGeneration() . '</p>';
 
-    $output .= nl2br($evolution->renderGenerations());
+    $output .= $evolution->renderGenerations();
 
     return $this->view->render($response, 'demos.twig', [
         'title' => $title,

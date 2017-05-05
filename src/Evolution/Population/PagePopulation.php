@@ -69,15 +69,7 @@ class PagePopulation extends Population
     public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
-            $html = new Element('html');
-            $body = new Element('body');
-            $html->addChild($body);
-
-            $individual = new ElementIndividual($html);
-        }
-
-        if ($individual->getObject()->getType() !== 'html') {
-            throw new Exception\ElementPageRootException('Root page element must be of type "html"');
+            $individual = new PageIndividual();
         }
 
         $this->individuals[] = $individual;

@@ -255,7 +255,7 @@ class Element implements TypeInterface
     {
         if (!in_array($element->getType(), $this->getAvailableChildTypes())) {
             // Invalid child Element.
-            $message = 'Cant add child of type ' . $element->getType() . ' to ' . $this->getType();
+            $message = 'Cant add child of type "' . $element->getType() . '" to "' . $this->getType() . '".';
             throw new Exception\InvalidChildTypeException($message);
         }
 
@@ -279,12 +279,14 @@ class Element implements TypeInterface
 
         switch ($this->type) {
             case 'html':
-                return array('body');
+                return ['body'];
+            case 'head':
+                return ['style'];
             case 'ul':
             case 'ol':
-                return array('li');
+                return ['li'];
             default:
-                return array('ul', 'ol', 'div', 'p', 'h1', 'h2');
+                return ['ul', 'ol', 'div', 'p', 'h1', 'h2'];
         }
     }
 
