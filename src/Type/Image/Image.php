@@ -150,6 +150,61 @@ class Image implements TypeInterface
     }
 
     /**
+     * Render the image as a base64 encoded string.
+     *
+     * @return string
+     *   The base64 version of the image.
+     */
+    public function renderBase64Image()
+    {
+        $imageMatrix = $this->getImageMatrix();
+
+        // Calculate the size of the image.
+        $imageX = (count($imageMatrix) + 100);
+        $imageY = (count($imageMatrix[0]) + 100);
+
+        // Calculate the size of a pixel.
+        $pixelSize = $imageX / count($imageMatrix);
+
+        // Set up image handle.
+        $im = imagecreatetruecolor($imageX, $imageY);
+
+        // Assign colours.
+        $backgroundColor = imagecolorallocate($im, 255, 255, 255);
+        $filledColor = imagecolorallocate($im, 132, 135, 28);
+
+        // Generate image pixels.
+        $xCoord = 0;
+
+        foreach ($imageMatrix as $xId => $x) {
+            $yCoord = 0;
+            foreach ($x as $yId => $y) {
+                // Find out the end of the rectangle.
+                $xEnd = $xCoord + $pixelSize;
+                $yEnd = $yCoord + $pixelSize;
+
+                // Pick the right color.
+                if ($y == 1) {
+                    imagefilledrectangle($im, $yCoord, $xCoord, $yEnd, $xEnd, $filledColor);
+                } else {
+                    imagefilledrectangle($im, $yCoord, $xCoord, $yEnd, $xEnd, $backgroundColor);
+                }
+                $yCoord = $yCoord + $pixelSize;
+            }
+            $xCoord = $xCoord + $pixelSize;
+        }
+
+        // Render the image.
+        ob_start();
+        imagejpeg($im, null, 75);
+        $rawImage = ob_get_contents();
+        ob_end_clean();
+
+        // Convert the image to
+        return 'data:image/jpg;base64,' . base64_encode($rawImage);
+    }
+
+    /**
      * Find all of the pixels in the image that are blank, but adjacent to other pixels.
      *
      * @return array
@@ -206,5 +261,51 @@ class Image implements TypeInterface
         }
 
         return $adjacentPixels;
+    }
+
+    /**
+     * Get the number of active pixels.
+     *
+     * @return int
+     *   The number of activ pixels.
+     */
+    public function getActivePixels()
+    {
+        $numberOnes = 0;
+
+        $imageMatrix = $this->getImageMatrix();
+
+        foreach ($imageMatrix as $xId => $x) {
+            foreach ($x as $yId => $y) {
+                if ($y == 1) {
+                    $numberOnes++;
+                }
+            }
+        }
+
+        return $numberOnes;
+    }
+
+    /**
+     * Get the height of the active pixels in the image.
+     *
+     * @return int
+     *   The height.
+     */
+    public function getHeight()
+    {
+        $imageMatrix = $this->getImageMatrix();
+        $height = 0;
+
+        for ($x = count($imageMatrix) - 1; $x > 0; $x--) {
+            for ($y = count($imageMatrix[$x]) - 1; $y > 0; $y--) {
+                if ($imageMatrix[$x][$y] == 1) {
+                    $height++;
+                    break;
+                }
+            }
+        }
+
+        return $height;
     }
 }

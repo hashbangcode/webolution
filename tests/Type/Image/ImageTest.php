@@ -113,6 +113,14 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $this->assertStringEqualsFile('tests/Type/Image/image01.txt', $output);
     }
 
+    public function testBase64Render()
+    {
+        $object = new Image(25, 25);
+        $object->setPixel(24, 12, 1);
+        $output = $object->renderBase64Image();
+        $this->assertStringEqualsFile('tests/Type/Image/image03.txt', $output);
+    }
+
     public function testRenderMoreComplexImage()
     {
         $object = new Image(5, 5);
@@ -204,9 +212,56 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $object->setPixel(0, 4, 1);
         $object->setPixel(4, 4, 1);
 
-
         $adjacentPixels = $object->getAdjacentPixels();
 
         $this->assertEquals(12, count($adjacentPixels));
+    }
+
+    public function testGetActivePixels()
+    {
+        $image = new Image(5, 5);
+        $image->setPixel(3, 2, 1);
+        $image->setPixel(4, 2, 1);
+
+        $this->assertEquals(2, $image->getActivePixels());
+    }
+
+    public function testGetHeightOne()
+    {
+        $image = new Image(5, 5);
+        $image->setPixel(3, 2, 1);
+        $image->setPixel(4, 2, 1);
+
+        $this->assertEquals(2, $image->getHeight());
+    }
+
+    public function testGetHeightTwo()
+    {
+        $image = new Image(10, 10);
+
+        // Set height pixels.
+        $image->setPixel(9, 5, 1);
+        $image->setPixel(8, 5, 1);
+        $image->setPixel(7, 5, 1);
+        $image->setPixel(6, 5, 1);
+        $image->setPixel(5, 5, 1);
+        $image->setPixel(4, 5, 1);
+
+        // Set noise pixels.
+        $image->setPixel(9, 0, 1);
+        $image->setPixel(9, 1, 1);
+        $image->setPixel(9, 2, 1);
+        $image->setPixel(9, 3, 1);
+        $image->setPixel(9, 4, 1);
+        $image->setPixel(9, 6, 1);
+        $image->setPixel(9, 7, 1);
+        $image->setPixel(9, 8, 1);
+        $image->setPixel(9, 9, 1);
+        $image->setPixel(8, 2, 1);
+        $image->setPixel(7, 3, 1);
+        $image->setPixel(7, 9, 1);
+        $image->setPixel(5, 0, 1);
+
+        $this->assertEquals(6, $image->getHeight());
     }
 }
