@@ -5,6 +5,48 @@ use Hashbangcode\Wevolution\Evolution\EvolutionStorage;
 use Hashbangcode\Wevolution\Evolution\Population\ImagePopulation;
 use Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual;
 
+$app->get('/image', function ($request, $response, $args) {
+
+    $this->logger->info("Image '/image' route");
+
+    $title = 'Image Test';
+
+    $styles = "img{border:1px solid black;}";
+
+    $output = '';
+
+    $x = 100;
+    $y = 100;
+
+    $image1 = new ImageIndividual($x, $y);
+
+    for ($i = 0; $i < 1000; ++$i) {
+        $image1->getObject()->setPixel(rand(0, $x - 1), rand(0, $y - 1), 1);
+    }
+
+    $output .= '<p>Random Image</p>';
+    $output .= $image1->render('image');
+
+
+    $image2 = new ImageIndividual(5, 5);
+    $image2->getObject()->setPixel(3, 2, 1);
+    $image2->getObject()->setPixel(4, 2, 1);
+
+    //for ($i = 50; $i > 45; --$i) {
+      //
+    //}
+
+    $output .= '<p>Image Height Test</p>';
+    $output .= $image2->render('image');
+    $output .= $image2->getFitness('height');
+
+    return $this->view->render($response, 'demos.twig', [
+        'title' => $title,
+        'output' => $output,
+        'styles' => $styles,
+    ]);
+});
+
 $app->get('/image_evolution', function ($request, $response, $args) {
 
     $this->logger->info("Image Eovolution '/image_evolution' route");
@@ -14,6 +56,7 @@ $app->get('/image_evolution', function ($request, $response, $args) {
     $styles = "img{border:1px solid black;}";
 
     $population = new ImagePopulation();
+    $population->setPopulationFitnessType('height');
     $population->setDefaultRenderType('image');
 
     for ($i = 0; $i < 10; $i++) {
@@ -24,7 +67,7 @@ $app->get('/image_evolution', function ($request, $response, $args) {
 
     $evolution = new Evolution($population);
     $evolution->setIndividualsPerGeneration(10);
-    $evolution->setMaxGenerations(300);
+    $evolution->setMaxGenerations(100);
 
     $output = '';
 

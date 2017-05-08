@@ -12,12 +12,12 @@ $app->get('/number_evolution', function ($request, $response, $args) {
     $population = new NumberPopulation();
     $population->setDefaultRenderType('html');
 
-    for ($i = 0; $i < 10; $i++) {
+    for ($i = 0; $i < 30; $i++) {
         $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual(1));
     }
 
     $evolution = new Evolution($population);
-    $evolution->setIndividualsPerGeneration(10);
+    $evolution->setIndividualsPerGeneration(30);
     $evolution->setMaxGenerations(500);
     $evolution->setAllowedFitness(1);
     $evolution->setGlobalMutationFactor(1);
