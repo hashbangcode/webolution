@@ -16,7 +16,12 @@ class ColorPopulation extends Population
      * Sort the population by a given parameter and in a certain direction.
      *
      * @param string $sortBy
+     *   What to sort the population by.
      * @param string $direction
+     *   Which direction to sort the population.
+     *
+     * @return $this
+     *   The current object.
      */
     public function sort($sortBy = 'hue', $direction = 'ASC')
     {
@@ -76,6 +81,8 @@ class ColorPopulation extends Population
                 return ($aValue > $bValue) ? -1 : 1;
             }
         });
+
+        return $this;
     }
 
     /**
