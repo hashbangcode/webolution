@@ -94,7 +94,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $inner_element = new Element();
         $inner_element->setType('div');
 
-        $message = 'Cant add child of type div to ol';
+        $message = 'Cant add child of type "div" to "ol"';
         $this->setExpectedException('Hashbangcode\Wevolution\Type\Element\Exception\InvalidChildTypeException', $message);
         $outer_element->addChild($inner_element);
     }
