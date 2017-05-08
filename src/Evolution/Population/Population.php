@@ -74,6 +74,29 @@ abstract class Population implements PopulationInterface
     protected $mutationAmount;
 
     /**
+     * The population fitness type.
+     *
+     * @var string
+     */
+    protected $populationFitnessType;
+
+    /**
+     * @return string
+     */
+    public function getPopulationFitnessType()
+    {
+        return $this->populationFitnessType;
+    }
+
+    /**
+     * @param string $populationFitnessType
+     */
+    public function setPopulationFitnessType($populationFitnessType)
+    {
+        $this->populationFitnessType = $populationFitnessType;
+    }
+
+    /**
      * Add an individual.
      *
      * @param Individual|null $individual
@@ -178,6 +201,7 @@ abstract class Population implements PopulationInterface
         // Ensure that the items are sorted before rendering.
         $this->sort();
 
+        /* @var Individual $individual */
         foreach ($this->getIndividuals() as $individual) {
             $output .= $individual->render($this->getDefaultRenderType());
         }
@@ -327,5 +351,40 @@ abstract class Population implements PopulationInterface
             'median' => $this->medianIndividual,
             'meanFitness' => $this->meanFitness,
         ];
+    }
+
+    /**
+     * Cull population.
+     *
+     * @param mixed $globalFitnessGoal
+     *   The global fitness goal.
+     */
+    public function cullPopulation($globalFitnessGoal = null)
+    {
+        // Kill off any unfit individuals.
+        foreach ($this->getIndividuals() as $key => $individual) {
+            if (!is_null($globalFitnessGoal)) {
+                $individual->setFitnessGoal($globalFitnessGoal);
+            }
+
+            $fitness = $individual->getFitness($this->getPopulationFitnessType());
+
+            $maxFitness = $this->getStatistics()['max']->getFitness($this->getPopulationFitnessType());
+
+            // Figure out if this individual is close to the top of the list.
+            if ($maxFitness != 0) {
+                $fitnessFactor = ($fitness / $maxFitness);
+            } else {
+                $fitnessFactor = 0;
+            }
+
+            // The higher the allowed fitness then the greater the chance that the individual will survive.
+            $rand = (pow(mt_rand(-1, 1), 3) + 1) / 2;
+            $keepAlive = ($fitnessFactor >= $rand);
+
+            if (!$keepAlive) {
+                $this->removeIndividual($key);
+            }
+        }
     }
 }

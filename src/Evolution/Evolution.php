@@ -172,39 +172,15 @@ class Evolution
             return false;
         }
 
+        // Increate the generation number.
         $this->generation++;
 
         // Generate statistics before we do anything with the population.
         $this->population->generateStatistics();
 
-        // kill off anything that we don't want
-
+        // Kill off anything that we don't want.
         if ($kill) {
-            // Kill off any unfit individuals.
-            foreach ($this->population->getIndividuals() as $key => $individual) {
-                if (!is_null($this->getGlobalFitnessGoal())) {
-                    $individual->setFitnessGoal($this->getGlobalFitnessGoal());
-                }
-
-                $fitness = $individual->getFitness();
-                $maxFitness = $this->population->getStatistics()['max']->getFitness();
-
-                // Figure out if this individual is close to the top of the list.
-                if ($maxFitness != 0) {
-                    $fitnessFactor = ($fitness / $maxFitness);
-                } else {
-                    $fitnessFactor = 0;
-                }
-
-                // The higher the allowed fitness then the greater the chance that the individual will survive.
-
-                $rand = (pow(mt_rand(-1, 1), 3) + 1) / 2; //cube function
-                $keepAlive = ($fitnessFactor >= $rand);
-
-                if (!$keepAlive) {
-                    $this->population->removeIndividual($key);
-                }
-            }
+            $this->population->cullPopulation($this->getGlobalFitnessGoal());
         }
 
         if ($this->population->getLength() == 0) {
@@ -360,8 +336,10 @@ class Evolution
     {
         $output = '';
 
+        /* @var Population $population */
         foreach ($this->previousGenerations as $generation_number => $population) {
             $output .= $generation_number . ':<br>' . $population->render() . PHP_EOL . '<br>';
+
             if ($printStats === true) {
                 $stats = $population->getStatistics();
                 $output .= 'MIN: ' . print_r($stats['min']->render(), true) . '<br>';
