@@ -77,21 +77,14 @@ class ImageIndividual extends Individual
      *
      * For Image types we return the number of "on" pixels in the image.
      */
-    public function getFitness()
+    public function getFitness($type = '')
     {
-        $imageMatrix = $this->getObject()->getImageMatrix();
-
-        $numberOnes = 0;
-
-        foreach ($imageMatrix as $xId => $x) {
-            foreach ($x as $yId => $y) {
-                if ($y == 1) {
-                    $numberOnes++;
-                }
-            }
+        switch ($type) {
+            case 'height':
+                return $this->getObject()->getHeight();
+            default:
+                return $this->getObject()->getActivePixels();
         }
-
-        return $numberOnes;
     }
 
     /**
@@ -101,49 +94,16 @@ class ImageIndividual extends Individual
     {
         switch ($renderType) {
             case 'image':
-                $imageMatrix = $this->object->getImageMatrix();
+                $imageMatrix = $this->getObject()->getImageMatrix();
 
+                // Calculate the size of the image.
                 $imageX = (count($imageMatrix) + 100);
                 $imageY = (count($imageMatrix[0]) + 100);
 
-                $pixelSize = $imageX / count($imageMatrix);
+                // Render the image.
+                $image = $this->getObject()->renderBase64Image();
 
-                $im = imagecreatetruecolor($imageX, $imageY);
-
-                $backgroundColor = imagecolorallocate($im, 255, 255, 255);
-                $filledColor = imagecolorallocate($im, 132, 135, 28);
-
-                $xCoord = 0;
-
-                $imageMatrix = $this->object->getImageMatrix();
-
-                foreach ($imageMatrix as $xId => $x) {
-                    $yCoord = 0;
-                    foreach ($x as $yId => $y) {
-                        // Find out the end of the rectangle.
-                        $xEnd = $xCoord + $pixelSize;
-                        $yEnd = $yCoord + $pixelSize;
-
-                        // Pick the right color.
-                        if ($y == 1) {
-                            imagefilledrectangle($im, $yCoord, $xCoord, $yEnd, $xEnd, $filledColor);
-                        } else {
-                            imagefilledrectangle($im, $yCoord, $xCoord, $yEnd, $xEnd, $backgroundColor);
-                        }
-                        $yCoord = $yCoord + $pixelSize;
-                    }
-                    $xCoord = $xCoord + $pixelSize;
-                }
-
-                ob_start();
-                imagejpeg($im, null, 75);
-                $rawImage = ob_get_contents();
-                ob_end_clean();
-
-                $image = base64_encode($rawImage);
-                $output = '<img width="' . $imageX . '" height="' . $imageY . '" src="data:image/jpg;base64,' . $image . '" /> ';
-
-                break;
+                return '<img width="' . $imageX . '" height="' . $imageY . '" src="' . $image . '" /> ';
             case 'html':
                 $output = '<p>' . nl2br($this->object->render()) . '</p>';
                 break;

@@ -27,10 +27,13 @@ interface IndividualInterface
     /**
      * Get the fitness.
      *
+     * @param string $type
+     *   The type of fitness to calculate.
+     *
      * @return int
      *   The fitness of the individual.
      */
-    public function getFitness();
+    public function getFitness($type = '');
 
     /**
      * Render the individual.

@@ -50,9 +50,9 @@ class PageIndividual extends Individual
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
-    public function getFitness()
+    public function getFitness($type = '')
     {
         // @todo see how we can get a better fitness for pages.
         // Possible candidates include:

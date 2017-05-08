@@ -96,9 +96,9 @@ class TextIndividual extends Individual
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function getFitness()
+    public function getFitness($type = '')
     {
         $text = str_split($this->getObject()->getText());
         $goal = str_split($this->getFitnessGoal());

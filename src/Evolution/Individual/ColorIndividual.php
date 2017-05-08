@@ -102,9 +102,9 @@ class ColorIndividual extends Individual
     }
 
     /**
-     * @return float
+     * {@inheritdoc}
      */
-    public function getFitness()
+    public function getFitness($type = '')
     {
         $color = $this->getObject();
         $lightness = $color->getLightness();

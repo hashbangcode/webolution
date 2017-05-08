@@ -58,7 +58,7 @@ class NumberIndividual extends Individual
     /**
      * {@inheritdoc}
      */
-    public function getFitness()
+    public function getFitness($type = '')
     {
         return $this->getObject()->getNumber();
     }

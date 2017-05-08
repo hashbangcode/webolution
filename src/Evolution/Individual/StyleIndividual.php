@@ -113,9 +113,9 @@ class StyleIndividual extends Individual
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
-    public function getFitness()
+    public function getFitness($type = '')
     {
         return 1;
     }

@@ -32,7 +32,7 @@ abstract class Individual implements IndividualInterface
     /**
      * {@inheritdoc}
      */
-    abstract public function getFitness();
+    abstract public function getFitness($type = '');
 
     /**
      * {@inheritdoc}

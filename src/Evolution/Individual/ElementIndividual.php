@@ -74,9 +74,9 @@ class ElementIndividual extends Individual
     }
 
     /**
-     * @return int
+     * {@inheritdoc{
      */
-    public function getFitness()
+    public function getFitness($type = '')
     {
         // @todo see how we can get a better fitness for elements.
         // Possible candidates include:
