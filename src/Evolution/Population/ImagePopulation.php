@@ -38,8 +38,24 @@ class ImagePopulation extends Population
      * @return $this
      *   The current object.
      */
-    public function sort()
+    public function sort($direction = 'ASC')
     {
+        usort($this->individuals, function ($a, $b) use ($direction) {
+
+            $aValue = $a->getFitness($this->getPopulationFitnessType());
+            $bValue = $b->getFitness($this->getPopulationFitnessType());
+
+            if ($aValue == $bValue) {
+                return 0;
+            }
+
+            if ($direction == 'ASC') {
+                return ($aValue < $bValue) ? -1 : 1;
+            } else {
+                return ($aValue > $bValue) ? -1 : 1;
+            }
+        });
+
         return $this;
     }
 
