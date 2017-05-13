@@ -7,41 +7,73 @@ use Hashbangcode\Wevolution\Type\Element\Element;
 use Hashbangcode\Wevolution\Type\TypeInterface;
 
 /**
- * Class Page
+ * Class Page.
+ *
  * @package Hashbangcode\Wevolution\Type\Page
  */
 class Page implements TypeInterface
 {
     /**
-     * @var Style
-     *   The Style object.
+     * The page styles.
+     *
+     * @var array
      */
-    protected $style;
+    protected $styles = [];
 
     /**
+     * The root Element object.
+     *
      * @var Element
-     *   The root Element object.
      */
     protected $body;
 
     /**
-     * @return Style
-     *   The Style object.
+     * Get styles.
+     *
+     * @return array
      */
-    public function getStyle()
+    public function getStyles()
     {
-        return $this->style;
+        return $this->styles;
     }
 
     /**
-     * Set the Style object.
+     * Set the style array.
+     *
+     * @param array $styles
+     *   Set the styles array.
+     */
+    public function setStyles(array $styles)
+    {
+        $this->styles = $styles;
+    }
+
+    /**
+     * Get a style.
+     *
+     * @param string $selector
+     *   The selector.
+     *
+     * @return bool|mixed
+     *   The style object, or false if not present.
+     */
+    public function getStyle($selector)
+    {
+        if (!isset($this->styles[$selector])) {
+            return false;
+        }
+        return $this->styles[$selector];
+    }
+
+    /**
+     * Set a single style to the list of styles the page has.
      *
      * @param Style $style
-     *   Set the Style object.
+     *   The Style object to add.
      */
-    public function setStyle($style)
+    public function setStyle(Style $style)
     {
-        $this->style = $style;
+        $this->styles[$style->getSelector()] = $style;
     }
 
     /**
@@ -74,25 +106,33 @@ class Page implements TypeInterface
      */
     public function render()
     {
+        // Set up output variables.
         $style = '';
-
-        if ($this->getStyle() instanceof Style) {
-            $style = PHP_EOL . '<style>' . $this->getStyle()->render() . '</style>';
-        }
-
         $body = '';
 
-        if ($this->getBody() instanceof Element) {
-            $body = PHP_EOL . $this->getBody()->render();
+        // Render the styles.
+        if (count($this->getStyles()) > 0) {
+            foreach ($this->getStyles() as $styleObject) {
+                if ($styleObject instanceof Style) {
+                    $style .= $styleObject->render();
+                }
+            }
+            // Wrap the style in tags.
+            $style = '    <style>' . $style . '</style>' . PHP_EOL;
         }
 
-        return '<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>' . $style . '
-    </head>
-    <body>' . $body . '
-    </body>
-</html>';
+        // Render the body.
+        if ($this->getBody() instanceof Element) {
+            $body .= $this->getBody()->render() . PHP_EOL;
+        }
+
+        // Put the pieces together.
+
+        ob_start();
+        include 'template.php';
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        return $html;
     }
 }

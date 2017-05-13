@@ -3,6 +3,7 @@
 namespace Hashbangcode\Wevolution\Demos\Controller;
 
 use Hashbangcode\Wevolution\Demos\Controller\BaseController;
+use Hashbangcode\Wevolution\Evolution\Population\StylePopulation;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Hashbangcode\Wevolution\Evolution\Evolution;
@@ -17,6 +18,27 @@ use Hashbangcode\Wevolution\Evolution\Population\PagePopulation;
 
 class PageController extends BaseController
 {
+
+    public function page(Request $request, Response $response, $args)
+    {
+        $styles = 'div {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}.elementframe{width:500px;height:500px;}';
+
+        $title = 'Page Test';
+
+        $output = '';
+
+        $style = new StylePopulation();
+
+        $page = new PageIndividual();
+        $page->getObject()->setStyle();
+        $output .= $page->render();
+
+        return $this->view->render($response, 'demos.twig', [
+            'title' => $title,
+            'output' => $output,
+            'styles' => $styles
+        ]);
+    }
 
     public function pageEvolution(Request $request, Response $response, $args)
     {

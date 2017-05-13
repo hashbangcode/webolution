@@ -32,10 +32,10 @@ $app->get('/image_evolution', '\Hashbangcode\Wevolution\Demos\Controller\ImageCo
 $app->get('/image_evolution_storage[/{evolutionid}]', '\Hashbangcode\Wevolution\Demos\Controller\ImageController:imageEvolutionStorage');
 
 // Element.
-$app->get('/element_creation_test', '\Hashbangcode\Wevolution\Demos\Controller\ElementController:element');
+$app->get('/element', '\Hashbangcode\Wevolution\Demos\Controller\ElementController:element');
 $app->get('/element_evolution', '\Hashbangcode\Wevolution\Demos\Controller\ElementController:elementEvolution');
 $app->get('/element_evolution_storage', '\Hashbangcode\Wevolution\Demos\Controller\ElementController:elementEvolutionStorage');
-$app->get('/element_page_test', '\Hashbangcode\Wevolution\Demos\Controller\ElementController:elementPage');
 
 // Page.
+$app->get('/page', '\Hashbangcode\Wevolution\Demos\Controller\PageController:page');
 $app->get('/page_evolution_storage[/{evolutionid}]', '\Hashbangcode\Wevolution\Demos\Controller\PageController:pageEvolution');

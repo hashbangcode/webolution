@@ -29,16 +29,6 @@ class PagePopulationTest extends \PHPUnit_Framework_TestCase
         $population = new PagePopulation();
 
         $output = $object->getObject()->render();
-
-        $this->assertEquals($output, '<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-<style>div{color:red;}</style>
-    </head>
-    <body>
-<div></div>
-    </body>
-</html>');
+        $this->assertStringEqualsFile('tests/Evolution/Population/data/page01.html', $output);
     }
 }

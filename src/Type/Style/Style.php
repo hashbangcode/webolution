@@ -13,28 +13,11 @@ class Style implements TypeInterface
 {
 
     /**
+     * The style selector.
+     *
      * @var null|string
-     *   The style selector.
      */
     protected $selector = '';
-
-    /**
-     * @return null|string
-     *   Get the selector.
-     */
-    public function getSelector()
-    {
-        return $this->selector;
-    }
-
-    /**
-     * @param null|string $selector
-     *   Get the selector.
-     */
-    public function setSelector($selector)
-    {
-        $this->selector = $selector;
-    }
 
     /**
      * @var array
@@ -62,44 +45,13 @@ class Style implements TypeInterface
     }
 
     /**
-     * Get all attributes.
-     *
-     * @return array
-     *   A list of attributes to replace the current attributes list.
-     */
-    public function getAttributes()
-    {
-        return $this->attributes;
-    }
-
-    /**
-     * Set all attributes.
-     *
-     * @param array $attributes
-     *   Array of attibutes, as a key value set.
-     */
-    public function setAttributes($attributes)
-    {
-        $this->attributes = $attributes;
-    }
-
-    /**
-     * Set an attrobite.
-     *
-     * @param string $name Name of the attribute.
-     * @param string $value Value to set the attribute to.
-     */
-    public function setAttrbute($name, $value)
-    {
-        $this->attributes[$name] = $value;
-    }
-
-    /**
      * Get a single attribute value.
      *
-     * @param string $name Attribute name.
+     * @param string $name
+     *   Attribute name.
      *
-     * @return bool|mixed Attribute value, or false if the attribute is not present.
+     * @return bool|mixed
+     *   Attribute value, or false if the attribute is not present.
      */
     public function getAttribute($name)
     {
@@ -134,14 +86,72 @@ class Style implements TypeInterface
     }
 
     /**
+     * Get the selector.
      *
+     * @return null|string
+     *   Get the selector.
+     */
+    public function getSelector()
+    {
+        return $this->selector;
+    }
+
+    /**
+     * Set the selector.
+     *
+     * @param null|string $selector
+     *   Get the selector.
+     */
+    public function setSelector($selector)
+    {
+        $this->selector = $selector;
+    }
+
+    /**
+     * Get all attributes.
+     *
+     * @return array
+     *   A list of attributes to replace the current attributes list.
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * Set all attributes.
+     *
+     * @param array $attributes
+     *   Array of attibutes, as a key value set.
+     */
+    public function setAttributes($attributes)
+    {
+        $this->attributes = $attributes;
+    }
+
+    /**
+     * Called when the object is cloned.
      */
     public function __clone()
     {
+        // If any of the attributes are objects then ensure they are colored.
         foreach ($this->getAttributes() as $key => $attribute) {
             if (is_object($attribute)) {
                 $this->setAttrbute($key, clone $attribute);
             }
         }
+    }
+
+    /**
+     * Set an attrobite.
+     *
+     * @param string $name
+     *   Name of the attribute.
+     * @param string $value
+     *   Value to set the attribute to.
+     */
+    public function setAttrbute($name, $value)
+    {
+        $this->attributes[$name] = $value;
     }
 }

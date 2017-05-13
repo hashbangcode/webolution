@@ -22,15 +22,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
     {
         $object = new Page();
         $output = $object->render();
-
-        $this->assertEquals($output, '<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-    </head>
-    <body>
-    </body>
-</html>');
+        $this->assertStringEqualsFile('tests/Type/Page/page01.html', $output);
     }
 
     public function testRenderPageWithBody()
@@ -41,16 +33,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $object->setBody($body);
 
         $output = $object->render();
-
-        $this->assertEquals($output, '<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-    </head>
-    <body>
-<div></div>
-    </body>
-</html>');
+        $this->assertStringEqualsFile('tests/Type/Page/page02.html', $output);
     }
 
     public function testRenderPageWithStyle()
@@ -62,16 +45,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $object->setStyle($style);
 
         $output = $object->render();
-
-        $this->assertEquals($output, '<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-<style>div{color:red;}</style>
-    </head>
-    <body>
-    </body>
-</html>');
+        $this->assertStringEqualsFile('tests/Type/Page/page03.html', $output);
     }
 
     public function testRenderPageWithBodyAndStyle()
@@ -86,16 +60,6 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $object->setBody($body);
 
         $output = $object->render();
-
-        $this->assertEquals($output, '<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-<style>div{color:red;}</style>
-    </head>
-    <body>
-<div></div>
-    </body>
-</html>');
+        $this->assertStringEqualsFile('tests/Type/Page/page04.html', $output);
     }
 }

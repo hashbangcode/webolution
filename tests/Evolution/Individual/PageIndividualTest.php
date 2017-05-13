@@ -29,15 +29,6 @@ class PageIndividualTest extends \PHPUnit_Framework_TestCase
 
         $output = $object->getObject()->render();
 
-        $this->assertEquals($output, '<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-<style>div{color:red;}</style>
-    </head>
-    <body>
-<div></div>
-    </body>
-</html>');
+        $this->assertStringEqualsFile('tests/Evolution/Individual/data/page01.html', $output);
     }
 }
