@@ -13,44 +13,51 @@ class Color implements TypeInterface
 {
 
     /**
+     * The amount of red.
+     *
      * @var int|null
-     *   The amount of red.
      */
     private $red = null;
 
     /**
+     * The amount of green.
+     *
      * @var int|null
-     *   The amount of green.
      */
     private $green = null;
 
     /**
+     * The amount of blue.
+     *
      * @var int|null
-     *   The amount of blue.
      */
     private $blue = null;
 
     /**
+     * The hue of the color.
+     *
      * @var null
-     *   The hue of the color.
      */
     private $hue = null;
 
     /**
+     * The hue2 value of the color.
+     *
      * @var null
-     *   The hue2 value of the color.
      */
     private $hue2 = null;
 
     /**
+     * The croma value of the color.
+     *
      * @var null
-     *   The croma value of the color.
      */
     private $croma = null;
 
     /**
+     * The croma2 value of the color.
+     *
      * @var null
-     *   The croma2 value of the color.
      */
     private $croma2 = null;
 
@@ -61,38 +68,44 @@ class Color implements TypeInterface
     private $value = null;
 
     /**
+     * The lightness of the color.
+     *
      * @var null
-     *   The lightness of the color.
      */
     private $lightness = null;
 
     /**
+     * The intensity of the color.
+     *
      * @var null
-     *   The intensity of the color.
      */
     private $intensity = null;
 
     /**
+     * The luma, based on Rec. 601 NTSC primaries.
+     *
      * @var float
-     *   The luma, based on Rec. 601 NTSC primaries.
      */
     private $luma = null;
 
     /**
+     * The HSV saturation value of the color.
+     *
      * @var null
-     *   The HSV saturation value of the color.
      */
     private $hsv_saturation = null;
 
     /**
+     * The HSL saturation value of the color.
+     *
      * @var null
-     *   The HSL saturation value of the color.
      */
     private $hsl_saturation = null;
 
     /**
+     * The HSI saturation value of the color.
+     *
      * @var null
-     *   The HSI saturation value of the color.
      */
     private $hsi_saturation = null;
 
@@ -384,7 +397,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Set the croma.
+     *
      * @param null $croma
+     *   The croma.
      */
     public function setCroma($croma)
     {
@@ -392,7 +408,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Get croma2.
+     *
      * @return null
+     *   The croma2.
      */
     public function getCroma2()
     {
@@ -400,7 +419,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Set croma2.
+     *
      * @param null $croma2
+     *   The croma2.
      */
     public function setCroma2($croma2)
     {
@@ -408,7 +430,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Get the HSI saturation.
+     *
      * @return null
+     *   The HSI saturation.
      */
     public function getHsiSaturation()
     {
@@ -417,7 +442,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Set the HSI saturation.
+     *
      * @param null $hsi_saturation
+     *   The hsi saturation.
      */
     public function setHsiSaturation($hsi_saturation)
     {
@@ -456,7 +484,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Set the HSL saturation.
+     *
      * @param null $hsl_saturation
+     *   The HSL saturation.
      */
     public function setHslSaturation($hsl_saturation)
     {
@@ -509,7 +540,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Get the HSV saturation.
+     *
      * @return null
+     *   The HSV saturation.
      */
     public function getHsvSaturation()
     {
@@ -518,7 +552,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Set the HSV saturation.
+     *
      * @param null $hsv_saturation
+     *   The HSV saturation.
      */
     public function setHsvSaturation($hsv_saturation)
     {
@@ -580,7 +617,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Get the hue.
+     *
      * @return null
+     *   The hue.
      */
     public function getHue()
     {
@@ -589,7 +629,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Set the hue.
+     *
      * @param null $hue
+     *   The hue.
      */
     public function setHue($hue)
     {
@@ -597,7 +640,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Get the hue2.
+     *
      * @return null
+     *   The hue2.
      */
     public function getHue2()
     {
@@ -605,7 +651,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Set hue2.
+     *
      * @param null $hue2
+     *   The hue2.
      */
     public function setHue2($hue2)
     {
@@ -613,7 +662,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Get the intensity.
+     *
      * @return null
+     *   The intensity.
      */
     public function getIntensity()
     {
@@ -621,7 +673,10 @@ class Color implements TypeInterface
     }
 
     /**
+     * Set the intensity.
+     *
      * @param null $intensity
+     *   The intensity.
      */
     public function setIntensity($intensity)
     {
@@ -629,7 +684,10 @@ class Color implements TypeInterface
     }
 
     /**
-     * @return null
+     * Get the lightness.
+     *
+     * @return float
+     *   The lightness.
      */
     public function getLightness()
     {
@@ -638,6 +696,8 @@ class Color implements TypeInterface
     }
 
     /**
+     * Set the lightness.
+     *
      * @param null $lightness
      */
     public function setLightness($lightness)
@@ -646,6 +706,8 @@ class Color implements TypeInterface
     }
 
     /**
+     * Get he luma.
+     *
      * @return float The current luma.
      */
     public function getLuma()
@@ -655,11 +717,12 @@ class Color implements TypeInterface
     }
 
     /**
+     * Set the luma.
+     *
      * @param float $luma The luma to set
      */
     public function setLuma($luma)
     {
-        // @todo : is this needed?
         $this->luma = $luma;
     }
 
