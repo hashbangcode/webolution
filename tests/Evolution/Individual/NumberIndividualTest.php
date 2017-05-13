@@ -27,7 +27,7 @@ class NumberIndividualTest extends \PHPUnit_Framework_TestCase
     public function testMutateNumberThroughIndividualWithDifferentAmount()
     {
         $object = new NumberIndividual(1);
-        $object->mutate(0, 1);
+        $object->mutate(-100, 1);
         $this->assertNotEquals(1, $object->getObject()->getNumber());
     }
 
