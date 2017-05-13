@@ -156,6 +156,30 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('li', $child_types[0]);
     }
 
+    /**
+     * @dataProvider elementChildTypes
+     */
+    public function testGetAvailableChildTypes($type, $childTypes)
+    {
+        $element = new Element($type);
+        $returnedChildTypes = $element->getAvailableChildTypes($element->getType());
+
+        foreach ($returnedChildTypes as $id => $childType) {
+            $this->assertEquals($childTypes[$id], $returnedChildTypes[$id]);
+        }
+    }
+
+    public function elementChildTypes()
+    {
+        return [
+           ['type' => 'html', 'childTypes' => ['body']],
+           ['type' => 'head', 'childTypes' => ['style']],
+           ['type' => 'ul', 'childTypes' => ['li']],
+           ['type' => 'ol', 'childTypes' => ['li']],
+           ['type' => 'p', 'childTypes' => ['ul', 'ol', 'div', 'p', 'h1', 'h2']],
+        ];
+    }
+
     public function testCloneElement()
     {
         $element = new Element();

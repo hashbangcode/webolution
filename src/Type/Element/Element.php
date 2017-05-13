@@ -60,8 +60,8 @@ class Element implements TypeInterface
     /**
      * Element constructor.
      *
-     * @param string $type
-     *   The element type.
+     * @param string|object $arg
+     *   The element type or an Element object.
      */
     public function __construct($arg = 'div')
     {
@@ -268,8 +268,8 @@ class Element implements TypeInterface
      * This method is intended to stop (for example) li elements being children of
      * div elements and allows a more symantically correct page to be generated.
      *
-     * @return array
-     *   The child types that can be used.
+     * @return array|bool
+     *   The child types that can be used. False if no type is set.
      */
     public function getAvailableChildTypes()
     {
@@ -327,6 +327,12 @@ class Element implements TypeInterface
         return $types;
     }
 
+    /**
+     * Get all of the child types of the element.
+     *
+     * @return array
+     *   The list of child types.
+     */
     public function getChildClasses()
     {
         $types = [];

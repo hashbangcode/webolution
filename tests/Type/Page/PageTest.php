@@ -62,4 +62,36 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $output = $object->render();
         $this->assertStringEqualsFile('tests/Type/Page/page04.html', $output);
     }
+
+    public function testGetAndSetStyles()
+    {
+        $object = new Page();
+
+        $style = new Style('div');
+        $style->setAttrbute('color', 'red');
+        $styles = [$style];
+        $object->setStyles($styles);
+
+        $body = new Element('div');
+        $object->setBody($body);
+
+        $output = $object->render();
+        $this->assertStringEqualsFile('tests/Type/Page/page04.html', $output);
+        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Style\Style', $object->getStyle('div'));
+    }
+
+    public function testGetNonExistantStyle()
+    {
+        $object = new Page();
+
+        $style = new Style('div');
+        $style->setAttrbute('color', 'red');
+        $styles = [$style];
+        $object->setStyles($styles);
+
+        $body = new Element('div');
+        $object->setBody($body);
+
+        $this->assertFalse($object->getStyle('something'));
+    }
 }
