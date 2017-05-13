@@ -526,7 +526,7 @@ class Color implements TypeInterface
     }
 
     /**
-     * Calculate the HSV  values for the color.
+     * Calculate the HSV color wheel values for the color.
      */
     protected function calcualteHSV()
     {

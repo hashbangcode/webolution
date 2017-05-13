@@ -20,7 +20,7 @@ $container['view'] = function ($container) {
 
     // Set 'cache' to be a path to enable it.
     $view = new \Slim\Views\Twig($settings['template_path'], [
-        'cache' => FALSE
+        'cache' => false
     ]);
     $view->addExtension(new \Slim\Views\TwigExtension(
         $container['router'],
