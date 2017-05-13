@@ -7,7 +7,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Hashbangcode\Wevolution\Evolution\Evolution;
 use Hashbangcode\Wevolution\Evolution\Population\NumberPopulation;
-use \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual;
+use Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual;
 
 class NumberController extends BaseController
 {
@@ -27,7 +27,7 @@ class NumberController extends BaseController
 
         $evolution = new Evolution($population);
         $evolution->setIndividualsPerGeneration(30);
-        $evolution->setMaxGenerations(500);
+        $evolution->setMaxGenerations(30);
         $evolution->setAllowedFitness(1);
         $evolution->setGlobalMutationFactor(1);
         $evolution->setGlobalMutationAmount(1);

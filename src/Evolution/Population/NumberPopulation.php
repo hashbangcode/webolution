@@ -14,7 +14,12 @@ class NumberPopulation extends Population
 {
 
     /**
+     * Add an individual.
+     *
      * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
+     *   The individual.
+     *
+     * @return null
      */
     public function addIndividual(Individual $individual = null)
     {

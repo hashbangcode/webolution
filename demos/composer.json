@@ -11,7 +11,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Hashbangcode\\Wevolution\\Demos\\": "src"
+      "Hashbangcode\\Wevolution\\Demos\\": "src",
+      "Hashbangcode\\Wevolution\\": "../src"
     }
   },
   "autoload-dev": {

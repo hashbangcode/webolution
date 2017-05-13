@@ -6,9 +6,7 @@ use Tests\Functional\BaseTestCase;
 
 class HomepageTest extends BaseTestCase
 {
-    /**
-     * Test that the index route returns a rendered response containing the text 'SlimFramework' but not a greeting
-     */
+
     public function testGetHomepageWithoutName()
     {
         $response = $this->runApp('GET', '/');
@@ -18,9 +16,6 @@ class HomepageTest extends BaseTestCase
         $this->assertNotContains('Hello', (string)$response->getBody());
     }
 
-    /**
-     * Test that the index route won't accept a post request
-     */
     public function testPostHomepageNotAllowed()
     {
         $response = $this->runApp('POST', '/', ['test']);
