@@ -35,18 +35,92 @@ class ImageController extends BaseController
         $output .= '<p>Random Image</p>';
         $output .= $image1->render('image');
 
-
         $image2 = new ImageIndividual(5, 5);
         $image2->getObject()->setPixel(3, 2, 1);
         $image2->getObject()->setPixel(4, 2, 1);
 
-        //for ($i = 50; $i > 45; --$i) {
-        //
-        //}
-
         $output .= '<p>Image Height Test</p>';
         $output .= $image2->render('image');
         $output .= $image2->getFitness('height');
+
+        return $this->view->render($response, 'demos.twig', [
+            'title' => $title,
+            'output' => $output,
+            'styles' => $styles,
+        ]);
+    }
+
+    public function imageSort(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Image '/image_sort' route");
+
+        $title = 'Image Sort Test';
+
+        $styles = "img{border:1px solid black;}";
+
+        $output = '';
+
+        $object = new ImagePopulation();
+        $object->setDefaultRenderType('image');
+
+        // Create first iamge.
+        $image1 = new ImageIndividual(10, 10);
+        $image1->getObject()->setPixel(9, 5, 1);
+        $image1->getObject()->setPixel(8, 5, 1);
+        $image1->getObject()->setPixel(7, 5, 1);
+        $image1->getObject()->setPixel(6, 5, 1);
+        $image1->getObject()->setPixel(5, 5, 1);
+        $image1->getObject()->setPixel(4, 5, 1);
+        $object->addIndividual($image1);
+
+        // Create second image.
+        $image2 = new ImageIndividual(10, 10);
+        $image2->getObject()->setPixel(9, 5, 1);
+        $image2->getObject()->setPixel(8, 5, 1);
+        $image2->getObject()->setPixel(7, 5, 1);
+        $object->addIndividual($image2);
+
+        // Create third iamge.
+        $image3 = new ImageIndividual(10, 10);
+        $image3->getObject()->setPixel(9, 5, 1);
+        $image3->getObject()->setPixel(8, 5, 1);
+        $object->addIndividual($image3);
+
+        // Create fourth image.
+        $image4 = new ImageIndividual(10, 10);
+        $image4->getObject()->setPixel(9, 5, 1);
+        $image4->getObject()->setPixel(8, 5, 1);
+        $image4->getObject()->setPixel(7, 5, 1);
+        $image4->getObject()->setPixel(6, 5, 1);
+        $image4->getObject()->setPixel(5, 5, 1);
+        $object->addIndividual($image4);
+
+        // Create fifth iamge.
+        $image5 = new ImageIndividual(10, 10);
+        $image5->getObject()->setPixel(9, 5, 1);
+        $object->addIndividual($image5);
+
+        // Create sixth iamge.
+        $image6 = new ImageIndividual(10, 10);
+        $image6->getObject()->setPixel(9, 2, 1);
+        $image6->getObject()->setPixel(8, 2, 1);
+        $image6->getObject()->setPixel(7, 2, 1);
+        $object->addIndividual($image6);
+
+        $output .= '<p>Sort Ascending</p>';
+        $object->sort();
+
+        foreach ($object->getIndividuals() as $individual) {
+            $output .= $individual->render($object->getDefaultRenderType());
+        }
+
+        $output .= '<p>Sort Descending</p>';
+
+        $object->sort('DESC');
+
+        foreach ($object->getIndividuals() as $individual) {
+            $output .= $individual->render($object->getDefaultRenderType());
+        }
 
         return $this->view->render($response, 'demos.twig', [
             'title' => $title,

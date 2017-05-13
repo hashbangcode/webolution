@@ -27,6 +27,7 @@ $app->get('/style_evolution', '\Hashbangcode\Wevolution\Demos\Controller\StyleCo
 
 // Image.
 $app->get('/image', '\Hashbangcode\Wevolution\Demos\Controller\ImageController:image');
+$app->get('/image_sort', '\Hashbangcode\Wevolution\Demos\Controller\ImageController:imageSort');
 $app->get('/image_evolution', '\Hashbangcode\Wevolution\Demos\Controller\ImageController:imageEvolution');
 $app->get('/image_evolution_storage[/{evolutionid}]', '\Hashbangcode\Wevolution\Demos\Controller\ImageController:imageEvolutionStorage');
 
