@@ -27,11 +27,22 @@ class PageController extends BaseController
 
         $output = '';
 
-        $style = new StylePopulation();
-
         $page = new PageIndividual();
-        $page->getObject()->setStyle();
-        $output .= $page->render();
+
+        $style = new Style('div');
+        $style->setAttrbute('font-size', '20px');
+        $page->getObject()->setStyle($style);
+
+        $body = new Element('div');
+        $p = new Element('p');
+        $body->addChild($p);
+
+        $page->getObject()->setBody($body);
+
+        $pageHtml = $page->render('html');
+
+        $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $pageHtml . '\'></iframe>';
+        $output .= '<textarea rows="35" cols="35">' . $pageHtml . '</textarea>';
 
         return $this->view->render($response, 'demos.twig', [
             'title' => $title,
