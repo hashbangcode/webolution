@@ -38,4 +38,5 @@ $app->get('/element_evolution_storage', '\Hashbangcode\Wevolution\Demos\Controll
 
 // Page.
 $app->get('/page', '\Hashbangcode\Wevolution\Demos\Controller\PageController:page');
-$app->get('/page_evolution_storage[/{evolutionid}]', '\Hashbangcode\Wevolution\Demos\Controller\PageController:pageEvolution');
+$app->get('/page_evolution', '\Hashbangcode\Wevolution\Demos\Controller\PageController:pageEvolution');
+$app->get('/page_evolution_storage[/{evolutionid}]', '\Hashbangcode\Wevolution\Demos\Controller\PageController:pageEvolutionStorage');

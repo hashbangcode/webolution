@@ -55,6 +55,58 @@ class PageController extends BaseController
     {
         $styles = 'div {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}.elementframe{width:500px;height:500px;}';
 
+        $title = 'Page Test';
+
+        $population = new PagePopulation();
+
+        $population->setDefaultRenderType('htmlfull');
+
+        // Setup evolution storage.
+        $evolution = new Evolution();
+        $evolution->setIndividualsPerGeneration(3);
+        $evolution->setMaxGenerations(100);
+
+        $pageIndividual = new PageIndividual();
+
+        $p = new Element('p');
+
+        $ul = new Element('ul');
+        $li = new Element('li');
+
+        $p->addChild($ul);
+        $ul->addChild($li);
+
+        $pageIndividual->getObject()->setBody($p);
+
+        $style_object = new Style('.text');
+        $pageIndividual->getObject()->setStyle($style_object);
+
+        $population->addIndividual($pageIndividual);
+
+        $evolution->setPopulation($population);
+
+        $output = '';
+
+        for ($i = 0; $i < $evolution->getMaxGenerations(); ++$i) {
+            if ($evolution->runGeneration() === false) {
+                $output .= '<p>Everyone is dead.</p>';
+                break;
+            }
+        }
+
+        $output .= $evolution->renderGenerations();
+
+        return $this->view->render($response, 'demos.twig', [
+            'title' => $title,
+            'output' => $output,
+            'styles' => $styles
+        ]);
+    }
+
+    public function pageEvolutionStorage(Request $request, Response $response, $args)
+    {
+        $styles = 'div {width:10px;height:10px;display:inline-block;padding:0px;margin:0px;}.elementframe{width:500px;height:500px;}';
+
         $title = 'Page Storage Test';
 
         $population = new PagePopulation();
@@ -77,16 +129,16 @@ class PageController extends BaseController
         if ($generation == 1) {
             $pageIndividual = new PageIndividual();
 
-            $p = new ElementIndividual('p');
+            $p = new Element('p');
             $ul = new Element('ul');
             $li = new Element('li');
 
-            $p->getObject()->addChild($ul);
+            $p->addChild($ul);
             $ul->addChild($li);
 
             $pageIndividual->getObject()->setBody($p);
 
-            $style_object = new StyleIndividual('.text');
+            $style_object = new Style('.text');
             $pageIndividual->getObject()->setStyle($style_object);
 
             $population->addIndividual($pageIndividual);

@@ -129,7 +129,6 @@ class Page implements TypeInterface
         }
 
         // Put the pieces together.
-
         ob_start();
         include 'template.php';
         $html = ob_get_contents();
