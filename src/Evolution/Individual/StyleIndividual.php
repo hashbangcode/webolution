@@ -14,11 +14,6 @@ class StyleIndividual extends Individual
 {
 
     /**
-     * @var int
-     */
-    protected $mutationFactor = 0.05;
-
-    /**
      * StyleIndividual constructor.
      * @param $element
      */
