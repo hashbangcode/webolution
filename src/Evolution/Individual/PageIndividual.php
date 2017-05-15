@@ -41,21 +41,23 @@ class PageIndividual extends Individual
         // Get styles.
         $styles = $this->getObject()->getStyles();
 
-        // If the body isn't an individual then wrap it so we can mutate it.
-        if (!($body instanceof \Hashbangcode\Wevolution\Evolution\Individual\Individual)) {
-            $body = new ElementIndividual($body);
-        }
-
         if ($action <= $mutationFactor) {
             // Mutate styles.
             $randomStyle = $styles[array_rand($styles)];
             if (!($randomStyle instanceof \Hashbangcode\Wevolution\Evolution\Individual\Individual)) {
+                // If the style is not an individual then wrap it so we can mutate it.
                 $randomStyle = new StyleIndividual($randomStyle);
             }
 
             $randomStyle->mutate();
 
         } elseif ($action >= $mutationFactor) {
+            // Mutate the body.
+            if (!($body instanceof \Hashbangcode\Wevolution\Evolution\Individual\Individual)) {
+                // If the body isn't an individual then wrap it so we can mutate it.
+                $body = new ElementIndividual($body);
+            }
+
             // Mutate body.
             $body->mutate();
         }
