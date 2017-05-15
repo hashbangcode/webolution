@@ -39,20 +39,42 @@ class NumberIndividual extends Individual
         if ($random > $mutationFactor) {
             $operators = array('add', 'subtract');
 
-            $number = $this->getObject()->getNumber();
-
             switch ($operators[array_rand($operators)]) {
                 case 'subtract':
-                    $value = $number - $mutationAmount;
+                    $this->mutateNumberSubtract($mutationAmount);
                     break;
                 case 'add':
                 default:
-                    $value = $number + $mutationAmount;
+                    $this->mutateNumberAdd($mutationAmount);
                     break;
             }
-
-            $this->getObject()->setNumber($value);
         }
+    }
+
+    /**
+     * Add an amount to the number.
+     *
+     * @param int|float $mutationAmount
+     *   The amount to add.
+     */
+    public function mutateNumberAdd($mutationAmount)
+    {
+        $number = $this->getObject()->getNumber();
+        $value = $number + $mutationAmount;
+        $this->getObject()->setNumber($value);
+    }
+
+    /**
+     * Subtract an amount from the number.
+     *
+     * @param int|float $mutationAmount
+     *   The amount to subtract.
+     */
+    public function mutateNumberSubtract($mutationAmount)
+    {
+        $number = $this->getObject()->getNumber();
+        $value = $number - $mutationAmount;
+        $this->getObject()->setNumber($value);
     }
 
     /**
