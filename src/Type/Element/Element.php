@@ -24,7 +24,7 @@ class Element implements TypeInterface
     /**
      * @var array
      */
-    protected $children = array();
+    protected $children = [];
 
     /**
      * @var string
@@ -307,6 +307,19 @@ class Element implements TypeInterface
     }
 
     /**
+     * Get all types.
+     *
+     * @return array
+     *   The types.
+     */
+    public function getAllTypes()
+    {
+        $types = $this->getChildTypes();
+        $types = array_merge([$this->getType()], $types);
+        return $types;
+    }
+
+    /**
      * Get the available child types for the Element.
      *
      * @return array
@@ -324,6 +337,19 @@ class Element implements TypeInterface
             }
         }
 
+        return $types;
+    }
+
+    /**
+     * Get all classes.
+     *
+     * @return array
+     *   The list of classes.
+     */
+    public function getAllClasses()
+    {
+        $types = $this->getChildClasses();
+        $types = array_merge([$this->getAttribute('class')], $types);
         return $types;
     }
 
@@ -349,5 +375,56 @@ class Element implements TypeInterface
         }
 
         return $types;
+    }
+
+    /**
+     * Get a list of all selectors in the element and child elements.
+     *
+     * @return array
+     *   The list of selectors.
+     */
+    public function getAllSelectors()
+    {
+        $selectors = $this->getChildSelectors();
+        $selectors = array_merge([$this->extractSelector()], $selectors);
+        return $selectors;
+    }
+
+    /**
+     * Get all child selectors.
+     *
+     * @return array
+     *   The child selectors.
+     */
+    public function getChildSelectors()
+    {
+        $list = [];
+
+        foreach ($this->getChildren() as $child) {
+            $list[] = $child->extractSelector();
+            if (count($child->getChildren() > 0)) {
+                $children = $child->getChildSelectors();
+                $list = array_merge($list, $children);
+            }
+        }
+
+        return $list;
+    }
+
+    /**
+     * Extract.
+     *
+     * @return mixed|string
+     *  The selector for the element.
+     */
+    public function extractSelector()
+    {
+        $selector = $this->getType();
+        if ($this->getAttribute('id') !== false) {
+            $selector .= '#' . $this->getAttribute('id');
+        } elseif ($this->getAttribute('class') !== false) {
+            $selector .= '.' . $this->getAttribute('class');
+        }
+        return $selector;
     }
 }

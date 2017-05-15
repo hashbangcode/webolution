@@ -99,6 +99,33 @@ class Page implements TypeInterface
     {
         $this->body = $body;
     }
+    
+    /**
+     * Get all the classes from the body Element.
+     *
+     * @return array
+     *   The array of classes from the body.
+     */
+    public function getBodyClasses()
+    {
+        return $this->getBody()->getAllClasses();
+    }
+
+    /**
+     * Get all of the element types from the body element.
+     *
+     * @return mixed
+     *   The array of element types.
+     */
+    public function getBodyElementTypes()
+    {
+        return $this->getBody()->getAllTypes();
+    }
+
+    public function getSeletors()
+    {
+        return $this->getBody()->getAllSe;
+    }
 
     /**
      * Render the page.

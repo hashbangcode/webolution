@@ -326,4 +326,34 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('<div class="test"></div>', $outerObject->render());
         $this->assertEquals('<div class="wobble"></div>', $element_clone->render());
     }
+
+    public function testGetSelectorList()
+    {
+        $element1 = new Element();
+        $element1->setType('div');
+
+        $element2 = new Element();
+        $element2->setType('div');
+        $element2->setAttribute('class', 'something');
+
+        $element3 = new Element();
+        $element3->setType('div');
+        $element3->setAttribute('class', 'bla');
+
+        $element4 = new Element();
+        $element4->setType('div');
+        $element4->setAttribute('id', 'important');
+
+        $element1->addChild($element2);
+        $element2->addChild($element3);
+        $element1->addChild($element4);
+
+        $element1->getAllSelectors();
+
+        $selectors = $element1->getAllSelectors();
+        $this->assertEquals('div', $selectors[0]);
+        $this->assertEquals('div.something', $selectors[1]);
+        $this->assertEquals('div.bla', $selectors[2]);
+        $this->assertEquals('div#important', $selectors[3]);
+    }
 }
