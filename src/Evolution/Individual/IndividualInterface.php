@@ -2,10 +2,13 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Individual;
 
-
+/**
+ * Interface IndividualInterface.
+ *
+ * @package Hashbangcode\Wevolution\Evolution\Individual
+ */
 interface IndividualInterface
 {
-
     /**
      * Get the underlying type object.
      *

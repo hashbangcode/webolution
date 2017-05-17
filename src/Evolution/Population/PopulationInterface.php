@@ -6,7 +6,6 @@ use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 
 interface PopulationInterface
 {
-
     /**
      * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
      * @return mixed

@@ -6,11 +6,19 @@ use Hashbangcode\Wevolution\Evolution\Population;
 
 class EvolutionStorage extends Evolution
 {
-
+    /**
+     * @var string
+     */
     protected $databaseName = 'sqlite:database.sqlite';
 
+    /**
+     * @var
+     */
     protected $database;
 
+    /**
+     * @var null
+     */
     protected $evolutionId = null;
 
     /**

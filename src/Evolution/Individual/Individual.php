@@ -8,9 +8,9 @@ namespace Hashbangcode\Wevolution\Evolution\Individual;
  */
 abstract class Individual implements IndividualInterface
 {
-
     /**
      * The type object.
+     *
      * @var object
      */
     protected $object;

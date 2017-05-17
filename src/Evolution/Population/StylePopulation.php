@@ -12,9 +12,8 @@ use Hashbangcode\Wevolution\Type\Style\Style;
  */
 class StylePopulation extends Population
 {
-
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function render()
     {
@@ -24,7 +23,7 @@ class StylePopulation extends Population
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function sort()
     {
@@ -32,7 +31,7 @@ class StylePopulation extends Population
     }
 
     /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
+     * {@inheritdoc}
      */
     public function addIndividual(Individual $individual = null)
     {

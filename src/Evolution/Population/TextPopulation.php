@@ -12,7 +12,6 @@ use Hashbangcode\Wevolution\Type\Text\Text;
  */
 class TextPopulation extends Population
 {
-
     /**
      * @param mixed $text
      */
@@ -21,6 +20,9 @@ class TextPopulation extends Population
         $this->text = $text;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
@@ -38,7 +40,7 @@ class TextPopulation extends Population
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function render()
     {

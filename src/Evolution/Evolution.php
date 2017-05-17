@@ -10,7 +10,6 @@ use Hashbangcode\Wevolution\Evolution\Population\Population;
  */
 class Evolution
 {
-
     /**
      * The global fitness goal.
      *

@@ -12,7 +12,6 @@ use Hashbangcode\Wevolution\Type\Element\Element;
  */
 class ElementPopulation extends Population
 {
-
     /**
      * @return string
      */
@@ -51,15 +50,15 @@ class ElementPopulation extends Population
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function sort()
     {
-
+        // @todo
     }
 
     /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
+     * {@inheritdoc}
      */
     public function addIndividual(Individual $individual = null)
     {

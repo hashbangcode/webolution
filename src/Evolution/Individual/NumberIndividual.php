@@ -10,9 +10,9 @@ use Hashbangcode\Wevolution\Type\Number\Number;
  */
 class NumberIndividual extends Individual
 {
-
     /**
      * NumberIndividual constructor.
+     *
      * @param $number
      */
     public function __construct($number)
@@ -86,8 +86,7 @@ class NumberIndividual extends Individual
     }
 
     /**
-     * @param $renderType
-     * @return mixed
+     * {@inheritdoc}
      */
     public function render($renderType = 'cli')
     {
@@ -101,5 +100,4 @@ class NumberIndividual extends Individual
         }
         return $output;
     }
-
 }

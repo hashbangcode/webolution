@@ -11,7 +11,6 @@ use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
  */
 class ColorPopulation extends Population
 {
-
     /**
      * Sort the population by a given parameter and in a certain direction.
      *

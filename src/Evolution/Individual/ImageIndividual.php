@@ -10,7 +10,6 @@ use Hashbangcode\Wevolution\Type\Image\Image;
  */
 class ImageIndividual extends Individual
 {
-
     /**
      * ImageIndividual constructor.
      *

@@ -10,12 +10,6 @@ use Hashbangcode\Wevolution\Type\Page\Page;
  */
 class PageIndividual extends Individual
 {
-
-    /**
-     * @var int
-     */
-    protected $mutationFactor = 0.05;
-
     /**
      * PageIndividual constructor.
      */
@@ -75,9 +69,7 @@ class PageIndividual extends Individual
     }
 
     /**
-     * @param string $renderType
-     *   What type of render to perform.
-     * @return mixed
+     * {@inheritdoc}
      */
     public function render($renderType = 'cli')
     {

@@ -12,17 +12,19 @@ use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
  */
 class StyleIndividual extends Individual
 {
-
     /**
      * StyleIndividual constructor.
-     * @param $element
+     *
+     * @param string|Style $selector
+     *   If string is passed then this is used to create the Style object. If an Element object is passed then this is
+     *   used as the object.
      */
-    public function __construct($element)
+    public function __construct($selector)
     {
-        if (!($element instanceof Style)) {
-            $this->object = new Style($element);
+        if (!($selector instanceof Style)) {
+            $this->object = new Style($selector);
         } else {
-            $this->object = $element;
+            $this->object = $selector;
         }
     }
 
@@ -116,8 +118,7 @@ class StyleIndividual extends Individual
     }
 
     /**
-     * @param $renderType
-     * @return mixed
+     * {@inheritdoc}
      */
     public function render($renderType = 'cli')
     {

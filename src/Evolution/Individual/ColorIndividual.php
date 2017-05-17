@@ -9,14 +9,9 @@ use Hashbangcode\Wevolution\Type\Color\Color;
  */
 class ColorIndividual extends Individual
 {
-
-    /**
-     * @var \Hashbangcode\Wevolution\Type\Color\Color
-     */
-    protected $object;
-
     /**
      * ColorIndividual constructor.
+     *
      * @param $red
      * @param $green
      * @param $blue

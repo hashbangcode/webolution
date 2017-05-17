@@ -10,12 +10,13 @@ use Hashbangcode\Wevolution\Type\Element\Element;
  */
 class ElementIndividual extends Individual
 {
-
     /**
-     * @var int
+     * ElementIndividual constructor.
+     *
+     * @param string|Element $element
+     *   If string is passed then this is used to create the Element object. If an Element object is passed then this is
+     *   used as the object.
      */
-    protected $mutationFactor = 0.05;
-
     public function __construct($element)
     {
         if (!($element instanceof Element)) {
@@ -74,7 +75,7 @@ class ElementIndividual extends Individual
     }
 
     /**
-     * {@inheritdoc{
+     * {@inheritdoc}
      */
     public function getFitness($type = '')
     {

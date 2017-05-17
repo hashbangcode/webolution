@@ -7,12 +7,12 @@ use Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual;
 use Hashbangcode\Wevolution\Type\Image\Image;
 
 /**
- * Class ImagePopulation
+ * Class ImagePopulation.
+ *
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
 class ImagePopulation extends Population
 {
-
     /**
      * Add an individual.
      *
@@ -60,7 +60,7 @@ class ImagePopulation extends Population
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function render()
     {
@@ -90,5 +90,4 @@ class ImagePopulation extends Population
         if ($action <= 1) {
         }
     }
-
 }

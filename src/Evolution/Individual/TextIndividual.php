@@ -11,16 +11,23 @@ use Hashbangcode\Wevolution\Utilities\TextUtilities;
  */
 class TextIndividual extends Individual
 {
-
     use TextUtilities;
 
+    /**
+     * @var int
+     */
     protected $textLength = 10;
 
+    /**
+     * @var
+     */
     protected $fitnessGoal;
 
     /**
      * TextIndividual constructor.
-     * @param $text
+     *
+     * @param string $text
+     *   The text to create the Text object with.
      */
     public function __construct($text)
     {
@@ -37,7 +44,7 @@ class TextIndividual extends Individual
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
@@ -132,8 +139,7 @@ class TextIndividual extends Individual
     }
 
     /**
-     * @param $renderType
-     * @return mixed
+     * {@inheritdoc}
      */
     public function render($renderType = 'cli')
     {
@@ -148,5 +154,4 @@ class TextIndividual extends Individual
         }
         return $output;
     }
-
 }

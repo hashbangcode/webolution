@@ -12,9 +12,8 @@ use Hashbangcode\Wevolution\Type\Page\Page;
  */
 class PagePopulation extends Population
 {
-
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function render()
     {

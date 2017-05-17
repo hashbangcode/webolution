@@ -12,7 +12,6 @@ use Hashbangcode\Wevolution\Type\Number\Number;
  */
 class NumberPopulation extends Population
 {
-
     /**
      * Add an individual.
      *
@@ -31,7 +30,7 @@ class NumberPopulation extends Population
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function sort()
     {
@@ -39,7 +38,7 @@ class NumberPopulation extends Population
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function render()
     {
