@@ -15,7 +15,7 @@ abstract class Population implements PopulationInterface
      *
      * @var array
      */
-    protected $individuals = array();
+    protected $individuals = [];
 
     /**
      * The default render type.
@@ -29,7 +29,7 @@ abstract class Population implements PopulationInterface
      *
      * @var array
      */
-    protected $populationFitness = array();
+    protected $populationFitness = [];
 
     /**
      * The mean fitness.
@@ -336,8 +336,8 @@ abstract class Population implements PopulationInterface
         $this->meanFitness = array_sum($this->populationFitness) / $this->getLength();
 
         // Get Median.
-        // @todo check this.
-        //$this->medianIndividual = array_slice($this->getIndividuals(), $this->getIndividuals()[floor(($this->getLength() - 1) / 2)], 1);
+        $individuals = $this->getIndividuals();
+        $this->medianIndividual = array_pop(array_slice($individuals, floor(count($individuals)/ 2), 1));
     }
 
     /**
