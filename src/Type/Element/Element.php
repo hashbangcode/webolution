@@ -12,34 +12,45 @@ class Element implements TypeInterface
     use TextUtilities;
 
     /**
+     * The type of element.
+     *
      * @var string
      */
     protected $type;
 
     /**
-     * @var
+     * An associative array of attributes.
+     *
+     * @var array
      */
-    protected $attributes;
+    protected $attributes = null;
 
     /**
+     * The children of this element.
+     *
      * @var array
      */
     protected $children = [];
 
     /**
+     * The text node of this element.
+     *
      * @var string
      */
     protected $elementText = '';
 
     /**
-     * An object.
+     * An optional object that can be used in place of an element.
      *
      * @var bool|object
      */
     protected $object = false;
 
     /**
-     * @return bool|object
+     * Get the object.
+     *
+     * @return object
+     *   The object.
      */
     public function getObject()
     {
@@ -47,7 +58,9 @@ class Element implements TypeInterface
     }
 
     /**
-     * @param bool|object $object
+     * Set the object.
+     *
+     * @param object $object
      */
     public function setObject($object)
     {
