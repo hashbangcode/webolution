@@ -99,7 +99,7 @@ class Page implements TypeInterface
     {
         $this->body = $body;
     }
-    
+
     /**
      * Get all the classes from the body Element.
      *
@@ -122,9 +122,15 @@ class Page implements TypeInterface
         return $this->getBody()->getAllTypes();
     }
 
+    /**
+     * Get the available selectors for the body element.
+     *
+     * @return array
+     *   The list of selectors.
+     */
     public function getSeletors()
     {
-        return $this->getBody()->getAllSe;
+        return $this->getBody()->getAllSelectors();
     }
 
     /**

@@ -56,8 +56,8 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $style->setAttrbute('color', 'red');
         $object->setStyle($style);
 
-        $body = new Element('div');
-        $object->setBody($body);
+        $element = new Element('div');
+        $object->setBody($element);
 
         $output = $object->render();
         $this->assertStringEqualsFile('tests/Type/Page/page04.html', $output);
@@ -72,8 +72,8 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $styles = [$style];
         $object->setStyles($styles);
 
-        $body = new Element('div');
-        $object->setBody($body);
+        $element = new Element('div');
+        $object->setBody($element);
 
         $output = $object->render();
         $this->assertStringEqualsFile('tests/Type/Page/page04.html', $output);
@@ -89,9 +89,25 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $styles = [$style];
         $object->setStyles($styles);
 
-        $body = new Element('div');
-        $object->setBody($body);
+        $element = new Element('div');
+        $object->setBody($element);
 
         $this->assertFalse($object->getStyle('something'));
+    }
+
+    public function testGetAllSelectors()
+    {
+        $object = new Page();
+
+        $element = new Element('div');
+        $inner_element = new Element('p');
+        $inner_element->setAttribute('class', 'paragraph');
+        $element->addChild($inner_element);
+        $object->setBody($element);
+
+        // The page and body elements should both produce the same selectors list.
+        $page_selectors = $object->getSeletors();
+        $element_selectors = $element->getAllSelectors();
+        $this->assertEquals($page_selectors, $element_selectors);
     }
 }
