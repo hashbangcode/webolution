@@ -134,10 +134,7 @@ class Page implements TypeInterface
     }
 
     /**
-     * Render the page.
-     *
-     * @return string
-     *   The rendered page.
+     * {@inheritdoc}
      */
     public function render()
     {

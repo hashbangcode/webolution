@@ -10,10 +10,18 @@ use Hashbangcode\Wevolution\Type\TypeInterface;
  */
 class Text implements TypeInterface
 {
-    protected $text;
+    /**
+     * The text.
+     *
+     * @var string
+     */
+    protected $text = '';
 
     /**
-     * @return mixed
+     * Get the text.
+
+     * @return string
+     *  The text.
      */
     public function getText()
     {
@@ -21,7 +29,10 @@ class Text implements TypeInterface
     }
 
     /**
-     * @param mixed $text
+     * Set the text.
+     *
+     * @param string $text
+     *   The text to set.
      */
     public function setText($text)
     {
@@ -30,7 +41,9 @@ class Text implements TypeInterface
 
     /**
      * Text constructor.
-     * @param $text
+     *
+     * @param string $text
+     *   The text to add.
      */
     public function __construct($text)
     {
@@ -38,7 +51,7 @@ class Text implements TypeInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function render()
     {

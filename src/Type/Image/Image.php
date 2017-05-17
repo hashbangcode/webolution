@@ -13,8 +13,9 @@ class Image implements TypeInterface
 {
 
     /**
+     * The image matrix.
+     *
      * @var array
-     *   The image matrix.
      */
     private $imageMatrix = [];
 
@@ -130,10 +131,7 @@ class Image implements TypeInterface
     }
 
     /**
-     * Render the image matrix to text.
-     *
-     * @return string
-     *   The rendered image.
+     * {@inheritdoc}
      */
     public function render()
     {

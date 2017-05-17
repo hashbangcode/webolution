@@ -814,10 +814,7 @@ class Color implements TypeInterface
     }
 
     /**
-     * Render the colour as a hex string.
-     *
-     * @return string
-     *   The hex value of the color.
+     * {@inheritdoc}
      */
     public function render()
     {

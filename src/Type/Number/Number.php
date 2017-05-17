@@ -27,7 +27,7 @@ class Number implements TypeInterface
     /**
      * Set the number.
      *
-     * @param integer $number
+     * @param int $number
      *   The number.
      *
      * @throws Exception\InvalidNumberException
@@ -44,7 +44,7 @@ class Number implements TypeInterface
     /**
      * Number constructor.
      *
-     * @param integer $number
+     * @param int $number
      *   The number.
      */
     public function __construct($number)
@@ -55,9 +55,13 @@ class Number implements TypeInterface
     /**
      * Helper function that adds two numbers.
      *
-     * @param $x integer The first number.
-     * @param $y integer The second number.
-     * @return integer The result of adding the numbers.
+     * @param $x integer
+     *   The first number.
+     * @param $y integer
+     *   The second number.
+     *
+     * @return integer
+     *   The result of adding the numbers.
      */
     protected function add($x, $y)
     {
@@ -67,9 +71,13 @@ class Number implements TypeInterface
     /**
      * Helper function that subtracts two numbers.
      *
-     * @param $x integer The first number.
-     * @param $y integer The second number.
-     * @return integer The result of subtracting the numbers.
+     * @param $x integer
+     *   The first number.
+     * @param $y integer
+     *   The second number.
+     *
+     * @return integer
+     *   The result of subtracting the numbers.
      */
     protected function subtract($x, $y)
     {
@@ -77,7 +85,7 @@ class Number implements TypeInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function render()
     {

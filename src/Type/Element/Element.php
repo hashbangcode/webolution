@@ -118,10 +118,7 @@ class Element implements TypeInterface
     }
 
     /**
-     * Render the element.
-     *
-     * @return string
-     *   The rendered element.
+     * {@inheritdoc}
      */
     public function render()
     {

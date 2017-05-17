@@ -11,7 +11,6 @@ use Hashbangcode\Wevolution\Type\TypeInterface;
  */
 class Style implements TypeInterface
 {
-
     /**
      * The style selector.
      *
@@ -63,7 +62,7 @@ class Style implements TypeInterface
     }
 
     /**
-     * Render the style.
+     * {@inheritdoc}
      */
     public function render()
     {
