@@ -103,25 +103,32 @@ class Evolution
             $this->setIndividualsPerGeneration($individualsPerGeneration);
         }
 
-        // If a population object was passed then we can setup the popultion.
+        // If a population object was passed then we can setup the population.
         if ($population instanceof Population) {
             $this->population = $population;
-
             if ($autoGeneratePopulation == true
                 && $this->population->getLength() < $this->getIndividualsPerGeneration()
             ) {
-                // Get the population object to generate individuals.
-                do {
-                    if ($this->population->getLength() == 0) {
-                        $this->population->addIndividual();
-                    } else {
-                        $this->population->addIndividual(clone $this->population->getRandomIndividual());
-                    }
-                } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
-
-                $this->population->generateStatistics();
+                $this->populateThePopulation();
             }
         }
+    }
+
+    /**
+     * (re)populate the population
+     */
+    public function populateThePopulation()
+    {
+        // Get the population object to generate individuals.
+        do {
+            if ($this->population->getLength() == 0) {
+                $this->population->addIndividual();
+            } else {
+                $this->population->addIndividual(clone $this->population->getRandomIndividual());
+            }
+        } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
+
+        $this->population->generateStatistics();
     }
 
     /**
