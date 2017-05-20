@@ -141,7 +141,8 @@ CREATE TABLE "populations" (
   "population_id" integer NOT NULL PRIMARY KEY,
   "evolution_id" integer NOT NULL,
   "max_fitness" real NULL,
-  "min_fitness" real NULL
+  "min_fitness" real NULL,
+  "population_type" text NOT NULL
 );';
         $this->database->exec($sql);
     }
@@ -252,12 +253,17 @@ CREATE TABLE "populations" (
      */
     public function storeGeneration($population)
     {
-        $sql = 'INSERT INTO populations(population_id, evolution_id) VALUES (:population_id, :evolution_id)';
+        // @todo : store statistics.
+
+        // Insert the population into the database.
+        $sql = 'INSERT INTO populations(population_id, evolution_id, population_type) ';
+        $sql .= ' VALUES (:population_id, :evolution_id, :population_type)';
         $query = $this->database->prepare($sql);
         $query->execute(
             array(
                 'population_id' => $this->getGeneration(),
                 'evolution_id' => $this->getEvolutionId(),
+                'population_type' => get_class($population),
             )
         );
 
@@ -298,25 +304,50 @@ CREATE TABLE "populations" (
      */
     public function loadPopulation()
     {
-        $sql = "SELECT * FROM individuals WHERE evolution_id = :evolution_id AND population_id = :population_id";
+        $individualSql = "SELECT * FROM individuals ";
+        $individualSql .= "WHERE evolution_id = :evolution_id AND population_id = :population_id";
+        $individualStatement = $this->database->prepare($individualSql);
 
-        $stmt = $this->database->prepare($sql);
-
-        if ($stmt == false) {
+        if ($individualStatement == false) {
             return false;
         }
 
-        $stmt->execute(
+        $individualStatement->execute(
             array(
                 'evolution_id' => $this->getEvolutionId(),
                 'population_id' => $this->getGeneration(),
             )
         );
-        $population_data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        foreach ($population_data as $key => $individual_data) {
-            $individual = unserialize($individual_data['individual']);
+        if (!($this->population instanceof \Hashbangcode\Wevolution\Evolution\Population\Population)) {
+            $populationSql = "SELECT * FROM populations ";
+            $populationSql .= "WHERE evolution_id = :evolution_id AND population_id = :population_id";
+            $populationStatement = $this->database->prepare($populationSql);
+            $populationStatement->execute(
+                array(
+                    'evolution_id' => $this->getEvolutionId(),
+                    'population_id' => $this->getGeneration(),
+                )
+            );
 
+            $population_data = $populationStatement->fetchAll(\PDO::FETCH_ASSOC);
+
+            if (count($population_data) == 0) {
+                return false;
+            }
+
+            $population_data = array_pop($population_data);
+
+            $populationType =  '\\' . $population_data['population_type'];
+            if (class_exists($populationType)) {
+                $this->population = new $populationType;
+            }
+        }
+
+        $individualData = $individualStatement->fetchAll(\PDO::FETCH_ASSOC);
+
+        foreach ($individualData as $key => $data) {
+            $individual = unserialize($data['individual']);
             $this->population->addIndividual($individual);
         }
     }
