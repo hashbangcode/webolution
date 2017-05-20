@@ -81,7 +81,7 @@ class PageIndividual extends Individual
             case 'cli':
                 // Intentional fall through.
             default:
-                $output .= $this->getObject()->render() . PHP_EOL;
+                $output .= $this->getObject()->render();
         }
         return $output;
     }

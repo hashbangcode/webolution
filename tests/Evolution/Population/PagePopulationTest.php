@@ -15,6 +15,14 @@ class PagePopulationTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Population\PagePopulation', $object);
     }
 
+    public function testCreatePopulationWithElement()
+    {
+        $object = new PagePopulation();
+        $object->addIndividual();
+        $individual = $object->getIndividuals()[0];
+        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\PageIndividual', $individual);
+    }
+
     public function testCreateActivePopulation()
     {
         $object = new PageIndividual();
@@ -27,8 +35,9 @@ class PagePopulationTest extends \PHPUnit_Framework_TestCase
         $object->getObject()->setBody($body);
 
         $population = new PagePopulation();
+        $population->addIndividual($object);
 
-        $output = $object->getObject()->render();
+        $output = $population->render();
         $this->assertStringEqualsFile('tests/Evolution/Population/data/page01.html', $output);
     }
 }

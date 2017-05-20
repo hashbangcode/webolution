@@ -42,7 +42,7 @@ class PagePopulation extends Population
 
                 case 'cli':
                 default:
-                    $output .= $individual->render($renderType) . PHP_EOL;
+                    $output .= $individual->render($renderType);
             }
         }
 
