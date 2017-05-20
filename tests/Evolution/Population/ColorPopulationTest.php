@@ -45,13 +45,7 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
 
         $colorColorPopulation->sort();
 
-        $this->assertEquals("FF0000
-000000
-00FF00
-00FF00
-0000FF
-0000FF
-", $colorColorPopulation->render());
+        $this->assertStringEqualsFile('tests/Evolution/Population/data/color01.html', $colorColorPopulation->render());
     }
 
     public function testSortByHueDescending()
@@ -61,8 +55,8 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
         $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
         $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
         $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
         $colorColorPopulation->addIndividual(new ColorIndividual(255, 0, 0));
+        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
         $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
 
         $colorColorPopulation->sort('hue', 'DESC');
@@ -73,13 +67,39 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
             $output .= $individual->render();
         }
 
-        $this->assertEquals("0000FF
-0000FF
-00FF00
-00FF00
-000000
-FF0000
-", $output);
+        $this->assertStringEqualsFile('tests/Evolution/Population/data/color02.html', $output);
+    }
+
+
+    public function testSortByEachType()
+    {
+        $colorColorPopulation = new ColorPopulation();
+
+        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
+        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
+        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
+        $colorColorPopulation->addIndividual(new ColorIndividual(255, 0, 0));
+        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
+        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
+
+        $colorColorPopulation->sort('hue');
+        $colorColorPopulation->sort('hex');
+        $colorColorPopulation->sort('intensity');
+        $colorColorPopulation->sort('hsv_saturation');
+        $colorColorPopulation->sort('hsl_saturation');
+        $colorColorPopulation->sort('hsi_saturation');
+        $colorColorPopulation->sort('value');
+        $colorColorPopulation->sort('luma');
+        $colorColorPopulation->sort('lightness');
+        $colorColorPopulation->sort('fitness');
+
+        // Need to bypass the normal render helper as there is an internal sort.
+        $output = '';
+        foreach ($colorColorPopulation->getIndividuals() as $individual) {
+            $output .= $individual->render();
+        }
+
+        $this->assertStringEqualsFile('tests/Evolution/Population/data/color03.html', $output);
     }
 
     public function testColorIteration()
