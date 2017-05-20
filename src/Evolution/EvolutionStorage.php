@@ -42,11 +42,15 @@ class EvolutionStorage extends Evolution
      * @param null $individualsPerGeneration
      *   The minimal number of individuals per generation.
      * @param bool $autoGeneratePopulation
-     *   Whether to autopopulate the population.
+     *   Whether to auto-populate the population.
      */
-    public function __construct(Population\Population $population = null, $maxGenerations = null, $individualsPerGeneration = null, $autoGeneratePopulation = false)
-    {
-        parent::__construct($population, $maxGenerations, $individualsPerGeneration, $autoGeneratePopulation);
+    public function __construct(
+        Population\Population $population = null,
+        $autoGeneratePopulation = true,
+        $maxGenerations = null,
+        $individualsPerGeneration = null
+    ) {
+        parent::__construct($population, $autoGeneratePopulation, $maxGenerations, $individualsPerGeneration);
     }
 
     /**

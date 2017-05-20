@@ -2,10 +2,12 @@
 
 namespace Hashbangcode\Wevolution\Evolution;
 
+use Hashbangcode\Wevolution\Evolution\Exception\NoPopulationException;
 use Hashbangcode\Wevolution\Evolution\Population\Population;
 
 /**
- * Class Evolution
+ * Class Evolution.
+ *
  * @package Hashbangcode\Wevolution\Evolution
  */
 class Evolution
@@ -29,28 +31,28 @@ class Evolution
      *
      * @var int
      */
-    protected $globalMutationFactor;
+    protected $globalMutationFactor = 50;
 
     /**
      * The global mutation amount.
      *
      * @var int
      */
-    protected $globalMutationAmount;
+    protected $globalMutationAmount = 1;
 
     /**
      * The maximum number of generations to run.
      *
      * @var int
      */
-    protected $maxGenerations;
+    protected $maxGenerations = 30;
 
     /**
      * The minimum number of individuals per generation.
      *
      * @var int
      */
-    protected $individualsPerGeneration;
+    protected $individualsPerGeneration = 30;
 
     /**
      * The allowed fitness value.
@@ -85,35 +87,39 @@ class Evolution
      * @param bool $autoGeneratePopulation
      *   Whether to auto generate the population. Defaults to false.
      */
-    public function __construct(Population $population = null, $maxGenerations = null, $individualsPerGeneration = null, $autoGeneratePopulation = false)
-    {
+    public function __construct(
+        Population $population = null,
+        $autoGeneratePopulation = true,
+        $maxGenerations = null,
+        $individualsPerGeneration = null
+    ) {
+        // Setup the maximum number of generations.
         if (!is_null($maxGenerations)) {
             $this->setMaxGenerations($maxGenerations);
-        } else {
-            $this->setMaxGenerations(10);
         }
 
+        // Setup the maximum number of individuals per generation.
         if (!is_null($individualsPerGeneration)) {
             $this->setIndividualsPerGeneration($individualsPerGeneration);
-        } else {
-            $this->setMaxGenerations(10);
         }
 
-        if (!is_null($population)) {
+        // If a population object was passed then we can setup the popultion.
+        if ($population instanceof Population) {
             $this->population = $population;
-            $this->population->generateStatistics();
 
-            self::storeGeneration($population);
-
-            // Setup initial Population.
-            if ($autoGeneratePopulation === true
+            if ($autoGeneratePopulation == true
                 && $this->population->getLength() < $this->getIndividualsPerGeneration()
             ) {
                 // Get the population object to generate individuals.
                 do {
-                    // @todo we should be cloning and then mutating these things if there is at least one individual present instead of just creating new ones.
-                    $this->population->addIndividual();
+                    if ($this->population->getLength() == 0) {
+                        $this->population->addIndividual();
+                    } else {
+                        $this->population->addIndividual(clone $this->population->getRandomIndividual());
+                    }
                 } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
+
+                $this->population->generateStatistics();
             }
         }
     }
@@ -167,9 +173,15 @@ class Evolution
      *
      * @return bool
      *   True if successful. False if everyone dies.
+     *
+     * @throws NoPopulationException
      */
     public function runGeneration($kill = true)
     {
+        if (!($this->population instanceof Population)) {
+            throw new NoPopulationException('No population object exists in evolution class.');
+        }
+
         // Ensure the population has a length.
         if ($this->population->getLength() == 0) {
             // If there is no population left then set the number of generations to max.
@@ -177,14 +189,11 @@ class Evolution
             return false;
         }
 
-        // Increate the generation number.
-        $this->generation++;
-
         // Generate statistics before we do anything with the population.
         $this->population->generateStatistics();
 
-        // Kill off anything that we don't want.
         if ($kill) {
+            // Kill off anything that isn't fit.
             $this->population->cullPopulation($this->getGlobalFitnessGoal());
         }
 
@@ -208,11 +217,13 @@ class Evolution
             } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
         }
 
-
         if (!is_null($this->getGlobalMutationFactor())) {
+            // Ensure the mutation factor is set in the population.
             $this->population->setMutationFactor($this->getGlobalMutationFactor());
         }
+
         if (!is_null($this->getGlobalMutationAmount())) {
+            // Ensure the mutation amount is set in the population.
             $this->population->setMutationAmount($this->getGlobalMutationAmount());
         }
 
@@ -221,6 +232,9 @@ class Evolution
 
         // Store the current generation.
         $this->addPreviousGeneration(clone $this->getCurrentPopulation());
+
+        // Increate the generation number.
+        $this->generation++;
 
         return true;
     }

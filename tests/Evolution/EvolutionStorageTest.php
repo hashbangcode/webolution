@@ -26,5 +26,4 @@ class EvolutionStorageTest extends \PHPUnit_Framework_TestCase
         $population = $evolution->getCurrentPopulation();
         $this->assertEquals($evolution->getIndividualsPerGeneration(), $population->getLength());
     }
-
 }

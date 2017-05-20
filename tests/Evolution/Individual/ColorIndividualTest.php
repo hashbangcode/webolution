@@ -49,7 +49,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
     public function testMutateColorThroughIndividual()
     {
         $object = new ColorIndividual(125, 125, 125);
-        $object->mutate(1);
+        $object->mutate(0);
         $renderType = 'cli';
         $this->assertNotEquals('125125125', $object->getObject()->render($renderType));
         $this->assertNotEquals('125125125' . PHP_EOL, $object->render($renderType));

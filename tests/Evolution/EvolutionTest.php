@@ -50,7 +50,7 @@ class EvolutionTest extends \PHPUnit_Framework_TestCase
     public function testEvolutionRunBlankGeneration()
     {
         $colorPopulation = new ColorPopulation();
-        $evolution = new Evolution($colorPopulation);
+        $evolution = new Evolution($colorPopulation, false);
 
         $this->assertFalse($evolution->runGeneration());
     }
@@ -119,7 +119,7 @@ class EvolutionTest extends \PHPUnit_Framework_TestCase
         $colorPopulation->addIndividual();
         $colorPopulation->addIndividual();
 
-        $evolution = new Evolution($colorPopulation);
+        $evolution = new Evolution($colorPopulation, false);
 
         $evolution->setIndividualsPerGeneration(4);
 
@@ -135,8 +135,9 @@ class EvolutionTest extends \PHPUnit_Framework_TestCase
         $colorPopulation->addIndividual();
         $colorPopulation->setDefaultRenderType('cli');
 
-        $evolution = new Evolution($colorPopulation);
+        $evolution = new Evolution($colorPopulation, false);
 
+        $evolution->runGeneration();
         $evolution->runGeneration();
 
         $output = $evolution->renderGenerations(true, 'cli');
@@ -152,7 +153,7 @@ class EvolutionTest extends \PHPUnit_Framework_TestCase
         $colorPopulation = new ColorPopulation();
         $colorPopulation->addIndividual();
 
-        $evolution = new Evolution($colorPopulation, 10, 20);
+        $evolution = new Evolution($colorPopulation, true, 10, 20);
 
         $evolution->runGeneration();
 
@@ -165,7 +166,7 @@ class EvolutionTest extends \PHPUnit_Framework_TestCase
     public function testEvolutionColorAutoGeneratePopulation()
     {
         $colorPopulation = new ColorPopulation();
-        $evolution = new Evolution($colorPopulation, 10, 20, true);
+        $evolution = new Evolution($colorPopulation, true, 10, 20);
 
         $this->assertEquals(10, $evolution->getMaxGenerations());
         $this->assertEquals(20, $evolution->getIndividualsPerGeneration());
