@@ -81,8 +81,10 @@ class EvolutionManager
      */
     public function runEvolution()
     {
+        // Keep running the evolution until the runGeneration() method returns false.
         for ($i = 0; $i < $this->getEvolutionObject()->getMaxGenerations(); ++$i) {
             if ($this->getEvolutionObject()->runGeneration() === false) {
+                // If the runGeneration() method is false then we need to stop processing.
                 break;
             }
         }
