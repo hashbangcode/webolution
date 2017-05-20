@@ -72,34 +72,50 @@ class TextIndividual extends Individual
                     break;
             }
         } else {
-            // Ger a random letter from the current string.
-            $letter_position = mt_rand(0, strlen($text) - 1);
-
-            $text = str_split($text);
-            $letter = $text[$letter_position];
-
-            $goal = str_split($goal);
-            if (isset($goal[$letter_position]) && $goal[$letter_position] == $letter) {
-                return;
-            }
-
-            if ($letter == 'z') {
-                $newletter = 'A';
-            } elseif ($letter == 'Z') {
-                $newletter = ' ';
-            } elseif ($letter == ' ') {
-                $newletter = 'a';
-            } else {
-                $newletter = chr(ord($letter) + 1);
-            }
-
-            // Swap it for a random letter.
-            $text[$letter_position] = $newletter;
-
-            $text = implode('', $text);
-
-            $this->getObject()->setText($text);
+            // Mutate a single letter from the text.
+            $this->mutateSingleLetter();
         }
+    }
+
+    /**
+     * Mutate a single letter.
+     */
+    public function mutateSingleLetter()
+    {
+        // Extract text and goals.
+        $text = $this->getObject()->getText();
+        $goal = $this->getFitnessGoal();
+
+        // Get a random letter from the current string.
+        $letter_position = mt_rand(0, strlen($text) - 1);
+
+        // Extract the single letter.
+        $text = str_split($text);
+        $letter = $text[$letter_position];
+
+        // If the letter we extract is the same as the goal then don't mutate.
+        $goal = str_split($goal);
+        if (isset($goal[$letter_position]) && $goal[$letter_position] == $letter) {
+            return;
+        }
+
+        // Select a new letter.
+        if ($letter == 'z') {
+            $newletter = 'A';
+        } elseif ($letter == 'Z') {
+            $newletter = ' ';
+        } elseif ($letter == ' ') {
+            $newletter = 'a';
+        } else {
+            $newletter = chr(ord($letter) + 1);
+        }
+
+        // Swap it for a random letter.
+        $text[$letter_position] = $newletter;
+
+        // Re-create the text string and set it back to the object.
+        $text = implode('', $text);
+        $this->getObject()->setText($text);
     }
 
     /**

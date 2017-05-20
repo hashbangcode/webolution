@@ -33,38 +33,43 @@ class StyleIndividual extends Individual
      */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
+        // Figure out the action we are going to take.
         $action = mt_rand(0, 100);
-
         $action = $action + $mutationFactor;
 
         $style = $this->getObject();
 
         if ($action <= 5) {
-            // Mutate selector
-            //$selector = $style->getSelector();
-
+            // Mutate selector.
             $this->mutateSelector();
-
-            //$selector = $this->mutateSelector();
-
-            //$this->getObject()->setSelector($selector);
-
         } elseif ($action > 5 && $action <= 50) {
             // Add a attribute to the Style.
-            if ($style->getAttribute('color') == false) {
-                $style->setAttrbute('color', ColorIndividual::generateRandomColor());
-            }
-
+            $this->addAttribute();
         } elseif (count($style->getAttributes()) > 0) {
-            // Select an attribute and mutate it.
+            // Select an attribute.
             $attributes = $style->getAttributes();
-            $selectedAttribute = array_rand($attributes);
-            $attributes[$selectedAttribute] = $this->mutateAttribute($selectedAttribute, $attributes[$selectedAttribute]);
+            $selected = array_rand($attributes);
+
+            // Mutate the attribute.
+            $attributes[$selected] = $this->mutateAttribute($selected, $attributes[$selected]);
         }
     }
 
     /**
-     *
+     * Add an attribute to the Style object.
+     */
+    public function addAttribute()
+    {
+        // Get the style object.
+        $style = $this->getObject();
+
+        if ($style->getAttribute('color') == false) {
+            $style->setAttrbute('color', ColorIndividual::generateRandomColor());
+        }
+    }
+
+    /**
+     * Mutate the selector.
      */
     public function mutateSelector()
     {
