@@ -3,6 +3,7 @@
 namespace Hashbangcode\Wevolution\Demos\Controller;
 
 use Hashbangcode\Wevolution\Demos\Controller\BaseController;
+use Hashbangcode\Wevolution\Evolution\EvolutionManager;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Hashbangcode\Wevolution\Evolution\Evolution;
@@ -18,30 +19,22 @@ class NumberController extends BaseController
 
         $title = 'Number Evolution Test';
 
+        // Setup the population.
         $population = new NumberPopulation();
         $population->setDefaultRenderType('html');
 
+        // Add individuals to the population.
         for ($i = 0; $i < 30; $i++) {
             $population->addIndividual(new NumberIndividual(1));
         }
 
-        $evolution = new Evolution($population);
-        $evolution->setIndividualsPerGeneration(30);
-        $evolution->setMaxGenerations(30);
-        $evolution->setAllowedFitness(1);
-        $evolution->setGlobalMutationFactor(1);
-        $evolution->setGlobalMutationAmount(1);
+        // Create the EvolutionManager object and add the population to it.
+        $evolution = new EvolutionManager();
+        $evolution->getEvolutionObject()->setPopulation($population);
+        $evolution->runEvolution();
 
         $output = '';
-
-        for ($i = 0; $i < $evolution->getMaxGenerations(); ++$i) {
-            if ($evolution->runGeneration() === false) {
-                $output .= '<p>Everyone is dead.</p>';
-                break;
-            }
-        }
-
-        $output .= $evolution->renderGenerations();
+        $output .= $evolution->getEvolutionObject()->renderGenerations();
 
         return $this->view->render($response, 'demos.twig', [
             'title' => $title,
