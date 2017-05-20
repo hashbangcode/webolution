@@ -5,7 +5,9 @@ namespace Hashbangcode\Wevolution\Evolution\Individual;
 use Hashbangcode\Wevolution\Type\Color\Color;
 
 /**
- * Class ColorIndividual
+ * Class ColorIndividual.
+ *
+ * @package Hashbangcode\Wevolution\Evolution\Individual
  */
 class ColorIndividual extends Individual
 {
@@ -38,6 +40,8 @@ class ColorIndividual extends Individual
     }
 
     /**
+     * Generate a ColorIndividual object from a Color object.
+     *
      * @param $color \Hashbangcode\Wevolution\Type\Color\Color
      *   The Colour object to use when creating the ColorIndividual.
      *
@@ -67,8 +71,6 @@ class ColorIndividual extends Individual
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         if (mt_rand(0, 100) < $mutationFactor) {
-            $amount = mt_rand(1, 15);
-
             $rgb = $this->getObject()->getColorArray();
 
             $rgb_key = ucfirst($rgb[array_rand($rgb)]);
@@ -77,11 +79,11 @@ class ColorIndividual extends Individual
 
             switch ($operators[array_rand($operators)]) {
                 case 'add':
-                    $value = $this->getObject()->{'get' . $rgb_key}() + $amount;
+                    $value = $this->getObject()->{'get' . $rgb_key}() + $mutationAmount;
                     break;
                 case 'subtract':
                 default:
-                    $value = $this->getObject()->{'get' . $rgb_key}() - $amount;
+                    $value = $this->getObject()->{'get' . $rgb_key}() - $mutationAmount;
                     break;
             }
 
@@ -110,8 +112,7 @@ class ColorIndividual extends Individual
     }
 
     /**
-     * @param $renderType
-     * @return string
+     * {@inheritdoc}
      */
     public function render($renderType = 'cli')
     {
