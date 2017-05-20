@@ -252,6 +252,25 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('li', $childrenTypes[1]);
     }
 
+    public function testGetAllTypes()
+    {
+        $outer_element = new Element('div');
+        $inner_element = new Element('ul');
+        $inner_inner_element = new Element('li');
+
+        $outer_element->addChild($inner_element);
+        $inner_element->addChild($inner_inner_element);
+
+        $outer_element->setAttribute('class', 'wibble');
+        $inner_element->setAttribute('class', 'wobble');
+        $inner_inner_element->setAttribute('class', 'foo');
+
+        $types = $outer_element->getAllTypes();
+        $this->assertEquals('div', $types[0]);
+        $this->assertEquals('ul', $types[1]);
+        $this->assertEquals('li', $types[2]);
+    }
+
     public function testGetChildClasses()
     {
         $outer_element = new Element('div');
@@ -265,9 +284,28 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $inner_element->setAttribute('class', 'wobble');
         $inner_inner_element->setAttribute('class', 'foo');
 
-        $childrenTypes = $outer_element->getChildClasses();
-        $this->assertEquals('wobble', $childrenTypes[0]);
-        $this->assertEquals('foo', $childrenTypes[1]);
+        $childClasses = $outer_element->getChildClasses();
+        $this->assertEquals('wobble', $childClasses[0]);
+        $this->assertEquals('foo', $childClasses[1]);
+    }
+
+    public function testGetAllClasses()
+    {
+        $outer_element = new Element('div');
+        $inner_element = new Element('ul');
+        $inner_inner_element = new Element('li');
+
+        $outer_element->addChild($inner_element);
+        $inner_element->addChild($inner_inner_element);
+
+        $outer_element->setAttribute('class', 'wibble');
+        $inner_element->setAttribute('class', 'wobble');
+        $inner_inner_element->setAttribute('class', 'foo');
+
+        $classes = $outer_element->getAllClasses();
+        $this->assertEquals('wibble', $classes[0]);
+        $this->assertEquals('wobble', $classes[1]);
+        $this->assertEquals('foo', $classes[2]);
     }
 
     public function testSetElementText()
