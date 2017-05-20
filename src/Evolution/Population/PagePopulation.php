@@ -7,7 +7,8 @@ use Hashbangcode\Wevolution\Evolution\Individual\PageIndividual;
 use Hashbangcode\Wevolution\Type\Page\Page;
 
 /**
- * Class ElementPopulation
+ * Class ElementPopulation.
+ *
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
 class PagePopulation extends Population
@@ -49,10 +50,11 @@ class PagePopulation extends Population
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function sort()
     {
+        // Do not sort pages.
     }
 
     /**
@@ -61,9 +63,8 @@ class PagePopulation extends Population
      * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
      *   Add an individual.
      *
-     * @return $this The current object.
-     *
-     * @throws Exception\ElementPageRootException
+     * @return $this
+     *   The current object.
      */
     public function addIndividual(Individual $individual = null)
     {

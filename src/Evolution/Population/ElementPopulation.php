@@ -7,7 +7,8 @@ use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
 use Hashbangcode\Wevolution\Type\Element\Element;
 
 /**
- * Class ElementPopulation
+ * Class ElementPopulation.
+ *
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
 class ElementPopulation extends Population
@@ -22,6 +23,7 @@ class ElementPopulation extends Population
         // Get the render type.
         $renderType = $this->getDefaultRenderType();
 
+        // Loop through the individuals and render them into the output.
         foreach ($this->getIndividuals() as $individual) {
             switch ($renderType) {
                 case 'html':

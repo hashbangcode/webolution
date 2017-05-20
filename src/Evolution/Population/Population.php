@@ -5,7 +5,8 @@ namespace Hashbangcode\Wevolution\Evolution\Population;
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 
 /**
- * Class Population
+ * Class Population.
+ *
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
 abstract class Population implements PopulationInterface
@@ -120,7 +121,7 @@ abstract class Population implements PopulationInterface
     }
 
     /**
-     *
+     * Implementation of the __clone magic method to ensure that all sub-objects of this object also get cloned.
      */
     public function __clone()
     {
@@ -210,12 +211,12 @@ abstract class Population implements PopulationInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     abstract public function sort();
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getIndividuals()
     {
@@ -223,6 +224,8 @@ abstract class Population implements PopulationInterface
     }
 
     /**
+     * Get the default render type.
+     *
      * @return string
      *   The current default render type.
      */
@@ -232,6 +235,8 @@ abstract class Population implements PopulationInterface
     }
 
     /**
+     * Set the default render type.
+     *
      * @param string $defaultRenderType
      *   What the default render type should be.
      */
@@ -354,7 +359,7 @@ abstract class Population implements PopulationInterface
     }
 
     /**
-     * Cull population.
+     * Kill any member of the population that is unfit.
      *
      * @param mixed $globalFitnessGoal
      *   The global fitness goal.

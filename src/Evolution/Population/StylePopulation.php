@@ -7,7 +7,8 @@ use Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual;
 use Hashbangcode\Wevolution\Type\Style\Style;
 
 /**
- * Class StylePopulation
+ * Class StylePopulation.
+ *
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
 class StylePopulation extends Population

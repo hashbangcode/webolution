@@ -92,9 +92,15 @@ class StyleIndividual extends Individual
     }
 
     /**
-     * @param $attribute
-     * @param $attributeProperty
+     * Mutate an attribute.
+     *
+     * @param string $attribute
+     *   The attribute name.
+     * @param mixed $attributeProperty
+     *   The property.
+     *
      * @return mixed
+     *   The mutated attribute.
      */
     public function mutateAttribute($attribute, $attributeProperty)
     {

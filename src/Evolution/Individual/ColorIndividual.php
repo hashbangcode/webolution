@@ -12,9 +12,12 @@ class ColorIndividual extends Individual
     /**
      * ColorIndividual constructor.
      *
-     * @param $red
-     * @param $green
-     * @param $blue
+     * @param int $red
+     *   The red value of the color.
+     * @param int $green
+     *   The green value of the color.
+     * @param int $blue
+     *   The blue value of the color.
      */
     public function __construct($red, $green, $blue)
     {

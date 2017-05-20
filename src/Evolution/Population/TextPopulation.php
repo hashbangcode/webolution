@@ -7,7 +7,8 @@ use Hashbangcode\Wevolution\Evolution\Individual\TextIndividual;
 use Hashbangcode\Wevolution\Type\Text\Text;
 
 /**
- * Class TextPopulation
+ * Class TextPopulation.
+ *
  * @package Hashbangcode\Wevolution\Evolution\Population
  */
 class TextPopulation extends Population
@@ -32,7 +33,7 @@ class TextPopulation extends Population
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function sort()
     {

@@ -14,14 +14,11 @@ class TextIndividual extends Individual
     use TextUtilities;
 
     /**
-     * @var int
+     * The fitness goal that the string should aspire to.
+     *
+     * @var string
      */
-    protected $textLength = 10;
-
-    /**
-     * @var
-     */
-    protected $fitnessGoal;
+    protected $fitnessGoal = '';
 
     /**
      * TextIndividual constructor.
@@ -35,7 +32,10 @@ class TextIndividual extends Individual
     }
 
     /**
+     * Generate a new TextIndividual.
+     *
      * @return TextIndividual
+     *   The new TextIndividual.
      */
     public static function generateRandomTextIndividual($length = 7)
     {
@@ -123,7 +123,10 @@ class TextIndividual extends Individual
     }
 
     /**
+     * Get the fitness goal.
+     *
      * @return mixed
+     *   Get the fitness goal.
      */
     public function getFitnessGoal()
     {
@@ -131,7 +134,10 @@ class TextIndividual extends Individual
     }
 
     /**
+     * Set the fitness goal.
+     *
      * @param mixed $fitnessGoal
+     *   The fitness goal.
      */
     public function setFitnessGoal($fitnessGoal)
     {

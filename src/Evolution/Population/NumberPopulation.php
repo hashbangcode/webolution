@@ -42,7 +42,10 @@ class NumberPopulation extends Population
      */
     public function render()
     {
+        // Render the numbers out.
         $output = parent::render();
+
+        // Present a summary of the numbers.
         switch ($this->getDefaultRenderType()) {
             case 'html':
                 $output .= ' (' . $this->getLength() . ' items)<br>';

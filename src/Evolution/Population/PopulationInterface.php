@@ -7,13 +7,14 @@ use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 interface PopulationInterface
 {
     /**
+     * Add an individual to the population.
+     *
      * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
-     * @return mixed
      */
     public function addIndividual(Individual $individual = null);
 
     /**
-     * @return mixed
+     * Sort the population.
      */
     public function sort();
 
@@ -26,12 +27,16 @@ interface PopulationInterface
     public function getLength();
 
     /**
-     * @return mixed
+     * Get the individuals for this population.
+     *
+     * @return array
      */
     public function getIndividuals();
 
     /**
-     * @return mixed
+     * Render the population.
+     *
+     * @return string
      */
     public function render();
 

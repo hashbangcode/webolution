@@ -4,19 +4,30 @@ namespace Hashbangcode\Wevolution\Evolution;
 
 use Hashbangcode\Wevolution\Evolution\Population;
 
+/**
+ * Class EvolutionStorage.
+ *
+ * @package Hashbangcode\Wevolution\Evolution
+ */
 class EvolutionStorage extends Evolution
 {
     /**
+     * The filename of the database.
+     *
      * @var string
      */
     protected $databaseName = 'sqlite:database.sqlite';
 
     /**
-     * @var
+     * The database connection.
+     *
+     * @var resource
      */
     protected $database;
 
     /**
+     * The evolution id.
+     *
      * @var null
      */
     protected $evolutionId = null;
@@ -25,9 +36,13 @@ class EvolutionStorage extends Evolution
      * EvolutionStorage constructor.
      *
      * @param Population\Population|null $population
-     * @param null $maxGenerations
+     *   The population object to get things running.
+     * @param int $maxGenerations
+     *   The maximum number of generations.
      * @param null $individualsPerGeneration
+     *   The minimal number of individuals per generation.
      * @param bool $autoGeneratePopulation
+     *   Whether to autopopulate the population.
      */
     public function __construct(Population\Population $population = null, $maxGenerations = null, $individualsPerGeneration = null, $autoGeneratePopulation = false)
     {
@@ -35,7 +50,10 @@ class EvolutionStorage extends Evolution
     }
 
     /**
-     * @param $databaseName
+     * Set up the database.
+     *
+     * @param string $databaseName
+     *   The database name.
      */
     public function setupDatabase($databaseName)
     {
@@ -53,7 +71,8 @@ class EvolutionStorage extends Evolution
             $this->createDatabase();
         }
 
-        $stmt = $this->database->prepare("SELECT count(1) AS evolution_count FROM evolution WHERE evolution_id = :evolution_id");
+        $sql = "SELECT count(1) AS evolution_count FROM evolution WHERE evolution_id = :evolution_id";
+        $stmt = $this->database->prepare($sql);
 
         $stmt->execute(
             array(
@@ -73,7 +92,10 @@ class EvolutionStorage extends Evolution
     }
 
     /**
+     * Get the database name.
+     *
      * @return string
+     *   The database name.
      */
     public function getDatabaseName()
     {
@@ -81,7 +103,10 @@ class EvolutionStorage extends Evolution
     }
 
     /**
+     * Set the database name.
+     *
      * @param string $databaseName
+     *   The database name.
      */
     public function setDatabaseName($databaseName)
     {
@@ -89,7 +114,7 @@ class EvolutionStorage extends Evolution
     }
 
     /**
-     *
+     * Create the database.
      */
     private function createDatabase()
     {
@@ -118,7 +143,10 @@ CREATE TABLE "populations" (
     }
 
     /**
-     * @return int|null
+     * Get the evolution id.
+     *
+     * @return int
+     *   The evolution id.
      */
     public function getEvolutionId()
     {
@@ -126,7 +154,8 @@ CREATE TABLE "populations" (
             return $this->evolutionId;
         }
 
-        $maxEvolutionId = $this->database->query("SELECT MAX(evolution_id) + 1 AS max_evolution_id FROM evolution")->fetchColumn();
+        $sql = "SELECT MAX(evolution_id) + 1 AS max_evolution_id FROM evolution";
+        $maxEvolutionId = $this->database->query($sql)->fetchColumn();
 
         if (is_null($maxEvolutionId)) {
             $maxEvolutionId = 1;
@@ -137,7 +166,10 @@ CREATE TABLE "populations" (
     }
 
     /**
-     * @param $evolutionId
+     * Set the evolution id.
+     *
+     * @param int $evolutionId
+     *   The evolution id.
      */
     public function setEvolutionId($evolutionId)
     {
@@ -145,17 +177,26 @@ CREATE TABLE "populations" (
     }
 
     /**
-     * @param $evolution_id
+     * Create the evolution setup.
+     *
+     * @param int $evolution_id
+     *   The evolution ID to create.
      */
     private function createEvolution($evolution_id)
     {
-        $query = $this->database->prepare('INSERT INTO evolution(evolution_id, current_generation) VALUES(:evolution_id, 1)');
+        $sql = "INSERT INTO evolution(evolution_id, current_generation) VALUES(:evolution_id, 1)";
+        $query = $this->database->prepare($sql);
         $query->execute(array('evolution_id' => $evolution_id));
     }
 
     /**
-     * @param $evolution_id
-     * @return bool
+     * Get the evolution setup.
+     *
+     * @param int $evolution_id
+     *   The evolution setup.
+     *
+     * @return array
+     *   The evolution setup.
      */
     private function retrieveEvolution($evolution_id)
     {
@@ -202,7 +243,8 @@ CREATE TABLE "populations" (
     /**
      * Store the generation.
      *
-     * @param $population
+     * @param Population\Population $population
+     *   Store the population object in the database.
      */
     public function storeGeneration($population)
     {
@@ -218,7 +260,8 @@ CREATE TABLE "populations" (
         foreach ($population->getIndividuals() as $individual) {
             $serializedIndividual = serialize($individual);
 
-            $sql = 'INSERT INTO individuals(evolution_id, population_id, individual) VALUES (:evolution_id, :population_id, :individual)';
+            $sql = 'INSERT INTO individuals(evolution_id, population_id, individual) ';
+            $sql .= 'VALUES (:evolution_id, :population_id, :individual)';
             $query = $this->database->prepare($sql);
 
             $query->execute(
@@ -232,7 +275,12 @@ CREATE TABLE "populations" (
     }
 
     /**
+     * Set the population.
+     *
+     * This also stores the population.
+     *
      * @param Population\Population $population
+     *   The population.
      */
     public function setPopulation($population)
     {
@@ -242,7 +290,7 @@ CREATE TABLE "populations" (
     }
 
     /**
-     *
+     * Load a population from the database into the Evolution object.
      */
     public function loadPopulation()
     {
@@ -270,7 +318,10 @@ CREATE TABLE "populations" (
     }
 
     /**
+     * Render the generations.
+     *
      * @return string
+     *   The rendered generations.
      */
     public function renderGenerations($printStats = false)
     {
@@ -288,7 +339,7 @@ CREATE TABLE "populations" (
     }
 
     /**
-     * Cleares out the database.
+     * Utility function to cleare out the database.
      */
     public function clearDatabase()
     {
@@ -300,7 +351,7 @@ CREATE TABLE "populations" (
 
         foreach ($tables as $table) {
             $sql = 'DELETE FROM ' . $table;
-            $result = $this->database->exec($sql);
+            $this->database->exec($sql);
         }
     }
 }

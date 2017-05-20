@@ -130,7 +130,10 @@ class Evolution
     }
 
     /**
-     * @return int|null
+     * Get the number of individuals per generation.
+     *
+     * @return int
+     *   The number of indiviudals per generation.
      */
     public function getIndividualsPerGeneration()
     {
@@ -138,7 +141,10 @@ class Evolution
     }
 
     /**
-     * @param int|null $individualsPerGeneration
+     * Set the individuals per generation.
+     *
+     * @param int $individualsPerGeneration
+     *   The number of individuals per generation.
      */
     public function setIndividualsPerGeneration($individualsPerGeneration)
     {
