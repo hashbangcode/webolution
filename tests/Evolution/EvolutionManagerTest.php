@@ -39,6 +39,7 @@ class EvolutionManagerTest extends \PHPUnit_Framework_TestCase
     {
         $object = new EvolutionManager();
         $population = new NumberPopulation();
+        $population->addIndividual();
         $object->getEvolutionObject()->setPopulation($population);
         $object->runEvolution();
     }
