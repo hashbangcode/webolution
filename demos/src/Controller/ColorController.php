@@ -114,12 +114,13 @@ img {padding:0px;margin:0px;}';
 
         $evolution = new Evolution($population);
         $evolution->setIndividualsPerGeneration(30);
-        $evolution->setMaxGenerations(250);
+        $evolution->setMaxGenerations(100);
         $evolution->setGlobalMutationFactor(50);
+        $evolution->setGlobalMutationAmount(10);
 
         $output = '';
 
-        for ($i = 0; $i <= $evolution->getMaxGenerations(); ++$i) {
+        for ($i = 0; $i < $evolution->getMaxGenerations(); ++$i) {
             $evolution->runGeneration();
         }
 
