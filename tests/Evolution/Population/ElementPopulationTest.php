@@ -26,25 +26,16 @@ class ElementPopulationTest extends \PHPUnit_Framework_TestCase
         $page = new ElementPopulation();
         $page->addIndividual();
         $output = $page->render();
-        $this->assertContains('<html><body></body></html>', $output);
+        $this->assertContains('<div></div>', $output);
     }
 
     public function testMinimalPageRender()
     {
-        $element = new Element('html');
+        $element = new Element('div');
         $element_individual = new ElementIndividual($element);
         $page = new ElementPopulation();
         $page->addIndividual($element_individual);
         $output = $page->render();
-        $this->assertContains('<html></html>', $output);
-    }
-
-    public function testAddIndividualError()
-    {
-        $this->setExpectedException('Hashbangcode\Wevolution\Evolution\Population\Exception\ElementPageRootException');
-        $element = new Element('p');
-        $element_individual = new ElementIndividual($element);
-        $page = new ElementPopulation();
-        $page->addIndividual($element_individual);
+        $this->assertContains('<div></div>', $output);
     }
 }

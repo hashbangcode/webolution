@@ -19,13 +19,10 @@ class ElementPopulation extends Population
     {
         $output = '';
 
-        // Ensure that the items are sorted.
-        $this->sort();
+        // Get the render type.
+        $renderType = $this->getDefaultRenderType();
 
         foreach ($this->getIndividuals() as $individual) {
-
-            $renderType = $this->getDefaultRenderType();
-
             switch ($renderType) {
                 case 'html':
                     $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
@@ -54,7 +51,7 @@ class ElementPopulation extends Population
      */
     public function sort()
     {
-        // @todo
+        // Don't sort this type of population.
     }
 
     /**
@@ -63,15 +60,7 @@ class ElementPopulation extends Population
     public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
-            $html = new Element('html');
-            $body = new Element('body');
-            $html->addChild($body);
-
-            $individual = new ElementIndividual($html);
-        }
-
-        if ($individual->getObject()->getType() !== 'html') {
-            throw new Exception\ElementPageRootException('Root page element must be of type "html"');
+            $individual = new ElementIndividual('div');
         }
 
         $this->individuals[] = $individual;
