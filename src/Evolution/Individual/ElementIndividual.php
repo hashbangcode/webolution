@@ -67,9 +67,6 @@ class ElementIndividual extends Individual
             $child_types = $element->getAvailableChildTypes($element->getType());
             $child_type = $child_types[array_rand($child_types)];
             $newElement = new Element($child_type);
-
-            $newElement->setAttribute('class', 'test');
-
             $element->addChild($newElement);
         }
     }
