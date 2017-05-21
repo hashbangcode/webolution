@@ -41,7 +41,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $object = new Page();
 
         $style = new Style('div');
-        $style->setAttrbute('color', 'red');
+        $style->setAttribute('color', 'red');
         $object->setStyle($style);
 
         $output = $object->render();
@@ -53,7 +53,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $object = new Page();
 
         $style = new Style('div');
-        $style->setAttrbute('color', 'red');
+        $style->setAttribute('color', 'red');
         $object->setStyle($style);
 
         $element = new Element('div');
@@ -68,7 +68,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $object = new Page();
 
         $style = new Style('div');
-        $style->setAttrbute('color', 'red');
+        $style->setAttribute('color', 'red');
         $styles = [$style];
         $object->setStyles($styles);
 
@@ -85,7 +85,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $object = new Page();
 
         $style = new Style('div');
-        $style->setAttrbute('color', 'red');
+        $style->setAttribute('color', 'red');
         $styles = [$style];
         $object->setStyles($styles);
 

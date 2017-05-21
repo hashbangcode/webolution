@@ -133,10 +133,10 @@ class Style implements TypeInterface
      */
     public function __clone()
     {
-        // If any of the attributes are objects then ensure they are colored.
+        // If any of the attributes are objects then ensure they are cloned.
         foreach ($this->getAttributes() as $key => $attribute) {
             if (is_object($attribute)) {
-                $this->setAttrbute($key, clone $attribute);
+                $this->setAttribute($key, clone $attribute);
             }
         }
     }
@@ -149,7 +149,7 @@ class Style implements TypeInterface
      * @param string $value
      *   Value to set the attribute to.
      */
-    public function setAttrbute($name, $value)
+    public function setAttribute($name, $value)
     {
         $this->attributes[$name] = $value;
     }

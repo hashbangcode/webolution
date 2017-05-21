@@ -30,7 +30,7 @@ class PageController extends BaseController
         $page = new PageIndividual();
 
         $style = new Style('div');
-        $style->setAttrbute('font-size', '20px');
+        $style->setAttribute('font-size', '20px');
         $page->getObject()->setStyle($style);
 
         $body = new Element('div');

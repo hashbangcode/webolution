@@ -64,7 +64,7 @@ class StyleIndividual extends Individual
         $style = $this->getObject();
 
         if ($style->getAttribute('color') == false) {
-            $style->setAttrbute('color', ColorIndividual::generateRandomColor());
+            $style->setAttribute('color', ColorIndividual::generateRandomColor());
         }
     }
 

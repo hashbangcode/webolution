@@ -56,14 +56,14 @@ class StyleIndividualTest extends \PHPUnit_Framework_TestCase
     public function testSetProperties()
     {
         $object = new StyleIndividual('.div');
-        $object->getObject()->setAttrbute('color', 'black');
+        $object->getObject()->setAttribute('color', 'black');
         $this->assertContains('.div{color:black;}', $object->render());
     }
 
     public function testMutateStyle()
     {
         $object = new StyleIndividual('.div');
-        $object->getObject()->setAttrbute('color', ColorIndividual::generateFromHex('000000'));
+        $object->getObject()->setAttribute('color', ColorIndividual::generateFromHex('000000'));
 
         $object->mutate(0, 50);
 

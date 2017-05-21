@@ -21,7 +21,7 @@ class PageIndividualTest extends \PHPUnit_Framework_TestCase
         $object = new PageIndividual();
 
         $style = new \Hashbangcode\Wevolution\Type\Style\Style('div');
-        $style->setAttrbute('color', 'red');
+        $style->setAttribute('color', 'red');
         $object->getObject()->setStyle($style);
 
         $body = new \Hashbangcode\Wevolution\Type\Element\Element('div');
