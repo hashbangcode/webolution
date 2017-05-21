@@ -35,9 +35,6 @@ class PageIndividual extends Individual
         } elseif ($action >= $mutationFactor) {
             $this->mutateBody($mutationAmount);
         }
-
-        // Now that we have mutated the page, we need to ensure the selector list is up to date.
-
     }
 
     /**
