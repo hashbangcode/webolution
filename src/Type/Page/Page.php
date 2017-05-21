@@ -45,6 +45,7 @@ class Page implements TypeInterface
      */
     public function setStyles(array $styles)
     {
+        $this->styles = [];
         foreach ($styles as $style) {
             $this->styles[$style->getSelector()] = $style;
         }
@@ -131,6 +132,34 @@ class Page implements TypeInterface
     public function getSeletors()
     {
         return $this->getBody()->getAllSelectors();
+    }
+
+    /**
+     * Generate the styles for the page based on the element selectors.
+     */
+    public function generateStylesFromBody()
+    {
+        $selectors = $this->getSeletors();
+        $styles = [];
+        foreach ($selectors as $selector) {
+            $styles[$selector] = new Style($selector);
+        }
+        $this->setStyles($styles);
+    }
+
+    /**
+     *
+     */
+    public function purgeStylesWithoutElements()
+    {
+        $selectors = $this->getSeletors();
+        $styles = $this->getStyles();
+        foreach ($styles as $key => $style) {
+            if (!in_array($key, $selectors)) {
+                unset($styles[$key]);
+            }
+        }
+        $this->setStyles($styles);
     }
 
     /**

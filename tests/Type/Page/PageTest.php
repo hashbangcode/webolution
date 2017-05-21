@@ -170,4 +170,48 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $object->setStyle(new Style('div', ['color' => 'red']));
         $this->assertEquals('red', $object->getStyles()['div']->getAttribute('color'));
     }
+
+    public function testGenerateStylesFromBody()
+    {
+        $object = new Page();
+
+        $element = new Element('div');
+        $inner_element = new Element('p');
+        $inner_element->setAttribute('class', 'paragraph');
+        $element->addChild($inner_element);
+        $object->setBody($element);
+
+        $object->generateStylesFromBody();
+
+        $styles = $object->getStyles();
+        $this->assertTrue(isset($styles['div']));
+        $this->assertTrue(isset($styles['p.paragraph']));
+    }
+
+    public function testPurgeStylesWithoutElements()
+    {
+        $object = new Page();
+
+        $element = new Element('div');
+        $inner_element = new Element('p');
+        $inner_element->setAttribute('class', 'paragraph');
+        $element->addChild($inner_element);
+        $object->setBody($element);
+
+        $object->generateStylesFromBody();
+
+        $object->setStyle(new Style('h1'));
+        $object->setStyle(new Style('h2'));
+        $object->setStyle(new Style('h3'));
+        $object->setStyle(new Style('h4'));
+        $object->setStyle(new Style('p.wibble'));
+
+        $object->purgeStylesWithoutElements();
+
+        $styles = $object->getStyles();
+
+        $this->assertTrue(isset($styles['div']));
+        $this->assertTrue(isset($styles['p.paragraph']));
+        $this->assertFalse(isset($styles['h1']));
+    }
 }
