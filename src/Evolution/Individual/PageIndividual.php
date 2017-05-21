@@ -3,6 +3,7 @@
 namespace Hashbangcode\Wevolution\Evolution\Individual;
 
 use Hashbangcode\Wevolution\Type\Page\Page;
+use Hashbangcode\Wevolution\Type\Style\Style;
 
 /**
  * Class PageIndividual
@@ -29,32 +30,57 @@ class PageIndividual extends Individual
     {
         $action = mt_rand(0, 100);
 
+        if ($action <= $mutationFactor) {
+            $this->mutateStyle($mutationAmount);
+        } elseif ($action >= $mutationFactor) {
+            $this->mutateBody($mutationAmount);
+        }
+
+        // Now that we have mutated the page, we need to ensure the selector list is up to date.
+
+    }
+
+    /**
+     * Mutate the body.
+     *
+     * @param int $mutationAmount
+     *   The amount to mutate.
+     */
+    public function mutateBody($mutationAmount)
+    {
         // Get the body.
         $body = $this->getObject()->getBody();
 
+        // Mutate the body.
+        if (!($body instanceof \Hashbangcode\Wevolution\Evolution\Individual\Individual)) {
+            // If the body isn't an individual then wrap it so we can mutate it.
+            $body = new ElementIndividual($body);
+        }
+
+        // Mutate body.
+        $body->mutate();
+    }
+
+    /**
+     * Mutate the tyle.
+     *
+     * @param int $mutationAmount
+     *   The amount to mutate.
+     */
+    public function mutateStyle($mutationAmount)
+    {
         // Get styles.
         $styles = $this->getObject()->getStyles();
 
-        if ($action <= $mutationFactor) {
-            // Mutate styles.
-            $randomStyle = $styles[array_rand($styles)];
-            if (!($randomStyle instanceof \Hashbangcode\Wevolution\Evolution\Individual\Individual)) {
-                // If the style is not an individual then wrap it so we can mutate it.
-                $randomStyle = new StyleIndividual($randomStyle);
-            }
-
-            $randomStyle->mutate();
-
-        } elseif ($action >= $mutationFactor) {
-            // Mutate the body.
-            if (!($body instanceof \Hashbangcode\Wevolution\Evolution\Individual\Individual)) {
-                // If the body isn't an individual then wrap it so we can mutate it.
-                $body = new ElementIndividual($body);
-            }
-
-            // Mutate body.
-            $body->mutate();
+        // Mutate styles.
+        $randomStyle = $styles[array_rand($styles)];
+        if (!($randomStyle instanceof \Hashbangcode\Wevolution\Evolution\Individual\Individual)) {
+            // If the style is not an individual then wrap it so we can mutate it.
+            $randomStyle = new StyleIndividual($randomStyle);
         }
+
+        // Mutate the random style.
+        $randomStyle->mutate();
     }
 
     /**
