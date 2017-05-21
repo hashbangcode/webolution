@@ -148,7 +148,7 @@ class Page implements TypeInterface
     }
 
     /**
-     *
+     * Purge any styles that do not have corresponding elements.
      */
     public function purgeStylesWithoutElements()
     {
