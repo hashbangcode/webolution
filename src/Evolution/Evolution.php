@@ -111,6 +111,8 @@ class Evolution
             ) {
                 $this->populateThePopulation();
             }
+
+            $this->population->generateStatistics();
         }
     }
 
@@ -119,16 +121,16 @@ class Evolution
      */
     public function populateThePopulation()
     {
-        // Get the population object to generate individuals.
         do {
-            if ($this->population->getLength() == 0) {
-                $this->population->addIndividual();
+            // Clone an individual from the current population to add back in.
+            $random_individual = $this->population->getRandomIndividual();
+            if (is_object($random_individual)) {
+                $this->population->addIndividual(clone $random_individual);
             } else {
-                $this->population->addIndividual(clone $this->population->getRandomIndividual());
+                // Add a random individual (not cloned from the current population).
+                $this->population->addIndividual();
             }
         } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
-
-        $this->population->generateStatistics();
     }
 
     /**
@@ -172,6 +174,10 @@ class Evolution
      */
     public function setPopulation($population)
     {
+        if (count($this->previousGenerations) == 0) {
+            $this->addPreviousGeneration($population);
+        }
+
         $this->population = $population;
     }
 
@@ -210,18 +216,9 @@ class Evolution
             return false;
         }
 
-        // Ensure the population is at the right level.
         if ($this->population->getLength() < $this->getIndividualsPerGeneration()) {
-            do {
-                // Clone an individual from the current population to add back in.
-                $random_individual = $this->population->getRandomIndividual();
-                if (is_object($random_individual)) {
-                    $this->population->addIndividual(clone $random_individual);
-                } else {
-                    // Add a random individual (not cloned from the current population).
-                    $this->population->addIndividual();
-                }
-            } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
+            // Ensure the population is at the right level.
+            $this->populateThePopulation();
         }
 
         if (!is_null($this->getGlobalMutationFactor())) {
@@ -238,11 +235,9 @@ class Evolution
         $this->population->mutatePopulation();
 
         // Store the current generation.
-        $this->addPreviousGeneration(clone $this->getCurrentPopulation());
+        $this->addPreviousGeneration($this->getCurrentPopulation());
 
-        // Increate the generation number.
-        $this->generation++;
-
+        // Return true to signify that everything worked and that everyone is alive.
         return true;
     }
 
@@ -333,7 +328,10 @@ class Evolution
      */
     public function addPreviousGeneration($population)
     {
+        // Add the generation.
         $this->previousGenerations[$this->generation] = clone $population;
+        // Increment the current generation count.
+        $this->generation++;
     }
 
     /**
@@ -364,6 +362,7 @@ class Evolution
 
         /* @var Population $population */
         foreach ($this->previousGenerations as $generation_number => $population) {
+            // Render the population.
             $output .= $generation_number . ':<br>' . $population->render() . PHP_EOL . '<br>';
 
             if ($printStats === true) {
@@ -374,6 +373,7 @@ class Evolution
         }
 
         if ($format == 'cli') {
+            // If the format is cli then replace all <br> tags with "\n" symbols.
             $output = preg_replace('/\<br(\s*)?\/?\>/i', "\n", $output);
         }
 
