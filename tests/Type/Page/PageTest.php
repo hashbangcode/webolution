@@ -162,4 +162,12 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $styles = $object->getStyles();
         $this->assertEquals('black', $styles['div']->getAttribute('color'));
     }
+
+    public function testAddSimilarStyles()
+    {
+        $object = new Page();
+        $object->setStyle(new Style('div', ['color' => 'black']));
+        $object->setStyle(new Style('div', ['color' => 'red']));
+        $this->assertEquals('red', $object->getStyles()['div']->getAttribute('color'));
+    }
 }
