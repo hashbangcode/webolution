@@ -166,4 +166,18 @@ class Page implements TypeInterface
 
         return $html;
     }
+
+    /**
+     * Implements __clone().
+     */
+    public function __clone()
+    {
+        // Clone the styles array.
+        foreach ($this->styles as $key => $style) {
+            $this->styles[$key] = clone $style;
+        }
+
+        // Clone the body, this will clone all child elements.
+        $this->body = clone $this->body;
+    }
 }

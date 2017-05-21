@@ -142,4 +142,24 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $element_selectors = $element->getAllClasses();
         $this->assertEquals($page_selectors, $element_selectors);
     }
+
+    public function testClonePage()
+    {
+        $object = new Page();
+        $element = new Element('div');
+        $element->setAttribute('class', 'wibble');
+        $object->setBody($element);
+        $object->setStyle(new Style('div', ['color' => 'black']));
+
+        $clone = clone $object;
+        // Altering a class on this object should not change the previous object.
+        $clone->getBody()->setAttribute('class', 'monkey');
+        $this->assertEquals('wibble', $object->getBody()->getAttribute('class'));
+
+        // Altering a style should not change the previous object.
+        $cloneStyles = $clone->getStyles();
+        $cloneStyles['div']->setAttribute('color', 'red');
+        $styles = $object->getStyles();
+        $this->assertEquals('black', $styles['div']->getAttribute('color'));
+    }
 }
