@@ -304,6 +304,30 @@ CREATE TABLE "populations" (
      */
     public function loadPopulation()
     {
+        if (!($this->population instanceof \Hashbangcode\Wevolution\Evolution\Population\Population)) {
+            // If the population isn't set then attempt to load it from the database.
+            $populationSql = "SELECT * FROM populations ";
+            $populationSql .= "WHERE evolution_id = :evolution_id AND population_id = :population_id";
+            $populationStatement = $this->database->prepare($populationSql);
+            $populationStatement->execute(
+                array(
+                    'evolution_id' => $this->getEvolutionId(),
+                    'population_id' => $this->getGeneration(),
+                )
+            );
+            $population_data = $populationStatement->fetchAll(\PDO::FETCH_ASSOC);
+
+            if (count($population_data) > 0) {
+                // We have a population result so create it.
+                $population_data = array_pop($population_data);
+                $populationType = '\\' . $population_data['population_type'];
+                if (class_exists($populationType)) {
+                    $this->population = new $populationType;
+                }
+            }
+        }
+
+        // Query the database for individuals of the population.
         $individualSql = "SELECT * FROM individuals ";
         $individualSql .= "WHERE evolution_id = :evolution_id AND population_id = :population_id";
         $individualStatement = $this->database->prepare($individualSql);
@@ -319,33 +343,8 @@ CREATE TABLE "populations" (
             )
         );
 
-        if (!($this->population instanceof \Hashbangcode\Wevolution\Evolution\Population\Population)) {
-            $populationSql = "SELECT * FROM populations ";
-            $populationSql .= "WHERE evolution_id = :evolution_id AND population_id = :population_id";
-            $populationStatement = $this->database->prepare($populationSql);
-            $populationStatement->execute(
-                array(
-                    'evolution_id' => $this->getEvolutionId(),
-                    'population_id' => $this->getGeneration(),
-                )
-            );
-
-            $population_data = $populationStatement->fetchAll(\PDO::FETCH_ASSOC);
-
-            if (count($population_data) == 0) {
-                return false;
-            }
-
-            $population_data = array_pop($population_data);
-
-            $populationType =  '\\' . $population_data['population_type'];
-            if (class_exists($populationType)) {
-                $this->population = new $populationType;
-            }
-        }
-
+        // Load the individuals from the database and add them to the population.
         $individualData = $individualStatement->fetchAll(\PDO::FETCH_ASSOC);
-
         foreach ($individualData as $key => $data) {
             $individual = unserialize($data['individual']);
             $this->population->addIndividual($individual);
