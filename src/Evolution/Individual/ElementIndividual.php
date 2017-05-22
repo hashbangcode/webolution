@@ -30,8 +30,11 @@ class ElementIndividual extends Individual
      * {@inheritdoc}
      *
      * Possible actions to take during mutation.
-     * - Alter attributes (9/10).
-     * - Add additional children (1/10).
+     * - Alter attributes (2/10).
+     * - Add attributes (2/10).
+     * - Add children (1/10).
+     * - Remove children (1/10).
+     * - Alter tag (1/10).
      *
      * This should not alter the tag itself. Also, certain elements
      * should only get certain children. For example, a ul
@@ -40,11 +43,12 @@ class ElementIndividual extends Individual
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         $action = mt_rand(0, 100);
+        $action = $action + $mutationFactor;
 
         // Get the element.
         $element = $this->getObject();
 
-        if ($action <= $mutationFactor && count($element->getAttributes()) > 0) {
+        if ($action <= 20 && count($element->getAttributes()) > 0) {
             // Mutate an attribute.
             $attributes = $element->getAttributes();
 
@@ -62,12 +66,32 @@ class ElementIndividual extends Individual
             $attributes[$random_attribute] = $attribute_value;
 
             $element->setAttributes($attributes);
-        } elseif ($action >= $mutationFactor) {
-            // Add additional children elements.
+        } elseif ($action > 20 && $action <= 40) {
+            // Add attribute to a random element.
+            $element = $this->getObject()->getRandomElement();
+
+            $attributes = [
+                'id',
+                'class',
+            ];
+
+            $attribute = $attributes[array_rand($attributes)];
+
+            $element->setAttribute($attribute, $element->generateRandomText(5));
+        } elseif ($action > 40 && $action <= 50) {
+            // Add children element.
             $child_types = $element->getAvailableChildTypes($element->getType());
             $child_type = $child_types[array_rand($child_types)];
             $newElement = new Element($child_type);
             $element->addChild($newElement);
+
+            // @todo : get a radnom elelent, not just one from the root.
+        } elseif ($action > 50 && $action <= 60) {
+            // Remove child.
+            $this->getObject()->removeRandomChild();
+        } elseif ($action > 70 && $action <= 80) {
+            // Alter the tag itself.
+            // @todo : complete this.
         }
     }
 
