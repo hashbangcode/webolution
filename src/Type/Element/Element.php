@@ -422,7 +422,7 @@ class Element implements TypeInterface
     }
 
     /**
-     * Extract.
+     * Extract a selected from an element.
      *
      * @return mixed|string
      *  The selector for the element.
@@ -436,5 +436,86 @@ class Element implements TypeInterface
             $selector .= '.' . $this->getAttribute('class');
         }
         return $selector;
+    }
+
+    /**
+     * Get all elements (including the current object.
+     *
+     * @return array
+     *   All of the elements.
+     */
+    public function getAllElements()
+    {
+        $elements = $this->getAllChildElements();
+        $elements[] = $this;
+        return $elements;
+    }
+
+    /**
+     * Get all of the child elements.
+     *
+     * @return array
+     *   A list of child elements.
+     */
+    public function getAllChildElements()
+    {
+        $list = [];
+
+        foreach ($this->getChildren() as $child) {
+            $list[] = $child;
+            if (count($child->getChildren() > 0)) {
+                $children = $child->getAllChildElements();
+                $list = array_merge($list, $children);
+            }
+        }
+
+        return $list;
+    }
+
+    /**
+     * Get a random element from this object.
+     *
+     * @return mixed
+     *   A random element.
+     */
+    public function getRandomElement()
+    {
+        $elements = $this->getAllElements();
+        return $elements[array_rand($elements)];
+    }
+
+    /**
+     * Remove a random child element.
+     */
+    public function removeRandomChild()
+    {
+        $allChildren = $this->getAllChildElements();
+        if (count($allChildren) > 0) {
+            // We have children, so remove one of them.
+            $randomChild = $allChildren[array_rand($allChildren)];
+            $this->removeChild($randomChild);
+        }
+    }
+
+    /**
+     * Given an Element object, remove it from the children of the current object.
+     *
+     * @param Element $removeChild
+     *   The element to remove.
+     * @return bool
+     *   True if element was removed.
+     */
+    public function removeChild($removeChild)
+    {
+        foreach ($this->getChildren() as $key => $child) {
+            if ($child == $removeChild) {
+                unset($this->children[$key]);
+                return true;
+            }
+
+            if (count($child->getChildren() > 0)) {
+                return $child->removeRandomChild($removeChild);
+            }
+        }
     }
 }

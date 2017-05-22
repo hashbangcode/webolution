@@ -394,4 +394,60 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('div.bla', $selectors[2]);
         $this->assertEquals('div#important', $selectors[3]);
     }
+
+    public function testSelectRandomChild()
+    {
+        $element1 = new Element('div');
+        $element1->setAttribute('class', 'div1');
+
+        $element2 = new Element('div');
+        $element2->setAttribute('class', 'div2');
+
+        $element3 = new Element('div');
+        $element3->setAttribute('class', 'div3');
+
+        $element4 = new Element('div');
+        $element4->setAttribute('class', 'div4');
+
+        $element5 = new Element('div');
+        $element5->setAttribute('class', 'div5');
+
+        $element1->addChild($element2);
+        $element2->addChild($element3);
+        $element3->addChild($element4);
+        $element4->addChild($element5);
+
+        $child = $element1->getRandomElement();
+
+        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Element\Element', $child);
+    }
+
+    public function testRemoveRandomChild()
+    {
+        $element1 = new Element('div');
+        $element1->setAttribute('class', 'div1');
+
+        $element2 = new Element('div');
+        $element2->setAttribute('class', 'div2');
+
+        $element3 = new Element('div');
+        $element3->setAttribute('class', 'div3');
+
+        $element4 = new Element('div');
+        $element4->setAttribute('class', 'div4');
+
+        $element5 = new Element('div');
+        $element5->setAttribute('class', 'div5');
+
+        $element1->addChild($element2);
+        $element2->addChild($element3);
+        $element3->addChild($element4);
+        $element4->addChild($element5);
+
+        $element1->removeRandomChild();
+
+        $allElements = $element1->getAllElements();
+
+        $this->assertLessThan(5, count($allElements));
+    }
 }
