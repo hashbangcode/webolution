@@ -45,9 +45,10 @@ class Page implements TypeInterface
      */
     public function setStyles(array $styles)
     {
-        $this->styles = [];
         foreach ($styles as $style) {
-            $this->styles[$style->getSelector()] = $style;
+            if (!isset($this->styles[$style->getSelector()])) {
+                $this->styles[$style->getSelector()] = $style;
+            }
         }
     }
 
