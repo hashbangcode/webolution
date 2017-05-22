@@ -39,10 +39,7 @@ class StyleIndividual extends Individual
 
         $style = $this->getObject();
 
-        if ($action <= 5) {
-            // Mutate selector.
-            $this->mutateSelector();
-        } elseif ($action > 5 && $action <= 50) {
+        if ($action <= 75) {
             // Add a attribute to the Style.
             $this->addAttribute();
         } elseif (count($style->getAttributes()) > 0) {
@@ -63,8 +60,30 @@ class StyleIndividual extends Individual
         // Get the style object.
         $style = $this->getObject();
 
-        if ($style->getAttribute('color') == false) {
-            $style->setAttribute('color', ColorIndividual::generateRandomColor());
+        $attributes = [
+            'color',
+            'background-color',
+        ];
+        $attribute = $attributes[array_rand($attributes)];
+
+        switch ($attribute) {
+            case 'color':
+                if ($style->getAttribute('color') == false) {
+                    $style->setAttribute('color', ColorIndividual::generateRandomColor());
+                }
+                break;
+            case 'background-color':
+                if ($style->getAttribute('background-color') == false) {
+                    $style->setAttribute('background-color', ColorIndividual::generateRandomColor());
+                }
+                break;
+            case 'padding':
+            case 'margin':
+            case 'position':
+            case 'float':
+            case 'border':
+            case '':
+                break;
         }
     }
 
@@ -112,8 +131,8 @@ class StyleIndividual extends Individual
 
         switch ($attribute) {
             case 'color':
+            case 'background-color':
                 $attributeProperty->mutate(0, 1000);
-
                 break;
         }
 
