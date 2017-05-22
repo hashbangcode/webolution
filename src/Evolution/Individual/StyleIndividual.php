@@ -78,10 +78,15 @@ class StyleIndividual extends Individual
                 }
                 break;
             case 'padding':
+                break;
             case 'margin':
+                break;
             case 'position':
+                break;
             case 'float':
+                break;
             case 'border':
+                break;
             case '':
                 break;
         }
