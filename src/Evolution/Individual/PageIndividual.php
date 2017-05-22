@@ -35,6 +35,10 @@ class PageIndividual extends Individual
         } elseif ($action >= $mutationFactor) {
             $this->mutateBody($mutationAmount);
         }
+
+        // Ensure that the styles we have in place make sense.
+        $this->getObject()->generateStylesFromBody();
+        $this->getObject()->purgeStylesWithoutElements();
     }
 
     /**
