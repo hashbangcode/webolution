@@ -78,8 +78,7 @@ class PageController extends BaseController
 
         $pageIndividual->getObject()->setBody($p);
 
-        $style_object = new Style('.text');
-        $pageIndividual->getObject()->setStyle($style_object);
+        $pageIndividual->getObject()->generateStylesFromBody();
 
         $population->addIndividual($pageIndividual);
 
