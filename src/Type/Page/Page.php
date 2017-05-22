@@ -175,11 +175,11 @@ class Page implements TypeInterface
         if (count($this->getStyles()) > 0) {
             foreach ($this->getStyles() as $styleObject) {
                 if ($styleObject instanceof Style) {
-                    $style .= $styleObject->render();
+                    $style .= PHP_EOL . '        ' . $styleObject->render();
                 }
             }
             // Wrap the style in tags.
-            $style = '    <style>' . $style . '</style>' . PHP_EOL;
+            $style = '    <style>' . $style . PHP_EOL . '    </style>' . PHP_EOL;
         }
 
         // Render the body.
