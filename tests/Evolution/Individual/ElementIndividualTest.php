@@ -133,14 +133,13 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateWithNoAttributes()
     {
-        $html = new Element('html');
-        $body = new Element('body');
-        $html->addChild($body);
+        $element1 = new Element('div');
+        $element2 = new Element('p');
+        $element1->addChild($element2);
 
-        $object = new ElementIndividual($html);
+        $object = new ElementIndividual($element1);
 
-        $object->mutate(-10);
-        $this->assertNotEquals('test', $object->getObject()->getAttributes()['class']);
-        $this->assertEquals(2, count($object->getObject()->getChildren()));
+        $this->assertEquals(2, count($object->getObject()->getAllElements()));
+        $object->mutate();
     }
 }
