@@ -63,8 +63,8 @@ class PageController extends BaseController
 
         // Setup evolution storage.
         $evolution = new Evolution();
-        $evolution->setIndividualsPerGeneration(3);
-        $evolution->setMaxGenerations(100);
+        $evolution->setIndividualsPerGeneration(4);
+        $evolution->setMaxGenerations(200);
 
         $pageIndividual = new PageIndividual();
 
