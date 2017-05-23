@@ -63,6 +63,9 @@ class StyleIndividual extends Individual
         $attributes = [
             'color',
             'background-color',
+            'float',
+            'position',
+            'clear',
         ];
         $attribute = $attributes[array_rand($attributes)];
 
@@ -77,17 +80,61 @@ class StyleIndividual extends Individual
                     $style->setAttribute('background-color', ColorIndividual::generateRandomColor());
                 }
                 break;
-            case 'padding':
-                break;
-            case 'margin':
+            case 'float':
+                $floats = [
+                    'left',
+                    'right',
+                    'none',
+                ];
+                $style->setAttribute('float', $floats[array_rand($floats)]);
                 break;
             case 'position':
+                $positions = [
+                    'static',
+                    'relative',
+                    'absolute',
+                    'sticky',
+                    'fixed',
+                ];
+                $style->setAttribute('position', $positions[array_rand($positions)]);
                 break;
-            case 'float':
+            case 'clear':
+                $clears = [
+                    'none',
+                    'left',
+                    'right',
+                    'both',
+                ];
+                $style->setAttribute('clear', $clears[array_rand($clears)]);
+                break;
+            case 'text-align':
+                $textAlign = [
+                    'start',
+                    'end',
+                    'left',
+                    'right',
+                    'center',
+                    'justify',
+                    'match-parent',
+                ];
+                $style->setAttribute('text-align', $textAlign[array_rand($textAlign)]);
+                break;
+            case 'padding':
+                // padding: 10px 3px 30px 5px;
+                // padding: 10em 3em 30em 5em;
+                // padding: 10% 3% 30% 5%;
+                break;
+            case 'margin':
+                // margin: 10px 3px 30px 5px;
+                // margin: 10em 3em 30em 5em;
+                // margin: 10% 3% 30% 5%;
+                break;
+            case 'width':
+                // width: 75px;
+                // width: 75em;
+                // width: 75%;
                 break;
             case 'border':
-                break;
-            case '':
                 break;
         }
     }
@@ -133,15 +180,47 @@ class StyleIndividual extends Individual
      */
     public function mutateAttribute($attribute, $attributeProperty)
     {
-
         switch ($attribute) {
             case 'color':
             case 'background-color':
                 $attributeProperty->mutate(0, 1000);
                 break;
+            case 'float':
+                $floats = [
+                    'left',
+                    'right',
+                    'none',
+                ];
+                return $floats[array_rand($floats)];
+            case 'position':
+                $positions = [
+                    'static',
+                    'relative',
+                    'absolute',
+                    'sticky',
+                    'fixed',
+                ];
+                return $positions[array_rand($positions)];
+            case 'clear':
+                $clears = [
+                    'none',
+                    'left',
+                    'right',
+                    'both',
+                ];
+                return $clears[array_rand($clears)];
+            case 'text-align':
+                $textAlign = [
+                    'start',
+                    'end',
+                    'left',
+                    'right',
+                    'center',
+                    'justify',
+                    'match-parent',
+                ];
+                return $textAlign[array_rand($textAlign)];
         }
-
-        return $attributeProperty;
     }
 
     /**
