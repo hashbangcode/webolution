@@ -28,11 +28,11 @@ class PageIndividual extends Individual
      */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
-        $action = mt_rand(0, 100);
+        $action = mt_rand(0, 100) + $mutationFactor;
 
-        if ($action <= $mutationFactor) {
+        if ($action <= 70) {
             $this->mutateStyle($mutationAmount);
-        } elseif ($action >= $mutationFactor) {
+        } elseif ($action > 70) {
             $this->mutateBody($mutationAmount);
         }
 
