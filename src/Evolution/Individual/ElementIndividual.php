@@ -80,16 +80,15 @@ class ElementIndividual extends Individual
             $element->setAttribute($attribute, $element->generateRandomText(5));
         } elseif ($action > 40 && $action <= 50) {
             // Add children element.
+            $element = $this->getObject()->getRandomElement();
             $child_types = $element->getAvailableChildTypes($element->getType());
             $child_type = $child_types[array_rand($child_types)];
             $newElement = new Element($child_type);
             $element->addChild($newElement);
-
-            // @todo : get a radnom elelent, not just one from the root.
-        } elseif ($action > 50 && $action <= 60) {
+        } elseif ($action > 50 && $action <= 55) {
             // Remove child.
             $this->getObject()->removeRandomChild();
-        } elseif ($action > 70 && $action <= 80) {
+        } elseif ($action > 55 && $action <= 80) {
             // Alter the tag itself.
             // @todo : complete this.
         }
