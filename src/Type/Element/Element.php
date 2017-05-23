@@ -87,7 +87,10 @@ class Element implements TypeInterface
             $this->type = $arg;
 
             if (in_array($arg, $this->getTextTypes())) {
-                $this->elementText = $this->generateRandomText(10);
+                // @todo some text elements should create more text than other text elements.
+                // for example, a h1 tag would contain 10-20 characters
+                // a p tag would contain a lot more text.
+                $this->elementText = $this->generateRandomText(15);
             }
         }
     }
