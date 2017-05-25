@@ -91,7 +91,7 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
         $element = $rootElement->getChildren()[0];
         $element->setAttributes(array('class' => 'test'));
 
-        $object->mutate(-10);
+        $object->mutate(-100);
         $this->assertContains('<html><body class="test"><', $object->render());
     }
 
