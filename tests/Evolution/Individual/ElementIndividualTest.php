@@ -94,7 +94,21 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
         $object->mutate(-10);
         $this->assertContains('<html><body class="test"><', $object->render());
     }
-    
+
+    public function testMutateElementAttributeLength()
+    {
+        $div = new Element('div');
+        $div->setAttributes(array('class' => 'test'));
+
+        $object = new ElementIndividual($div);
+
+        for ($i = 0; $i < 25; ++$i) {
+            $object->mutateAttribute();
+        }
+
+        $this->assertLessThanOrEqual(10, $object->getObject()->getAttributes()['class']);
+    }
+
     public function testMutateElementChild()
     {
         $html = new Element('html');
