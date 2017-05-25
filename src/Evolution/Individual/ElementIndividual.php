@@ -50,22 +50,7 @@ class ElementIndividual extends Individual
 
         if ($action <= 20 && count($element->getAttributes()) > 0) {
             // Mutate an attribute.
-            $attributes = $element->getAttributes();
-
-            $random_attribute = array_rand($attributes);
-            $letters = range('a', 'z');
-            $letter = $letters[array_rand($letters)];
-
-            $attribute_value = $attributes[$random_attribute] . $letter;
-
-            if (strlen($attribute_value) > 10) {
-                // Don't let the attribute get longer than 10 characters.
-                $attribute_value = substr($attribute_value, -8);
-            }
-
-            $attributes[$random_attribute] = $attribute_value;
-
-            $element->setAttributes($attributes);
+            $this->mutateAttribute();
         } elseif ($action > 20 && $action <= 40) {
             // Add attribute to a random element.
             $element = $this->getObject()->getRandomElement();
@@ -84,7 +69,7 @@ class ElementIndividual extends Individual
             $child_types = $randomElement->getAvailableChildTypes($randomElement->getType());
             $child_type = $child_types[array_rand($child_types)];
             $newElement = new Element($child_type);
-          $randomElement->addChild($newElement);
+            $randomElement->addChild($newElement);
         } elseif ($action > 50 && $action <= 55) {
             // Remove child.
             $this->getObject()->removeRandomChild();
@@ -92,6 +77,31 @@ class ElementIndividual extends Individual
             // Alter the tag itself.
             // @todo : complete this.
         }
+    }
+
+    /**
+     * Mutate an attribute on the object.
+     */
+    public function mutateAttribute()
+    {
+        $element = $this->getObject();
+
+        $attributes = $element->getAttributes();
+
+        $random_attribute = array_rand($attributes);
+        $letters = range('a', 'z');
+        $letter = $letters[array_rand($letters)];
+
+        $attribute_value = $attributes[$random_attribute] . $letter;
+
+        if (strlen($attribute_value) > 10) {
+            // Don't let the attribute get longer than 10 characters.
+            $attribute_value = substr($attribute_value, -8);
+        }
+
+        $attributes[$random_attribute] = $attribute_value;
+
+        $element->setAttributes($attributes);
     }
 
     /**
