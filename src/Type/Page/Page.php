@@ -160,7 +160,7 @@ class Page implements TypeInterface
                 unset($styles[$key]);
             }
         }
-        $this->setStyles($styles);
+        $this->styles = $styles;
     }
 
     /**

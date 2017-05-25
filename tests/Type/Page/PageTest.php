@@ -196,6 +196,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $inner_element = new Element('p');
         $inner_element->setAttribute('class', 'paragraph');
         $element->addChild($inner_element);
+
         $object->setBody($element);
 
         $object->generateStylesFromBody();
@@ -213,5 +214,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(isset($styles['div']));
         $this->assertTrue(isset($styles['p.paragraph']));
         $this->assertFalse(isset($styles['h1']));
+        $this->assertFalse(isset($styles['h2']));
+        $this->assertFalse(isset($styles['h3']));
     }
 }
