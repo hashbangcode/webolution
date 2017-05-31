@@ -66,6 +66,10 @@ class StyleIndividual extends Individual
             'float',
             'position',
             'clear',
+            'padding',
+            'margin',
+            'width',
+            'height',
         ];
         $attribute = $attributes[array_rand($attributes)];
 
@@ -120,19 +124,28 @@ class StyleIndividual extends Individual
                 $style->setAttribute('text-align', $textAlign[array_rand($textAlign)]);
                 break;
             case 'padding':
-                // padding: 10px 3px 30px 5px;
-                // padding: 10em 3em 30em 5em;
-                // padding: 10% 3% 30% 5%;
+                $units = [
+                    UnitIndividual::generateRandomUnit(),
+                    UnitIndividual::generateRandomUnit(),
+                    UnitIndividual::generateRandomUnit(),
+                    UnitIndividual::generateRandomUnit(),
+                ];
+                $style->setAttribute('padding', $units);
                 break;
             case 'margin':
-                // margin: 10px 3px 30px 5px;
-                // margin: 10em 3em 30em 5em;
-                // margin: 10% 3% 30% 5%;
+                $units = [
+                    UnitIndividual::generateRandomUnit(),
+                    UnitIndividual::generateRandomUnit(),
+                    UnitIndividual::generateRandomUnit(),
+                    UnitIndividual::generateRandomUnit(),
+                ];
+                $style->setAttribute('margin', $units);
                 break;
             case 'width':
-                // width: 75px;
-                // width: 75em;
-                // width: 75%;
+                $style->setAttribute('width', UnitIndividual::generateRandomUnit());
+                break;
+            case 'height':
+                $style->setAttribute('height', UnitIndividual::generateRandomUnit());
                 break;
             case 'border':
                 break;
@@ -220,6 +233,24 @@ class StyleIndividual extends Individual
                     'match-parent',
                 ];
                 return $textAlign[array_rand($textAlign)];
+            case 'padding':
+                $randomUnit = array_rand($attributeProperty);
+                $unit = $attributeProperty[$randomUnit];
+                $unit->mutate();
+                break;
+            case 'margin':
+                $randomUnit = array_rand($attributeProperty);
+                $unit = $attributeProperty[$randomUnit];
+                $unit->mutate();
+                break;
+            case 'width':
+                $attributeProperty->mutate(0, 1000);
+                break;
+            case 'height':
+                $attributeProperty->mutate(0, 1000);
+                break;
+            case 'border':
+                break;
         }
     }
 

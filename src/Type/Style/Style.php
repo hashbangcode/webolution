@@ -74,6 +74,12 @@ class Style implements TypeInterface
             // Render the style.
             if (is_object($value)) {
                 $output .= $attribute . ':' . $value->render('css') . ';';
+            } elseif (is_array($value)) {
+                $output .= $attribute . ':';
+                foreach ($value as $val) {
+                    $output .= $val->render() . ' ';
+                }
+                $output .= ';';
             } else {
                 $output .= $attribute . ':' . $value . ';';
             }
