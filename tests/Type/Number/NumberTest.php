@@ -69,10 +69,9 @@ class NumberTest extends \PHPUnit_Framework_TestCase
      */
     public function testNumberAdd($number1, $number2, $result)
     {
-        $foo = self::getMethod('add');
-        $obj = new Number($number1);
-        $return = $foo->invokeArgs($obj, array($number1, $number2));
-        $this->assertEquals($result, $return);
+        $object = new Number($number1);
+        $object->add($number2);
+        $this->assertEquals($result, $object->getNumber());
     }
 
     public function numbersToAddProvider()
@@ -88,10 +87,9 @@ class NumberTest extends \PHPUnit_Framework_TestCase
      */
     public function testNumberSubtract($number1, $number2, $result)
     {
-        $foo = self::getMethod('subtract');
-        $obj = new Number($number1);
-        $return = $foo->invokeArgs($obj, array($number1, $number2));
-        $this->assertEquals($result, $return);
+        $object = new Number($number1);
+        $object->subtract($number2);
+        $this->assertEquals($result, $object->getNumber());
     }
 
     public function numbersToSubtractProvider()

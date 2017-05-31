@@ -59,9 +59,7 @@ class NumberIndividual extends Individual
      */
     public function mutateNumberAdd($mutationAmount)
     {
-        $number = $this->getObject()->getNumber();
-        $value = $number + $mutationAmount;
-        $this->getObject()->setNumber($value);
+        $this->getObject()->add($mutationAmount);
     }
 
     /**
@@ -72,9 +70,7 @@ class NumberIndividual extends Individual
      */
     public function mutateNumberSubtract($mutationAmount)
     {
-        $number = $this->getObject()->getNumber();
-        $value = $number - $mutationAmount;
-        $this->getObject()->setNumber($value);
+        $this->getObject()->subtract($mutationAmount);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Hashbangcode\Wevolution\Type\Number;
 
 use Hashbangcode\Wevolution\Type\TypeInterface;
+use Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException;
 
 /**
  * Class Number.
@@ -11,6 +12,11 @@ use Hashbangcode\Wevolution\Type\TypeInterface;
  */
 class Number implements TypeInterface
 {
+    /**
+     * The number.
+     *
+     * @var int
+     */
     protected $number;
 
     /**
@@ -35,10 +41,10 @@ class Number implements TypeInterface
     public function setNumber($number)
     {
         if (!is_int($number)) {
-            throw new Exception\InvalidNumberException($number . ' is not a number.');
-        } else {
-            $this->number = $number;
+            throw new InvalidNumberException($number . ' is not a number.');
         }
+
+        $this->number = $number;
     }
 
     /**
@@ -53,35 +59,33 @@ class Number implements TypeInterface
     }
 
     /**
-     * Helper function that adds two numbers.
+     * Add an amount to the number.
      *
      * @param $x integer
-     *   The first number.
-     * @param $y integer
-     *   The second number.
+     *   The number.
      *
-     * @return integer
-     *   The result of adding the numbers.
+     * @return Number
+     *   The current object.
      */
-    protected function add($x, $y)
+    public function add($x)
     {
-        return $x + $y;
+        $this->setNumber($this->getNumber() + $x);
+        return $this;
     }
 
     /**
-     * Helper function that subtracts two numbers.
+     * Subtract an amount from the number.
      *
      * @param $x integer
-     *   The first number.
-     * @param $y integer
-     *   The second number.
+     *   The number.
      *
-     * @return integer
-     *   The result of subtracting the numbers.
+     * @return Number
+     *   The current object.
      */
-    protected function subtract($x, $y)
+    public function subtract($x)
     {
-        return $x - $y;
+        $this->setNumber($this->getNumber() - $x);
+        return $this;
     }
 
     /**
