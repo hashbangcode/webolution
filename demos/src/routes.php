@@ -11,6 +11,7 @@ $app->any('/clear_database', '\Hashbangcode\Wevolution\Demos\Controller\AdminerC
 
 // Number.
 $app->get('/number_evolution', '\Hashbangcode\Wevolution\Demos\Controller\NumberController:numberEvolution');
+$app->map(['GET', 'POST'], '/number_evolution_form', '\Hashbangcode\Wevolution\Demos\Controller\NumberController:numberEvolutionForm');
 
 // Color.
 $app->get('/color_sort[/{type}]', '\Hashbangcode\Wevolution\Demos\Controller\ColorController:colorSort');
