@@ -224,6 +224,14 @@ abstract class Population implements PopulationInterface
     }
 
     /**
+     * @param $individuals
+     */
+    public function setIndividuals($individuals)
+    {
+        $this->individuals = $individuals;
+    }
+
+    /**
      * Get the default render type.
      *
      * @return string

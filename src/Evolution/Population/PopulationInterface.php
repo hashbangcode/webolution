@@ -34,6 +34,14 @@ interface PopulationInterface
     public function getIndividuals();
 
     /**
+     * Set the individuals in this population.
+     *
+     * @param array $individuals
+     *   The individuals.
+     */
+    public function setIndividuals($individuals);
+
+    /**
      * Render the population.
      *
      * @return string
