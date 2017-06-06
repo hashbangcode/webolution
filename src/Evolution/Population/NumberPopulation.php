@@ -34,7 +34,7 @@ class NumberPopulation extends Population
      */
     public function sort()
     {
-        sort($this->individuals);
+        asort($this->individuals);
     }
 
     /**
