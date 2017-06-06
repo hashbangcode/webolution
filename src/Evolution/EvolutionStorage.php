@@ -227,9 +227,9 @@ CREATE TABLE "populations" (
     /**
      * {@inheritdoc}
      */
-    public function runGeneration($kill = true)
+    public function runGeneration($kill = true, $storeGenerations = true)
     {
-        parent::runGeneration($kill);
+        parent::runGeneration($kill, $storeGenerations);
 
         // Increment generation in database.
         $sql = 'UPDATE evolution SET current_generation = :current_generation WHERE evolution_id = :evolution_id';
@@ -267,7 +267,9 @@ CREATE TABLE "populations" (
             )
         );
 
-        foreach ($population->getIndividuals() as $individual) {
+        $individuals = [];
+
+        foreach ($population->getIndividuals() as $key => $individual) {
             $serializedIndividual = serialize($individual);
 
             $sql = 'INSERT INTO individuals(evolution_id, population_id, individual) ';
@@ -281,7 +283,13 @@ CREATE TABLE "populations" (
                     'individual' => $serializedIndividual,
                 )
             );
+
+            $newId = $this->database->lastInsertId();
+            $individuals[$newId] = $individual;
         }
+
+        // Set the new individuals for the population.
+        $population->setIndividuals($individuals);
     }
 
     /**
@@ -343,12 +351,16 @@ CREATE TABLE "populations" (
             )
         );
 
+        $individuals = [];
+
         // Load the individuals from the database and add them to the population.
         $individualData = $individualStatement->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($individualData as $key => $data) {
             $individual = unserialize($data['individual']);
-            $this->population->addIndividual($individual);
+            $individuals[$data['individual_id']] = $individual;
         }
+
+        $this->population->setIndividuals($individuals);
     }
 
     /**

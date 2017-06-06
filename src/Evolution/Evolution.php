@@ -184,12 +184,17 @@ class Evolution
     /**
      * Run a generation.
      *
+     * @param bool $kill
+     *   Flag to kill the population.
+     * @param bool $storeGenerations
+     *   Flag to store the previous generation.
+     *
      * @return bool
      *   True if successful. False if everyone dies.
      *
      * @throws NoPopulationException
      */
-    public function runGeneration($kill = true)
+    public function runGeneration($kill = true, $storeGenerations = true)
     {
         if (!($this->population instanceof Population)) {
             throw new NoPopulationException('No population object exists in evolution class.');
@@ -205,7 +210,7 @@ class Evolution
         // Generate statistics before we do anything with the population.
         $this->population->generateStatistics();
 
-        if ($kill) {
+        if ($kill === true) {
             // Kill off anything that isn't fit.
             $this->population->cullPopulation($this->getGlobalFitnessGoal());
         }
@@ -234,8 +239,10 @@ class Evolution
         // Mutate the population.
         $this->population->mutatePopulation();
 
-        // Store the current generation.
-        $this->addPreviousGeneration($this->getCurrentPopulation());
+        if ($storeGenerations === true) {
+            // Store the current generation.
+            $this->addPreviousGeneration($this->getCurrentPopulation());
+        }
 
         // Return true to signify that everything worked and that everyone is alive.
         return true;
@@ -392,6 +399,17 @@ class Evolution
     }
 
     /**
+     * Set the new generation.
+     *
+     * @param int $generation
+     *   The new generation.
+     */
+    public function setGeneration($generation)
+    {
+        $this->generation = $generation;
+    }
+
+    /**
      * Get the allowed fitness value.
      *
      * @return int
@@ -411,5 +429,13 @@ class Evolution
     public function setAllowedFitness($allowedFitness)
     {
         $this->allowedFitness = $allowedFitness;
+    }
+
+    /**
+     * Increment the generation.
+     */
+    public function incrementGeneration()
+    {
+        $this->generation++;
     }
 }
