@@ -350,7 +350,8 @@ abstract class Population implements PopulationInterface
 
         // Get Median.
         $individuals = $this->getIndividuals();
-        $this->medianIndividual = array_pop(array_slice($individuals, floor(count($individuals)/ 2), 1));
+        $slicedArray = array_slice($individuals, floor(count($individuals)/ 2), 1);
+        $this->medianIndividual = array_pop($slicedArray);
     }
 
     /**

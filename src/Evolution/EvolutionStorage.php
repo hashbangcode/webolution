@@ -2,7 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Evolution;
 
-use Hashbangcode\Wevolution\Evolution\Population;
+use Hashbangcode\Wevolution\Evolution\Population\Population;
 
 /**
  * Class EvolutionStorage.
@@ -35,7 +35,7 @@ class EvolutionStorage extends Evolution
     /**
      * EvolutionStorage constructor.
      *
-     * @param Population\Population|null $population
+     * @param Population|null $population
      *   The population object to get things running.
      * @param int $maxGenerations
      *   The maximum number of generations.
@@ -45,7 +45,7 @@ class EvolutionStorage extends Evolution
      *   Whether to auto-populate the population.
      */
     public function __construct(
-        Population\Population $population = null,
+        Population $population = null,
         $autoGeneratePopulation = true,
         $maxGenerations = null,
         $individualsPerGeneration = null
@@ -248,10 +248,10 @@ CREATE TABLE "populations" (
     /**
      * Store the generation.
      *
-     * @param Population\Population $population
+     * @param Population $population
      *   Store the population object in the database.
      */
-    public function storeGeneration($population)
+    public function storeGeneration(Population $population)
     {
         // @todo : store statistics.
 
@@ -364,12 +364,9 @@ CREATE TABLE "populations" (
     }
 
     /**
-     * Render the generations.
-     *
-     * @return string
-     *   The rendered generations.
+     * {@inheritdoc}
      */
-    public function renderGenerations($printStats = false)
+    public function renderGenerations($printStats = false, $format = 'html')
     {
         $output = '';
 
