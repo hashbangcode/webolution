@@ -19,5 +19,7 @@ The following tasks will form part of this:
 - Text evolution (done).
 - Colour evolution (done).
 - HTML Element evolution (done).
-- Style evolution.
-- Full page evoluion.
+- Style evolution (done).
+- Full page evoluion (done).
+
+More documentation to follow...
