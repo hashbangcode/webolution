@@ -16,20 +16,6 @@ abstract class Individual implements IndividualInterface
     protected $object;
 
     /**
-     * Individual constructor.
-     *
-     * @param int $mutationFactor
-     *   The mutation factor.
-     * @param int $mutationAmount
-     *   The mutation amount.
-     */
-    public function __construct($mutationFactor = 0, $mutationAmount = 0)
-    {
-        $this->mutationFactor = $mutationFactor;
-        $this->mutationAmount = $mutationAmount;
-    }
-
-    /**
      * {@inheritdoc}
      */
     abstract public function getFitness($type = '');
