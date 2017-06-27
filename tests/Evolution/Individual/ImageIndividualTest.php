@@ -24,6 +24,20 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Image\Image', $object->getObject());
     }
 
+    public function testFitnessOfBlankImage()
+    {
+        $object = new ImageIndividual();
+        $fitness = $object->getFitness();
+        $this->assertEquals(0, $fitness);
+    }
+
+    public function testFitnessOfBlankImageAsHeight()
+    {
+        $object = new ImageIndividual();
+        $fitness = $object->getFitness('height');
+        $this->assertEquals(0, $fitness);
+    }
+
     public function testMutateImageThroughIndividual()
     {
         $object = new ImageIndividual();
