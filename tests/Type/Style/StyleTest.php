@@ -2,6 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Test\Type\Style;
 
+use Hashbangcode\Wevolution\Evolution\Individual\UnitIndividual;
 use Hashbangcode\Wevolution\Type\Style\Style;
 use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
@@ -65,6 +66,20 @@ class StyleTest extends \PHPUnit_Framework_TestCase
         $object->setAttribute('padding', '0px');
         $renderedStyle = $object->render();
         $this->assertEquals('.element{background:black;color:red;padding:0px;}', $renderedStyle);
+    }
+
+    public function testRenderArrayStyle()
+    {
+        $units = [
+            new UnitIndividual(1, 'px'),
+            new UnitIndividual(1, 'px'),
+            new UnitIndividual(1, 'px'),
+            new UnitIndividual(1, 'px'),
+        ];
+
+        $object = new Style('.element', ['margin' => $units]);
+        $renderedStyle = $object->render();
+        $this->assertEquals('.element{margin:1px 1px 1px 1px;}', $renderedStyle);
     }
 
     public function testRenderStyleWithObjectAttribute()
