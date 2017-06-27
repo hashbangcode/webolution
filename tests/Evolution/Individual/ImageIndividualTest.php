@@ -17,6 +17,13 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Image\Image', $object->getObject());
     }
 
+    public function testCreateRandomIndividual()
+    {
+        $object = ImageIndividual::generateRandomImage();
+        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Image\Image', $object->getObject());
+    }
+
     public function testMutateImageThroughIndividual()
     {
         $object = new ImageIndividual();
