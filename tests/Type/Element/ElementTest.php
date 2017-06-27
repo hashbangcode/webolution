@@ -422,6 +422,69 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Element\Element', $child);
     }
 
+    public function testRemoveChild()
+    {
+        $element1 = new Element('div');
+        $element1->setAttribute('class', 'div1');
+
+        $element2 = new Element('div');
+        $element2->setAttribute('class', 'div2');
+
+        $element3 = new Element('div');
+        $element3->setAttribute('class', 'div3');
+
+        $element4 = new Element('div');
+        $element4->setAttribute('class', 'div4');
+
+        $element5 = new Element('div');
+        $element5->setAttribute('class', 'div5');
+
+        $element1->addChild($element2);
+        $element2->addChild($element3);
+        $element3->addChild($element4);
+        $element4->addChild($element5);
+
+        $result = $element1->removeChild($element3);
+
+        $allElements = $element1->getAllElements();
+
+        $this->assertLessThan(5, count($allElements));
+        $this->assertTrue($result);
+    }
+
+    public function testRemoveNonExistentChild()
+    {
+        $element1 = new Element('div');
+        $element1->setAttribute('class', 'div1');
+
+        $element2 = new Element('div');
+        $element2->setAttribute('class', 'div2');
+
+        $element3 = new Element('div');
+        $element3->setAttribute('class', 'div3');
+
+        $element4 = new Element('div');
+        $element4->setAttribute('class', 'div4');
+
+        $element5 = new Element('div');
+        $element5->setAttribute('class', 'div5');
+
+        $outsideElement = new Element('div');
+        $outsideElement->setAttribute('class', 'outside');
+
+        $element1->addChild($element2);
+        $element2->addChild($element3);
+        $element3->addChild($element4);
+        $element4->addChild($element5);
+
+        $result = $element1->removeChild($outsideElement);
+
+        $allElements = $element1->getAllElements();
+
+        $this->assertEquals(5, count($allElements));
+        $this->assertFalse($result);
+    }
+
     public function testRemoveRandomChild()
     {
         $element1 = new Element('div');

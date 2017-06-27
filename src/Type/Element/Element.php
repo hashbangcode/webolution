@@ -511,14 +511,18 @@ class Element implements TypeInterface
     public function removeChild($removeChild)
     {
         foreach ($this->getChildren() as $key => $child) {
-            if ($child == $removeChild) {
+            // Loop through the children of this element and remove a child if it matches.
+            if ($child === $removeChild) {
                 unset($this->children[$key]);
                 return true;
             }
 
             if (count($child->getChildren() > 0)) {
-                return $child->removeRandomChild($removeChild);
+                // This element has children so go into those children in an attempt to find the correct element.
+                return $child->removeChild($removeChild);
             }
         }
+        // No child was removed, so return false.
+        return false;
     }
 }
