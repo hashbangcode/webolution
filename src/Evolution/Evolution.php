@@ -20,7 +20,7 @@ class Evolution
     public $globalFitnessGoal = null;
 
     /**
-     * The current generation.
+     * The current generation number.
      *
      * @var int
      */
@@ -76,7 +76,7 @@ class Evolution
     protected $previousGenerations = array();
 
     /**
-     * Evolution constructor.
+     * Evolution class constructor.
      *
      * @param Population|null $population
      *   The Population object to start off things with.
@@ -93,25 +93,29 @@ class Evolution
         $maxGenerations = null,
         $individualsPerGeneration = null
     ) {
-        // Setup the maximum number of generations.
+
         if (!is_null($maxGenerations)) {
+            // Setup the maximum number of generations if passed.
             $this->setMaxGenerations($maxGenerations);
         }
 
-        // Setup the maximum number of individuals per generation.
         if (!is_null($individualsPerGeneration)) {
+            // Setup the maximum number of individuals per generation if passes.
             $this->setIndividualsPerGeneration($individualsPerGeneration);
         }
 
-        // If a population object was passed then we can setup the population.
         if ($population instanceof Population) {
+            // If a population object was passed then we can setup the population.
             $this->population = $population;
             if ($autoGeneratePopulation == true
                 && $this->population->getLength() < $this->getIndividualsPerGeneration()
             ) {
+                // If we are to auto-populate the population and the length is less than the number of individuals per
+                // generation then populate the population with individuals.
                 $this->populateThePopulation();
             }
 
+            // Generate statistics for the population.
             $this->population->generateStatistics();
         }
     }
@@ -130,6 +134,7 @@ class Evolution
                 // Add a random individual (not cloned from the current population).
                 $this->population->addIndividual();
             }
+            // Keep adding individuals to the population whilst the count is less then the minimum count.
         } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
     }
 
