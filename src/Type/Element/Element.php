@@ -6,6 +6,11 @@ use Hashbangcode\Wevolution\Type\Element\Exception\InvalidChildTypeException;
 use Hashbangcode\Wevolution\Utilities\TextUtilities;
 use Hashbangcode\Wevolution\Type\TypeInterface;
 
+/**
+ * Class Element.
+ *
+ * @package Hashbangcode\Wevolution\Type\Element
+ */
 class Element implements TypeInterface
 {
 
@@ -193,6 +198,9 @@ class Element implements TypeInterface
 
     /**
      * Get a specific attribute of an Element.
+     *
+     * @param string $type
+     *   The type of attribute to set.
      *
      * @return mixed
      *   The value of the attribute, or false if that attribute isn't set.

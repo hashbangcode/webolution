@@ -80,12 +80,12 @@ class Evolution
      *
      * @param Population|null $population
      *   The Population object to start off things with.
+     * @param bool $autoGeneratePopulation
+     *   Whether to auto generate the population. Defaults to false.
      * @param int|null $maxGenerations
      *   The maximum number of generations to run.
      * @param int|null $individualsPerGeneration
      *   Set how many individuals are allowed per generation.
-     * @param bool $autoGeneratePopulation
-     *   Whether to auto generate the population. Defaults to false.
      */
     public function __construct(
         Population $population = null,
@@ -309,6 +309,8 @@ class Evolution
     }
 
     /**
+     * Set the global mutation factor.
+     *
      * @param null $globalMutationFactor
      */
     public function setGlobalMutationFactor($globalMutationFactor)
@@ -317,6 +319,8 @@ class Evolution
     }
 
     /**
+     * Get the gloval mutation amount.
+     *
      * @return int
      */
     public function getGlobalMutationAmount()
@@ -325,6 +329,8 @@ class Evolution
     }
 
     /**
+     * Set the global mutation amount.
+     *
      * @param int $globalMutationAmount
      */
     public function setGlobalMutationAmount($globalMutationAmount)

@@ -49,7 +49,8 @@ class EvolutionStorage extends Evolution
         $autoGeneratePopulation = true,
         $maxGenerations = null,
         $individualsPerGeneration = null
-    ) {
+    )
+    {
         parent::__construct($population, $autoGeneratePopulation, $maxGenerations, $individualsPerGeneration);
     }
 
@@ -229,6 +230,7 @@ CREATE TABLE "populations" (
      */
     public function runGeneration($kill = true, $storeGenerations = true)
     {
+        // Run the generation from the parent class.
         parent::runGeneration($kill, $storeGenerations);
 
         // Increment generation in database.
@@ -269,6 +271,7 @@ CREATE TABLE "populations" (
 
         $individuals = [];
 
+        // Insert the individuals into the database.
         foreach ($population->getIndividuals() as $key => $individual) {
             $serializedIndividual = serialize($individual);
 
@@ -297,7 +300,7 @@ CREATE TABLE "populations" (
      *
      * This also stores the population.
      *
-     * @param Population\Population $population
+     * @param Population $population
      *   The population.
      */
     public function setPopulation($population)
@@ -370,6 +373,7 @@ CREATE TABLE "populations" (
     {
         $output = '';
 
+        // Loop through the previous generation and render the individuals in it.
         foreach ($this->previousGenerations as $generation_number => $population) {
             $output .= $population->render() . PHP_EOL . '<br>';
             if ($printStats === true) {
