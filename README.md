@@ -37,6 +37,7 @@ Next steps:
 - Create a downloader that will allow the full page individuals to be exported as full web pages. This can probably take the form of a decorator or a different renderer type.
 - Use the decorator design pattern to render individuals instead of passing the render type as a string.
 - Print out statistics in the demo application.
+- Add better "random" strings to the HTML elements. The current random strings make things look very messy.
 
 Future plans:
 - Add a dependency injection container to streamline the use of the application in other applications.
