@@ -2,6 +2,8 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Individual;
 
+use Hashbangcode\Wevolution\Type\TypeInterface;
+
 /**
  * Class Individual
  * @package Hashbangcode\Wevolution\Evolution\Individual
@@ -50,7 +52,7 @@ abstract class Individual implements IndividualInterface
     /**
      * {@inheritdoc}
      */
-    public function setObject($object)
+    public function setObject(TypeInterface $object)
     {
         $this->object = $object;
     }
