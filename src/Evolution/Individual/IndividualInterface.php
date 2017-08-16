@@ -2,6 +2,8 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Individual;
 
+use Hashbangcode\Wevolution\Type\TypeInterface;
+
 /**
  * Interface IndividualInterface.
  *
@@ -10,12 +12,20 @@ namespace Hashbangcode\Wevolution\Evolution\Individual;
 interface IndividualInterface
 {
     /**
-     * Get the underlying type object.
+     * Get the underlying Type object.
      *
      * @return object
      *   The type object.
      */
     public function getObject();
+
+    /**
+     * Sets the underlying Type object.
+     *
+     * @param TypeInterface $object
+     *   The Type object to set.
+     */
+    public function setObject(TypeInterface $object);
 
     /**
      * Mutate the individual.

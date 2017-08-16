@@ -46,4 +46,12 @@ abstract class Individual implements IndividualInterface
     {
         return $this->object;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setObject($object)
+    {
+        $this->object = $object;
+    }
 }
