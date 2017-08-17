@@ -71,10 +71,10 @@ class StyleTest extends \PHPUnit_Framework_TestCase
     public function testRenderArrayStyle()
     {
         $units = [
-            new UnitIndividual(1, 'px'),
-            new UnitIndividual(1, 'px'),
-            new UnitIndividual(1, 'px'),
-            new UnitIndividual(1, 'px'),
+            UnitIndividual::generateFromUnitArguments(1, 'px'),
+            UnitIndividual::generateFromUnitArguments(1, 'px'),
+            UnitIndividual::generateFromUnitArguments(1, 'px'),
+            UnitIndividual::generateFromUnitArguments(1, 'px'),
         ];
 
         $object = new Style('.element', ['margin' => $units]);

@@ -4,6 +4,7 @@ namespace Hashbangcode\Wevolution\Test\Evolution\Population;
 
 use Hashbangcode\Wevolution\Evolution\Population\PagePopulation;
 use Hashbangcode\Wevolution\Evolution\Individual\PageIndividual;
+use Hashbangcode\Wevolution\Type\Page\Page;
 
 class PagePopulationTest extends \PHPUnit_Framework_TestCase
 {
@@ -25,7 +26,7 @@ class PagePopulationTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateActivePopulation()
     {
-        $object = new PageIndividual();
+        $object = PageIndividual::generateBlankPage();
 
         $style = new \Hashbangcode\Wevolution\Type\Style\Style('div');
         $style->setAttribute('color', 'red');

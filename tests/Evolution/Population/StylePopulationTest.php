@@ -18,14 +18,14 @@ class StylePopulationTest extends \PHPUnit_Framework_TestCase
     {
         $population = new StylePopulation();
         $population->addIndividual();
-        $population->addIndividual(new StyleIndividual('div.monkey'));
+        $population->addIndividual(StyleIndividual::generateFromSelector('div.monkey'));
         $this->assertEquals(2, $population->getLength());
     }
 
     public function testRenderPopulation()
     {
         $population = new StylePopulation();
-        $population->addIndividual(new StyleIndividual('div.monkey'));
+        $population->addIndividual(StyleIndividual::generateFromSelector('div.monkey'));
         $output = $population->render();
         $this->assertContains('div.monkey{}', $output);
     }

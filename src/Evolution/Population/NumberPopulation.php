@@ -64,6 +64,7 @@ class NumberPopulation extends Population
      */
     public function crossover()
     {
-        // @todo implement this.
+        // Get two random individuals.
+        // MIX THEM!
     }
 }

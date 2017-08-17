@@ -36,12 +36,12 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
     {
         $colorColorPopulation = new ColorPopulation();
 
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(255, 0, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(255, 0, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
 
         $colorColorPopulation->sort();
 
@@ -52,12 +52,12 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
     {
         $colorColorPopulation = new ColorPopulation();
 
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(255, 0, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(255, 0, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
 
         $colorColorPopulation->sort('hue', 'DESC');
 
@@ -75,12 +75,12 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
     {
         $colorColorPopulation = new ColorPopulation();
 
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(255, 0, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(255, 0, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
 
         $colorColorPopulation->sort('hue');
         $colorColorPopulation->sort('hex');
@@ -121,11 +121,11 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
     {
         $colorColorPopulation = new ColorPopulation();
 
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 255, 0));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 255));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
 
         $object = $colorColorPopulation->getRandomIndividual();
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
@@ -136,8 +136,8 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
     {
         $colorColorPopulation = new ColorPopulation();
 
-        $colorColorPopulation->addIndividual(new ColorIndividual(255, 255, 255));
-        $colorColorPopulation->addIndividual(new ColorIndividual(0, 0, 0));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
+        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 0));
 
         $colorColorPopulation->setDefaultRenderType('cli');
 

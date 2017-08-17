@@ -38,7 +38,7 @@ class ImagePopulationTest extends \PHPUnit_Framework_TestCase
         $object = new ImagePopulation();
 
         // Create first iamge.
-        $image1 = new ImageIndividual(10, 10);
+        $image1 = ImageIndividual::generateFromImageSize(10, 10);
         $image1->getObject()->setPixel(9, 5, 1);
         $image1->getObject()->setPixel(8, 5, 1);
         $image1->getObject()->setPixel(7, 5, 1);
@@ -48,20 +48,20 @@ class ImagePopulationTest extends \PHPUnit_Framework_TestCase
         $object->addIndividual($image1);
 
         // Create second image.
-        $image2 = new ImageIndividual(10, 10);
+        $image2 = ImageIndividual::generateFromImageSize(10, 10);
         $image2->getObject()->setPixel(9, 5, 1);
         $image2->getObject()->setPixel(8, 5, 1);
         $image2->getObject()->setPixel(7, 5, 1);
         $object->addIndividual($image2);
 
         // Create third iamge.
-        $image3 = new ImageIndividual(10, 10);
+        $image3 = ImageIndividual::generateFromImageSize(10, 10);
         $image3->getObject()->setPixel(9, 5, 1);
         $image3->getObject()->setPixel(8, 5, 1);
         $object->addIndividual($image3);
 
         // Create fourth image.
-        $image4 = new ImageIndividual(10, 10);
+        $image4 = ImageIndividual::generateFromImageSize(10, 10);
         $image4->getObject()->setPixel(9, 5, 1);
         $image4->getObject()->setPixel(8, 5, 1);
         $image4->getObject()->setPixel(7, 5, 1);
@@ -70,12 +70,12 @@ class ImagePopulationTest extends \PHPUnit_Framework_TestCase
         $object->addIndividual($image4);
 
         // Create fifth iamge.
-        $image5 = new ImageIndividual(10, 10);
+        $image5 = ImageIndividual::generateFromImageSize(10, 10);
         $image5->getObject()->setPixel(9, 5, 1);
         $object->addIndividual($image5);
 
         // Create sixth iamge.
-        $image6 = new ImageIndividual(10, 10);
+        $image6 = ImageIndividual::generateFromImageSize(10, 10);
         $image6->getObject()->setPixel(9, 2, 1);
         $image6->getObject()->setPixel(8, 2, 1);
         $image6->getObject()->setPixel(7, 2, 1);

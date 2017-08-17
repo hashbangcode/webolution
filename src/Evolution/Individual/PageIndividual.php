@@ -11,6 +11,10 @@ use Hashbangcode\Wevolution\Type\Style\Style;
  */
 class PageIndividual extends Individual
 {
+    public static function generateBlankPage()
+    {
+        return new self(new Page());
+    }
 
     /**
      * {@inheritdoc}

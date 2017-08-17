@@ -44,11 +44,11 @@ class TextPopulationTest extends \PHPUnit_Framework_TestCase
     {
         $population = new TextPopulation();
 
-        $population->addIndividual(new TextIndividual('A'));
-        $population->addIndividual(new TextIndividual('B'));
-        $population->addIndividual(new TextIndividual('C'));
-        $population->addIndividual(new TextIndividual('D'));
-        $population->addIndividual(new TextIndividual('E'));
+        $population->addIndividual(TextIndividual::generateFromString('A'));
+        $population->addIndividual(TextIndividual::generateFromString('B'));
+        $population->addIndividual(TextIndividual::generateFromString('C'));
+        $population->addIndividual(TextIndividual::generateFromString('D'));
+        $population->addIndividual(TextIndividual::generateFromString('E'));
 
         $population->sort();
 
@@ -76,7 +76,7 @@ class TextPopulationTest extends \PHPUnit_Framework_TestCase
     {
         $population = new TextPopulation();
 
-        $population->addIndividual(new TextIndividual('wibble'));
+        $population->addIndividual(TextIndividual::generateFromString('wibble'));
 
         $output = $population->render();
 

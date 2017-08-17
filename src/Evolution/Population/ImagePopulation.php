@@ -25,7 +25,7 @@ class ImagePopulation extends Population
     public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
-            $individual = new ImageIndividual();
+            $individual = ImageIndividual::generateRandomImage();
         }
         $this->individuals[] = $individual;
 

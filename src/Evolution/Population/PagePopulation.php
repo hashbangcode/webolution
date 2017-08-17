@@ -5,6 +5,7 @@ namespace Hashbangcode\Wevolution\Evolution\Population;
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 use Hashbangcode\Wevolution\Evolution\Individual\PageIndividual;
 use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Wevolution\Type\Page\Page;
 use Hashbangcode\Wevolution\Type\Style\Style;
 
 /**
@@ -70,7 +71,7 @@ class PagePopulation extends Population
     public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
-            $individual = new PageIndividual();
+            $individual = PageIndividual::generateBlankPage();
 
             $element = new Element('div');
             $individual->getObject()->setBody($element);

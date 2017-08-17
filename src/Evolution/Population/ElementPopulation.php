@@ -62,7 +62,7 @@ class ElementPopulation extends Population
     public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
-            $individual = new ElementIndividual('div');
+            $individual = ElementIndividual::generateFromElementType('div');
         }
 
         $this->individuals[] = $individual;
