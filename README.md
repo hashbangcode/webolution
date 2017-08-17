@@ -28,6 +28,7 @@ An EvolutionStorage class has been created to allow larger number of Individuals
 A demo application has been written in Slim Framework 3 that shows each evolution running. This can be seen in the /demo directory. The application also features a couple of interactive forms that allow individuals to be selected and fed into the next generation.
 
 Next steps:
+- Tidy up the code. Lots of missing comments and messy looking bits.
 - Refactor the constructor in the Evolution classes to prevent them doing too much or accepting too many parameters.
 - Standardize the Individual constructors to prevent them being specific to the type.
 - Force the population statistics to be generated.
