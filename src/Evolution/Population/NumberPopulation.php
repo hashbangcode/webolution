@@ -24,7 +24,7 @@ class NumberPopulation extends Population
     {
         if (is_null($individual)) {
             $number = mt_rand(1, 10);
-            $individual = new NumberIndividual($number);
+            $individual = NumberIndividual::generateFromNumber($number);
         }
         $this->individuals[] = $individual;
     }

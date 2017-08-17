@@ -44,11 +44,11 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase
     {
         $numberPopulation = new NumberPopulation();
 
-        $numberPopulation->addIndividual(new NumberIndividual(1));
-        $numberPopulation->addIndividual(new NumberIndividual(2));
-        $numberPopulation->addIndividual(new NumberIndividual(3));
-        $numberPopulation->addIndividual(new NumberIndividual(4));
-        $numberPopulation->addIndividual(new NumberIndividual(5));
+        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(1));
+        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(2));
+        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(3));
+        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(4));
+        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(5));
 
         $numberPopulation->sort();
         $output = $numberPopulation->render();
@@ -60,11 +60,11 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase
     {
         $numberPopulation = new NumberPopulation();
 
-        $numberPopulation->addIndividual(new NumberIndividual(1));
-        $numberPopulation->addIndividual(new NumberIndividual(2));
-        $numberPopulation->addIndividual(new NumberIndividual(3));
-        $numberPopulation->addIndividual(new NumberIndividual(4));
-        $numberPopulation->addIndividual(new NumberIndividual(5));
+        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(1));
+        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(2));
+        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(3));
+        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(4));
+        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(5));
 
         $numberPopulation->sort();
         $numberPopulation->setDefaultRenderType('html');
