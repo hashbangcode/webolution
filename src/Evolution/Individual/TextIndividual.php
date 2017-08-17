@@ -34,6 +34,18 @@ class TextIndividual extends Individual
     }
 
     /**
+     * @param string $string
+     *   The text string to use.
+     *
+     * @return TextIndividual
+     */
+    public static function generateFromString($string)
+    {
+        $textObject = new Text($string);
+        return new self($textObject);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)

@@ -24,6 +24,12 @@ class UnitIndividual extends Individual
         return new self($unitObject);
     }
 
+    public static function generateFromUnitArguments($number, $unit)
+    {
+        $unitObject = new Unit($number, $unit);
+        return new self($unitObject);
+    }
+
     /**
      * {@inheritdoc}
      */

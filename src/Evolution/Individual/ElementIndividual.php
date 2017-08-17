@@ -11,19 +11,18 @@ use Hashbangcode\Wevolution\Type\Element\Element;
 class ElementIndividual extends Individual
 {
     /**
-     * ElementIndividual constructor.
+     * Generate an ElementIndividual object.
      *
-     * @param string|Element $element
-     *   If string is passed then this is used to create the Element object. If an Element object is passed then this is
-     *   used as the object.
+     * @param string $element
+     *   The type of element to generate.
+     *
+     * @return ElementIndividual
+     *   The obejct.
      */
-    public function __construct($element)
+    public static function generateFromElementType($type)
     {
-        if (!($element instanceof Element)) {
-            $this->object = new Element($element);
-        } else {
-            $this->object = $element;
-        }
+        $elementObject = new Element($type);
+        return new self($elementObject);
     }
 
     /**
