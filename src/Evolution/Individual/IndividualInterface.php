@@ -20,14 +20,6 @@ interface IndividualInterface
     public function getObject();
 
     /**
-     * Sets the underlying Type object.
-     *
-     * @param TypeInterface $object
-     *   The Type object to set.
-     */
-    public function setObject(TypeInterface $object);
-
-    /**
      * Mutate the individual.
      *
      * @param int $mutationFactor
