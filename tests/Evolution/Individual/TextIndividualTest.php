@@ -12,14 +12,14 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateIndividual()
     {
-        $object = new TextIndividual(1);
+        $object = TextIndividual::generateRandomTextIndividual(1);
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Text\Text', $object->getObject());
     }
 
     public function testMutateTextThroughIndividual()
     {
-        $object = new TextIndividual(1);
+        $object = TextIndividual::generateRandomTextIndividual(1);
         $object->mutate(1);
         $this->assertNotEquals(1, $object->getObject()->getText());
     }
@@ -44,49 +44,49 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateTextThroughIndividualWithDifferentFactor()
     {
-        $object = new TextIndividual(1);
+        $object = TextIndividual::generateRandomTextIndividual(1);
         $object->mutate(2);
         $this->assertNotEquals(1, $object->getObject()->getText());
     }
 
     public function testGetFitness()
     {
-        $object = new TextIndividual(1);
+        $object = TextIndividual::generateRandomTextIndividual(1);
         $this->assertEquals(0, $object->getFitness());
     }
 
     public function testGetFitnessWithGoal()
     {
-        $object = new TextIndividual(1);
-        $object->setFitnessGoal(1);
-        $this->assertEquals(1, $object->getFitness());
+        $object = TextIndividual::generateRandomTextIndividual('abc');
+        $object->setFitnessGoal('abc');
+        $this->assertEquals(0, $object->getFitness());
     }
 
     public function testCliRender()
     {
-        $object = new TextIndividual(1);
+        $object = TextIndividual::generateFromString('abc');
         $renderType = 'cli';
-        $this->assertEquals('1 ', $object->render($renderType));
+        $this->assertEquals('abc ', $object->render($renderType));
     }
 
     public function testHtmlRender()
     {
-        $object = new TextIndividual(1);
+        $object = TextIndividual::generateFromString('abc');
         $renderType = 'html';
-        $this->assertEquals('1<br>', $object->render($renderType));
+        $this->assertEquals('abc<br>', $object->render($renderType));
     }
 
     public function testDefaultRender()
     {
-        $object = new TextIndividual(1);
-        $this->assertEquals('1 ', $object->render());
+        $object = TextIndividual::generateFromString('abc');
+        $this->assertEquals('abc ', $object->render());
     }
 
     public function testmutateText()
     {
-        $object = new TextIndividual(1);
-        $this->assertEquals(1, $object->getObject()->getText());
+        $object = TextIndividual::generateFromString('abc');
+        $this->assertEquals('abc', $object->getObject()->getText());
         $object->mutate();
-        $this->assertNotEquals(1, $object->getObject()->getText());
+        $this->assertNotEquals('abc', $object->getObject()->getText());
     }
 }

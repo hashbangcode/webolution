@@ -14,7 +14,7 @@ class StyleIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateIndividual()
     {
-        $object = new StyleIndividual(1);
+        $object = StyleIndividual::generateFromSelector('.div');
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Style\Style', $object->getObject());
     }
@@ -29,40 +29,40 @@ class StyleIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testCliRender()
     {
-        $object = new StyleIndividual('.div');
+        $object = StyleIndividual::generateFromSelector('.div');
         $renderType = 'cli';
         $this->assertEquals('.div{}' . PHP_EOL, $object->render($renderType));
     }
 
     public function testHtmlRender()
     {
-        $object = new StyleIndividual('.div');
+        $object = StyleIndividual::generateFromSelector('.div');
         $renderType = 'html';
         $this->assertEquals('.div{}<br>', $object->render($renderType));
     }
 
     public function testDefaultRender()
     {
-        $object = new StyleIndividual('.div');
+        $object = StyleIndividual::generateFromSelector('.div');
         $this->assertEquals('.div{}' . PHP_EOL, $object->render());
     }
 
     public function testGetFitness()
     {
-        $object = new StyleIndividual('.div');
+        $object = StyleIndividual::generateFromSelector('.div');
         $this->assertEquals(1, $object->getFitness());
     }
 
     public function testSetProperties()
     {
-        $object = new StyleIndividual('.div');
+        $object = StyleIndividual::generateFromSelector('.div');
         $object->getObject()->setAttribute('color', 'black');
         $this->assertContains('.div{color:black;}', $object->render());
     }
 
     public function testMutateStyle()
     {
-        $object = new StyleIndividual('.div');
+        $object = StyleIndividual::generateFromSelector('.div');
         $object->getObject()->setAttribute('color', ColorIndividual::generateFromHex('000000'));
 
         $object->mutate(0, 50);

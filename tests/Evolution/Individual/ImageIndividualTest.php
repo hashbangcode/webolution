@@ -12,7 +12,7 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateIndividual()
     {
-        $object = new ImageIndividual();
+        $object = ImageIndividual::generateRandomImage();
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Image\Image', $object->getObject());
     }
@@ -26,21 +26,21 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testFitnessOfBlankImage()
     {
-        $object = new ImageIndividual();
+        $object = ImageIndividual::generateRandomImage();
         $fitness = $object->getFitness();
         $this->assertEquals(0, $fitness);
     }
 
     public function testFitnessOfBlankImageAsHeight()
     {
-        $object = new ImageIndividual();
+        $object = ImageIndividual::generateRandomImage();
         $fitness = $object->getFitness('height');
         $this->assertEquals(0, $fitness);
     }
 
     public function testMutateImageThroughIndividual()
     {
-        $object = new ImageIndividual();
+        $object = ImageIndividual::generateRandomImage();
 
         $render = $object->getObject()->render();
         $this->assertNotRegExp('/1/', $render);
@@ -53,7 +53,7 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderImageIndividualAsImage()
     {
-        $object = new ImageIndividual(25, 25);
+        $object = ImageIndividual::generateFromImageSize(25, 25);
         $object->getObject()->setPixel(24, 12, 1);
         $imageOutput = $object->render('image');
         $this->assertContains('width="125"', $imageOutput);
@@ -62,7 +62,7 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderImageIndividualAsHtml()
     {
-        $object = new ImageIndividual(25, 25);
+        $object = ImageIndividual::generateFromImageSize(25, 25);
         $object->getObject()->setPixel(24, 12, 1);
         $htmlOutput = $object->render('html');
         $this->assertContains('<p>', $htmlOutput);
@@ -71,7 +71,7 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderImageIndividualAsDefault()
     {
-        $object = new ImageIndividual(25, 25);
+        $object = ImageIndividual::generateFromImageSize(25, 25);
         $object->getObject()->setPixel(24, 12, 1);
         $defaultOutput = $object->render();
         $this->assertNotContains('<p>', $defaultOutput);
@@ -80,7 +80,7 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderImageIndividualAsCli()
     {
-        $object = new ImageIndividual(25, 25);
+        $object = ImageIndividual::generateFromImageSize(25, 25);
         $object->getObject()->setPixel(24, 12, 1);
         $defaultOutput = $object->render('cli');
         $this->assertNotContains('<p>', $defaultOutput);

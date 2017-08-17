@@ -60,7 +60,7 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testElementIndividualCliRenderWithString()
     {
-        $object = new ElementIndividual('html');
+        $object = ElementIndividual::generateFromElementType('html');
         $renderType = 'cli';
         $this->assertEquals('<html></html>' . PHP_EOL, $object->render($renderType));
     }
@@ -74,7 +74,7 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testElementIndividualHtmlRenderWithString()
     {
-        $object = new ElementIndividual('html');
+        $object = ElementIndividual::generateFromElementType('html');
         $renderType = 'html';
         $this->assertEquals('<html></html>', $object->render($renderType));
     }

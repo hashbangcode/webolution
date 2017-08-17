@@ -12,7 +12,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateIndividual()
     {
-        $object = new ColorIndividual(0, 0, 0);
+        $object = ColorIndividual::generateFromRgb(0, 0, 0);
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $object->getObject());
     }
@@ -29,7 +29,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderIndividual()
     {
-        $object = new ColorIndividual(125, 125, 125);
+        $object = ColorIndividual::generateFromRgb(125, 125, 125);
         $object->mutate(0);
         $renderType = 'cli';
 
@@ -39,7 +39,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderIndividualHtml()
     {
-        $object = new ColorIndividual(125, 125, 125);
+        $object = ColorIndividual::generateFromRgb(125, 125, 125);
         $object->mutate(0);
         $renderType = 'html';
 
@@ -48,7 +48,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateColorThroughIndividual()
     {
-        $object = new ColorIndividual(125, 125, 125);
+        $object = ColorIndividual::generateFromRgb(125, 125, 125);
         $object->mutate(0);
         $renderType = 'cli';
         $this->assertNotEquals('125125125', $object->getObject()->render($renderType));
@@ -57,16 +57,16 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testColorFitness()
     {
-        $object = new ColorIndividual(255, 255, 255);
+        $object = ColorIndividual::generateFromRgb(255, 255, 255);
         $this->assertEquals(0, $object->getFitness());
 
-        $object = new ColorIndividual(125, 125, 125);
+        $object = ColorIndividual::generateFromRgb(125, 125, 125);
         $this->assertEquals(5, $object->getFitness());
     }
 
     public function testColorMutation()
     {
-        $object = new ColorIndividual(125, 125, 125);
+        $object = ColorIndividual::generateFromRgb(125, 125, 125);
         $object->mutate(0, 100);
 
         $this->assertGreaterThanOrEqual(0, $object->getObject()->getRed());
@@ -75,7 +75,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testColorMutationLowerRange()
     {
-        $object = new ColorIndividual(0, 0, 0);
+        $object = ColorIndividual::generateFromRgb(0, 0, 0);
         $object->mutate(0, 100);
 
         $this->assertGreaterThanOrEqual(0, $object->getObject()->getRed());
@@ -84,7 +84,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testColorMutationUpperRange()
     {
-        $object = new ColorIndividual(255, 255, 255);
+        $object = ColorIndividual::generateFromRgb(255, 255, 255);
         $object->mutate(0, 100);
 
         $this->assertGreaterThanOrEqual(0, $object->getObject()->getRed());
@@ -93,7 +93,7 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testLargeColorMutation()
     {
-        $object = new ColorIndividual(0, 0, 0);
+        $object = ColorIndividual::generateFromRgb(0, 0, 0);
         for ($i = 0; $i < 100; ++$i) {
             $object->mutate(0, 100);
 
