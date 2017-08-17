@@ -11,22 +11,28 @@ use Hashbangcode\Wevolution\Type\Number\Number;
 class NumberIndividual extends Individual
 {
     /**
-     * NumberIndividual constructor.
+     * Generate a NumberIndividual from a Number object.
      *
-     * @param $number
+     * @param int $number
+     *   The number
+     *
+     * @return NumberIndividual
      */
-    public function __construct($number)
+    public static function generateFromNumber($number)
     {
-        $this->object = new Number($number);
+        // Create the ColorIndividual and assign the passed Color object to it.
+        $numberObject = new Number($number);
+        return new self($numberObject);
     }
 
     /**
-     * @return \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual
+     * @return NumberIndividual
      */
     public static function generateRandomNumber()
     {
         $number = mt_rand(1, 10);
-        return new NumberIndividual($number);
+        $numberObject = new Number($number);
+        return new self($numberObject);
     }
 
     /**

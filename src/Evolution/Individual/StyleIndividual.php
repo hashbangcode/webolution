@@ -15,17 +15,17 @@ class StyleIndividual extends Individual
     /**
      * StyleIndividual constructor.
      *
-     * @param string|Style $selector
+     * @param string $selector
      *   If string is passed then this is used to create the Style object. If an Element object is passed then this is
      *   used as the object.
+     *
+     * @return StyleIndividual
+     *   A StyleIndividual object.
      */
-    public function __construct($selector)
+    public static function generateFromSelector($selector)
     {
-        if (!($selector instanceof Style)) {
-            $this->object = new Style($selector);
-        } else {
-            $this->object = $selector;
-        }
+        $styleObject = new Style($selector);
+        return new self($styleObject);
     }
 
     /**

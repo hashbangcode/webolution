@@ -20,37 +20,35 @@ class ColorIndividual extends Individual
      *   The green value of the color.
      * @param int $blue
      *   The blue value of the color.
-     */
-    public function __construct($red, $green, $blue)
-    {
-        $this->object = new Color($red, $green, $blue);
-    }
-
-    /**
-     * @return \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual
-     */
-    public static function generateRandomColor()
-    {
-        // Return an RGB array.
-        $red = ceil(mt_rand(0, 255));
-        $green = ceil(mt_rand(0, 255));
-        $blue = ceil(mt_rand(0, 255));
-
-        return new ColorIndividual($red, $green, $blue);
-    }
-
-    /**
-     * Generate a ColorIndividual object from a Color object.
-     *
-     * @param $color \Hashbangcode\Wevolution\Type\Color\Color
-     *   The Colour object to use when creating the ColorIndividual.
      *
      * @return ColorIndividual
      *   A new ColorIndividual object.
      */
-    public static function generateFromColor($color)
+    public static function generateFromRgb($red, $green, $blue)
     {
-        return new ColorIndividual($color->getRed(), $color->getGreen(), $color->getBlue());
+        // Create the Color object.
+        $color = new Color($red, $green, $blue);
+
+        // Generate and return the ColorIndividual object.
+        return new self($color);
+    }
+
+    /**
+     * @return ColorIndividual
+     *   The ColorIndividual object with a Color object with random RGB values.
+     */
+    public static function generateRandomColor()
+    {
+        // Create the random colors.
+        $red = ceil(mt_rand(0, 255));
+        $green = ceil(mt_rand(0, 255));
+        $blue = ceil(mt_rand(0, 255));
+
+        // Create the Color object.
+        $color = new Color($red, $green, $blue);
+
+        // Generate and return the ColorIndividual object.
+        return new ColorIndividual($color);
     }
 
     /**
@@ -61,8 +59,11 @@ class ColorIndividual extends Individual
      */
     public static function generateFromHex($hex)
     {
+        // Generate the Color object.
         $color = Color::generateFromHex($hex);
-        return self::generateFromColor($color);
+
+        // Generate and return the ColorIndividual object.
+        return new ColorIndividual($color);
     }
 
     /**

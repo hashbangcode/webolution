@@ -11,13 +11,6 @@ use Hashbangcode\Wevolution\Type\Style\Style;
  */
 class PageIndividual extends Individual
 {
-    /**
-     * PageIndividual constructor.
-     */
-    public function __construct()
-    {
-        $this->object = new Page();
-    }
 
     /**
      * {@inheritdoc}

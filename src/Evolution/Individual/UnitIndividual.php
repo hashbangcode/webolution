@@ -10,21 +10,9 @@ use Hashbangcode\Wevolution\Type\Unit\Unit;
  */
 class UnitIndividual extends Individual
 {
-
     /**
-     * UnitIndividual constructor.
+     * Generate a random Unit individual.
      *
-     * @param int $number
-     *   The number.
-     * @param string $unit
-     *   The unit.
-     */
-    public function __construct($number, $unit)
-    {
-        $this->object = new Unit($number, $unit);
-    }
-
-    /**
      * @return \Hashbangcode\Wevolution\Evolution\Individual\UnitIndividual
      */
     public static function generateRandomUnit()
@@ -32,7 +20,8 @@ class UnitIndividual extends Individual
         $number = mt_rand(1, 100);
         $units = ['px', 'em', '%', 'auto'];
         $unit = $units[array_rand($units)];
-        return new UnitIndividual($number, $unit);
+        $unitObject = new Unit($number, $unit);
+        return new self($unitObject);
     }
 
     /**

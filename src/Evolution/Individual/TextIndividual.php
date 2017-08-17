@@ -21,17 +21,6 @@ class TextIndividual extends Individual
     protected $fitnessGoal = '';
 
     /**
-     * TextIndividual constructor.
-     *
-     * @param string $text
-     *   The text to create the Text object with.
-     */
-    public function __construct($text)
-    {
-        $this->object = new Text($text);
-    }
-
-    /**
      * Generate a new TextIndividual.
      *
      * @return TextIndividual
@@ -40,7 +29,8 @@ class TextIndividual extends Individual
     public static function generateRandomTextIndividual($length = 7)
     {
         $randomText = self::generateRandomText($length);
-        return new self($randomText);
+        $textObject = new Text($randomText);
+        return new self($textObject);
     }
 
     /**

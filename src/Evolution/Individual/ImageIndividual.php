@@ -10,17 +10,17 @@ use Hashbangcode\Wevolution\Type\Image\Image;
  */
 class ImageIndividual extends Individual
 {
+
     /**
-     * ImageIndividual constructor.
-     *
      * @param int $x
-     *   The x.
      * @param int $y
-     *   The y.
+     *
+     * @return ImageIndividual
      */
-    public function __construct($x = 20, $y = 20)
+    public static function generateFromImageSize($x = 20, $y = 20)
     {
-        $this->object = new Image($x, $y);
+        $image = new Image($x, $y);
+        return new self($image);
     }
 
     /**
@@ -28,8 +28,10 @@ class ImageIndividual extends Individual
      */
     public static function generateRandomImage()
     {
-        $image = mt_rand(1, 10);
-        return new ImageIndividual($image);
+        $imageX = mt_rand(1, 20);
+        $imageY = mt_rand(1, 20);
+        $imageObject = new Image($imageX, $imageY);
+        return new self($imageObject);
     }
 
     /**
