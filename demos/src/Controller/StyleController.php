@@ -24,7 +24,7 @@ class StyleController extends BaseController
         $population->setDefaultRenderType('html');
 
         for ($i = 0; $i < 10; $i++) {
-            $population->addIndividual(new StyleIndividual('div'));
+            $population->addIndividual(StyleIndividual::generateFromSelector('div'));
         }
 
         $evolution = new Evolution($population);

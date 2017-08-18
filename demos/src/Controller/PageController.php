@@ -27,7 +27,7 @@ class PageController extends BaseController
 
         $output = '';
 
-        $page = new PageIndividual();
+        $page = PageIndividual::generateBlankPage();
 
         $style = new Style('div');
         $style->setAttribute('font-size', '20px');
@@ -66,7 +66,7 @@ class PageController extends BaseController
         $evolution->setIndividualsPerGeneration(4);
         $evolution->setMaxGenerations(200);
 
-        $pageIndividual = new PageIndividual();
+        $pageIndividual = PageIndividual::generateBlankPage();
 
         $p = new Element('p');
 
@@ -126,7 +126,7 @@ class PageController extends BaseController
         $generation = $evolution->getGeneration();
 
         if ($generation == 1) {
-            $pageIndividual = new PageIndividual();
+            $pageIndividual = PageIndividual::generateBlankPage();
 
             $p = new Element('p');
             $ul = new Element('ul');

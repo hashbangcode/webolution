@@ -26,7 +26,7 @@ class NumberController extends BaseController
 
         // Add individuals to the population.
         for ($i = 0; $i < 30; $i++) {
-            $population->addIndividual(new NumberIndividual(1));
+            $population->addIndividual(NumberIndividual::generateFromNumber(1));
         }
 
         // Create the EvolutionManager object and add the population to it.

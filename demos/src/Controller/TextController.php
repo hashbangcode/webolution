@@ -28,7 +28,7 @@ class TextController extends BaseController
         $evolution = new Evolution($population);
         $evolution->setGlobalFitnessGoal($goal);
         $evolution->setIndividualsPerGeneration(10);
-        $evolution->setMaxGenerations(1000);
+        $evolution->setMaxGenerations(200);
         $evolution->setGlobalMutationFactor(100);
 
         $output = '';
@@ -64,7 +64,7 @@ class TextController extends BaseController
         $evolution = new Evolution($population);
         $evolution->setGlobalFitnessGoal($goal);
         $evolution->setIndividualsPerGeneration(10);
-        $evolution->setMaxGenerations(1000);
+        $evolution->setMaxGenerations(200);
         $evolution->setGlobalMutationFactor(100);
 
         $output = '';

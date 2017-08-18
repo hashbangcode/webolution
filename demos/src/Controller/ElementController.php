@@ -62,7 +62,7 @@ class ElementController extends BaseController
         $title = 'Element Evolution Test';
 
         $population = new ElementPopulation();
-        $element = new ElementIndividual('html');
+        $element = ElementIndividual::generateFromElementType('html');
         $element->getObject()->addChild(new Element('body'));
         $population->addIndividual($element);
         $population->addIndividual(clone $element);

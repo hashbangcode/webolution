@@ -26,7 +26,7 @@ class ImageController extends BaseController
         $x = 100;
         $y = 100;
 
-        $image1 = new ImageIndividual($x, $y);
+        $image1 = ImageIndividual::generateFromImageSize($x, $y);
 
         for ($i = 0; $i < 1000; ++$i) {
             $image1->getObject()->setPixel(rand(0, $x - 1), rand(0, $y - 1), 1);
@@ -35,7 +35,7 @@ class ImageController extends BaseController
         $output .= '<p>Random Image</p>';
         $output .= $image1->render('image');
 
-        $image2 = new ImageIndividual(5, 5);
+        $image2 = ImageIndividual::generateFromImageSize(5, 5);
         $image2->getObject()->setPixel(3, 2, 1);
         $image2->getObject()->setPixel(4, 2, 1);
 
@@ -64,7 +64,7 @@ class ImageController extends BaseController
         $object->setDefaultRenderType('image');
 
         // Create first iamge.
-        $image1 = new ImageIndividual(10, 10);
+        $image1 = ImageIndividual::generateFromImageSize(10, 10);
         $image1->getObject()->setPixel(9, 5, 1);
         $image1->getObject()->setPixel(8, 5, 1);
         $image1->getObject()->setPixel(7, 5, 1);
@@ -74,20 +74,20 @@ class ImageController extends BaseController
         $object->addIndividual($image1);
 
         // Create second image.
-        $image2 = new ImageIndividual(10, 10);
+        $image2 = ImageIndividual::generateFromImageSize(10, 10);
         $image2->getObject()->setPixel(9, 5, 1);
         $image2->getObject()->setPixel(8, 5, 1);
         $image2->getObject()->setPixel(7, 5, 1);
         $object->addIndividual($image2);
 
         // Create third iamge.
-        $image3 = new ImageIndividual(10, 10);
+        $image3 = ImageIndividual::generateFromImageSize(10, 10);
         $image3->getObject()->setPixel(9, 5, 1);
         $image3->getObject()->setPixel(8, 5, 1);
         $object->addIndividual($image3);
 
         // Create fourth image.
-        $image4 = new ImageIndividual(10, 10);
+        $image4 = ImageIndividual::generateFromImageSize(10, 10);
         $image4->getObject()->setPixel(9, 5, 1);
         $image4->getObject()->setPixel(8, 5, 1);
         $image4->getObject()->setPixel(7, 5, 1);
@@ -96,12 +96,12 @@ class ImageController extends BaseController
         $object->addIndividual($image4);
 
         // Create fifth iamge.
-        $image5 = new ImageIndividual(10, 10);
+        $image5 = ImageIndividual::generateFromImageSize(10, 10);
         $image5->getObject()->setPixel(9, 5, 1);
         $object->addIndividual($image5);
 
         // Create sixth iamge.
-        $image6 = new ImageIndividual(10, 10);
+        $image6 = ImageIndividual::generateFromImageSize(10, 10);
         $image6->getObject()->setPixel(9, 2, 1);
         $image6->getObject()->setPixel(8, 2, 1);
         $image6->getObject()->setPixel(7, 2, 1);
@@ -142,7 +142,7 @@ class ImageController extends BaseController
         $population->setDefaultRenderType('image');
 
         for ($i = 0; $i < 10; $i++) {
-            $image = new ImageIndividual(25, 25);
+            $image = ImageIndividual::generateFromImageSize(25, 25);
             $image->getObject()->setPixel(24, 12, 1);
             $population->addIndividual($image);
         }
@@ -192,7 +192,7 @@ a, a:link, a:visited, a:hover, a:active {padding:0px;margin:0px;}';
 
         if ($generation == 1) {
             for ($i = 0; $i < 10; $i++) {
-                $image = new ImageIndividual(25, 25);
+                $image = ImageIndividual::generateFromImageSize(25, 25);
                 $image->getObject()->setPixel(24, 12, 1);
                 $population->addIndividual($image);
             }

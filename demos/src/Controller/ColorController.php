@@ -7,7 +7,9 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Hashbangcode\Wevolution\Evolution\Evolution;
 use Hashbangcode\Wevolution\Evolution\EvolutionStorage;
+use Hashbangcode\Wevolution\Type\Color\Color;
 use Hashbangcode\Wevolution\Evolution\Population\ColorPopulation;
+use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
 class ColorController extends BaseController
 {
@@ -106,11 +108,11 @@ img {padding:0px;margin:0px;}';
         $population = new ColorPopulation();
         $population->setDefaultRenderType('html');
 
-        $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual(255, 255, 255));
-        $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual(255, 255, 255));
-        $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual(255, 255, 255));
-        $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual(255, 255, 255));
-        $population->addIndividual(new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual(255, 255, 255));
+        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
+        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
+        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
+        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
+        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
 
         $evolution = new Evolution($population);
         $evolution->setIndividualsPerGeneration(30);
@@ -147,13 +149,13 @@ img {padding:0px;margin:0px;}';
         $output = '';
 
         if (!isset($args['color'])) {
-            $colorObject = \Hashbangcode\Wevolution\Type\Color\Color::generateFromHex('000000');
+            $colorObject = Color::generateFromHex('000000');
         } else {
-            $colorObject = \Hashbangcode\Wevolution\Type\Color\Color::generateFromHex($args['color']);
+            $colorObject = Color::generateFromHex($args['color']);
             $output .= '<p><a href="/colour_evolution_interactive">Reset</a></a>';
         }
 
-        $colorIndividual = new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual($colorObject->getRed(), $colorObject->getGreen(), $colorObject->getBlue());
+        $colorIndividual = ColorIndividual::generateFromRgb($colorObject->getRed(), $colorObject->getGreen(), $colorObject->getBlue());
 
         $population->addIndividual($colorIndividual);
 
