@@ -101,6 +101,23 @@ class ColorPopulation extends Population
      */
     public function crossover()
     {
-        // @todo implement this.
+        // Get two individuals from the population.
+        $individuals = $this->getRandomIndividuals(2);
+
+        // Make sure we have Individuals to use.
+        if (!is_object($individuals)) {
+            // Add a random individual (not cloned from the current population).
+            $this->addIndividual();
+        }
+
+        $blue = $individuals[0]->getObject()->getBlue();
+        $red = $individuals[0]->getObject()->getRed();
+        $green = $individuals[1]->getObject()->getGreen();
+
+        // Create a new individual.
+        $individualNew = ColorIndividual::generateFromRgb($red, $green, $blue);
+
+        // Add the individual to the population.
+        $this->addIndividual($individualNew);
     }
 }
