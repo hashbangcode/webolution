@@ -108,13 +108,21 @@ class ElementIndividual extends Individual
      */
     public function getFitness($type = '')
     {
-        // @todo see how we can get a better fitness for elements.
-        // Possible candidates include:
-        // - number of children
-        // - rendered length
-        // - number of tags directly under html>body
-        // - length of text attribute.
-        return 1;
+        $fitness = 0;
+
+        // Get the number of elements contained within the object.
+        $elements = $this->getObject()->getAllElements();
+        $fitness += count($elements);
+
+        // Get the number of classes in the element.
+        $classes = $this->getObject()->getAllClasses();
+        $fitness += count($classes);
+
+        // Get the number of types of elements.
+        $types = $this->getObject()->getAllTypes();
+        $fitness += count($types);
+
+        return $fitness;
     }
 
     /**

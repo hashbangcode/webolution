@@ -84,6 +84,7 @@ class NumberIndividual extends Individual
      */
     public function getFitness($type = '')
     {
+        // The fitness of a NumberIndividual is literally the value of the number.
         return $this->getObject()->getNumber();
     }
 

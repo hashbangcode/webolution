@@ -109,7 +109,7 @@ class ColorIndividual extends Individual
     {
         $color = $this->getObject();
         $lightness = $color->getLightness();
-        return round(abs(($lightness * 10) - 10));
+        return abs(($lightness * 10) - 10);
     }
 
     /**

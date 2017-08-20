@@ -166,9 +166,11 @@ class StyleIndividual extends Individual
 
         if ($action < 10 && isset($selector[1])) {
             // Alter the class being selected.
+            // @todo : "wibble"?
             $selector[1] = '.wibble';
         } elseif ($action < 10 && !isset($selector[1])) {
             // Add a class attribute.
+            // @todo : "test"?
             $selector[1] = '.test';
         } elseif ($action > 10 && $action <= 75) {
             // Alter the type of attribute being selected
@@ -259,7 +261,8 @@ class StyleIndividual extends Individual
      */
     public function getFitness($type = '')
     {
-        return 1;
+        // Render the style and return the fitness as a function of the string length.
+        return strlen($this->render());
     }
 
     /**

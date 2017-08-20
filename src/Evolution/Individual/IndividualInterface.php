@@ -30,7 +30,9 @@ interface IndividualInterface
     public function mutate($mutationFactor = 0, $mutationAmount = 1);
 
     /**
-     * Get the fitness.
+     * Get the fitness of the individual.
+     *
+     * The fitness should be a positive integer.
      *
      * @param string $type
      *   The type of fitness to calculate.

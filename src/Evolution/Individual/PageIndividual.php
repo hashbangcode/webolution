@@ -86,10 +86,21 @@ class PageIndividual extends Individual
      */
     public function getFitness($type = '')
     {
-        // @todo see how we can get a better fitness for pages.
-        // Possible candidates include:
-        // - number of elements
-        return 1;
+        $fitness = 0;
+
+        // Get the number of elements contained within the object.
+        $elements = $this->getObject()->getBody()->getAllElements();
+        $fitness += count($elements);
+
+        // Get the number of classes in the element.
+        $classes = $this->getObject()->getBodyClasses();
+        $fitness += count($classes);
+
+        // Get the number of types of elements.
+        $types = $this->getObject()->getBodyElementTypes();
+        $fitness += count($types);
+
+        return $fitness;
     }
 
     /**

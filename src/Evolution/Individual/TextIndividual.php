@@ -125,6 +125,7 @@ class TextIndividual extends Individual
      */
     public function getFitness($type = '')
     {
+        // Get the text and the fitness goal values.
         $text = str_split($this->getObject()->getText());
         $goal = str_split($this->getFitnessGoal());
 

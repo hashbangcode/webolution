@@ -24,6 +24,11 @@ class UnitIndividual extends Individual
         return new self($unitObject);
     }
 
+    /**
+     * @param $number
+     * @param $unit
+     * @return UnitIndividual
+     */
     public static function generateFromUnitArguments($number, $unit)
     {
         $unitObject = new Unit($number, $unit);
@@ -85,6 +90,7 @@ class UnitIndividual extends Individual
      */
     public function getFitness($type = '')
     {
+        // The fitness of this UnitIndividual is the value of the number attribute.
         return $this->getObject()->getNumber();
     }
 
