@@ -29,10 +29,7 @@ A demo application has been written in Slim Framework 3 that shows each evolutio
 
 Next steps:
 - Tidy up the code. Lots of missing comments and messy looking bits.
-- Refactor the constructor in the Evolution classes to prevent them doing too much or accepting too many parameters.
-- Standardize the Individual constructors to prevent them being specific to the type.
-- Force the population statistics to be generated.
-- Have a minimal fitness model for all types.
+- The way in which the TextIndividual works out it's fitness is based on an external factor. As such it would be better to abstract that functionality out so that it's not just this class that has this functionality.
 - Implement cross over. Start with something simple like numbers and work from there.
 - Refactor the forms in the demo application. The forms are prime for abstraction into a form class.
 - Create a downloader that will allow the full page individuals to be exported as full web pages. This can probably take the form of a decorator or a different renderer type.
@@ -46,3 +43,9 @@ Future plans:
 - Performance testing and improvements.
 - Attempt to group Individuals into "species" or "related types".
 - Add graphs of statistics to the demo application.
+
+Complete:
+- Have a minimal fitness model for all types.
+- Refactor the constructor in the Evolution classes to prevent them doing too much or accepting too many parameters.
+- Standardize the Individual constructors to prevent them being specific to the type.
+- Force the population statistics to be generated.
