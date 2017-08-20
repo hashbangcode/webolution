@@ -223,6 +223,7 @@ class Evolution
         if ($this->population->getLength() == 0) {
             // If there is no population left then set the number of generations to max.
             $this->generation = $this->getMaxGenerations();
+            // Stop running the evolution process.
             return false;
         }
 
