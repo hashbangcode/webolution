@@ -68,9 +68,13 @@ class NumberPopulation extends Population
         $individuals = $this->getRandomIndividuals(2);
 
         // Make sure we have Individuals to use.
-        if (!is_object($individuals)) {
-            // Add a random individual (not cloned from the current population).
-            $this->addIndividual();
+        if ($individuals == false) {
+            // Add a clone of a individual individual.
+            $randomIndividual = $this->getRandomIndividual();
+            $this->addIndividual(clone $randomIndividual);
+
+            // Don't do anything else.
+            return;
         }
 
         $number1 = $individuals[0]->getObject()->getNumber();

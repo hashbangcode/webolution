@@ -105,17 +105,29 @@ class ColorPopulation extends Population
         $individuals = $this->getRandomIndividuals(2);
 
         // Make sure we have Individuals to use.
-        if (!is_object($individuals)) {
-            // Add a random individual (not cloned from the current population).
-            $this->addIndividual();
+        if ($individuals == false) {
+            // Add a clone of a individual individual.
+            $randomIndividual = $this->getRandomIndividual();
+            $this->addIndividual(clone $randomIndividual);
+
+            // Don't do anything else.
+            return;
         }
 
-        $blue = $individuals[0]->getObject()->getBlue();
-        $red = $individuals[0]->getObject()->getRed();
-        $green = $individuals[1]->getObject()->getGreen();
+        $hex1 = str_split($individuals[0]->getObject()->getHex());
+        $hex2 = str_split($individuals[1]->getObject()->getHex());
+
+        $newHex = $hex1[0] . $hex2[1] . $hex1[2] . $hex2[3] . $hex1[4] . $hex2[5];
 
         // Create a new individual.
-        $individualNew = ColorIndividual::generateFromRgb($red, $green, $blue);
+        $individualNew = ColorIndividual::generateFromHex($newHex);
+            /*
+        $red = $individuals[0]->getObject()->getRed();
+        $green = $individuals[1]->getObject()->getGreen();
+        $blue = $individuals[0]->getObject()->getBlue();
+
+
+        $individualNew = ColorIndividual::generateFromRgb($red, $green, $blue);*/
 
         // Add the individual to the population.
         $this->addIndividual($individualNew);
