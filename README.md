@@ -29,6 +29,7 @@ A demo application has been written in Slim Framework 3 that shows each evolutio
 
 Next steps:
 - Tidy up the code. Lots of missing comments and messy looking bits.
+- Create some constants in the code to prevent hard coded strings being passed around all of the place.
 - The way in which the TextIndividual works out it's fitness is based on an external factor. As such it would be better to abstract that functionality out so that it's not just this class that has this functionality.
 - Implement cross over. Start with something simple like numbers and work from there.
 - Refactor the forms in the demo application. The forms are prime for abstraction into a form class.
@@ -36,6 +37,7 @@ Next steps:
 - Use the decorator design pattern to render individuals instead of passing the render type as a string.
 - Print out statistics in the demo application.
 - Add better "random" strings to the HTML elements. The current random strings make things look very messy.
+- Create a form that allows the configuration of everything do to with a evolution of a population and runs that evolution.
 
 Future plans:
 - Add a dependency injection container to streamline the use of the application in other applications.
