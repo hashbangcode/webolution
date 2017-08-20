@@ -62,6 +62,13 @@ class Evolution
     protected $allowedFitness = 8;
 
     /**
+     * The way in which populations are replicated into the next generation.
+     *
+     * @var string
+     */
+    protected $replicationType = 'clone';
+
+    /**
      * The current Population object.
      *
      * @var Population
@@ -112,7 +119,7 @@ class Evolution
             ) {
                 // If we are to auto-populate the population and the length is less than the number of individuals per
                 // generation then populate the population with individuals.
-                $this->populateThePopulation();
+                $this->generateRandomPopulation();
             }
 
             // Generate statistics for the population.
@@ -121,19 +128,47 @@ class Evolution
     }
 
     /**
-     * (re)populate the population
+     * Generate a population of random individuals.
      */
-    public function populateThePopulation()
+    public function generateRandomPopulation()
     {
         do {
-            // Clone an individual from the current population to add back in.
+            // Create random individual.
+            $this->population->addIndividual();
+            // Keep adding individuals to the population whilst the count is less then the minimum count.
+        } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
+    }
+
+    /**
+     * Clone individuals until the population level is at the minimum amount.
+     */
+    public function clonePopulation()
+    {
+        do {
+            // Clone an individual from the current population.
             $random_individual = $this->population->getRandomIndividual();
+
+            // Make sure we have an Individual to clone.
             if (is_object($random_individual)) {
+                // Clone the individual.
                 $this->population->addIndividual(clone $random_individual);
             } else {
                 // Add a random individual (not cloned from the current population).
                 $this->population->addIndividual();
             }
+            // Keep adding individuals to the population whilst the count is less then the minimum count.
+        } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
+    }
+
+    /**
+     * Crossover individuals and create new individuals until the population is at the designated level.
+     */
+    public function crossOverPopulation()
+    {
+        do {
+            // Run the crossover function of the Population class.
+            $this->population->crossover();
+
             // Keep adding individuals to the population whilst the count is less then the minimum count.
         } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
     }
@@ -229,7 +264,14 @@ class Evolution
 
         if ($this->population->getLength() < $this->getIndividualsPerGeneration()) {
             // Ensure the population is at the right level.
-            $this->populateThePopulation();
+            switch ($this->getReplicationType()) {
+                case 'clone':
+                    $this->clonePopulation();
+                    break;
+                case 'crossover':
+                    $this->crossOverPopulation();
+                    break;
+            }
         }
 
         if (!is_null($this->getGlobalMutationFactor())) {
@@ -252,6 +294,22 @@ class Evolution
 
         // Return true to signify that everything worked and that everyone is alive.
         return true;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReplicationType()
+    {
+        return $this->replicationType;
+    }
+
+    /**
+     * @param string $replicationType
+     */
+    public function setReplicationType($replicationType)
+    {
+        $this->replicationType = $replicationType;
     }
 
     /**
