@@ -296,9 +296,6 @@ abstract class Population implements PopulationInterface
         foreach ($this->getIndividuals() as $key => $individual) {
             $individual->mutate($this->getMutationFactor(), $this->getMutationAmount());
         }
-
-        // Run the crossover function.
-        $this->crossover();
     }
 
     /**
