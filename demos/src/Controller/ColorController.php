@@ -108,17 +108,15 @@ img {padding:0px;margin:0px;}';
         $population = new ColorPopulation();
         $population->setDefaultRenderType('html');
 
-        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
-        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
-        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
-        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
-        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
+        for ($i = 0; $i < 20; ++$i) {
+            $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
+        }
 
         $evolution = new Evolution($population);
-        $evolution->setIndividualsPerGeneration(10);
-        $evolution->setMaxGenerations(50);
-        $evolution->setGlobalMutationFactor(50);
-        $evolution->setGlobalMutationAmount(10);
+        $evolution->setIndividualsPerGeneration(40);
+        $evolution->setMaxGenerations(100);
+        $evolution->setGlobalMutationFactor(10);
+        $evolution->setGlobalMutationAmount(5);
 
         //$evolution->setReplicationType('clone');
 

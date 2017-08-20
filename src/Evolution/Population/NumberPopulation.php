@@ -78,7 +78,7 @@ class NumberPopulation extends Population
         }
 
         $number1 = $individuals[0]->getObject()->getNumber();
-        $number2 = $individuals[0]->getObject()->getNumber();
+        $number2 = $individuals[1]->getObject()->getNumber();
 
         // Create a new number based on the average of the previous numbers..
         $number = round(($number1 + $number2) / 2);

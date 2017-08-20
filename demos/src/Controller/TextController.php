@@ -21,15 +21,19 @@ class TextController extends BaseController
 
         $goal = 'Monkey say monkey do';
 
-        for ($i = 0; $i < 10; $i++) {
+        $numberOfIndividuals = 20;
+
+        for ($i = 0; $i < $numberOfIndividuals; $i++) {
             $population->addIndividual(TextIndividual::generateRandomTextIndividual(strlen($goal)));
         }
 
-        $evolution = new Evolution($population);
+        $evolution = new Evolution($population, false);
         $evolution->setGlobalFitnessGoal($goal);
-        $evolution->setIndividualsPerGeneration(10);
-        $evolution->setMaxGenerations(200);
+        $evolution->setIndividualsPerGeneration($numberOfIndividuals);
+        $evolution->setMaxGenerations(300);
         $evolution->setGlobalMutationFactor(100);
+        $evolution->setGlobalMutationAmount(10);
+        $evolution->setReplicationType('crossover');
 
         $output = '';
 
@@ -66,6 +70,7 @@ class TextController extends BaseController
         $evolution->setIndividualsPerGeneration(10);
         $evolution->setMaxGenerations(200);
         $evolution->setGlobalMutationFactor(100);
+        $evolution->setReplicationType('crossover');
 
         $output = '';
 
