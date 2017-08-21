@@ -114,20 +114,15 @@ class ColorPopulation extends Population
             return;
         }
 
+        // Get the hex value for the two colors.
         $hex1 = str_split($individuals[0]->getObject()->getHex());
         $hex2 = str_split($individuals[1]->getObject()->getHex());
 
+        // Combine the two colors together.
         $newHex = $hex1[0] . $hex2[1] . $hex1[2] . $hex2[3] . $hex1[4] . $hex2[5];
 
-        // Create a new individual.
+        // Create a new individual using the new color.
         $individualNew = ColorIndividual::generateFromHex($newHex);
-            /*
-        $red = $individuals[0]->getObject()->getRed();
-        $green = $individuals[1]->getObject()->getGreen();
-        $blue = $individuals[0]->getObject()->getBlue();
-
-
-        $individualNew = ColorIndividual::generateFromRgb($red, $green, $blue);*/
 
         // Add the individual to the population.
         $this->addIndividual($individualNew);
