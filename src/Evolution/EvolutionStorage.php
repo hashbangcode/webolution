@@ -305,6 +305,7 @@ CREATE TABLE "populations" (
      */
     public function setPopulation($population)
     {
+        $population->generateStatistics();
         $this->population = $population;
 
         $this->storeGeneration($this->population);
@@ -364,6 +365,7 @@ CREATE TABLE "populations" (
         }
 
         $this->population->setIndividuals($individuals);
+        $this->population->generateStatistics();
     }
 
     /**

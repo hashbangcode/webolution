@@ -46,9 +46,9 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
     public function testGetElementIndividualFitness()
     {
         $object = new ElementIndividual(new Element('div'));
-        $this->assertEquals(1, $object->getFitness());
+        $this->assertEquals(3, $object->getFitness());
         $object->getObject()->setType('p');
-        $this->assertEquals(1, $object->getFitness());
+        $this->assertEquals(3, $object->getFitness());
     }
 
     public function testElementIndividualCliRenderWithObject()

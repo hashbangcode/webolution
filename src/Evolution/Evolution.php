@@ -215,6 +215,7 @@ class Evolution
     public function setPopulation($population)
     {
         if (count($this->previousGenerations) == 0) {
+            $population->generateStatistics();
             $this->addPreviousGeneration($population);
         }
 
@@ -246,9 +247,6 @@ class Evolution
             $this->generation = $this->getMaxGenerations();
             return false;
         }
-
-        // Generate statistics before we do anything with the population.
-        $this->population->generateStatistics();
 
         if ($kill === true) {
             // Kill off anything that isn't fit.
@@ -286,6 +284,9 @@ class Evolution
 
         // Mutate the population.
         $this->population->mutatePopulation();
+
+        // Generate statistics.
+        $this->population->generateStatistics();
 
         if ($storeGenerations === true) {
             // Store the current generation.
