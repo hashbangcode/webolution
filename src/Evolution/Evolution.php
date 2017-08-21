@@ -13,6 +13,16 @@ use Hashbangcode\Wevolution\Evolution\Population\Population;
 class Evolution
 {
     /**
+     * Constant for selecting clone type replication.
+     */
+    const REPLICATION_TYPE_CLONE = 'clone';
+
+    /**
+     * Constant for selecting crossover type replication.
+     */
+    const REPLICATION_TYPE_CROSSOVER = 'crossover';
+    
+    /**
      * The global fitness goal.
      *
      * @var mixed|null
@@ -263,10 +273,10 @@ class Evolution
         if ($this->population->getLength() < $this->getIndividualsPerGeneration()) {
             // Ensure the population is at the right level.
             switch ($this->getReplicationType()) {
-                case 'clone':
+                case self::REPLICATION_TYPE_CLONE:
                     $this->clonePopulation();
                     break;
-                case 'crossover':
+                case self::REPLICATION_TYPE_CROSSOVER:
                     $this->crossOverPopulation();
                     break;
             }
