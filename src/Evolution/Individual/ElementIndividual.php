@@ -13,7 +13,7 @@ class ElementIndividual extends Individual
     /**
      * Generate an ElementIndividual object.
      *
-     * @param string $element
+     * @param string $type
      *   The type of element to generate.
      *
      * @return ElementIndividual
@@ -110,16 +110,19 @@ class ElementIndividual extends Individual
     {
         $fitness = 0;
 
+        /** @var \Hashbangcode\Wevolution\Type\Element\Element $element */
+        $element = $this->getObject();
+
         // Get the number of elements contained within the object.
-        $elements = $this->getObject()->getAllElements();
+        $elements = $element->getAllElements();
         $fitness += count($elements);
 
         // Get the number of classes in the element.
-        $classes = $this->getObject()->getAllClasses();
+        $classes = $element->getAllClasses();
         $fitness += count($classes);
 
         // Get the number of types of elements.
-        $types = $this->getObject()->getAllTypes();
+        $types = $element->getAllTypes();
         $fitness += count($types);
 
         return $fitness;
