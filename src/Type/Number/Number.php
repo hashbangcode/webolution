@@ -64,7 +64,7 @@ class Number implements TypeInterface
      * @param $x integer
      *   The number.
      *
-     * @return Number
+     * @return self
      *   The current object.
      */
     public function add($x)
@@ -79,7 +79,7 @@ class Number implements TypeInterface
      * @param $x integer
      *   The number.
      *
-     * @return Number
+     * @return self
      *   The current object.
      */
     public function subtract($x)
