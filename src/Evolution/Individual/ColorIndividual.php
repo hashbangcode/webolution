@@ -107,9 +107,14 @@ class ColorIndividual extends Individual
      */
     public function getFitness($type = '')
     {
+        // Get the color object.
         $color = $this->getObject();
+
+        // Lightness is a value between 0 and 1.
         $lightness = $color->getLightness();
-        return abs(($lightness * 10) - 10);
+
+        // To make this fitness more meaningful we multiply this lightness value by 10.
+        return abs($lightness * 10);
     }
 
     /**
