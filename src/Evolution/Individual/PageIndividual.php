@@ -63,7 +63,7 @@ class PageIndividual extends Individual
         }
 
         // Mutate body.
-        $body->mutate();
+        $body->mutate($mutationAmount);
     }
 
     /**
@@ -85,7 +85,7 @@ class PageIndividual extends Individual
         }
 
         // Mutate the random style.
-        $randomStyle->mutate();
+        $randomStyle->mutate($mutationAmount);
     }
 
     /**
