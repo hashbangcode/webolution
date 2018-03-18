@@ -3,7 +3,7 @@
 namespace Hashbangcode\Wevolution\Evolution\Individual;
 
 use Hashbangcode\Wevolution\Type\Style\Style;
-
+use Hashbangcode\Wevolution\Utilities\TextUtilities;
 use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
 /**
@@ -12,6 +12,8 @@ use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
  */
 class StyleIndividual extends Individual
 {
+    use TextUtilities;
+
     /**
      * StyleIndividual constructor.
      *
@@ -39,9 +41,13 @@ class StyleIndividual extends Individual
 
         $style = $this->getObject();
 
-        if ($action <= 75) {
+        if ($action <= 50) {
+          if ($action <= 25) {
             // Add a attribute to the Style.
             $this->addAttribute();
+          } else {
+            $this->mutateSelector();
+          }
         } elseif (count($style->getAttributes()) > 0) {
             // Select an attribute.
             $attributes = $style->getAttributes();
@@ -166,20 +172,17 @@ class StyleIndividual extends Individual
 
         if ($action < 10 && isset($selector[1])) {
             // Alter the class being selected.
-            // @todo : "wibble"?
-            $selector[1] = '.wibble';
+            $selector[1] = '.' . $this->getRandomLetter();
         } elseif ($action < 10 && !isset($selector[1])) {
             // Add a class attribute.
-            // @todo : "test"?
-            $selector[1] = '.test';
+            $selector[1] = '.' . $this->generateRandomText();
         } elseif ($action > 10 && $action <= 75) {
             // Alter the type of attribute being selected
-            $element = ['body', 'div', 'p', 'ol', 'ul', 'li'];
-
+            $element = ['body', 'div', 'span', 'p', 'ol', 'ul', 'li', 'h1', 'h2', 'h3', 'h4', 'h5'];
             $selector[0] = $element[array_rand($element)];
         }
 
-        $this->getObject()->setSelector(implode(' ', $selector));
+        $this->getObject()->setSelector(implode('', $selector) . ' ');
     }
 
     /**
