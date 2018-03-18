@@ -369,9 +369,10 @@ class Element implements TypeInterface
      */
     public function getAllClasses()
     {
-        $types = $this->getChildClasses();
-        $types = array_merge([$this->getAttribute('class')], $types);
-        return $types;
+        $classes = $this->getChildClasses();
+        $classes = array_merge([$this->getAttribute('class')], $classes);
+        $classes = array_filter($classes);
+        return $classes;
     }
 
     /**
