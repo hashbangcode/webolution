@@ -87,7 +87,7 @@ img {padding:0px;margin:0px;}';
         $output .= '<li><a href="/color_sort/luma">luma</a></li>';
         $output .= '<li><a href="/color_sort/value">value</a></li>';
         $output .= '<li><a href="/color_sort/lightness">lightness</a></li>';
-        $output .= '<li><a href="/color_sort/fitness">fitness (i.e. backwards lightness)</a></li>';
+        $output .= '<li><a href="/color_sort/fitness">default fitness (i.e. lightness)</a></li>';
         $output .= '<li><a href="/color_sort">default (i.e. hue)</a></li>';
         $output .= '<li><a href="/color_sort/none">no sort</a></li>';
         $output .= '</p>';
@@ -108,15 +108,11 @@ img {padding:0px;margin:0px;}';
         $population = new ColorPopulation();
         $population->setDefaultRenderType('html');
 
-        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
-        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
-        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
-        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
-        $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
+        $population->addIndividual(ColorIndividual::generateFromRgb(0, 0, 0));
 
         $evolution = new Evolution($population);
-        $evolution->setIndividualsPerGeneration(30);
-        $evolution->setMaxGenerations(100);
+        $evolution->setIndividualsPerGeneration(50);
+        $evolution->setMaxGenerations(200);
         $evolution->setGlobalMutationFactor(50);
         $evolution->setGlobalMutationAmount(10);
 
