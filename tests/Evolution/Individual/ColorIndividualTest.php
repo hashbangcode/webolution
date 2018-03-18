@@ -58,10 +58,11 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
     public function testColorFitness()
     {
         $object = ColorIndividual::generateFromRgb(255, 255, 255);
-        $this->assertEquals(0, $object->getFitness());
+        $this->assertEquals(10, $object->getFitness());
 
         $object = ColorIndividual::generateFromRgb(125, 125, 125);
-        $this->assertEquals(5, $object->getFitness());
+
+        $this->assertEquals(4.902, $object->getFitness());
     }
 
     public function testColorMutation()

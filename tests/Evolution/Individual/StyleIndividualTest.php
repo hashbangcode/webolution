@@ -50,7 +50,7 @@ class StyleIndividualTest extends \PHPUnit_Framework_TestCase
     public function testGetFitness()
     {
         $object = StyleIndividual::generateFromSelector('.div');
-        $this->assertEquals(1, $object->getFitness());
+        $this->assertEquals(7, $object->getFitness());
     }
 
     public function testSetProperties()

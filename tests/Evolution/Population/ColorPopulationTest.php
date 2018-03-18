@@ -93,7 +93,7 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
         $colorColorPopulation->sort('lightness');
         $colorColorPopulation->sort('fitness');
 
-        // Need to bypass the normal render helper as there is an internal sort.
+        // Need to bypass the normal render helper as there is an internal sort in the render() function.
         $output = '';
         foreach ($colorColorPopulation->getIndividuals() as $individual) {
             $output .= $individual->render();
@@ -136,8 +136,8 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
     {
         $colorColorPopulation = new ColorPopulation();
 
+      $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 0));
         $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
-        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 0));
 
         $colorColorPopulation->setDefaultRenderType('cli');
 
