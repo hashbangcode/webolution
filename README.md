@@ -97,13 +97,13 @@ Storage
 -------
 This action clones the population into an array to that it can be retrieved later. This is important when looking through the history of the popluation.
 
-
-
 Next steps
 ==========
 Some things that need to happen.
 
 - Tidy up the code. Lots of missing comments and messy looking bits.
+- Use constants instead of lots of strings being passed around.
+- Have a look at performance. Lots of objects being created can use up a lot of memory maybe look at only storing the top (or bottom) individuals in a population instead of everything.
 - The way in which the TextIndividual works out it's fitness is based on an external factor. As such it would be better to abstract that functionality out so that it's not just this class that has this functionality.
 - Refactor the forms in the demo application. The forms are prime for abstraction into a form class or perhaps a Symfony form component.
 - Use the decorator design pattern to render individuals instead of passing the render type as a string.
