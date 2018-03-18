@@ -66,10 +66,10 @@ class ImagePopulation extends Population
     {
         $output = parent::render();
         switch ($this->getDefaultRenderType()) {
-            case 'html':
+            case self::RENDER_HTML:
                 $output .= ' (' . $this->getLength() . ' items)<br>';
                 break;
-            case 'cli':
+            case self::RENDER_CLI:
                 // Intentional fall through.
             default:
                 $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;

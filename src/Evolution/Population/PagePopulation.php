@@ -29,7 +29,7 @@ class PagePopulation extends Population
             $renderType = $this->getDefaultRenderType();
 
             switch ($renderType) {
-                case 'html':
+                case self::RENDER_HTML:
                     $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
                     break;
 
@@ -42,7 +42,7 @@ class PagePopulation extends Population
                     $output .= '<textarea rows="35" cols="35">' . $individual->render($renderType) . '</textarea>';
                     break;
 
-                case 'cli':
+                case self::RENDER_CLI:
                 default:
                     $output .= $individual->render($renderType);
             }

@@ -273,10 +273,10 @@ class StyleIndividual extends Individual
     {
         $output = '';
         switch ($renderType) {
-            case 'html':
+            case self::RENDER_HTML:
                 $output .= $this->getObject()->render() . '<br>';
                 break;
-            case 'cli':
+            case self::RENDER_CLI:
             default:
                 $output .= $this->getObject()->render() . PHP_EOL;
         }

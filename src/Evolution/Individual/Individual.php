@@ -12,6 +12,21 @@ use phpDocumentor\Parser\Exception;
 abstract class Individual implements IndividualInterface
 {
     /**
+     * Render for command line.
+     */
+    public const RENDER_CLI = 'cli';
+
+    /**
+     * Render as HTML.
+     */
+    public const RENDER_HTML = 'html';
+
+    /**
+     * Render as an image.
+     */
+    public const RENDER_IMAGE = 'image';
+
+    /**
      * The type object.
      *
      * @var object

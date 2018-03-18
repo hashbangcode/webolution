@@ -123,11 +123,11 @@ class ColorIndividual extends Individual
     public function render($renderType = 'cli')
     {
         switch ($renderType) {
-            case 'html':
+            case self::RENDER_HTML:
                 return '<span style="background-color:#' . $this->object->render() . '"> </span>';
             case 'css':
                 return '#' . $this->object->render();
-            case 'cli':
+            case self::RENDER_CLI:
             default:
                 return $this->object->render() . PHP_EOL;
         }

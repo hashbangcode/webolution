@@ -110,10 +110,10 @@ class PageIndividual extends Individual
     {
         $output = '';
         switch ($renderType) {
-            case 'html':
+            case self::RENDER_HTML:
                 $output .= $this->getObject()->render();
                 break;
-            case 'cli':
+            case self::RENDER_CLI:
                 // Intentional fall through.
             default:
                 $output .= $this->getObject()->render();

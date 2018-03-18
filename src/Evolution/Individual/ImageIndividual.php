@@ -105,10 +105,10 @@ class ImageIndividual extends Individual
                 $image = $this->getObject()->renderBase64Image();
 
                 return '<img width="' . $imageX . '" height="' . $imageY . '" src="' . $image . '" /> ';
-            case 'html':
+            case self::RENDER_HTML:
                 $output = '<p>' . nl2br($this->object->render()) . '</p>';
                 break;
-            case 'cli':
+            case self::RENDER_CLI:
                 // Default fall through.
             default:
                 $output = $this->object->render() . ' ';

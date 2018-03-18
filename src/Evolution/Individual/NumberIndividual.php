@@ -94,10 +94,10 @@ class NumberIndividual extends Individual
     public function render($renderType = 'cli')
     {
         switch ($renderType) {
-            case 'html':
+            case self::RENDER_HTML:
                 $output = $this->object->render() . ' ';
                 break;
-            case 'cli':
+            case self::RENDER_CLI:
             default:
                 $output = $this->object->render() . ' ';
         }

@@ -47,10 +47,10 @@ class TextPopulation extends Population
     {
         $output = parent::render();
         switch ($this->getDefaultRenderType()) {
-            case 'html':
+            case self::RENDER_HTML:
                 $output .= ' (' . $this->getLength() . ' items)<br>';
                 break;
-            case 'cli':
+            case self::RENDER_CLI:
             default:
                 $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;
                 break;

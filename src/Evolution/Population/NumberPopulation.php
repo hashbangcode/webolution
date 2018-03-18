@@ -4,7 +4,6 @@ namespace Hashbangcode\Wevolution\Evolution\Population;
 
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
 use Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual;
-use Hashbangcode\Wevolution\Type\Number\Number;
 
 /**
  * Class NumberPopulation
@@ -18,7 +17,7 @@ class NumberPopulation extends Population
      * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
      *   The individual.
      *
-     * @return null
+     * @return self
      */
     public function addIndividual(Individual $individual = null)
     {
@@ -27,6 +26,8 @@ class NumberPopulation extends Population
             $individual = NumberIndividual::generateFromNumber($number);
         }
         $this->individuals[] = $individual;
+
+        return $this;
     }
 
     /**
@@ -47,10 +48,10 @@ class NumberPopulation extends Population
 
         // Present a summary of the numbers.
         switch ($this->getDefaultRenderType()) {
-            case 'html':
+            case self::RENDER_HTML:
                 $output .= ' (' . $this->getLength() . ' items)<br>';
                 break;
-            case 'cli':
+            case self::RENDER_CLI:
                 // Intentional fall through.
             default:
                 $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;
@@ -66,5 +67,6 @@ class NumberPopulation extends Population
     {
         // Get two random individuals.
         // MIX THEM!
+        // @todo finish this.
     }
 }
