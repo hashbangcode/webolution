@@ -29,7 +29,7 @@ class PagePopulation extends Population
             $renderType = $this->getDefaultRenderType();
 
             switch ($renderType) {
-                case self::RENDER_HTML:
+              case self::RENDER_HTML:
                     $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
                     break;
 
