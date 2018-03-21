@@ -9,7 +9,7 @@ use Hashbangcode\Wevolution\Evolution\Population\PopulationInterface;
  *
  * @package Hashbangcode\Wevolution\Evolution
  */
-class Statistics
+class Statistics implements StatisticsInterface
 {
     /**
      * The max fitness.
@@ -61,10 +61,7 @@ class Statistics
     protected $medianFitnessIndividual;
 
     /**
-     * Get the median fitness.
-     *
-     * @return int
-     *   The median fitness.
+     * {@inheritdoc}
      */
     public function getMedianFitness(): int
     {
@@ -72,10 +69,7 @@ class Statistics
     }
 
     /**
-     * Set the median fitness.
-     *
-     * @param int $medianFitness
-     *   The median fitness.
+     * {@inheritdoc}
      */
     public function setMedianFitness(int $medianFitness)
     {
@@ -83,7 +77,7 @@ class Statistics
     }
 
     /**
-     * @return \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
+     * {@inheritdoc}
      */
     public function getMedianFitnessIndividual()
     {
@@ -91,7 +85,7 @@ class Statistics
     }
 
     /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $medianFitnessIndividual
+     * {@inheritdoc}
      */
     public function setMedianFitnessIndividual($medianFitnessIndividual)
     {
@@ -100,10 +94,7 @@ class Statistics
     }
 
     /**
-     * Get min fitness.
-     *
-     * @return int
-     *   The min fitness.
+     * {@inheritdoc}
      */
     public function getMinFitness(): int
     {
@@ -111,10 +102,7 @@ class Statistics
     }
 
     /**
-     * Set the min fitness.
-     *
-     * @param int $minFitness
-     *   The min fitness.
+     * {@inheritdoc}
      */
     public function setMinFitness(int $minFitness)
     {
@@ -122,10 +110,7 @@ class Statistics
     }
 
     /**
-     * Get the max fitness.
-     *
-     * @return int
-     *   The max fitness.
+     * {@inheritdoc}
      */
     public function getMaxFitness(): int
     {
@@ -133,10 +118,7 @@ class Statistics
     }
 
     /**
-     * Set the max fitness.
-     *
-     * @param int $maxFitness
-     *   The max fitness to set.
+     * {@inheritdoc}
      */
     public function setMaxFitness(int $maxFitness)
     {
@@ -144,14 +126,7 @@ class Statistics
     }
 
     /**
-     * Using a population, calculate the mean fitness.
-     *
-     * The mean fitness is stored in the meanFitness property.
-     *
-     * @param PopulationInterface $population
-     *   The population.
-     * @return int
-     *   The mean fitness.
+     * {@inheritdoc}
      */
     public function calculateMeanFitness(PopulationInterface $population)
     {
@@ -164,10 +139,7 @@ class Statistics
     }
 
     /**
-     * Get the mean fitness.
-     *
-     * @return int
-     *   The mean fitness.
+     * {@inheritdoc}
      */
     public function getMeanFitness(): int
     {
@@ -175,10 +147,7 @@ class Statistics
     }
 
     /**
-     * Set the mean fitness.
-     *
-     * @param int $meanFitness
-     *   The mean fitness.
+     * {@inheritdoc}
      */
     public function setMeanFitness(int $meanFitness)
     {
@@ -186,13 +155,7 @@ class Statistics
     }
 
     /**
-     * Extract the fitness individuals and assign them to min, max and median values.
-     *
-     * @param PopulationInterface $population
-     *   The population.
-     *
-     * @return $this
-     *   The current object.
+     * {@inheritdoc}
      */
     public function extractFitnessIndividuals(PopulationInterface $population)
     {
@@ -226,7 +189,7 @@ class Statistics
     }
 
     /**
-     * @return \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
+     * {@inheritdoc}
      */
     public function getMaxFitnessIndividual()
     {
@@ -234,7 +197,7 @@ class Statistics
     }
 
     /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $maxFitnessIndividual
+     * {@inheritdoc}
      */
     public function setMaxFitnessIndividual($maxFitnessIndividual)
     {
@@ -243,7 +206,7 @@ class Statistics
     }
 
     /**
-     * @return \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
+     * {@inheritdoc}
      */
     public function getMinFitnessIndividual()
     {
@@ -251,7 +214,7 @@ class Statistics
     }
 
     /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $minFitnessIndividual
+     * {@inheritdoc}
      */
     public function setMinFitnessIndividual($minFitnessIndividual)
     {
