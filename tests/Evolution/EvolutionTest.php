@@ -144,8 +144,8 @@ class EvolutionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertContains('1:', $output);
         $this->assertContains('2:', $output);
-        $this->assertContains('MIN:', $output);
-        $this->assertContains('MAX:', $output);
+        $this->assertContains('Min Fitness:', $output);
+        $this->assertContains('Max Fitness:', $output);
     }
 
     public function testEvolutionColorConstructorParameters()

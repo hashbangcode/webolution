@@ -4,6 +4,8 @@ namespace Hashbangcode\Wevolution\Evolution;
 
 use Hashbangcode\Wevolution\Evolution\Exception\NoPopulationException;
 use Hashbangcode\Wevolution\Evolution\Population\Population;
+use Hashbangcode\Wevolution\Evolution\Statistics\Decorators\StatisticsDecoratorCli;
+use Hashbangcode\Wevolution\Evolution\Statistics\Decorators\StatisticsDecoratorHtml;
 
 /**
  * Class Evolution.
@@ -385,9 +387,17 @@ class Evolution
             $output .= $generation_number . ':<br>' . $population->render() . PHP_EOL . '<br>';
 
             if ($printStats === true) {
-                $stats = $population->getStatistics();
-                $output .= 'MIN: ' . print_r($stats['min']->render(), true) . '<br>';
-                $output .= 'MAX: ' . print_r($stats['max']->render(), true) . '<br>';
+                $statistics = $population->getStatistics();
+
+                switch ($format) {
+                    case 'html':
+                        $statisticsDecorator = new StatisticsDecoratorHtml($statistics);
+                        break;
+                    case 'cli':
+                        $statisticsDecorator = new StatisticsDecoratorCli($statistics);
+                        break;
+                }
+                $output .= $statisticsDecorator->render();
             }
         }
 

@@ -3,6 +3,7 @@
 namespace Hashbangcode\Wevolution\Evolution\Population;
 
 use Hashbangcode\Wevolution\Evolution\Individual\Individual;
+use Hashbangcode\Wevolution\Evolution\Statistics\Statistics;
 
 /**
  * Class Population.
@@ -25,6 +26,13 @@ abstract class Population implements PopulationInterface
      * Render as an image.
      */
     public const RENDER_IMAGE = 'image';
+
+    /**
+     * The statistics object.
+     *
+     * @var \Hashbangcode\Wevolution\Evolution\Statistics\Statistics|null
+     */
+    protected $statistics;
 
     /**
      * The individuals of this population.
@@ -97,22 +105,6 @@ abstract class Population implements PopulationInterface
     protected $populationFitnessType;
 
     /**
-     * @return string
-     */
-    public function getPopulationFitnessType()
-    {
-        return $this->populationFitnessType;
-    }
-
-    /**
-     * @param string $populationFitnessType
-     */
-    public function setPopulationFitnessType($populationFitnessType)
-    {
-        $this->populationFitnessType = $populationFitnessType;
-    }
-
-    /**
      * Add an individual.
      *
      * @param Individual|null $individual
@@ -121,19 +113,6 @@ abstract class Population implements PopulationInterface
      * @return null
      */
     abstract public function addIndividual(Individual $individual = null);
-
-    /**
-     * Remove an individual from the population.
-     *
-     * @param int $key
-     *   The key of the individual in the individuals array.
-     */
-    public function removeIndividual($key)
-    {
-        if (isset($this->individuals[$key])) {
-            unset($this->individuals[$key]);
-        }
-    }
 
     /**
      * Implementation of the __clone magic method to ensure that all sub-objects of this object also get cloned.
@@ -160,6 +139,9 @@ abstract class Population implements PopulationInterface
             $maxIndividual = clone $this->maxIndividual;
             $this->maxIndividual = $maxIndividual;
         }
+
+        // Remove the statistics object.
+        $this->statistics = null;
     }
 
     /**
@@ -335,51 +317,13 @@ abstract class Population implements PopulationInterface
      */
     public function generateStatistics()
     {
-
         if ($this->getLength() == 0) {
             // No population yet.
             return false;
         }
 
-        // Sort the current population.
-        $this->sort();
-
-        foreach ($this->getIndividuals() as $key => $individual) {
-            $fitness = $individual->getFitness();
-
-            // Store Max.
-            if (!is_object($this->maxIndividual) || $fitness > $this->maxIndividual->getFitness()) {
-                $this->maxIndividual = $individual;
-            }
-
-            // Store Min.
-            if (!is_object($this->minIndividual) || $fitness < $this->minIndividual->getFitness()) {
-                $this->minIndividual = $individual;
-            }
-
-            $this->populationFitness[] = $fitness;
-        }
-
-        // Calculate mean.
-        $this->meanFitness = array_sum($this->populationFitness) / $this->getLength();
-
-        // Get Median.
-        $individuals = $this->getIndividuals();
-        $slicedArray = array_slice($individuals, floor(count($individuals)/ 2), 1);
-        $this->medianIndividual = array_pop($slicedArray);
-    }
-
-    /**
-     * @return array
-     */
-    public function getStatistics()
-    {
-        return [
-            'min' => $this->minIndividual,
-            'max' => $this->maxIndividual,
-            'median' => $this->medianIndividual,
-            'meanFitness' => $this->meanFitness,
-        ];
+        $this->setStatistics(new Statistics());
+        $this->getStatistics()->extractFitnessIndividuals($this);
     }
 
     /**
@@ -398,7 +342,7 @@ abstract class Population implements PopulationInterface
 
             $fitness = $individual->getFitness($this->getPopulationFitnessType());
 
-            $maxFitness = $this->getStatistics()['max']->getFitness($this->getPopulationFitnessType());
+            $maxFitness = $this->getStatistics()->getMaxFitness();
 
             // Figure out if this individual is close to the top of the list.
             if ($maxFitness != 0) {
@@ -414,6 +358,62 @@ abstract class Population implements PopulationInterface
             if (!$keepAlive) {
                 $this->removeIndividual($key);
             }
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getPopulationFitnessType()
+    {
+        return $this->populationFitnessType;
+    }
+
+    /**
+     * @param string $populationFitnessType
+     */
+    public function setPopulationFitnessType($populationFitnessType)
+    {
+        $this->populationFitnessType = $populationFitnessType;
+    }
+
+    /**
+     * Get the statistics object.
+     *
+     * @return \Hashbangcode\Wevolution\Evolution\Statistics\Statistics|null
+     *   The statistics object.
+     */
+    public function getStatistics()
+    {
+        if (is_null($this->statistics)) {
+            // If we don't have any statistics yet then generate them.
+            $this->generateStatistics();
+        }
+
+        return $this->statistics;
+    }
+
+    /**
+     * Set the statistics object.
+     *
+     * @param \Hashbangcode\Wevolution\Evolution\Statistics\Statistics $statistics
+     *   The statistics object.
+     */
+    public function setStatistics(Statistics $statistics)
+    {
+        $this->statistics = $statistics;
+    }
+
+    /**
+     * Remove an individual from the population.
+     *
+     * @param int $key
+     *   The key of the individual in the individuals array.
+     */
+    public function removeIndividual($key)
+    {
+        if (isset($this->individuals[$key])) {
+            unset($this->individuals[$key]);
         }
     }
 }
