@@ -96,11 +96,13 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
     public function testSetMedianIndividual()
     {
         $statistics = new Statistics();
-        $numberIndividual2 = $this->prophet
+        $numberIndividual = $this->prophet
             ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $numberIndividual->getFitness()->willReturn(1);
 
-        $statistics->setMedianFitnessIndividual($numberIndividual2->reveal());
+        $statistics->setMedianFitnessIndividual($numberIndividual->reveal());
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $statistics->getMedianFitnessIndividual());
+        $this->assertEquals(1, $statistics->getMedianFitness());
     }
 
     public function testExtractFitnessIndividuals()

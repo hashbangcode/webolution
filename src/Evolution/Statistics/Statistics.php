@@ -26,6 +26,13 @@ class Statistics
     protected $minFitness = 0;
 
     /**
+     * The median fitness.
+     *
+     * @var int
+     */
+    protected $medianFitness = 0;
+
+    /**
      * The mean fitness.
      *
      * @var int
@@ -40,20 +47,39 @@ class Statistics
     protected $maxFitnessIndividual;
 
     /**
-     * @return \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
+     * Min fitness individual.
+     *
+     * @var \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
      */
-    public function getMinFitnessIndividual()
+    protected $minFitnessIndividual;
+
+    /**
+     * Median fitness individual.
+     *
+     * @var \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
+     */
+    protected $medianFitnessIndividual;
+
+    /**
+     * Get the median fitness.
+     *
+     * @return int
+     *   The median fitness.
+     */
+    public function getMedianFitness(): int
     {
-        return $this->minFitnessIndividual;
+        return $this->medianFitness;
     }
 
     /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $minFitnessIndividual
+     * Set the median fitness.
+     *
+     * @param int $medianFitness
+     *   The median fitness.
      */
-    public function setMinFitnessIndividual($minFitnessIndividual)
+    public function setMedianFitness(int $medianFitness)
     {
-        $this->minFitnessIndividual = $minFitnessIndividual;
-        $this->setMinFitness($minFitnessIndividual->getFitness());
+        $this->medianFitness = $medianFitness;
     }
 
     /**
@@ -70,38 +96,8 @@ class Statistics
     public function setMedianFitnessIndividual($medianFitnessIndividual)
     {
         $this->medianFitnessIndividual = $medianFitnessIndividual;
+        $this->setMedianFitness($medianFitnessIndividual->getFitness());
     }
-
-    /**
-     * Min fitness individual.
-     *
-     * @var \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
-     */
-    protected $minFitnessIndividual;
-
-    /**
-     * @return \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
-     */
-    public function getMaxFitnessIndividual()
-    {
-        return $this->maxFitnessIndividual;
-    }
-
-    /**
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $maxFitnessIndividual
-     */
-    public function setMaxFitnessIndividual($maxFitnessIndividual)
-    {
-        $this->maxFitnessIndividual = $maxFitnessIndividual;
-        $this->setMaxFitness($maxFitnessIndividual->getFitness());
-    }
-
-    /**
-     * Median fitness individual.
-     *
-     * @var \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
-     */
-    protected $medianFitnessIndividual;
 
     /**
      * Get min fitness.
@@ -123,28 +119,6 @@ class Statistics
     public function setMinFitness(int $minFitness)
     {
         $this->minFitness = $minFitness;
-    }
-
-    /**
-     * Get the mean fitness.
-     *
-     * @return int
-     *   The mean fitness.
-     */
-    public function getMeanFitness(): int
-    {
-        return $this->meanFitness;
-    }
-
-    /**
-     * Set the mean fitness.
-     *
-     * @param int $meanFitness
-     *   The mean fitness.
-     */
-    public function setMeanFitness(int $meanFitness)
-    {
-        $this->meanFitness = $meanFitness;
     }
 
     /**
@@ -190,6 +164,28 @@ class Statistics
     }
 
     /**
+     * Get the mean fitness.
+     *
+     * @return int
+     *   The mean fitness.
+     */
+    public function getMeanFitness(): int
+    {
+        return $this->meanFitness;
+    }
+
+    /**
+     * Set the mean fitness.
+     *
+     * @param int $meanFitness
+     *   The mean fitness.
+     */
+    public function setMeanFitness(int $meanFitness)
+    {
+        $this->meanFitness = $meanFitness;
+    }
+
+    /**
      * Extract the fitness individuals and assign them to min, max and median values.
      *
      * @param PopulationInterface $population
@@ -208,22 +204,58 @@ class Statistics
 
             // Store Max.
             if (!is_object($this->getMaxFitnessIndividual())
-                || $fitness > $this->getMaxFitnessIndividual()->getFitness()) {
+                || $fitness > $this->getMaxFitnessIndividual()->getFitness()
+            ) {
                 $this->setMaxFitnessIndividual($individual);
             }
 
             // Store Min.
             if (!is_object($this->getMinFitnessIndividual())
-                || $fitness < $this->getMinFitnessIndividual()->getFitness()) {
+                || $fitness < $this->getMinFitnessIndividual()->getFitness()
+            ) {
                 $this->setMinFitnessIndividual($individual);
             }
         }
 
         // Get Median.
         $individuals = $population->getIndividuals();
-        $slicedArray = array_slice($individuals, floor(count($individuals)/ 2), 1);
+        $slicedArray = array_slice($individuals, floor(count($individuals) / 2), 1);
         $this->setMedianFitnessIndividual(array_pop($slicedArray));
 
         return $this;
+    }
+
+    /**
+     * @return \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
+     */
+    public function getMaxFitnessIndividual()
+    {
+        return $this->maxFitnessIndividual;
+    }
+
+    /**
+     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $maxFitnessIndividual
+     */
+    public function setMaxFitnessIndividual($maxFitnessIndividual)
+    {
+        $this->maxFitnessIndividual = $maxFitnessIndividual;
+        $this->setMaxFitness($maxFitnessIndividual->getFitness());
+    }
+
+    /**
+     * @return \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
+     */
+    public function getMinFitnessIndividual()
+    {
+        return $this->minFitnessIndividual;
+    }
+
+    /**
+     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $minFitnessIndividual
+     */
+    public function setMinFitnessIndividual($minFitnessIndividual)
+    {
+        $this->minFitnessIndividual = $minFitnessIndividual;
+        $this->setMinFitness($minFitnessIndividual->getFitness());
     }
 }
