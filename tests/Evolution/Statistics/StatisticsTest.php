@@ -70,21 +70,27 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
     public function testSetMaxIndividual()
     {
         $statistics = new Statistics();
-        $numberIndividual2 = $this->prophet
+        $numberIndividual = $this->prophet
             ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $numberIndividual->getFitness()->willReturn(1);
 
-        $statistics->setMaxFitnessIndividual($numberIndividual2->reveal());
+        $statistics->setMaxFitnessIndividual($numberIndividual->reveal());
+
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $statistics->getMaxFitnessIndividual());
+        $this->assertEquals(1, $statistics->getMaxFitness());
     }
 
     public function testSetMinIndividual()
     {
         $statistics = new Statistics();
-        $numberIndividual2 = $this->prophet
+        $numberIndividual = $this->prophet
             ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $numberIndividual->getFitness()->willReturn(1);
 
-        $statistics->setMinFitnessIndividual($numberIndividual2->reveal());
+        $statistics->setMinFitnessIndividual($numberIndividual->reveal());
+
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $statistics->getMinFitnessIndividual());
+        $this->assertEquals(1, $statistics->getMinFitness());
     }
 
     public function testSetMedianIndividual()
@@ -122,16 +128,17 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
 
         $numberPopulation->getIndividuals()->willReturn($individuals);
         $numberPopulation->getLength()->willReturn(3);
+        $numberPopulation->sort()->willReturn(NULL);
 
         $statistics->extractFitnessIndividuals($numberPopulation->reveal());
 
         $this->assertEquals(1, $statistics->getMinFitnessIndividual()->getFitness());
         $this->assertEquals(1, $statistics->getMinFitness());
 
-        $this->assertEquals(2, $statistics->getMaxFitnessIndividual()->getFitness());
-        $this->assertEquals(2, $statistics->getMaxFitness());
+        $this->assertEquals(3, $statistics->getMaxFitnessIndividual()->getFitness());
+        $this->assertEquals(3, $statistics->getMaxFitness());
 
-        $this->assertEquals(3, $statistics->getMedianFitnessIndividual()->getFitness());
+        $this->assertEquals(2, $statistics->getMedianFitnessIndividual()->getFitness());
     }
 
     protected function tearDown()

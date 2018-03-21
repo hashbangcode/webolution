@@ -53,6 +53,7 @@ class Statistics
     public function setMinFitnessIndividual($minFitnessIndividual)
     {
         $this->minFitnessIndividual = $minFitnessIndividual;
+        $this->setMinFitness($minFitnessIndividual->getFitness());
     }
 
     /**
@@ -92,6 +93,7 @@ class Statistics
     public function setMaxFitnessIndividual($maxFitnessIndividual)
     {
         $this->maxFitnessIndividual = $maxFitnessIndividual;
+        $this->setMaxFitness($maxFitnessIndividual->getFitness());
     }
 
     /**
@@ -207,18 +209,18 @@ class Statistics
             // Store Max.
             if (!is_object($this->getMaxFitnessIndividual())
                 || $fitness > $this->getMaxFitnessIndividual()->getFitness()) {
-                $this->getMaxFitnessIndividual($individual);
+                $this->setMaxFitnessIndividual($individual);
             }
 
             // Store Min.
-            if (!is_object($this->minFitnessIndividual())
+            if (!is_object($this->getMinFitnessIndividual())
                 || $fitness < $this->getMinFitnessIndividual()->getFitness()) {
-                $this->minFitnessIndividual($individual);
+                $this->setMinFitnessIndividual($individual);
             }
         }
 
         // Get Median.
-        $individuals = $this->getIndividuals();
+        $individuals = $population->getIndividuals();
         $slicedArray = array_slice($individuals, floor(count($individuals)/ 2), 1);
         $this->setMedianFitnessIndividual(array_pop($slicedArray));
 
