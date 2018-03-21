@@ -47,10 +47,12 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
         $statistics = new Statistics();
         $numberPopulation = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Population\NumberPopulation');
 
-        $numberIndividual1 = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $numberIndividual1 = $this->prophet
+            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
         $numberIndividual1->getFitness()->willReturn(5);
 
-        $numberIndividual2 = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $numberIndividual2 = $this->prophet
+            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
         $numberIndividual2->getFitness()->willReturn(5);
 
         $individuals = [
@@ -62,6 +64,74 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
         $numberPopulation->getLength()->willReturn(2);
 
         $this->assertEquals(5, $statistics->calculateMeanFitness($numberPopulation->reveal()));
+        $this->assertEquals(5, $statistics->getMeanFitness());
+    }
+
+    public function testSetMaxIndividual()
+    {
+        $statistics = new Statistics();
+        $numberIndividual2 = $this->prophet
+            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+
+        $statistics->setMaxFitnessIndividual($numberIndividual2->reveal());
+        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $statistics->getMaxFitnessIndividual());
+    }
+
+    public function testSetMinIndividual()
+    {
+        $statistics = new Statistics();
+        $numberIndividual2 = $this->prophet
+            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+
+        $statistics->setMinFitnessIndividual($numberIndividual2->reveal());
+        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $statistics->getMinFitnessIndividual());
+    }
+
+    public function testSetMedianIndividual()
+    {
+        $statistics = new Statistics();
+        $numberIndividual2 = $this->prophet
+            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+
+        $statistics->setMedianFitnessIndividual($numberIndividual2->reveal());
+        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $statistics->getMedianFitnessIndividual());
+    }
+
+    public function testExtractFitnessIndividuals()
+    {
+        $statistics = new Statistics();
+        $numberPopulation = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Population\NumberPopulation');
+
+        $numberIndividual1 = $this->prophet
+            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $numberIndividual1->getFitness()->willReturn(1);
+
+        $numberIndividual2 = $this->prophet
+            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $numberIndividual2->getFitness()->willReturn(2);
+
+        $numberIndividual3 = $this->prophet
+            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $numberIndividual3->getFitness()->willReturn(3);
+
+        $individuals = [
+            $numberIndividual1,
+            $numberIndividual2,
+            $numberIndividual3,
+        ];
+
+        $numberPopulation->getIndividuals()->willReturn($individuals);
+        $numberPopulation->getLength()->willReturn(3);
+
+        $statistics->extractFitnessIndividuals($numberPopulation->reveal());
+
+        $this->assertEquals(1, $statistics->getMinFitnessIndividual()->getFitness());
+        $this->assertEquals(1, $statistics->getMinFitness());
+
+        $this->assertEquals(2, $statistics->getMaxFitnessIndividual()->getFitness());
+        $this->assertEquals(2, $statistics->getMaxFitness());
+
+        $this->assertEquals(3, $statistics->getMedianFitnessIndividual()->getFitness());
     }
 
     protected function tearDown()
