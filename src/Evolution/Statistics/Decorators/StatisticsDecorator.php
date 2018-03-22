@@ -2,7 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Statistics\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Statistics\Statistics;
+use Hashbangcode\Wevolution\Evolution\Statistics\StatisticsInterface;
 
 /**
  * Class StatisticsDecorator.
@@ -21,7 +21,7 @@ abstract class StatisticsDecorator implements StatisticsDecoratorInterface
     /**
      * {@inheritdoc}
      */
-    public function __construct(Statistics $statistics)
+    public function __construct(StatisticsInterface $statistics)
     {
         $this->statistics = $statistics;
     }

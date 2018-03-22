@@ -2,8 +2,6 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Statistics\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Statistics\Statistics;
-
 /**
  * Class StatisticsDecorator.
  *

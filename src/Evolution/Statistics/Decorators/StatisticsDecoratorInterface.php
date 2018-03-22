@@ -2,7 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Statistics\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Statistics\Statistics;
+use Hashbangcode\Wevolution\Evolution\Statistics\StatisticsInterface;
 
 /**
  * Interface StatisticsDecoratorInterface.
@@ -15,10 +15,10 @@ interface StatisticsDecoratorInterface
     /**
      * StatisticsDecoratorInterface constructor.
      *
-     * @param Statistics $statistics
+     * @param StatisticsInterface $statistics
      *   The statistics to wrap.
      */
-    public function __construct(Statistics $statistics);
+    public function __construct(StatisticsInterface $statistics);
 
     /**
      * Render the statistics object.
