@@ -13,21 +13,6 @@ use Hashbangcode\Wevolution\Evolution\Statistics\Statistics;
 abstract class Population implements PopulationInterface
 {
     /**
-     * Render for command line.
-     */
-    public const RENDER_CLI = 'cli';
-
-    /**
-     * Render as HTML.
-     */
-    public const RENDER_HTML = 'html';
-
-    /**
-     * Render as an image.
-     */
-    public const RENDER_IMAGE = 'image';
-
-    /**
      * The statistics object.
      *
      * @var \Hashbangcode\Wevolution\Evolution\Statistics\Statistics|null

@@ -5,9 +5,9 @@ namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
 use Hashbangcode\Wevolution\Evolution\Individual\IndividualInterface;
 
 /**
- * Interface StatisticsDecoratorInterface.
+ * Class IndividualDecorator.
  *
- * @package Hashbangcode\Wevolution\Evolution\Statistics\Decorators
+ * @package Hashbangcode\Wevolution\Evolution\Individual\Decorators
  */
 abstract class IndividualDecorator implements IndividualDecoratorInterface
 {

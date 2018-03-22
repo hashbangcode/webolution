@@ -816,7 +816,7 @@ class Color implements TypeInterface
     /**
      * {@inheritdoc}
      */
-    public function render()
+    public function __toString()
     {
         return $this->getHex();
     }

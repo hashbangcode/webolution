@@ -41,15 +41,4 @@ interface IndividualInterface
      *   The fitness of the individual.
      */
     public function getFitness($type = '');
-
-    /**
-     * Render the individual.
-     *
-     * @param string $renderType
-     *   The type of render to perform.
-     *
-     * @return string
-     *   The rendered individual.
-     */
-    public function render($renderType);
 }

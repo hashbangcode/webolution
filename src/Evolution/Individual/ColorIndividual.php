@@ -117,19 +117,4 @@ class ColorIndividual extends Individual
         return abs($lightness * 10);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function render($renderType = 'cli')
-    {
-        switch ($renderType) {
-            case self::RENDER_HTML:
-                return '<span style="background-color:#' . $this->object->render() . '"> </span>';
-            case 'css':
-                return '#' . $this->object->render();
-            case self::RENDER_CLI:
-            default:
-                return $this->object->render() . PHP_EOL;
-        }
-    }
 }

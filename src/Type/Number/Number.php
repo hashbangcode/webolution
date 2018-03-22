@@ -87,12 +87,4 @@ class Number implements TypeInterface
         $this->setNumber($this->getNumber() - $x);
         return $this;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->getNumber();
-    }
 }

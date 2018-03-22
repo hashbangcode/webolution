@@ -25,7 +25,7 @@ class ColorIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
     public function testRender()
     {
         $color = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Color\Color');
-        $color->render()->willReturn('000');
+        $color->getHex()->willReturn('000');
         $colorIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual');
         $colorIndividual->getObject()->willReturn($color);
 

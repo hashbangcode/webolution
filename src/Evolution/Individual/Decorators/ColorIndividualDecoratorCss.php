@@ -3,9 +3,9 @@
 namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
 
 /**
- * Interface StatisticsDecoratorInterface.
+ * Class ColorIndividualDecoratorCss.
  *
- * @package Hashbangcode\Wevolution\Evolution\Statistics\Decorators
+ * @package Hashbangcode\Wevolution\Evolution\Individual\Decorators
  */
 class ColorIndividualDecoratorCss extends IndividualDecorator
 {
@@ -14,6 +14,6 @@ class ColorIndividualDecoratorCss extends IndividualDecorator
      */
     public function render()
     {
-        return '#' . $this->getIndividual()->getObject()->render();
+        return '#' . $this->getIndividual()->getObject()->getHex();
     }
 }

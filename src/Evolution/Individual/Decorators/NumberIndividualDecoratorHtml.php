@@ -3,17 +3,17 @@
 namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
 
 /**
- * Class ColorIndividualDecoratorCli.
+ * Class NumberIndividualDecoratorHtml.
  *
  * @package Hashbangcode\Wevolution\Evolution\Individual\Decorators
  */
-class ColorIndividualDecoratorCli extends IndividualDecorator
+class NumberIndividualDecoratorHtml extends IndividualDecorator
 {
     /**
      * {@inheritdoc}
      */
     public function render()
     {
-        return $this->getIndividual()->getObject()->getHex() . PHP_EOL;
+        return $this->getIndividual()->getObject()->getNumber() . '<br>';
     }
 }
