@@ -324,6 +324,7 @@ abstract class Population implements PopulationInterface
 
         $this->setStatistics(new Statistics());
         $this->getStatistics()->extractFitnessIndividuals($this);
+        $this->getStatistics()->calculateMeanFitness($this);
     }
 
     /**
