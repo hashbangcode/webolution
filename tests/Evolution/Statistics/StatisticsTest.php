@@ -130,7 +130,7 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
 
         $numberPopulation->getIndividuals()->willReturn($individuals);
         $numberPopulation->getLength()->willReturn(3);
-        $numberPopulation->sort()->willReturn(NULL);
+        $numberPopulation->sort()->willReturn(null);
 
         $statistics->extractFitnessIndividuals($numberPopulation->reveal());
 
