@@ -35,7 +35,7 @@ class NumberController extends BaseController
         $evolution->runEvolution();
 
         $output = '';
-        $output .= $evolution->getEvolutionObject()->renderGenerations();
+        $output .= $evolution->getEvolutionObject()->renderGenerations(true);
 
         return $this->view->render($response, 'demos.twig', [
             'title' => $title,
