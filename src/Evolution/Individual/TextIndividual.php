@@ -162,21 +162,4 @@ class TextIndividual extends Individual
     {
         $this->fitnessGoal = $fitnessGoal;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render($renderType = 'cli')
-    {
-        $output = '';
-        switch ($renderType) {
-            case self::RENDER_HTML:
-                $output .= $this->object->render() . '<br>';
-                break;
-            case self::RENDER_CLI:
-            default:
-                $output .= $this->object->render() . ' ';
-        }
-        return $output;
-    }
 }
