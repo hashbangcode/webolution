@@ -19,8 +19,8 @@ class NumberPopulationDecoratorHtml extends PopulationDecorator
         $output = '';
 
         foreach ($this->getPopulation()->getIndividuals() as $individual) {
-            $colorIndividualDecoratorCli = new NumberIndividualDecoratorHtml($individual);
-            $output .= $colorIndividualDecoratorCli->render();
+            $individualDecorator = new NumberIndividualDecoratorHtml($individual);
+            $output .= $individualDecorator->render();
         }
 
         return $output;

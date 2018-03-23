@@ -17,8 +17,8 @@ class ColorPopulationDecoratorCss extends PopulationDecorator
         $output = '';
 
         foreach ($this->getPopulation()->getIndividuals() as $individual) {
-            $colorIndividualDecoratorCli = new ColorIndividualDecoratorCss($individual);
-            $output .= $colorIndividualDecoratorCli->render();
+            $individualDecorator = new ColorIndividualDecoratorCss($individual);
+            $output .= $individualDecorator->render();
         }
 
         return $output;
