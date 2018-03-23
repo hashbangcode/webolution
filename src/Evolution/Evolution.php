@@ -394,6 +394,8 @@ class Evolution
                         $statisticsDecorator = new StatisticsDecoratorHtml($statistics);
                         break;
                     case 'cli':
+                        // Deliberate fall through.
+                    default:
                         $statisticsDecorator = new StatisticsDecoratorCli($statistics);
                         break;
                 }
