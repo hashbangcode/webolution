@@ -294,18 +294,6 @@ class ColorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0.0, $color->getLuma());
     }
 
-    public function testRenderColor()
-    {
-        $color = new Color(0, 0, 0);
-        $this->assertEquals('000000000', $color->render());
-    }
-
-    public function testRenderHexColor()
-    {
-        $color = new Color(255, 255, 255);
-        $this->assertEquals('FFFFFF', $color->render());
-    }
-
     public function testRenderColorStatistics()
     {
         $color = new Color(0, 0, 0);
