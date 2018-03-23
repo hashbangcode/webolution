@@ -51,4 +51,9 @@ class NumberPopulationDecoratorTestBase extends \PHPUnit_Framework_TestCase
 
         $this->numberPopulation = $numberPopulation;
     }
+
+    protected function tearDown()
+    {
+        $this->prophet->checkPredictions();
+    }
 }
