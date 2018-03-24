@@ -15,7 +15,7 @@ class ColorIndividualDecoratorCssTest extends \PHPUnit_Framework_TestCase
         $this->prophet = new Prophet();
     }
 
-    public function testStatisticsObjectCreation()
+    public function testObjectCreation()
     {
         $colorIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual');
         $colorIndividualDecorator = new ColorIndividualDecoratorCss($colorIndividual->reveal());

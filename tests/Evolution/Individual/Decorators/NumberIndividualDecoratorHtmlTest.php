@@ -15,7 +15,7 @@ class NumberIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
         $this->prophet = new Prophet();
     }
 
-    public function testStatisticsObjectCreation()
+    public function testObjectCreation()
     {
         $numberIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
         $numberIndividualDecorator = new NumberIndividualDecoratorHtml($numberIndividual->reveal());
