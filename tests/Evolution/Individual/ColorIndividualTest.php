@@ -22,37 +22,22 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
         $object = ColorIndividual::generateFromHex('123456');
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $object->getObject());
-        $renderType = 'cli';
-        $this->assertEquals('123456', $object->getObject()->render($renderType));
-        $this->assertEquals('123456' . PHP_EOL, $object->render($renderType));
+
+        $this->assertEquals('123456', $object->getObject()->getHex());
     }
 
     public function testRenderIndividual()
     {
         $object = ColorIndividual::generateFromRgb(125, 125, 125);
         $object->mutate(0);
-        $renderType = 'cli';
-
-        $this->assertEquals('7D7D7D', $object->getObject()->render($renderType));
-        $this->assertEquals('7D7D7D' . PHP_EOL, $object->render($renderType));
-    }
-
-    public function testRenderIndividualHtml()
-    {
-        $object = ColorIndividual::generateFromRgb(125, 125, 125);
-        $object->mutate(0);
-        $renderType = 'html';
-
-        $this->assertEquals('<span style="background-color:#7D7D7D"> </span>', $object->render($renderType));
+        $this->assertEquals('7D7D7D', $object->getObject()->getHex());
     }
 
     public function testMutateColorThroughIndividual()
     {
         $object = ColorIndividual::generateFromRgb(125, 125, 125);
         $object->mutate(0);
-        $renderType = 'cli';
-        $this->assertNotEquals('125125125', $object->getObject()->render($renderType));
-        $this->assertNotEquals('125125125' . PHP_EOL, $object->render($renderType));
+        $this->assertNotEquals('125125125', $object->getObject()->getHex());
     }
 
     public function testColorFitness()
