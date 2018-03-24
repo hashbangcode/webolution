@@ -17,20 +17,20 @@ class NumberIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectCreation()
     {
-        $numberIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
-        $numberIndividualDecorator = new NumberIndividualDecoratorHtml($numberIndividual->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\NumberIndividualDecoratorHtml', $numberIndividualDecorator);
+        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $individualDecorator = new NumberIndividualDecoratorHtml($individual->reveal());
+        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\NumberIndividualDecoratorHtml', $individualDecorator);
     }
 
     public function testRender()
     {
-        $number = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Number\Number');
-        $number->getNumber()->willReturn(123);
-        $numberIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
-        $numberIndividual->getObject()->willReturn($number);
+        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Number\Number');
+        $object->getNumber()->willReturn(123);
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $objectIndividual->getObject()->willReturn($object);
 
-        $numberIndividualDecorator = new NumberIndividualDecoratorHtml($numberIndividual->reveal());
-        $render = $numberIndividualDecorator->render();
+        $objectIndividualDecorator = new NumberIndividualDecoratorHtml($objectIndividual->reveal());
+        $render = $objectIndividualDecorator->render();
         $this->assertEquals(123 . '<br>', $render);
     }
 

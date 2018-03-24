@@ -24,13 +24,13 @@ class TextIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testRender()
     {
-        $color = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Text\Text');
-        $color->getText()->willReturn('abc');
-        $colorIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual');
-        $colorIndividual->getObject()->willReturn($color);
+        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Text\Text');
+        $object->getText()->willReturn('abc');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual');
+        $objectIndividual->getObject()->willReturn($object);
 
-        $colorIndividualDecorator = new TextIndividualDecoratorHtml($colorIndividual->reveal());
-        $render = $colorIndividualDecorator->render();
+        $objectIndividualDecorator = new TextIndividualDecoratorHtml($objectIndividual->reveal());
+        $render = $objectIndividualDecorator->render();
         $this->assertEquals('abc' . '<br>' . PHP_EOL, $render);
     }
 
