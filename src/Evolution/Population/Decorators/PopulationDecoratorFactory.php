@@ -28,6 +28,9 @@ class PopulationDecoratorFactory
      */
     public static function getPopulationDecorator(PopulationInterface $population, $type)
     {
+        // Ensure that the first letter of the type is capitalised.
+        $type = ucfirst($type);
+
         // Extract the class name.
         $class = get_class($population);
 

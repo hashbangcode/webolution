@@ -45,6 +45,16 @@ class PopulationDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
                 'Html',
                 '\Hashbangcode\Wevolution\Evolution\Population\Decorators\ColorPopulationDecoratorHtml'
             ],
+            [
+                '\Hashbangcode\Wevolution\Evolution\Population\ColorPopulation',
+                'cli',
+                '\Hashbangcode\Wevolution\Evolution\Population\Decorators\ColorPopulationDecoratorCli'
+            ],
+            [
+                '\Hashbangcode\Wevolution\Evolution\Population\ColorPopulation',
+                'html',
+                '\Hashbangcode\Wevolution\Evolution\Population\Decorators\ColorPopulationDecoratorHtml'
+            ],
         ];
     }
 
