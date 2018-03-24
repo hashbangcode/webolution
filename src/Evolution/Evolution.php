@@ -3,6 +3,7 @@
 namespace Hashbangcode\Wevolution\Evolution;
 
 use Hashbangcode\Wevolution\Evolution\Exception\NoPopulationException;
+use Hashbangcode\Wevolution\Evolution\Population\Decorators\PopulationDecoratorFactory;
 use Hashbangcode\Wevolution\Evolution\Population\Population;
 use Hashbangcode\Wevolution\Evolution\Statistics\Decorators\StatisticsDecoratorCli;
 use Hashbangcode\Wevolution\Evolution\Statistics\Decorators\StatisticsDecoratorHtml;
@@ -384,7 +385,10 @@ class Evolution
         /* @var Population $population */
         foreach ($this->previousGenerations as $generation_number => $population) {
             // Render the population.
-            $output .= $generation_number . ':<br>' . $population->render() . PHP_EOL . '<br>';
+
+            $populationDecorator = PopulationDecoratorFactory::getPopulationDecorator($population, $format);
+
+            $output .= $generation_number . ':<br>' . $populationDecorator->render() . PHP_EOL . '<br>';
 
             if ($printStats === true) {
                 $statistics = $population->getStatistics();
