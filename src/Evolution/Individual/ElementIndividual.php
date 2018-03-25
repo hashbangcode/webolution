@@ -128,21 +128,4 @@ class ElementIndividual extends Individual
         return $fitness;
     }
 
-    /**
-     * @param $renderType
-     * @return mixed
-     */
-    public function render($renderType = 'cli')
-    {
-        $output = '';
-        switch ($renderType) {
-            case self::RENDER_HTML:
-                $output .= $this->getObject()->render();
-                break;
-            case self::RENDER_CLI:
-            default:
-                $output .= $this->getObject()->render() . PHP_EOL;
-        }
-        return $output;
-    }
 }

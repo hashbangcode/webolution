@@ -42,12 +42,12 @@ class StyleIndividual extends Individual
         $style = $this->getObject();
 
         if ($action <= 50) {
-          if ($action <= 25) {
-            // Add a attribute to the Style.
-            $this->addAttribute();
-          } else {
-            $this->mutateSelector();
-          }
+            if ($action <= 25) {
+                // Add a attribute to the Style.
+                $this->addAttribute();
+            } else {
+                $this->mutateSelector();
+            }
         } elseif (count($style->getAttributes()) > 0) {
             // Select an attribute.
             $attributes = $style->getAttributes();
@@ -267,22 +267,5 @@ class StyleIndividual extends Individual
         // Render the style and return the fitness as a function of the string length.
         // @todo : Improve this 'fitness'.
         return strlen($this->render());
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render($renderType = 'cli')
-    {
-        $output = '';
-        switch ($renderType) {
-            case self::RENDER_HTML:
-                $output .= $this->getObject()->render() . '<br>';
-                break;
-            case self::RENDER_CLI:
-            default:
-                $output .= $this->getObject()->render() . PHP_EOL;
-        }
-        return $output;
     }
 }
