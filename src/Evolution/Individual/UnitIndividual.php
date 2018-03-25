@@ -93,12 +93,4 @@ class UnitIndividual extends Individual
         // The fitness of this UnitIndividual is the value of the number attribute.
         return $this->getObject()->getNumber();
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render($renderType = 'cli')
-    {
-        return $this->object->render();
-    }
 }
