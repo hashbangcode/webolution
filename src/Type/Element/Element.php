@@ -126,41 +126,6 @@ class Element implements TypeInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        if ($this->getType() === false && is_object($this->getObject())) {
-            return $this->getObject()->render();
-        }
-
-        $output = '';
-
-        $output .= '<' . $this->getType();
-
-        if ($this->getAttributes() > 0) {
-            $attributes = array();
-            foreach ($this->getAttributes() as $attribute => $value) {
-                $attributes[] = $attribute . '="' . $value . '"';
-            }
-            $output .= ' ' . implode(' ', $attributes);
-        }
-
-        $output .= '>';
-
-        if (count($this->getChildren()) > 0) {
-            foreach ($this->getChildren() as $index => $child) {
-                $output .= $child->render();
-            }
-        }
-
-        $output .= $this->getElementText();
-
-        $output .= '</' . $this->getType() . '>';
-        return $output;
-    }
-
-    /**
      * Get the type of element.
      *
      * @return mixed
