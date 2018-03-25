@@ -2,7 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Population\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception\DecoratorNotFoundException;
+use Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException;
 use Hashbangcode\Wevolution\Evolution\Population\PopulationInterface;
 
 /**
@@ -24,7 +24,7 @@ class PopulationDecoratorFactory
      * @return \Hashbangcode\Wevolution\Evolution\Population\Decorators\PopulationDecoratorInterface
      *   The recorator.
      *
-     * @throws DecoratorNotFoundException
+     * @throws PopulationDecoratorNotFoundException
      */
     public static function getPopulationDecorator(PopulationInterface $population, $type)
     {
@@ -40,7 +40,7 @@ class PopulationDecoratorFactory
         $decoratorClass .= join('', array_slice(explode('\\', $class), -1)) . 'Decorator' . $type;
 
         if (!class_exists($decoratorClass)) {
-            throw new DecoratorNotFoundException('Decorator class ' . $decoratorClass . ' not found.');
+            throw new PopulationDecoratorNotFoundException('Decorator class ' . $decoratorClass . ' not found.');
         }
 
         $decorator = new $decoratorClass($population);

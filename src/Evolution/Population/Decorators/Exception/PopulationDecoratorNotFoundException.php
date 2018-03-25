@@ -3,11 +3,11 @@
 namespace Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception;
 
 /**
- * Class DecoratorNotFoundException.
+ * Class PopulationDecoratorNotFoundException.
  *
  * @package Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception
  */
-class DecoratorNotFoundException extends \Exception
+class PopulationDecoratorNotFoundException extends \Exception
 {
 
 }

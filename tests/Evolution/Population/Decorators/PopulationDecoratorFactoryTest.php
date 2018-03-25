@@ -60,7 +60,7 @@ class PopulationDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testNotFindPopulationDecorator()
     {
-        $exception = '\Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception\DecoratorNotFoundException';
+        $exception = '\Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException';
         $this->expectException($exception);
 
         $numberPopulationClass = '\Hashbangcode\Wevolution\Evolution\Population\ColorPopulation';
