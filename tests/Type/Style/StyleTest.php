@@ -88,8 +88,11 @@ class StyleTest extends \PHPUnit_Framework_TestCase
         $object->setAttribute('background', ColorIndividual::generateFromHex('000000'));
         $object->setAttribute('color', ColorIndividual::generateFromHex('555555'));
         $object->setAttribute('padding', '0px');
-        $renderedStyle = $object->render();
-        $this->assertEquals('.element{background:#000000;color:#555555;padding:0px;}', $renderedStyle);
+
+        $this->assertEquals('.element', $object->getSelector());
+        $this->assertEquals('000000', $object->getAttribute('background'));
+        $this->assertEquals('555555', $object->getAttribute('color'));
+        $this->assertEquals('0px', $object->getAttribute('padding'));
     }
 
     public function testCloneStyleObject()
