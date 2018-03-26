@@ -14,27 +14,20 @@ class ElementIndividualDecoratorHtml extends IndividualDecorator
      */
     public function render()
     {
-        ////return $this->getIndividual()->getObject()->getHex() . PHP_EOL;
         $object = $this->getIndividual()->getObject();
 
         if ($object->getType() === false && is_object($object->getObject())) {
-            IndividualDecoratorFactory::getIndividualDecorator($object);
-            return $this->getObject()->render();
+            $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($object, 'html');
+            return $individualDecorator->render();
         }
-
-    }
-
-    public function oldrender()
-    {
-
 
         $output = '';
 
-        $output .= '<' . $this->getType();
+        $output .= '<' . $object->getType();
 
-        if ($this->getAttributes() > 0) {
+        if ($object->getAttributes() > 0) {
             $attributes = array();
-            foreach ($this->getAttributes() as $attribute => $value) {
+            foreach ($object->getAttributes() as $attribute => $value) {
                 $attributes[] = $attribute . '="' . $value . '"';
             }
             $output .= ' ' . implode(' ', $attributes);
@@ -42,17 +35,17 @@ class ElementIndividualDecoratorHtml extends IndividualDecorator
 
         $output .= '>';
 
-        if (count($this->getChildren()) > 0) {
-            foreach ($this->getChildren() as $index => $child) {
-
-                $output .= $child->render();
-
+        if (count($object->getChildren()) > 0) {
+            foreach ($object->getChildren() as $index => $child) {
+                $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($child, 'html');
+                $output .= $individualDecorator->render();
             }
         }
 
-        $output .= $this->getElementText();
+        $output .= $object->getElementText();
 
-        $output .= '</' . $this->getType() . '>';
+        $output .= '</' . $object->getType() . '>';
+
         return $output;
     }
 }
