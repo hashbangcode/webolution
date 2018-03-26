@@ -22,8 +22,9 @@ class StylePopulationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, $population->getLength());
     }
 
-    public function testRenderPopulation()
+    public function __testRenderPopulation()
     {
+      // @todo : refactor into decorator.
         $population = new StylePopulation();
         $population->addIndividual(StyleIndividual::generateFromSelector('div.monkey'));
         $output = $population->render();

@@ -24,8 +24,9 @@ class PagePopulationTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\PageIndividual', $individual);
     }
 
-    public function testCreateActivePopulation()
+    public function __testCreateActivePopulation()
     {
+      // @todo : refactor into decorator.
         $object = PageIndividual::generateBlankPage();
 
         $style = new \Hashbangcode\Wevolution\Type\Style\Style('div');

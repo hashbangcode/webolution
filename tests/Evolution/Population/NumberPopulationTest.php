@@ -40,10 +40,11 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $numberPopulation->getLength());
     }
 
-    public function testDefaultSort()
+    public function __testDefaultSort()
     {
+      // @todo : refactor into decorator.
         $numberPopulation = new NumberPopulation();
-
+        // @todo : refactor using prophecy.
         $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(1));
         $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(2));
         $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(3));
@@ -51,23 +52,6 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase
         $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(5));
 
         $numberPopulation->sort();
-        $output = $numberPopulation->render();
-
-        $this->assertContains('1 2 3 4 5', $output);
-    }
-
-    public function testHtmlRendering()
-    {
-        $numberPopulation = new NumberPopulation();
-
-        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(1));
-        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(2));
-        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(3));
-        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(4));
-        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(5));
-
-        $numberPopulation->sort();
-        $numberPopulation->setDefaultRenderType('html');
         $output = $numberPopulation->render();
 
         $this->assertContains('1 2 3 4 5', $output);
@@ -76,7 +60,7 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase
     public function testNumberIteration()
     {
         $numberPopulation = new NumberPopulation();
-
+        // @todo : refactor using prophecy.
         $numberPopulation->addIndividual(NumberIndividual::generateRandomNumber());
         $numberPopulation->addIndividual(NumberIndividual::generateRandomNumber());
         $numberPopulation->addIndividual(NumberIndividual::generateRandomNumber());

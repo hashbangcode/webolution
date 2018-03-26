@@ -62,22 +62,25 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $object->getFitness());
     }
 
-    public function testCliRender()
+    public function __testCliRender()
     {
+      // @todo : refactor into decorator.
         $object = TextIndividual::generateFromString('abc');
         $renderType = 'cli';
         $this->assertEquals('abc ', $object->render($renderType));
     }
 
-    public function testHtmlRender()
+    public function __testHtmlRender()
     {
+      // @todo : refactor into decorator.
         $object = TextIndividual::generateFromString('abc');
         $renderType = 'html';
         $this->assertEquals('abc<br>', $object->render($renderType));
     }
 
-    public function testDefaultRender()
+    public function __testDefaultRender()
     {
+      // @todo : refactor into decorator.
         $object = TextIndividual::generateFromString('abc');
         $this->assertEquals('abc ', $object->render());
     }

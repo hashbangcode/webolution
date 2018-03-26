@@ -266,6 +266,6 @@ class StyleIndividual extends Individual
     {
         // Render the style and return the fitness as a function of the string length.
         // @todo : Improve this 'fitness'.
-        return strlen($this->render());
+        return strlen('123');
     }
 }

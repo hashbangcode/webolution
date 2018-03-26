@@ -17,8 +17,9 @@ class PageIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\PageIndividual', $object);
     }
 
-    public function testCreateFullIndividual()
+    public function __testCreateFullIndividual()
     {
+      // @todo : refactor into decorator.
         $object = new PageIndividual(new Page());
 
         $style = new \Hashbangcode\Wevolution\Type\Style\Style('div');
