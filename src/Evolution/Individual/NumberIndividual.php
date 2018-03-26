@@ -87,20 +87,4 @@ class NumberIndividual extends Individual
         // The fitness of a NumberIndividual is literally the value of the number.
         return $this->getObject()->getNumber();
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render($renderType = 'cli')
-    {
-        switch ($renderType) {
-            case self::RENDER_HTML:
-                $output = $this->object->render() . ' ';
-                break;
-            case self::RENDER_CLI:
-            default:
-                $output = $this->object->render() . ' ';
-        }
-        return $output;
-    }
 }
