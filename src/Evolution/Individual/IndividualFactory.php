@@ -40,8 +40,6 @@ class IndividualFactory
         $individualClass .= '\\' . 'Individual';
         $individualClass .= '\\' . array_pop($class) . 'Individual';
 
-        echo $individualClass;
-
         if (!class_exists($individualClass)) {
             throw new IndividualNotFoundException(' class ' . $individualClass . ' not found.');
         }
