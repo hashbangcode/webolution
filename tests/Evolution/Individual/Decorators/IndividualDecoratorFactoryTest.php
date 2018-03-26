@@ -3,58 +3,39 @@
 namespace Hashbangcode\Wevolution\Test\Evolution\Individual\Decorators;
 
 use Hashbangcode\Wevolution\Evolution\Individual\Decorators\IndividualDecoratorFactory;
+use Prophecy\Prophet;
 
 class IndividualDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @dataProvider individualDecoratorFactoryDataProvider
-     */
-    public function testFindIndividualDecorator($individualClass, $type, $decoratorClass)
+    private $prophet;
+
+    public function setup()
     {
-        $individualObject = new $individualClass();
-        $decorator = IndividualDecoratorFactory::getIndividualDecorator($individualObject, $type);
-        $this->assertInstanceOf($decoratorClass, $decorator);
+        $this->prophet = new Prophet();
     }
 
-    /**
-     * Data provider for testFindIndividual.
-     *
-     * @return array
-     */
-    public function individualDecoratorFactoryDataProvider()
+    public function testFindNumberIndividualDecoratorCli()
     {
-        return [
-            [
-                '\Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual',
-                'Cli',
-                '\Hashbangcode\Wevolution\Evolution\Individual\Decorators\NumberIndividualDecoratorCli'
-            ],
-            [
-                '\Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual',
-                'Html',
-                '\Hashbangcode\Wevolution\Evolution\Individual\Decorators\NumberIndividualDecoratorHtml'
-            ],
-            [
-                '\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual',
-                'Cli',
-                '\Hashbangcode\Wevolution\Evolution\Individual\Decorators\ColorIndividualDecoratorCli'
-            ],
-            [
-                '\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual',
-                'Html',
-                '\Hashbangcode\Wevolution\Evolution\Individual\Decorators\ColorIndividualDecoratorHtml'
-            ],
-            [
-                '\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual',
-                'cli',
-                '\Hashbangcode\Wevolution\Evolution\Individual\Decorators\ColorIndividualDecoratorCli'
-            ],
-            [
-                '\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual',
-                'html',
-                '\Hashbangcode\Wevolution\Evolution\Individual\Decorators\ColorIndividualDecoratorHtml'
-            ],
-        ];
+        $typeObject = new \Hashbangcode\Wevolution\Type\Number\Number(1);
+        $individualObject = new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual($typeObject);
+        $decorator = IndividualDecoratorFactory::getIndividualDecorator($individualObject, 'cli');
+        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\NumberIndividualDecoratorCli', $decorator);
+    }
+
+    public function testFindNumberIndividualDecoratorHtml()
+    {
+        $typeObject = new \Hashbangcode\Wevolution\Type\Number\Number(1);
+        $individualObject = new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual($typeObject);
+        $decorator = IndividualDecoratorFactory::getIndividualDecorator($individualObject, 'html');
+        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\NumberIndividualDecoratorHtml', $decorator);
+    }
+
+    public function testFindColorIndividualDecoratorHtml()
+    {
+        $typeObject = new \Hashbangcode\Wevolution\Type\Color\Color(1, 1, 1);
+        $individualObject = new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual($typeObject);
+        $decorator = IndividualDecoratorFactory::getIndividualDecorator($individualObject, 'html');
+        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\ColorIndividualDecoratorHtml', $decorator);
     }
 
     public function testNotFindIndividualDecorator()
@@ -62,10 +43,8 @@ class IndividualDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
         $exception = '\Hashbangcode\Wevolution\Evolution\Individual\Decorators\Exception\IndividualDecoratorNotFoundException';
         $this->expectException($exception);
 
-        $numberIndividualClass = '\Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual';
-        $type = 'Something';
-
-        $numberIndividual = new $numberIndividualClass();
-        $decorator = IndividualDecoratorFactory::getIndividualDecorator($numberIndividual, $type);
+        $typeObject = new \Hashbangcode\Wevolution\Type\Color\Color(1, 1, 1);
+        $individualObject = new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual($typeObject);
+        $decorator = IndividualDecoratorFactory::getIndividualDecorator($individualObject, 'something');
     }
 }
