@@ -49,12 +49,4 @@ class Text implements TypeInterface
     {
         $this->setText($text);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->getText();
-    }
 }
