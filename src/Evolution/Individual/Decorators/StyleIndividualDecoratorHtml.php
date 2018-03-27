@@ -3,11 +3,11 @@
 namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
 
 /**
- * Class StyleIndividualDecoratorCli.
+ * Class StyleIndividualDecoratorHtml.
  *
  * @package Hashbangcode\Wevolution\Evolution\Individual\Decorators
  */
-class StyleIndividualDecoratorCli extends IndividualDecorator
+class StyleIndividualDecoratorHtml extends IndividualDecorator
 {
     /**
      * {@inheritdoc}
@@ -28,7 +28,7 @@ class StyleIndividualDecoratorCli extends IndividualDecorator
                 $output .= $attribute . ':';
 
                 // This might be a unit or a color object.
-                $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($value, 'cli');
+                $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($value, 'html');
                 $output .= $individualDecorator->render();
 
                 $output .= ';';
@@ -37,7 +37,7 @@ class StyleIndividualDecoratorCli extends IndividualDecorator
                 $output .= $attribute . ':';
                 $valueArray = [];
                 foreach ($value as $val) {
-                    $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($val, 'cli');
+                    $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($val, 'html');
                     $valueArray[] = $individualDecorator->render();
                 }
                 $output .= implode(' ', $valueArray) . ';';
