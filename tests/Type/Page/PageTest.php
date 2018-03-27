@@ -18,13 +18,6 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Page\Page', $object);
     }
 
-    public function testRenderSimplePage()
-    {
-        $object = new Page();
-        $output = $object->render();
-        $this->assertStringEqualsFile('tests/Type/Page/page01.html', $output);
-    }
-
     public function __testRenderPageWithBody()
     {
             // @todo : refactor into decorator.

@@ -164,40 +164,6 @@ class Page implements TypeInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        // Set up output variables.
-        $style = '';
-        $body = '';
-
-        // Render the styles.
-        if (count($this->getStyles()) > 0) {
-            foreach ($this->getStyles() as $styleObject) {
-                if ($styleObject instanceof Style) {
-                    $style .= PHP_EOL . '        ' . $styleObject->render();
-                }
-            }
-            // Wrap the style in tags.
-            $style = '    <style>' . $style . PHP_EOL . '    </style>' . PHP_EOL;
-        }
-
-        // Render the body.
-        if ($this->getBody() instanceof Element) {
-            $body .= $this->getBody()->render() . PHP_EOL;
-        }
-
-        // Put the pieces together.
-        ob_start();
-        include 'template.php';
-        $html = ob_get_contents();
-        ob_end_clean();
-
-        return $html;
-    }
-
-    /**
      * Implements __clone().
      */
     public function __clone()
