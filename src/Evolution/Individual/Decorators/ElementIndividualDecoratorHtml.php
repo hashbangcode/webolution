@@ -10,6 +10,13 @@ namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
 class ElementIndividualDecoratorHtml extends IndividualDecorator
 {
     /**
+     * The type of rendering.
+     *
+     * @var string
+     */
+    protected $type = 'html';
+
+    /**
      * {@inheritdoc}
      */
     public function render()
@@ -17,7 +24,7 @@ class ElementIndividualDecoratorHtml extends IndividualDecorator
         $object = $this->getIndividual()->getObject();
 
         if ($object->getType() === false && is_object($object->getObject())) {
-            $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($object, 'html');
+            $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($object, $this->type);
             return $individualDecorator->render();
         }
 
@@ -37,7 +44,7 @@ class ElementIndividualDecoratorHtml extends IndividualDecorator
 
         if (count($object->getChildren()) > 0) {
             foreach ($object->getChildren() as $index => $child) {
-                $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($child, 'html');
+                $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($child, $this->type);
                 $output .= $individualDecorator->render();
             }
         }
