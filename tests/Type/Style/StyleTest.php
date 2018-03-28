@@ -59,16 +59,6 @@ class StyleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(false, $object->getAttribute('color'));
     }
 
-    public function testRenderMoreComplexStyle()
-    {
-        $object = new Style('.element', ['background' => 'black']);
-        $object->setAttribute('color', 'red');
-        $object->setAttribute('padding', '0px');
-        // @todo : refactor to have no render.
-        $renderedStyle = $object->render();
-        $this->assertEquals('.element{background:black;color:red;padding:0px;}', $renderedStyle);
-    }
-
     public function __testRenderArrayStyle()
     {
       // @todo : refactor into decorator.
