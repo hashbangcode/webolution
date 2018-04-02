@@ -40,23 +40,6 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $numberPopulation->getLength());
     }
 
-    public function __testDefaultSort()
-    {
-      // @todo : refactor into decorator.
-        $numberPopulation = new NumberPopulation();
-        // @todo : refactor using prophecy.
-        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(1));
-        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(2));
-        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(3));
-        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(4));
-        $numberPopulation->addIndividual(NumberIndividual::generateFromNumber(5));
-
-        $numberPopulation->sort();
-        $output = $numberPopulation->render();
-
-        $this->assertContains('1 2 3 4 5', $output);
-    }
-
     public function testNumberIteration()
     {
         $numberPopulation = new NumberPopulation();

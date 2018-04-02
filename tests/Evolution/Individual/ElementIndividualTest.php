@@ -53,55 +53,6 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $object->getFitness());
     }
 
-    public function __testElementIndividualCliRenderWithObject()
-    {
-      // @todo : refactor into decorator.
-        $object = new ElementIndividual(new Element('html'));
-        $renderType = 'cli';
-        $this->assertEquals('<html></html>' . PHP_EOL, $object->render($renderType));
-    }
-
-    public function __testElementIndividualCliRenderWithString()
-    {
-      // @todo : refactor into decorator.
-        $object = ElementIndividual::generateFromElementType('html');
-        $renderType = 'cli';
-        $this->assertEquals('<html></html>' . PHP_EOL, $object->render($renderType));
-    }
-
-    public function __testElementIndividualHtmlRenderWithObject()
-    {
-      // @todo : refactor into decorator.
-        $object = new ElementIndividual(new Element('html'));
-        $renderType = 'html';
-        $this->assertEquals('<html></html>', $object->render($renderType));
-    }
-
-    public function __testElementIndividualHtmlRenderWithString()
-    {
-      // @todo : refactor into decorator.
-        $object = ElementIndividual::generateFromElementType('html');
-        $renderType = 'html';
-        $this->assertEquals('<html></html>', $object->render($renderType));
-    }
-
-    public function __testMutateElementAttribute()
-    {
-      // @todo : refactor into decorator.
-        $html = new Element('html');
-        $body = new Element('body');
-        $html->addChild($body);
-
-        $object = new ElementIndividual($html);
-
-        $rootElement = $object->getObject();
-        $element = $rootElement->getChildren()[0];
-        $element->setAttributes(array('class' => 'test'));
-
-        $object->mutate(-100);
-        $this->assertContains('<html><body class="test"><', $object->render());
-    }
-
     public function testMutateElementAttributeLength()
     {
         $div = new Element('div');

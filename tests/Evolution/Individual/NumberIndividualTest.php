@@ -39,29 +39,6 @@ class NumberIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(8, $object->getFitness());
     }
 
-    public function __testCliRender()
-    {
-      // @todo : refactor into decorator.
-        $object = NumberIndividual::generateFromNumber(1);
-        $renderType = 'cli';
-        $this->assertEquals('1 ', $object->render($renderType));
-    }
-
-    public function __testHtmlRender()
-    {
-      // @todo : refactor into decorator.
-        $object = NumberIndividual::generateFromNumber(1);
-        $renderType = 'html';
-        $this->assertEquals('1 ', $object->render($renderType));
-    }
-
-    public function __testDefaultRender()
-    {
-      // @todo : refactor into decorator.
-        $object = NumberIndividual::generateFromNumber(1);
-        $this->assertEquals('1 ', $object->render());
-    }
-
     public function testMutateNumber()
     {
         // @todo : this test fails randomly. consider refactoring.

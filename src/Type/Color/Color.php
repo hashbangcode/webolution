@@ -814,14 +814,6 @@ class Color implements TypeInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function __toString()
-    {
-        return $this->getHex();
-    }
-
-    /**
      * Generate a hex value of the color based on the current RGB values.
      *
      * @return string

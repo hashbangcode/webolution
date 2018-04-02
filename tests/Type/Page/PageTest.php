@@ -17,48 +17,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $object = new Page();
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Page\Page', $object);
     }
-
-    public function __testRenderPageWithBody()
-    {
-            // @todo : refactor into decorator.
-        $object = new Page();
-
-        $body = new Element('div');
-        $object->setBody($body);
-
-        $output = $object->render();
-        $this->assertStringEqualsFile('tests/Type/Page/page02.html', $output);
-    }
-
-    public function __testRenderPageWithStyle()
-    {
-      // @todo : refactor into decorator.
-        $object = new Page();
-
-        $style = new Style('div');
-        $style->setAttribute('color', 'red');
-        $object->setStyle($style);
-
-        $output = $object->render();
-        $this->assertStringEqualsFile('tests/Type/Page/page03.html', $output);
-    }
-
-    public function __testRenderPageWithBodyAndStyle()
-    {
-      // @todo : refactor into decorator.
-        $object = new Page();
-
-        $style = new Style('div');
-        $style->setAttribute('color', 'red');
-        $object->setStyle($style);
-
-        $element = new Element('div');
-        $object->setBody($element);
-
-        $output = $object->render();
-        $this->assertStringEqualsFile('tests/Type/Page/page04.html', $output);
-    }
-
+    
     public function testGetAndSetStyles()
     {
         $object = new Page();

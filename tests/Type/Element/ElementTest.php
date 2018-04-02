@@ -3,6 +3,7 @@
 namespace Hashbangcode\Wevolution\Test\Type\Element;
 
 use Hashbangcode\Wevolution\Type\Element\Element;
+use Prophecy\Prophet;
 
 /**
  * Test class for Color
@@ -14,15 +15,6 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     {
         $object = new Element();
         $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Element\Element', $object);
-    }
-
-    public function __testCreateEmptyDivElement()
-    {
-      // @todo : refactor into decorator.
-        $object = new Element();
-        $object->setType('div');
-        $this->assertEquals('div', $object->getType('div'));
-        $this->assertEquals('<div></div>', $object->render());
     }
 
     public function testGetAttribute()
@@ -39,16 +31,6 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $object->setType('div');
         $object->setAttributes(array('id' => 'test'));
         $this->assertEquals(false, $object->getAttribute('monkey'));
-    }
-
-    public function __testCreateDivElementWithAttribute()
-    {
-      // @todo : refactor into decorator.
-        $object = new Element();
-        $object->setType('div');
-        $object->setAttributes(array('id' => 'test'));
-        $this->assertEquals('div', $object->getType('div'));
-        $this->assertEquals('<div id="test"></div>', $object->render());
     }
 
     public function testResetAttributes()
@@ -73,22 +55,6 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('another', $object->getAttributes()['id']);
     }
 
-    public function __testCreateSinglyNestedDivElement()
-    {
-      // @todo : refactor into decorator.
-        $outer_element = new Element();
-        $outer_element->setType('div');
-
-        $inner_element = new Element();
-        $inner_element->setType('div');
-
-        $outer_element->addChild($inner_element);
-
-        $this->assertEquals('div', $outer_element->getType('div'));
-        $this->assertEquals('div', $inner_element->getType('div'));
-        $this->assertEquals('<div><div></div></div>', $outer_element->render());
-    }
-
     public function testAddInvalidChild()
     {
         $outer_element = new Element();
@@ -100,50 +66,6 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $message = 'Cant add child of type "div" to "ol"';
         $this->setExpectedException('Hashbangcode\Wevolution\Type\Element\Exception\InvalidChildTypeException', $message);
         $outer_element->addChild($inner_element);
-    }
-
-    public function __testCreateDoublyNestedDivElement()
-    {
-      // @todo : refactor into decorator.
-        $outer_element = new Element();
-        $outer_element->setType('div');
-
-        $inner_element = new Element();
-        $inner_element->setType('div');
-
-        $inner_inner_element = new Element();
-        $inner_inner_element->setType('div');
-
-        $inner_element->addChild($inner_inner_element);
-
-        $outer_element->addChild($inner_element);
-
-        $this->assertEquals('div', $outer_element->getType('div'));
-        $this->assertEquals('div', $inner_element->getType('div'));
-        $this->assertEquals('div', $inner_inner_element->getType('div'));
-        $this->assertEquals('<div><div><div></div></div></div>', $outer_element->render());
-    }
-
-    public function __testCreateSinglyNestedDivElementWithMultipleChildren()
-    {
-      // @todo : refactor into decorator.
-        $outer_element = new Element();
-        $outer_element->setType('div');
-
-        $inner_element1 = new Element();
-        $inner_element1->setType('div');
-
-        $outer_element->addChild($inner_element1);
-
-        $inner_element2 = new Element();
-        $inner_element2->setType('div');
-
-        $outer_element->addChild($inner_element2);
-
-        $this->assertEquals('div', $outer_element->getType('div'));
-        $this->assertEquals('div', $inner_element1->getType('div'));
-        $this->assertEquals('div', $inner_element2->getType('div'));
-        $this->assertEquals('<div><div></div><div></div></div>', $outer_element->render());
     }
 
     public function testSetIncorrectAttributes()
@@ -185,61 +107,70 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    public function __testCloneElement()
+    public function testCloneElement()
     {
-            // @todo : refactor into decorator.
         $element = new Element();
         $element->setType('div');
 
-        $element_clone = clone $element;
+        $elementClone = clone $element;
 
-        $element_clone->setAttribute('class', 'wibble');
+        $elementClone->setType('p');
+        $elementClone->setAttribute('class', 'wibble');
 
-        $this->assertEquals('<div></div>', $element->render());
-        $this->assertEquals('<div class="wibble"></div>', $element_clone->render());
+        $this->assertEquals('div', $element->getType());
+        $this->assertEquals('p', $elementClone->getType());
+
+        $this->assertEquals('wibble', $elementClone->getAttribute('class'));
     }
 
-    public function __testCloneElementWithChild()
+    public function testCloneElementWithChild()
     {
-      // @todo : refactor into decorator.
-        $outer_element = new Element();
-        $outer_element->setType('div');
+        $outerElement = new Element();
+        $outerElement->setType('div');
 
-        $inner_element = new Element();
-        $inner_element->setType('div');
+        $innerElement = new Element();
+        $innerElement->setType('div');
 
-        $outer_element->addChild($inner_element);
+        $outerElement->addChild($innerElement);
 
-        $element_clone = clone $outer_element;
+        $elementClone = clone $outerElement;
 
-        $element_clone->setAttribute('class', 'wibble');
+        $elementClone->setType('p');
+        $elementClone->setAttribute('class', 'wibble');
+        $elementClone->getChildren()[0]->setAttribute('class', 'wobble');
 
-        $element_clone->getChildren()[0]->setAttribute('class', 'wobble');
+        $this->assertEquals('div', $outerElement->getType());
+        $this->assertEquals('p', $elementClone->getType());
 
-        $this->assertEquals('<div><div></div></div>', $outer_element->render());
-        $this->assertEquals('<div class="wibble"><div class="wobble"></div></div>', $element_clone->render());
+        $this->assertEquals('wibble', $elementClone->getAttribute('class'));
+        $this->assertEquals('wobble', $elementClone->getChildren()[0]->getAttribute('class'));
+
+        $this->assertFalse($outerElement->getAttribute('class'));
+        $this->assertFalse($outerElement->getChildren()[0]->getAttribute('class'));
     }
 
-    public function __testCloneElementWithTwoLevelsChild()
+    public function testCloneElementWithTwoLevelsChild()
     {
-            // @todo : refactor into decorator.
-        $outer_element = new Element('div');
-        $inner_element = new Element('div');
-        $inner_inner_element = new Element('div');
+        $outerElement = new Element('div');
+        $innerElement = new Element('div');
+        $innerInnerElement = new Element('div');
 
-        $outer_element->addChild($inner_element);
-        $inner_element->addChild($inner_inner_element);
+        $outerElement->addChild($innerElement);
+        $innerElement->addChild($innerInnerElement);
 
-        $element_clone = clone $outer_element;
+        $elementClone = clone $outerElement;
 
-        $element_clone->setAttribute('class', 'wibble');
-        $element_clone->getChildren()[0]->setAttribute('class', 'wobble');
-        $element_clone->getChildren()[0]->getChildren()[0]->setAttribute('class', 'foo');
+        $elementClone->setAttribute('class', 'wibble');
+        $elementClone->getChildren()[0]->setAttribute('class', 'wobble');
+        $elementClone->getChildren()[0]->getChildren()[0]->setAttribute('class', 'foo');
 
-        $expected = '<div><div><div></div></div></div>';
-        $this->assertEquals($expected, $outer_element->render());
-        $expected = '<div class="wibble"><div class="wobble"><div class="foo"></div></div></div>';
-        $this->assertEquals($expected, $element_clone->render());
+        $this->assertFalse($outerElement->getAttribute('class'));
+        $this->assertFalse($outerElement->getChildren()[0]->getAttribute('class'));
+        $this->assertFalse($outerElement->getChildren()[0]->getChildren()[0]->getAttribute('class'));
+
+        $this->assertEquals('wibble', $elementClone->getAttribute('class'));
+        $this->assertEquals('wobble', $elementClone->getChildren()[0]->getAttribute('class'));
+        $this->assertEquals('foo', $elementClone->getChildren()[0]->getChildren()[0]->getAttribute('class'));
     }
 
     public function testGetChildTypes()
@@ -325,23 +256,6 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sometext', $object->getElementText());
     }
 
-    public function __testRenderInnerObject()
-    {
-      // @todo : refactor into decorator.
-        $innerObject = new Element('div');
-        $outerObject = new Element($innerObject);
-        $this->assertEquals('<div></div>', $outerObject->render());
-    }
-
-    public function __testRenderInnerObjectAfterSettingType()
-    {
-            // @todo : refactor into decorator.
-        $innerObject = new Element('div');
-        $outerObject = new Element($innerObject);
-        $outerObject->setType('p');
-        $this->assertEquals('<div></div>', $outerObject->render());
-    }
-
     public function testGetChildTypesOfOuterObject()
     {
         $innerObject = new Element('div');
@@ -349,31 +263,31 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(false, $outerObject->getAvailableChildTypes());
     }
 
-    public function __testEmbedObjectInElement()
+    public function testEmbedObjectInElement()
     {
-            // @todo : refactor into decorator.
         $innerObject = new Element('div');
         $outerObject = new Element();
         $outerObject->setObject($innerObject);
         $this->assertEquals(false, $outerObject->getAvailableChildTypes());
-        $this->assertEquals('<div></div>', $outerObject->render());
+        $this->assertEquals('div', $outerObject->getObject()->getType());
     }
 
-    public function __testCloneEmbeddedObjectElement()
+    public function testCloneEmbeddedObjectElement()
     {
-            // @todo : refactor into decorator.
         $innerObject = new Element('div');
         $outerObject = new Element();
         $outerObject->setObject($innerObject);
-
-        $element_clone = clone $outerObject;
-
         $outerObject->getObject()->setAttribute('class', 'test');
 
-        $element_clone->getObject()->setAttribute('class', 'wobble');
+        $elementClone = clone $outerObject;
+        $elementClone->getObject()->setType('p');
+        $elementClone->getObject()->setAttribute('class', 'wobble');
 
-        $this->assertEquals('<div class="test"></div>', $outerObject->render());
-        $this->assertEquals('<div class="wobble"></div>', $element_clone->render());
+        $this->assertEquals('div', $outerObject->getObject()->getType());
+        $this->assertEquals('p', $elementClone->getObject()->getType());
+
+        $this->assertEquals('test', $outerObject->getObject()->getAttribute('class'));
+        $this->assertEquals('wobble', $elementClone->getObject()->getAttribute('class'));
     }
 
     public function testGetSelectorList()

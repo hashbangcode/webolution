@@ -20,24 +20,4 @@ class ElementPopulationTest extends \PHPUnit_Framework_TestCase
         $object = new ElementPopulation($element_individual);
         $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Population\ElementPopulation', $object);
     }
-
-    public function __testPageRender()
-    {
-      // @todo : refactor into decorator.
-        $page = new ElementPopulation();
-        $page->addIndividual();
-        $output = $page->render();
-        $this->assertContains('<div></div>', $output);
-    }
-
-    public function __testMinimalPageRender()
-    {
-      // @todo : refactor into decorator.
-        $element = new Element('div');
-        $element_individual = new ElementIndividual($element);
-        $page = new ElementPopulation();
-        $page->addIndividual($element_individual);
-        $output = $page->render();
-        $this->assertContains('<div></div>', $output);
-    }
 }

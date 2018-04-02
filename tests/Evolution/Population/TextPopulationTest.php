@@ -40,9 +40,8 @@ class TextPopulationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $population->getLength());
     }
 
-    public function __testDefaultSort()
+    public function testDefaultSort()
     {
-      // @todo : refactor into decorator.
         $population = new TextPopulation();
 
         $population->addIndividual(TextIndividual::generateFromString('A'));
@@ -53,8 +52,12 @@ class TextPopulationTest extends \PHPUnit_Framework_TestCase
 
         $population->sort();
 
-        $output = $population->render();
-        $this->assertContains('A B C D E', $output);
+        $individuals = $population->getIndividuals();
+        $this->assertEquals('A', $individuals[0]->getObject()->getText());
+        $this->assertEquals('B', $individuals[1]->getObject()->getText());
+        $this->assertEquals('C', $individuals[2]->getObject()->getText());
+        $this->assertEquals('D', $individuals[3]->getObject()->getText());
+        $this->assertEquals('E', $individuals[4]->getObject()->getText());
     }
 
     public function testPopulationLength()
@@ -71,17 +74,5 @@ class TextPopulationTest extends \PHPUnit_Framework_TestCase
             $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Text\Text', $text);
         }
         $this->assertEquals(3, $population->getLength());
-    }
-
-    public function __testRenderPopulation()
-    {
-      // @todo : refactor into decorator.
-        $population = new TextPopulation();
-
-        $population->addIndividual(TextIndividual::generateFromString('wibble'));
-
-        $output = $population->render();
-
-        $this->assertContains('wibble', $output);
     }
 }

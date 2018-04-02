@@ -59,34 +59,4 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('width="125"', $imageOutput);
         $this->assertContains('height="125"', $imageOutput);
     }
-
-    public function __testRenderImageIndividualAsHtml()
-    {
-      // @todo : refactor into decorator
-        $object = ImageIndividual::generateFromImageSize(25, 25);
-        $object->getObject()->setPixel(24, 12, 1);
-        $htmlOutput = $object->render('html');
-        $this->assertContains('<p>', $htmlOutput);
-        $this->assertContains('0001000', $htmlOutput);
-    }
-
-    public function __testRenderImageIndividualAsDefault()
-    {
-            // @todo : refactor into decorator
-        $object = ImageIndividual::generateFromImageSize(25, 25);
-        $object->getObject()->setPixel(24, 12, 1);
-        $defaultOutput = $object->render();
-        $this->assertNotContains('<p>', $defaultOutput);
-        $this->assertContains('0001000', $defaultOutput);
-    }
-
-    public function __testRenderImageIndividualAsCli()
-    {
-            // @todo : refactor into decorator
-        $object = ImageIndividual::generateFromImageSize(25, 25);
-        $object->getObject()->setPixel(24, 12, 1);
-        $defaultOutput = $object->render('cli');
-        $this->assertNotContains('<p>', $defaultOutput);
-        $this->assertContains('0001000', $defaultOutput);
-    }
 }

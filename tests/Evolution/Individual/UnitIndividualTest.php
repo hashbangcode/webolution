@@ -39,29 +39,6 @@ class UnitIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(8, $object->getFitness());
     }
 
-    public function __testCliRender()
-    {
-      // @todo : refactor into decorator.
-        $object = UnitIndividual::generateFromUnitArguments(1, 'px');
-        $renderType = 'cli';
-        $this->assertEquals('1px', $object->render($renderType));
-    }
-
-    public function __testHtmlRender()
-    {
-      // @todo : refactor into decorator.
-        $object = UnitIndividual::generateFromUnitArguments(1, 'px');
-        $renderType = 'html';
-        $this->assertEquals('1px', $object->render($renderType));
-    }
-
-    public function __testDefaultRender()
-    {
-      // @todo : refactor into decorator.
-        $object = UnitIndividual::generateFromUnitArguments(1, 'px');
-        $this->assertEquals('1px', $object->render());
-    }
-
     public function testMutateUnit()
     {
         $object = UnitIndividual::generateFromUnitArguments(1, 'px');
