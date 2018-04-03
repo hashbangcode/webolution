@@ -2,7 +2,6 @@
 
 namespace Hashbangcode\Wevolution\Test\Type\Style;
 
-use Hashbangcode\Wevolution\Evolution\Individual\UnitIndividual;
 use Hashbangcode\Wevolution\Type\Style\Style;
 use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 
@@ -55,18 +54,17 @@ class StyleTest extends \PHPUnit_Framework_TestCase
     public function testCloneStyleObject()
     {
         $object = new Style('.element');
-        // @todo : refactor using phophecy.
-        $object->setAttribute('background', ColorIndividual::generateFromHex('000000'));
+
         $object->setAttribute('color', ColorIndividual::generateFromHex('555555'));
         $object->setAttribute('padding', '0px');
 
-        $new_object = clone $object;
+        $newObject = clone $object;
 
-        $color = $new_object->getAttribute('color');
+        $color = $newObject->getAttribute('color');
         $color->getObject()->setRed('000');
 
         // Original object should have the same color.
         $this->assertEquals('555555', $object->getAttribute('color')->getObject()->getHex());
-        $this->assertEquals('005555', $new_object->getAttribute('color')->getObject()->getHex());
+        $this->assertEquals('005555', $newObject->getAttribute('color')->getObject()->getHex());
     }
 }
