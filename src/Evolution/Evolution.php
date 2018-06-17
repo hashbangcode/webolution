@@ -7,6 +7,7 @@ use Hashbangcode\Wevolution\Evolution\Population\Decorators\PopulationDecoratorF
 use Hashbangcode\Wevolution\Evolution\Population\Population;
 use Hashbangcode\Wevolution\Evolution\Statistics\Decorators\StatisticsDecoratorCli;
 use Hashbangcode\Wevolution\Evolution\Statistics\Decorators\StatisticsDecoratorHtml;
+use Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException;
 
 /**
  * Class Evolution.
@@ -446,6 +447,9 @@ class Evolution
      *
      * @return string
      *   The rendered output.
+     *
+     * @throws \Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException
+     *   Throws an exception if the decorator is not found.
      */
     public function renderGenerations($printStats = false, $format = 'html')
     {
@@ -454,9 +458,7 @@ class Evolution
         /* @var Population $population */
         foreach ($this->previousGenerations as $generation_number => $population) {
             // Render the population.
-
             $populationDecorator = PopulationDecoratorFactory::getPopulationDecorator($population, $format);
-
             $output .= $generation_number . ':<br>' . $populationDecorator->render() . PHP_EOL . '<br>';
 
             if ($printStats === true) {
