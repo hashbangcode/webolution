@@ -36,6 +36,7 @@ class ColorPopulation extends Population
                     $bValue = $b->getObject()->getHex();
                     break;
                 case 'intensity':
+                    // @todo : not implented.
                     $aValue = $a->getObject()->getIntensity();
                     $bValue = $b->getObject()->getIntensity();
                     break;

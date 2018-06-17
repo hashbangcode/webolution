@@ -576,11 +576,13 @@ class Color implements TypeInterface
 
         switch ($max) {
             case 0:
+                // If the max value is 0.
                 $this->hue = 0;
                 $this->hsv_saturation = 0;
                 $this->value = 0;
                 break;
             case $min:
+                // If the maximum and minimum values are the same.
                 $this->hue = 0;
                 $this->hsv_saturation = 0;
                 $this->value = round($max, 4);
@@ -612,7 +614,7 @@ class Color implements TypeInterface
     public function calculateLuma()
     {
         // Luma is calculated by 0.2126R + 0.7152G + 0.0722B
-        $luma = (0.2126 * $this->red) + (0.7152 * $this->green) + (.0722 * $this->blue);
+        $luma = (0.2126 * $this->red) + (0.7152 * $this->green) + (0.0722 * $this->blue);
         $this->luma = $luma;
     }
 
@@ -680,6 +682,7 @@ class Color implements TypeInterface
      */
     public function setIntensity($intensity)
     {
+        // @todo : nothing actually sets the intensity
         $this->intensity = $intensity;
     }
 
