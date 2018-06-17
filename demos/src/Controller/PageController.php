@@ -3,7 +3,9 @@
 namespace Hashbangcode\Wevolution\Demos\Controller;
 
 use Hashbangcode\Wevolution\Demos\Controller\BaseController;
+use Hashbangcode\Wevolution\Evolution\Individual\Decorators\IndividualDecoratorFactory;
 use Hashbangcode\Wevolution\Evolution\Population\StylePopulation;
+use Hashbangcode\Wevolution\Type\Page\Page;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Hashbangcode\Wevolution\Evolution\Evolution;
@@ -27,19 +29,23 @@ class PageController extends BaseController
 
         $output = '';
 
-        $page = PageIndividual::generateBlankPage();
+        $page = new Page();
+
+        $pageIndividual = new PageIndividual($page);
 
         $style = new Style('div');
         $style->setAttribute('font-size', '20px');
-        $page->getObject()->setStyle($style);
+        $page->setStyle($style);
 
         $body = new Element('div');
         $p = new Element('p');
         $body->addChild($p);
 
-        $page->getObject()->setBody($body);
+        $pageIndividual->getObject()->setBody($body);
 
-        $pageHtml = $page->render('html');
+        $pageIndividualDecorator = IndividualDecoratorFactory::getIndividualDecorator($pageIndividual, 'html');
+
+        $pageHtml = $pageIndividualDecorator->render('html');
 
         $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $pageHtml . '\'></iframe>';
         $output .= '<textarea rows="35" cols="35">' . $pageHtml . '</textarea>';
