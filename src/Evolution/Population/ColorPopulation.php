@@ -102,6 +102,30 @@ class ColorPopulation extends Population
      */
     public function crossover()
     {
-        // @todo implement this.
+        // Get two individuals from the population.
+        $individuals = $this->getRandomIndividuals(2);
+
+        // Make sure we have Individuals to use.
+        if ($individuals == false) {
+            // Add a clone of a individual individual.
+            $randomIndividual = $this->getRandomIndividual();
+            $this->addIndividual(clone $randomIndividual);
+
+            // Don't do anything else.
+            return;
+        }
+
+        // Get the hex value for the two colors.
+        $hex1 = str_split($individuals[0]->getObject()->getHex());
+        $hex2 = str_split($individuals[1]->getObject()->getHex());
+
+        // Combine the two colors together.
+        $newHex = $hex1[0] . $hex2[1] . $hex1[2] . $hex2[3] . $hex1[4] . $hex2[5];
+
+        // Create a new individual using the new color.
+        $individualNew = ColorIndividual::generateFromHex($newHex);
+
+        // Add the individual to the population.
+        $this->addIndividual($individualNew);
     }
 }

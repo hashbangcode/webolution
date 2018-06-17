@@ -32,6 +32,7 @@ class NumberController extends BaseController
         // Create the EvolutionManager object and add the population to it.
         $evolution = new EvolutionManager();
         $evolution->getEvolutionObject()->setPopulation($population);
+        $evolution->getEvolutionObject()->setReplicationType('crossover');
         $evolution->runEvolution();
 
         $output = '';

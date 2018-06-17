@@ -149,12 +149,47 @@ abstract class Population implements PopulationInterface
     public function getRandomIndividual()
     {
         if ($this->getLength() == 0) {
+            // No individuals in the array.
             return false;
         }
 
+
+        // @todo : instead of this being true random it needs to be slanted towards those individuals who are fitter.
         $random_key = array_rand($this->individuals);
         if (!is_null($random_key)) {
             return $this->individuals[$random_key];
+        }
+
+        return false;
+    }
+
+    /**
+     * Get a number of random individuals.
+     *
+     * @param int $number
+     *
+     * @return array|bool
+     *   A number of individuals.
+     */
+    public function getRandomIndividuals($number)
+    {
+        if ($this->getLength() == 0) {
+            // No individuals in the array.
+            return false;
+        }
+
+        if ($number > $this->getLength()) {
+            // The number we want is higher than the number of individuals to select from.
+            return false;
+        }
+
+        // @todo : instead of this being true random it needs to be slanted towards those individuals who are fitter.
+        $random_keys = array_rand($this->individuals, $number);
+        if (!is_null($random_keys)) {
+            return [
+                0 => $this->individuals[$random_keys[0]],
+                1 => $this->individuals[$random_keys[1]],
+            ];
         }
 
         return false;
@@ -243,9 +278,6 @@ abstract class Population implements PopulationInterface
         foreach ($this->getIndividuals() as $key => $individual) {
             $individual->mutate($this->getMutationFactor(), $this->getMutationAmount());
         }
-
-        // Run the crossover function.
-        $this->crossover();
     }
 
     /**

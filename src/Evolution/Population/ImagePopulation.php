@@ -83,11 +83,39 @@ class ImagePopulation extends Population
      */
     public function crossover()
     {
-        $individuals = $this->getIndividuals();
+        // Get two individuals from the population.
+        $individuals = $this->getRandomIndividuals(2);
 
-        $action = mt_rand(0, 100);
+        // Make sure we have Individuals to use.
+        if ($individuals == false) {
+            // Add a clone of a individual individual.
+            $randomIndividual = $this->getRandomIndividual();
+            $this->addIndividual(clone $randomIndividual);
 
-        if ($action <= 1) {
+            // Don't do anything else.
+            return;
         }
+
+        // Get the matrix for the two images.
+        $matrix1 = $individuals[0]->getObject()->getImageMatrix();
+        $matrix2 = $individuals[1]->getObject()->getImageMatrix();
+
+        // Combine the two matrices together by adding alternative rows from each matrix.
+        $newMatrix = [];
+        foreach ($matrix1 as $xId => $x) {
+            foreach ($matrix1[$xId] as $yId => $y) {
+                if ($yId % 2) {
+                    $newMatrix[$xId][$yId] = $matrix1[$xId][$yId];
+                } else {
+                    $newMatrix[$xId][$yId] = $matrix2[$xId][$yId];
+                }
+            }
+        }
+
+        // Create a new individual using the new matrix.
+        $individualNew = ImageIndividual::generateFromMatrix($newMatrix);
+
+        // Add the individual to the population.
+        $this->addIndividual($individualNew);
     }
 }

@@ -35,13 +35,29 @@ class ImageIndividual extends Individual
     }
 
     /**
+     * Generate the image from a matrix.
+     *
+     * @param array $matrix
+     *   The matrix to generate the image from.
+     *
+     * @return \Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual
+     */
+    public static function generateFromMatrix($matrix)
+    {
+        $imageObject = new Image();
+        $imageObject->setImageMatrix($matrix);
+        return new self($imageObject);
+    }
+
+
+    /**
      * {@inheritdoc}
      */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         $action = mt_rand(0, 100) + $mutationFactor;
 
-        if ($action <= 50) {
+        if ($action <= 75) {
             $image = $this->getObject();
 
             $imageMatrix = $image->getImageMatrix();

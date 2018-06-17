@@ -3,13 +3,13 @@ Webolution
 
 An experimental set of classes that attempts to put together an application that will evolve a webpage. This is intended
 to be a test application that allows me to learn the techniques involved in genetic algorithms as well as how to to
-put together a modern PHP application with composer. As a result things might change significantly without warning. 
+put together a modern PHP application with composer. As a result things might change significantly without warning.
 
 I'm interested in finding out if anyone has looked at this code or has any suggestions for improvement. Please get in touch via the issue queue and let me know.
 
 Requirements
 ============
-- PHP (preferably 7.1+). 
+- PHP (preferably 7.1+).
 - Composer.
 - The PHP Sqlite library is required for the evolution storage.
 
@@ -32,7 +32,7 @@ You can now open a web browser and go to localhost:8000 in order to view the dem
 
 Test
 ----
-To run all of the unit tests for the application run the following from the root directory. 
+To run all of the unit tests for the application run the following from the root directory.
 
 ```composer test```
 
@@ -91,7 +91,7 @@ A special value of ‘auto’ can also be represented.
 Style
 -----
 This defines an object that contains information about a CSS rule set against a single element. The class contains a selector property and an attributes property that combine together to form a CSS block.
- 
+
 Page
 ----
 A Page brings together the _Style_ and _Element_ classes into a page structure. The use of the _Page_ class allows the basic HTML structure of a page to be static whilst the elements and styles within it can change.
@@ -119,7 +119,7 @@ Any statistics for the population are then calculated.
 
 Storage
 -------
-This action clones the population into an array to that it can be retrieved later. This is important when looking through the history of the popluation.
+This action clones the population into an array to that it can be retrieved later. This is important when looking through the history of the population.
 
 Next steps
 ==========
@@ -138,7 +138,6 @@ Some things that need to happen.
 
 Future plans
 ============
-Some future plans to improve the application.
 
 - Add a dependency injection container to streamline the use of the application in other applications.
 - Generate a family tree of individuals. Might need to add a uuid to Individuals.

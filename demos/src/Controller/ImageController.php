@@ -147,9 +147,10 @@ class ImageController extends BaseController
             $population->addIndividual($image);
         }
 
-        $evolution = new Evolution($population);
+        $evolution = new Evolution($population, false);
         $evolution->setIndividualsPerGeneration(10);
         $evolution->setMaxGenerations(100);
+        $evolution->setReplicationType(Evolution::REPLICATION_TYPE_CROSSOVER);
 
         $output = '';
 
