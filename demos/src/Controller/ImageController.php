@@ -156,6 +156,7 @@ class ImageController extends BaseController
 
         for ($i = 0; $i < $evolution->getMaxGenerations(); ++$i) {
             if ($evolution->runGeneration() === false) {
+                // @todo : why does this sometimes appear randomly?
                 $output .= '<p>Everyone is dead.</p>';
                 break;
             }
