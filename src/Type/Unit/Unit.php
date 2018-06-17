@@ -130,14 +130,14 @@ class Unit implements TypeInterface
     /**
      * {@inheritdoc}
      */
-    public function render()
-    {
-        if ($this->getUnit() == 'auto') {
-            // If the unit is 'auto' then return just that.
-            return 'auto';
-        }
-
-        // Return the combination of number and unit.
-        return $this->getNumber() . '' . $this->getUnit();
-    }
+//    public function render()
+//    {
+//        if ($this->getUnit() == 'auto') {
+//            // If the unit is 'auto' then return just that.
+//            return 'auto';
+//        }
+//
+//        // Return the combination of number and unit.
+//        return $this->getNumber() . '' . $this->getUnit();
+//    }
 }
