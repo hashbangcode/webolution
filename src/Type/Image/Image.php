@@ -131,23 +131,6 @@ class Image implements TypeInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        $output = '';
-
-        foreach ($this->imageMatrix as $xId => $x) {
-            foreach ($x as $yId => $y) {
-                $output .= $y;
-            }
-            $output .= PHP_EOL;
-        }
-
-        return trim($output);
-    }
-
-    /**
      * Render the image as a base64 encoded string.
      *
      * @return string
