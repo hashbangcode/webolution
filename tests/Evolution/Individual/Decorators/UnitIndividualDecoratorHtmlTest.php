@@ -22,18 +22,36 @@ class UnitIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\UnitIndividualDecoratorHtml', $individualDecorator);
     }
 
-    public function testRender()
+    /**
+     * @dataProvider unitRenderDataProvider
+     */
+    public function testRender($number, $unit, $expectedRender)
     {
         $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Unit\Unit');
-        $object->getUnit()->willReturn('px');
-        $object->getNumber()->willReturn('1');
+        $object->getUnit()->willReturn($unit);
+        $object->getNumber()->willReturn($number);
 
         $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\UnitIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $individualDecorator = new UnitIndividualDecoratorHtml($objectIndividual->reveal());
         $render = $individualDecorator->render();
-        $this->assertEquals('1px', $render);
+        $this->assertEquals($expectedRender, $render);
+    }
+
+
+    public function unitRenderDataProvider()
+    {
+        return [
+            [1, 'px', '1px'],
+            [50, 'px', '50px'],
+            [-1, 'px', '-1px'],
+            [1, 'em', '1em'],
+            [100, 'em', '100em'],
+            [1, '%', '1%'],
+            [123, '%', '123%'],
+            [1, 'auto', 'auto'],
+        ];
     }
 
     protected function tearDown()
