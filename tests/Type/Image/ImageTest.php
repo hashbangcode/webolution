@@ -106,25 +106,6 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $object->getPixel(2, 100);
     }
 
-    public function testRenderImage()
-    {
-        $object = new Image(5, 5);
-        $output = $object->render();
-        $this->assertStringEqualsFile('tests/Type/Image/image01.txt', $output);
-    }
-
-    public function testRenderMoreComplexImage()
-    {
-        $object = new Image(5, 5);
-
-        $object->setPixel(1, 1, 1);
-        $object->setPixel(2, 2, 1);
-        $object->setPixel(3, 3, 1);
-
-        $output = $object->render();
-        $this->assertStringEqualsFile('tests/Type/Image/image02.txt', $output);
-    }
-
     public function testAdjacentPixelsWith1Pixel()
     {
         $object = new Image(5, 5);
@@ -218,7 +199,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, $image->getActivePixels());
     }
 
-    public function testGetHeightOne()
+    public function testGetHeightSimple()
     {
         $image = new Image(5, 5);
         $image->setPixel(3, 2, 1);
@@ -227,7 +208,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, $image->getHeight());
     }
 
-    public function testGetHeightTwo()
+    public function testGetHeightComplex()
     {
         $image = new Image(10, 10);
 
