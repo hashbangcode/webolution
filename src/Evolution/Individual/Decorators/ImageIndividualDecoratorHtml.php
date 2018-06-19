@@ -21,9 +21,65 @@ class ImageIndividualDecoratorHtml extends IndividualDecorator
         $imageY = (count($imageMatrix[0]) + 100);
 
         // Render the image into base64.
-        $image = $this->getIndividual()->getObject()->renderBase64Image();
+        $image = $this->renderBase64Image($imageMatrix);
 
         // Render the image into an image tag.
         return '<img width="' . $imageX . '" height="' . $imageY . '" src="' . $image . '" /> ';
+    }
+
+    /**
+     * Render the image as a base64 encoded string.
+     *
+     * @param array $imageMatrix
+     *   The image matrix to render.
+     *
+     * @return string
+     *   The base64 version of the image.
+     */
+    public function renderBase64Image($imageMatrix)
+    {
+        // Calculate the size of the image.
+        $imageX = (count($imageMatrix) + 100);
+        $imageY = (count($imageMatrix[0]) + 100);
+
+        // Calculate the size of a pixel.
+        $pixelSize = $imageX / count($imageMatrix);
+
+        // Set up image handle.
+        $im = imagecreatetruecolor($imageX, $imageY);
+
+        // Assign colours.
+        $backgroundColor = imagecolorallocate($im, 255, 255, 255);
+        $filledColor = imagecolorallocate($im, 132, 135, 28);
+
+        // Generate image pixels.
+        $xCoord = 0;
+
+        foreach ($imageMatrix as $xId => $x) {
+            $yCoord = 0;
+            foreach ($x as $yId => $y) {
+                // Find out the end of the rectangle.
+                $xEnd = $xCoord + $pixelSize;
+                $yEnd = $yCoord + $pixelSize;
+
+                // Pick the right color.
+                if ($y == 1) {
+                    imagefilledrectangle($im, $yCoord, $xCoord, $yEnd, $xEnd, $filledColor);
+                } else {
+                    imagefilledrectangle($im, $yCoord, $xCoord, $yEnd, $xEnd, $backgroundColor);
+                }
+                $yCoord = $yCoord + $pixelSize;
+            }
+            $xCoord = $xCoord + $pixelSize;
+        }
+
+        // Render the image.
+        ob_start();
+        imagejpeg($im, null, 75);
+        $rawImage = ob_get_contents();
+        ob_end_clean();
+
+        // Convert the image to
+        return 'data:image/jpg;base64,' . base64_encode($rawImage);
     }
 }
