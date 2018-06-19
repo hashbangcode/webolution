@@ -32,7 +32,6 @@ class ImageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
         }
 
         $object->getImageMatrix()->willReturn($imageMatrix);
-        $object->renderBase64Image()->willReturn('data:image/jpg;base64,1');
         $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
