@@ -69,20 +69,22 @@ class PageController extends BaseController
 
         // Setup evolution storage.
         $evolution = new Evolution();
-        $evolution->setIndividualsPerGeneration(4);
-        $evolution->setMaxGenerations(200);
+        $evolution->setIndividualsPerGeneration(8);
+        $evolution->setMaxGenerations(100);
 
         $pageIndividual = PageIndividual::generateBlankPage();
 
-        $p = new Element('p');
+        $div = new Element('div');
 
+        $p = new Element('p');
         $ul = new Element('ul');
         $li = new Element('li');
 
+        $div->addChild($p);
         $p->addChild($ul);
         $ul->addChild($li);
 
-        $pageIndividual->getObject()->setBody($p);
+        $pageIndividual->getObject()->setBody($div);
 
         $pageIndividual->getObject()->generateStylesFromBody();
 
@@ -99,7 +101,7 @@ class PageController extends BaseController
             }
         }
 
-        $output .= $evolution->renderGenerations();
+        $output .= $evolution->renderGenerations(false, 'iframe');
 
         return $this->view->render($response, 'demos.twig', [
             'title' => $title,
@@ -155,7 +157,7 @@ class PageController extends BaseController
         }
 
         // Run generation.
-        $evolution->runGeneration();
+        $evolution->runGeneration(false, 'iframe');
 
         $output = '';
 
