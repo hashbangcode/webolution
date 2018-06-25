@@ -2,6 +2,9 @@
 
 namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
 
+use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
+use Hashbangcode\Wevolution\Evolution\Individual\IndividualInterface;
+
 /**
  * Class ElementIndividualDecoratorHtml.
  *
@@ -44,7 +47,12 @@ class ElementIndividualDecoratorHtml extends IndividualDecorator
 
         if (count($object->getChildren()) > 0) {
             foreach ($object->getChildren() as $index => $child) {
-                $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($child, $this->type);
+                if (($child instanceof IndividualInterface) == false) {
+                    $individualChild = new ElementIndividual($child);
+                    $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($individualChild, $this->type);
+                } else {
+                    $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($child, $this->type);
+                }
                 $output .= $individualDecorator->render();
             }
         }
