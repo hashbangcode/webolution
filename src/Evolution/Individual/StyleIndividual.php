@@ -264,8 +264,31 @@ class StyleIndividual extends Individual
      */
     public function getFitness($type = '')
     {
-        // Render the style and return the fitness as a function of the string length.
-        // @todo : Improve this 'fitness'.
-        return strlen('123');
+        $fitness = 0;
+        if ($this->isSelectorId() == false) {
+            $fitness++;
+        }
+
+        $attributes = $this->getObject()->getAttributes();
+
+        $fitness += count($attributes);
+        return $fitness;
+    }
+
+    /**
+     * Is the selector an ID?
+     *
+     * @return bool
+     *   True if the selector is an ID.
+     */
+    public function isSelectorId()
+    {
+        $selector = $this->getObject()->getSelector();
+
+        if (substr($selector, 0, 1) == '#') {
+            return true;
+        }
+
+        return false;
     }
 }
