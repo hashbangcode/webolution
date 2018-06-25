@@ -53,24 +53,24 @@ class ImageIndividualDecoratorHtml extends IndividualDecorator
         $filledColor = imagecolorallocate($im, 132, 135, 28);
 
         // Generate image pixels.
-        $xCoord = 0;
+        $yCoord = 0;
 
-        foreach ($imageMatrix as $xId => $x) {
-            $yCoord = 0;
-            foreach ($x as $yId => $y) {
+        foreach ($imageMatrix as $yId => $y) {
+            $xCoord = 0;
+            foreach ($y as $xId => $x) {
                 // Find out the end of the rectangle.
-                $xEnd = $xCoord + $pixelSize;
                 $yEnd = $yCoord + $pixelSize;
+                $xEnd = $xCoord + $pixelSize;
 
                 // Pick the right color.
-                if ($y == 1) {
-                    imagefilledrectangle($im, $yCoord, $xCoord, $yEnd, $xEnd, $filledColor);
+                if ($x == 1) {
+                    imagefilledrectangle($im, $xCoord, $yCoord, $xEnd, $yEnd, $filledColor);
                 } else {
-                    imagefilledrectangle($im, $yCoord, $xCoord, $yEnd, $xEnd, $backgroundColor);
+                    imagefilledrectangle($im, $xCoord, $yCoord, $xEnd, $yEnd, $backgroundColor);
                 }
-                $yCoord = $yCoord + $pixelSize;
+                $xCoord = $xCoord + $pixelSize;
             }
-            $xCoord = $xCoord + $pixelSize;
+            $yCoord = $yCoord + $pixelSize;
         }
 
         // Render the image.
