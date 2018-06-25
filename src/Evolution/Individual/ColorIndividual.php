@@ -119,9 +119,9 @@ class ColorIndividual extends Individual
             case 'value':
                 return $color->getValue();
             case 'lightness':
-                return $color->getLightness();
+                return abs($color->getLightness() * 10);
             default:
-                return abs($color->getLightness() * 100);
+                return abs($color->getLightness() * 10);
         }
     }
 
