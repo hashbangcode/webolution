@@ -149,6 +149,8 @@ class Color implements TypeInterface
      *
      * @return \Hashbangcode\Wevolution\Type\Color\Color
      *   The new colour object.
+     *
+     * @throws Exception\InvalidRGBValueException
      */
     public static function generateFromHex($hex)
     {
@@ -170,10 +172,17 @@ class Color implements TypeInterface
     /**
      * Generate a Color from HSV values.
      *
-     * @param $hue
-     * @param $saturation
-     * @param $value
+     * @param int $hue
+     *   The hue.
+     * @param float $saturation
+     *   The saturation.
+     * @param float $value
+     *   The value.
+     *
      * @return \Hashbangcode\Wevolution\Type\Color\Color
+     *   A new Color object.
+     *
+     * @throws Exception\InvalidRGBValueException
      */
     public static function generateFromHSV($hue, $saturation, $value)
     {
@@ -234,9 +243,16 @@ class Color implements TypeInterface
      * Generate the color from HSL values.
      *
      * @param int $hue
-     * @param $saturation
-     * @param $lightness
-     * @return Color
+     *   The hue.
+     * @param float $saturation
+     *   The saturation.
+     * @param float $lightness
+     *   The lightness.
+     *
+     * @return \Hashbangcode\Wevolution\Type\Color\Color
+     *   A new Color object.
+     *
+     * @throws Exception\InvalidRGBValueException
      */
     public static function generateFromHSL($hue, $saturation, $lightness)
     {
@@ -296,7 +312,10 @@ class Color implements TypeInterface
     /**
      * Generate red, green and blue values and then create a Color object.
      *
-     * @return Color
+     * @return \Hashbangcode\Wevolution\Type\Color\Color
+     *   A new color object.
+     *
+     * @throws Exception\InvalidRGBValueException
      */
     public static function generateRandomColor()
     {
@@ -454,6 +473,8 @@ class Color implements TypeInterface
 
     /**
      * Calculate the HSI saturation values for the color.
+     *
+     * The values are then stored in the current object.
      */
     protected function calculateHsiSaturation()
     {
@@ -496,6 +517,8 @@ class Color implements TypeInterface
 
     /**
      * Calculate the HSL saturation values for the color.
+     *
+     * The values are then stored in the current object.
      */
     protected function calculateHSL()
     {
