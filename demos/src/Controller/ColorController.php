@@ -107,20 +107,17 @@ img {padding:0px;margin:0px;}';
 
         $population = new ColorPopulation();
         $population->setDefaultRenderType('html');
+        $population->setPopulationFitnessType('hue');
 
-        for ($i = 0; $i < 20; ++$i) {
+        for ($i = 0; $i < 40; ++$i) {
             $population->addIndividual(ColorIndividual::generateFromRgb(255, 255, 255));
         }
 
         $evolution = new Evolution($population);
         $evolution->setIndividualsPerGeneration(40);
-        $evolution->setMaxGenerations(100);
-        $evolution->setGlobalMutationFactor(10);
+        $evolution->setMaxGenerations(200);
+        $evolution->setGlobalMutationFactor(5);
         $evolution->setGlobalMutationAmount(5);
-
-        //$evolution->setReplicationType('clone');
-
-        $evolution->setReplicationType('crossover');
 
         $output = '';
 
@@ -128,7 +125,7 @@ img {padding:0px;margin:0px;}';
             $evolution->runGeneration();
         }
 
-        $output .= $evolution->renderGenerations();
+        $output .= $evolution->renderGenerations(true, 'html');
 
         return $this->view->render($response, 'demos.twig', [
             'title' => $title,

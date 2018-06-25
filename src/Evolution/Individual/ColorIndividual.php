@@ -110,11 +110,19 @@ class ColorIndividual extends Individual
         // Get the color object.
         $color = $this->getObject();
 
-        // Lightness is a value between 0 and 1.
-        $lightness = $color->getLightness();
-
-        // To make this fitness more meaningful we multiply this lightness value by 10.
-        return abs($lightness * 10);
+        switch ($type) {
+            // Lightness is a value between 0 and 1.
+            case 'hue':
+                return $color->getHue();
+            case 'saturation':
+                return $color->getHsvSaturation();
+            case 'value':
+                return $color->getValue();
+            case 'lightness':
+                return $color->getLightness();
+            default:
+                return abs($color->getLightness() * 100);
+        }
     }
 
 }
