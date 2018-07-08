@@ -25,7 +25,6 @@
     }
   },
   "scripts": {
-    "start": "php -S 0.0.0.0:8000 -t demos/public demos/public/index.php",
     "test": "./vendor/bin/phpunit"
   }
 }
