@@ -21,7 +21,11 @@
   "autoload": {
     "psr-4": {
       "Hashbangcode\\Wevolution\\": "src",
-      "Hashbangcode\\Wevolution\\Test\\": "tests"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+    "Hashbangcode\\Wevolution\\Test\\": "tests"
     }
   },
   "scripts": {
