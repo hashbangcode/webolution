@@ -1,6 +1,6 @@
 {
-  "name": "hashbangcode/Wevolution",
-  "description": "Wevolution",
+  "name": "hashbangcode/wevolution",
+  "description": "Wevolution, an evolution engine.",
   "license": "MIT",
   "keywords": ["wevolution"],
   "authors": [
