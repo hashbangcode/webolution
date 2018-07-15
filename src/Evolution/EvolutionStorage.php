@@ -369,25 +369,6 @@ CREATE TABLE "populations" (
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function renderGenerations($printStats = false, $format = 'html')
-    {
-        $output = '';
-
-        // Loop through the previous generation and render the individuals in it.
-        foreach ($this->previousGenerations as $generation_number => $population) {
-            $output .= $population->render() . PHP_EOL . '<br>';
-            if ($printStats === true) {
-                $stats = $population->getStatistics();
-                $output .= 'MIN: ' . print_r($stats['min']->render(), true) . '<br>';
-                $output .= 'MAX: ' . print_r($stats['max']->render(), true) . '<br>';
-            }
-        }
-        return $output;
-    }
-
-    /**
      * Utility function to cleare out the database.
      */
     public function clearDatabase()
