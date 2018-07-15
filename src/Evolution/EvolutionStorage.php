@@ -49,8 +49,7 @@ class EvolutionStorage extends Evolution
         $autoGeneratePopulation = true,
         $maxGenerations = null,
         $individualsPerGeneration = null
-    )
-    {
+    ) {
         parent::__construct($population, $autoGeneratePopulation, $maxGenerations, $individualsPerGeneration);
     }
 
@@ -210,10 +209,6 @@ CREATE TABLE "populations" (
 
         $stmt = $this->database->prepare($sql);
 
-        if ($stmt == false) {
-            return false;
-        }
-
         $stmt->execute(
             array(
                 'evolution_id' => $evolution_id
@@ -343,10 +338,6 @@ CREATE TABLE "populations" (
         $individualSql = "SELECT * FROM individuals ";
         $individualSql .= "WHERE evolution_id = :evolution_id AND population_id = :population_id";
         $individualStatement = $this->database->prepare($individualSql);
-
-        if ($individualStatement == false) {
-            return false;
-        }
 
         $individualStatement->execute(
             array(
