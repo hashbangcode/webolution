@@ -3,34 +3,28 @@
 namespace Hashbangcode\Wevolution\Test\Evolution;
 
 use Hashbangcode\Wevolution\Evolution\EvolutionStorage;
-use Hashbangcode\Wevolution\Evolution\Population\NumberPopulation;
-use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
 use Hashbangcode\Wevolution\Evolution\Population\ColorPopulation;
+use Prophecy\Prophet;
 
 class EvolutionStorageTest extends \PHPUnit_Framework_TestCase
 {
+    protected $prophet;
 
     public $databaseFile = 'tests/testdatabase.sqlite';
 
-    public function testEvolutionNumber()
+    public function setup()
     {
-        $numberPopulation = new NumberPopulation();
-        $evolution = new EvolutionStorage($numberPopulation);
-
-        $population = $evolution->getCurrentPopulation();
-        $this->assertEquals($evolution->getIndividualsPerGeneration(), $population->getLength());
+        $this->prophet = new Prophet();
     }
 
-    public function testEvolutionColor()
+    public function testEmptyEvolutionStorageIsEmpty()
     {
-        $colorPopulation = new ColorPopulation();
-        $evolution = new EvolutionStorage($colorPopulation);
-
-        $population = $evolution->getCurrentPopulation();
-        $this->assertEquals($evolution->getIndividualsPerGeneration(), $population->getLength());
+        $evolution = new EvolutionStorage();
+        $evolution->setupDatabase('sqlite:' . $this->databaseFile);
+        $this->assertEquals(null, $evolution->getCurrentPopulation());
     }
 
-    public function testEvolutionStorage()
+    public function testResumeEvolutionFromScratch()
     {
         $evolution = new EvolutionStorage();
         $evolution->setEvolutionId(1);
@@ -38,8 +32,6 @@ class EvolutionStorageTest extends \PHPUnit_Framework_TestCase
         $evolution->setIndividualsPerGeneration(10);
 
         $population = new ColorPopulation();
-        $population->setDefaultRenderType('html');
-
         $population->addIndividual();
         $evolution->setPopulation($population);
 
@@ -54,10 +46,10 @@ class EvolutionStorageTest extends \PHPUnit_Framework_TestCase
         $evolution->loadPopulation();
         $evolution->runGeneration();
 
-        $this->assertEquals(3, $evolution->getGeneration());
+        $this->assertEquals(2, $evolution->getGeneration());
     }
 
-    public function testClearDatabase()
+    public function testClearingTheDatabaseMeansStartingAgain()
     {
         $evolution = new EvolutionStorage();
         $evolution->setEvolutionId(1);
@@ -81,7 +73,20 @@ class EvolutionStorageTest extends \PHPUnit_Framework_TestCase
         $evolution->setEvolutionId(1);
         $evolution->setupDatabase('sqlite:' . $this->databaseFile);
         $this->assertNull($evolution->getCurrentPopulation());
-        $this->assertEquals(1, $evolution->getGeneration());
+        $this->assertEquals(0, $evolution->getGeneration());
+    }
+
+    public function testGettingEvolutionIdGetsANewId()
+    {
+        $evolution1 = new EvolutionStorage();
+        $evolution1->setupDatabase('sqlite:' . $this->databaseFile);
+        $evolution1->setEvolutionId(1);
+
+        $evolution2 = new EvolutionStorage();
+        $evolution2->setupDatabase('sqlite:' . $this->databaseFile);
+        $newEvolutionId = $evolution2->getEvolutionId();
+
+        $this->assertEquals(2, $newEvolutionId);
     }
 
     public function tearDown()
