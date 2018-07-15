@@ -3,28 +3,43 @@
 namespace Hashbangcode\Wevolution\Test\Evolution;
 
 use Hashbangcode\Wevolution\Evolution\Evolution;
-use Hashbangcode\Wevolution\Evolution\Population\NumberPopulation;
 use Hashbangcode\Wevolution\Evolution\Population\ColorPopulation;
+use Prophecy\Prophet;
 
 class EvolutionTest extends \PHPUnit_Framework_TestCase
 {
+    protected $prophet;
 
-    public function testEvolutionNumber()
+    public function setup()
     {
-        $numberPopulation = new NumberPopulation();
-        $evolution = new Evolution($numberPopulation);
+        $this->prophet = new Prophet();
+    }
+
+    public function testNotInitializedPopulationIsFullLength()
+    {
+        $population = new ColorPopulation();
+        $evolution = new Evolution($population);
 
         $population = $evolution->getCurrentPopulation();
         $this->assertEquals($evolution->getIndividualsPerGeneration(), $population->getLength());
     }
 
-    public function testEvolutionColor()
+    public function testGenerationIsOneWhenFirstCreated()
     {
         $colorPopulation = new ColorPopulation();
         $evolution = new Evolution($colorPopulation);
+        $this->assertEquals(1, $evolution->getGeneration());
+    }
 
-        $population = $evolution->getCurrentPopulation();
-        $this->assertEquals($evolution->getIndividualsPerGeneration(), $population->getLength());
+    public function testEvolutionRunGeneration()
+    {
+        $colorPopulation = new ColorPopulation();
+        $colorPopulation->addIndividual();
+        $evolution = new Evolution($colorPopulation);
+
+        $evolution->runGeneration();
+
+        $this->assertEquals(2, $evolution->getGeneration());
     }
 
     public function testEvolutionSetPopulation()
@@ -37,30 +52,12 @@ class EvolutionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $evolution->getCurrentPopulation()->getLength());
     }
 
-    public function testEvolutionRunGeneration()
-    {
-        $colorPopulation = new ColorPopulation();
-        $colorPopulation->addIndividual();
-        $evolution = new Evolution($colorPopulation);
-
-        $evolution->runGeneration();
-        $this->assertEquals(2, $evolution->getGeneration());
-    }
-
     public function testEvolutionRunBlankGeneration()
     {
         $colorPopulation = new ColorPopulation();
         $evolution = new Evolution($colorPopulation, false);
 
         $this->assertFalse($evolution->runGeneration());
-    }
-
-    public function testEvolutionGetGeneration()
-    {
-        $colorPopulation = new ColorPopulation();
-        $evolution = new Evolution($colorPopulation);
-
-        $this->assertEquals(1, $evolution->getGeneration());
     }
 
     public function testEvolutionAllowedFitness()

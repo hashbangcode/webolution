@@ -38,7 +38,7 @@ class Evolution
      *
      * @var int
      */
-    protected $generation = 1;
+    protected $generation = 0;
 
     /**
      * The global mutation factor.
@@ -127,10 +127,9 @@ class Evolution
 
         if ($population instanceof Population) {
             // If a population object was passed then we can setup the population.
-            $this->population = $population;
-            if ($autoGeneratePopulation == true
-                && $this->population->getLength() < $this->getIndividualsPerGeneration()
-            ) {
+            $this->setPopulation($population);
+            $length = $this->population->getLength();
+            if ($autoGeneratePopulation == true && $length < $this->getIndividualsPerGeneration()) {
                 // If we are to auto-populate the population and the length is less than the number of individuals per
                 // generation then populate the population with individuals.
                 $this->generateRandomPopulation();
@@ -423,7 +422,7 @@ class Evolution
         // Add the generation.
         $this->previousGenerations[$this->generation] = clone $population;
         // Increment the current generation count.
-        $this->generation++;
+        $this->incrementGeneration();
     }
 
     /**
