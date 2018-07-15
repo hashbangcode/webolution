@@ -20,10 +20,17 @@ class EvolutionManager
 
     /**
      * EvolutionManager constructor.
+     *
+     * @param \Hashbangcode\Wevolution\Evolution\Evolution|null $evolution
+     *   An optional injected evolution object.
      */
-    public function __construct()
+    public function __construct(Evolution $evolution = null)
     {
-        $this->setEvolutionObject(new Evolution());
+        if (!is_null($evolution)) {
+            $this->setEvolutionObject($evolution);
+        } else {
+            $this->setEvolutionObject(new Evolution());
+        }
     }
 
     /**
@@ -81,8 +88,11 @@ class EvolutionManager
      */
     public function runEvolution()
     {
+        $currentGeneration = $this->getEvolutionObject()->getGeneration();
+        $maxGenerations = $this->getEvolutionObject()->getMaxGenerations();
+
         // Keep running the evolution until the runGeneration() method returns false.
-        for ($i = 0; $i < $this->getEvolutionObject()->getMaxGenerations(); ++$i) {
+        for ($i = $currentGeneration; $i < $maxGenerations; $i++) {
             if ($this->getEvolutionObject()->runGeneration() === false) {
                 // If the runGeneration() method is false then we need to stop processing.
                 break;

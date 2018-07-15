@@ -2,6 +2,7 @@
 
 namespace Hashbangcode\Wevolution\Test\Evolution;
 
+use Hashbangcode\Wevolution\Evolution\Evolution;
 use Hashbangcode\Wevolution\Evolution\EvolutionManager;
 use Hashbangcode\Wevolution\Evolution\Population\NumberPopulation;
 
@@ -41,6 +42,26 @@ class EvolutionManagerTest extends \PHPUnit_Framework_TestCase
         $population = new NumberPopulation();
         $population->addIndividual();
         $object->getEvolutionObject()->setPopulation($population);
+
+        $this->assertEquals(1, $object->getEvolutionObject()->getGeneration());
+
         $object->runEvolution();
+        $this->assertEquals(30, $object->getEvolutionObject()->getGeneration());
+    }
+
+    public function testRunEmptyPopulation()
+    {
+        $object = new EvolutionManager();
+        $population = new NumberPopulation();
+        $object->getEvolutionObject()->setPopulation($population);
+        $object->runEvolution();
+        $this->assertEquals(30, $object->getEvolutionObject()->getGeneration());
+    }
+
+    public function testSetEvolutionObject()
+    {
+        $evolution = new Evolution();
+        $object = new EvolutionManager($evolution);
+        $this->assertInstanceOf(Evolution::class, $object->getEvolutionObject());
     }
 }
