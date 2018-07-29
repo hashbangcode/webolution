@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Population\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Population\PopulationInterface;
+use Hashbangcode\Webolution\Evolution\Population\PopulationInterface;
 
 /**
  * Interface PopulationDecoratorInterface.
  *
- * @package Hashbangcode\Wevolution\Evolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Population\Decorators
  */
 interface PopulationDecoratorInterface
 {

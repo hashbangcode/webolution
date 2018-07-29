@@ -1,15 +1,15 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Page;
+namespace Hashbangcode\Webolution\Type\Page;
 
-use Hashbangcode\Wevolution\Type\Style\Style;
-use Hashbangcode\Wevolution\Type\Element\Element;
-use Hashbangcode\Wevolution\Type\TypeInterface;
+use Hashbangcode\Webolution\Type\Style\Style;
+use Hashbangcode\Webolution\Type\Element\Element;
+use Hashbangcode\Webolution\Type\TypeInterface;
 
 /**
  * Class Page.
  *
- * @package Hashbangcode\Wevolution\Type\Page
+ * @package Hashbangcode\Webolution\Type\Page
  */
 class Page implements TypeInterface
 {

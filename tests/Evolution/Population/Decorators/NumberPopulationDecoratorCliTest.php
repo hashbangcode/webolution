@@ -1,18 +1,18 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Population\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Population\Decorators;
 
-use Hashbangcode\Wevolution\Test\Evolution\Population\Decorators\NumberPopulationDecoratorTestBase;
-use Hashbangcode\Wevolution\Evolution\Population\Decorators\NumberPopulationDecoratorCli;
+use Hashbangcode\Webolution\Test\Evolution\Population\Decorators\NumberPopulationDecoratorTestBase;
+use Hashbangcode\Webolution\Evolution\Population\Decorators\NumberPopulationDecoratorCli;
 use Prophecy\Prophet;
 
 class NumberPopulationDecoratorCliTest extends NumberPopulationDecoratorTestBase
 {
     public function testStatisticsObjectCreation()
     {
-        $numberPopulation = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Population\NumberPopulation');
+        $numberPopulation = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Population\NumberPopulation');
         $numberPopulationDecorator = new NumberPopulationDecoratorCli($numberPopulation->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Population\Decorators\NumberPopulationDecoratorCli', $numberPopulationDecorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Population\Decorators\NumberPopulationDecoratorCli', $numberPopulationDecorator);
     }
 
     public function testRender()

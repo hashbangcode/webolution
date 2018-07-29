@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution;
+namespace Hashbangcode\Webolution\Evolution;
 
-use Hashbangcode\Wevolution\Evolution\Evolution;
+use Hashbangcode\Webolution\Evolution\Evolution;
 
 /**
  * Class EvolutionManager.
  *
- * @package Hashbangcode\Wevolution\Evolution
+ * @package Hashbangcode\Webolution\Evolution
  */
 class EvolutionManager
 {
@@ -21,7 +21,7 @@ class EvolutionManager
     /**
      * EvolutionManager constructor.
      *
-     * @param \Hashbangcode\Wevolution\Evolution\Evolution|null $evolution
+     * @param \Hashbangcode\Webolution\Evolution\Evolution|null $evolution
      *   An optional injected evolution object.
      */
     public function __construct(Evolution $evolution = null)

@@ -1,17 +1,17 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population;
+namespace Hashbangcode\Webolution\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Individual;
-use Hashbangcode\Wevolution\Evolution\Individual\PageIndividual;
-use Hashbangcode\Wevolution\Type\Element\Element;
-use Hashbangcode\Wevolution\Type\Page\Page;
-use Hashbangcode\Wevolution\Type\Style\Style;
+use Hashbangcode\Webolution\Evolution\Individual\Individual;
+use Hashbangcode\Webolution\Evolution\Individual\PageIndividual;
+use Hashbangcode\Webolution\Type\Element\Element;
+use Hashbangcode\Webolution\Type\Page\Page;
+use Hashbangcode\Webolution\Type\Style\Style;
 
 /**
  * Class ElementPopulation.
  *
- * @package Hashbangcode\Wevolution\Evolution\Population
+ * @package Hashbangcode\Webolution\Evolution\Population
  */
 class PagePopulation extends Population
 {
@@ -62,7 +62,7 @@ class PagePopulation extends Population
     /**
      * Add an individual.
      *
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
+     * @param \Hashbangcode\Webolution\Evolution\Individual\Individual|null $individual
      *   Add an individual.
      *
      * @return $this

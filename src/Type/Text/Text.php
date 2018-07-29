@@ -1,12 +1,12 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Text;
+namespace Hashbangcode\Webolution\Type\Text;
 
-use Hashbangcode\Wevolution\Type\TypeInterface;
+use Hashbangcode\Webolution\Type\TypeInterface;
 
 /**
  * Class Text
- * @package Hashbangcode\Wevolution\Type\Text
+ * @package Hashbangcode\Webolution\Type\Text
  */
 class Text implements TypeInterface
 {

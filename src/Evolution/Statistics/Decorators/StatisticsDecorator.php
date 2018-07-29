@@ -1,20 +1,20 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Statistics\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Statistics\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Statistics\StatisticsInterface;
+use Hashbangcode\Webolution\Evolution\Statistics\StatisticsInterface;
 
 /**
  * Class StatisticsDecorator.
  *
- * @package Hashbangcode\Wevolution\Evolution\Statistics\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Statistics\Decorators
  */
 abstract class StatisticsDecorator implements StatisticsDecoratorInterface
 {
     /**
      * The Statistics object.
      *
-     * @var \Hashbangcode\Wevolution\Evolution\Statistics\Statistics
+     * @var \Hashbangcode\Webolution\Evolution\Statistics\Statistics
      */
     protected $statistics;
 

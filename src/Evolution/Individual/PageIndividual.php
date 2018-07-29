@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual;
+namespace Hashbangcode\Webolution\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Type\Page\Page;
-use Hashbangcode\Wevolution\Type\Style\Style;
+use Hashbangcode\Webolution\Type\Page\Page;
+use Hashbangcode\Webolution\Type\Style\Style;
 
 /**
  * Class PageIndividual
- * @package Hashbangcode\Wevolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Evolution\Individual
  */
 class PageIndividual extends Individual
 {
@@ -58,7 +58,7 @@ class PageIndividual extends Individual
         $body = $this->getObject()->getBody();
 
         // Mutate the body.
-        if (!($body instanceof \Hashbangcode\Wevolution\Evolution\Individual\Individual)) {
+        if (!($body instanceof \Hashbangcode\Webolution\Evolution\Individual\Individual)) {
             // If the body isn't an individual then wrap it so we can mutate it.
             $body = new ElementIndividual($body);
         }
@@ -80,7 +80,7 @@ class PageIndividual extends Individual
 
         // Mutate styles.
         $randomStyle = $styles[array_rand($styles)];
-        if (!($randomStyle instanceof \Hashbangcode\Wevolution\Evolution\Individual\Individual)) {
+        if (!($randomStyle instanceof \Hashbangcode\Webolution\Evolution\Individual\Individual)) {
             // If the style is not an individual then wrap it so we can mutate it.
             $randomStyle = new StyleIndividual($randomStyle);
         }

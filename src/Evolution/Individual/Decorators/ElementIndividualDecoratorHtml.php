@@ -1,14 +1,14 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
-use Hashbangcode\Wevolution\Evolution\Individual\IndividualInterface;
+use Hashbangcode\Webolution\Evolution\Individual\ElementIndividual;
+use Hashbangcode\Webolution\Evolution\Individual\IndividualInterface;
 
 /**
  * Class ElementIndividualDecoratorHtml.
  *
- * @package Hashbangcode\Wevolution\Evolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
  */
 class ElementIndividualDecoratorHtml extends IndividualDecorator
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators\Exception;
+namespace Hashbangcode\Webolution\Evolution\Individual\Decorators\Exception;
 
 /**
  * Class IndividualDecoratorNotFoundException.
  *
- * @package Hashbangcode\Wevolution\Evolution\Individual\Decorators\Exception
+ * @package Hashbangcode\Webolution\Evolution\Individual\Decorators\Exception
  */
 class IndividualDecoratorNotFoundException extends \Exception
 {

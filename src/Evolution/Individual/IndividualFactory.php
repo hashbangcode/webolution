@@ -1,15 +1,15 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual;
+namespace Hashbangcode\Webolution\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Exception\IndividualNotFoundException;
-use Hashbangcode\Wevolution\Evolution\Individual\IndividualInterface;
-use Hashbangcode\Wevolution\Type\TypeInterface;
+use Hashbangcode\Webolution\Evolution\Individual\Exception\IndividualNotFoundException;
+use Hashbangcode\Webolution\Evolution\Individual\IndividualInterface;
+use Hashbangcode\Webolution\Type\TypeInterface;
 
 /**
  * Class IndividualFactory.
  *
- * @package Hashbangcode\Wevolution\Evolution\Individual\
+ * @package Hashbangcode\Webolution\Evolution\Individual\
  */
 class IndividualFactory
 {
@@ -17,10 +17,10 @@ class IndividualFactory
     /**
      * Given a population object and a type of render, find and instansiate the object.
      *
-     * @param \Hashbangcode\Wevolution\Type\TypeInterface $type
+     * @param \Hashbangcode\Webolution\Type\TypeInterface $type
      *   The individual.
      *
-     * @return \Hashbangcode\Wevolution\Evolution\Population\\PopulationInterface
+     * @return \Hashbangcode\Webolution\Evolution\Population\\PopulationInterface
      *   The recorator.
      *
      * @throws IndividualNotFoundException

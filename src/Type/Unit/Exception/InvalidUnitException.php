@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Unit\Exception;
+namespace Hashbangcode\Webolution\Type\Unit\Exception;
 
 class InvalidUnitException extends \Exception
 {

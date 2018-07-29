@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\UnitIndividualDecoratorCli;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\UnitIndividualDecoratorCli;
 use Prophecy\Prophet;
 
 class UnitIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
@@ -17,9 +17,9 @@ class UnitIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectCreation()
     {
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\UnitIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\UnitIndividual');
         $individualDecorator = new UnitIndividualDecoratorCli($individual->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\UnitIndividualDecoratorCli', $individualDecorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\UnitIndividualDecoratorCli', $individualDecorator);
     }
 
     /**
@@ -27,11 +27,11 @@ class UnitIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
      */
     public function testRender($number, $unit, $expectedRender)
     {
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Unit\Unit');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\Unit');
         $object->getUnit()->willReturn($unit);
         $object->getNumber()->willReturn($number);
 
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\UnitIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\UnitIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $individualDecorator = new UnitIndividualDecoratorCli($objectIndividual->reveal());

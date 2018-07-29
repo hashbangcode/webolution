@@ -1,15 +1,15 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population;
+namespace Hashbangcode\Webolution\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Individual;
-use Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual;
-use Hashbangcode\Wevolution\Type\Style\Style;
+use Hashbangcode\Webolution\Evolution\Individual\Individual;
+use Hashbangcode\Webolution\Evolution\Individual\StyleIndividual;
+use Hashbangcode\Webolution\Type\Style\Style;
 
 /**
  * Class StylePopulation.
  *
- * @package Hashbangcode\Wevolution\Evolution\Population
+ * @package Hashbangcode\Webolution\Evolution\Population
  */
 class StylePopulation extends Population
 {

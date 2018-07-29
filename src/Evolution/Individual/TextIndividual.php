@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual;
+namespace Hashbangcode\Webolution\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Type\Text\Text;
-use Hashbangcode\Wevolution\Utilities\TextUtilities;
+use Hashbangcode\Webolution\Type\Text\Text;
+use Hashbangcode\Webolution\Utilities\TextUtilities;
 
 /**
  * Class TextIndividual
- * @package Hashbangcode\Wevolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Evolution\Individual
  */
 class TextIndividual extends Individual
 {

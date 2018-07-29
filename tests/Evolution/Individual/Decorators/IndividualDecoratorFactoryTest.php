@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\IndividualDecoratorFactory;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\IndividualDecoratorFactory;
 use Prophecy\Prophet;
 
 class IndividualDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
@@ -16,35 +16,35 @@ class IndividualDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testFindNumberIndividualDecoratorCli()
     {
-        $typeObject = new \Hashbangcode\Wevolution\Type\Number\Number(1);
-        $individualObject = new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual($typeObject);
+        $typeObject = new \Hashbangcode\Webolution\Type\Number\Number(1);
+        $individualObject = new \Hashbangcode\Webolution\Evolution\Individual\NumberIndividual($typeObject);
         $decorator = IndividualDecoratorFactory::getIndividualDecorator($individualObject, 'cli');
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\NumberIndividualDecoratorCli', $decorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\NumberIndividualDecoratorCli', $decorator);
     }
 
     public function testFindNumberIndividualDecoratorHtml()
     {
-        $typeObject = new \Hashbangcode\Wevolution\Type\Number\Number(1);
-        $individualObject = new \Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual($typeObject);
+        $typeObject = new \Hashbangcode\Webolution\Type\Number\Number(1);
+        $individualObject = new \Hashbangcode\Webolution\Evolution\Individual\NumberIndividual($typeObject);
         $decorator = IndividualDecoratorFactory::getIndividualDecorator($individualObject, 'html');
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\NumberIndividualDecoratorHtml', $decorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\NumberIndividualDecoratorHtml', $decorator);
     }
 
     public function testFindColorIndividualDecoratorHtml()
     {
-        $typeObject = new \Hashbangcode\Wevolution\Type\Color\Color(1, 1, 1);
-        $individualObject = new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual($typeObject);
+        $typeObject = new \Hashbangcode\Webolution\Type\Color\Color(1, 1, 1);
+        $individualObject = new \Hashbangcode\Webolution\Evolution\Individual\ColorIndividual($typeObject);
         $decorator = IndividualDecoratorFactory::getIndividualDecorator($individualObject, 'html');
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\ColorIndividualDecoratorHtml', $decorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\ColorIndividualDecoratorHtml', $decorator);
     }
 
     public function testNotFindIndividualDecorator()
     {
-        $exception = '\Hashbangcode\Wevolution\Evolution\Individual\Decorators\Exception\IndividualDecoratorNotFoundException';
+        $exception = '\Hashbangcode\Webolution\Evolution\Individual\Decorators\Exception\IndividualDecoratorNotFoundException';
         $this->expectException($exception);
 
-        $typeObject = new \Hashbangcode\Wevolution\Type\Color\Color(1, 1, 1);
-        $individualObject = new \Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual($typeObject);
+        $typeObject = new \Hashbangcode\Webolution\Type\Color\Color(1, 1, 1);
+        $individualObject = new \Hashbangcode\Webolution\Evolution\Individual\ColorIndividual($typeObject);
         $decorator = IndividualDecoratorFactory::getIndividualDecorator($individualObject, 'something');
     }
 }

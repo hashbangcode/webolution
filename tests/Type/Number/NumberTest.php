@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Type\Number;
+namespace Hashbangcode\Webolution\Test\Type\Number;
 
-use Hashbangcode\Wevolution\Type\Number\Number;
+use Hashbangcode\Webolution\Type\Number\Number;
 
 /**
  * Test class for Color
@@ -13,7 +13,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     public function testCreateNumber()
     {
         $object = new Number(1);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Number\Number', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Number\Number', $object);
     }
 
     /**
@@ -46,7 +46,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     public function testCreateNonNumbers($notNumber)
     {
         $message = $notNumber . ' is not a number.';
-        $this->setExpectedException('Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException', $message);
+        $this->setExpectedException('Hashbangcode\Webolution\Type\Number\Exception\InvalidNumberException', $message);
         $object = new Number($notNumber);
     }
 
@@ -102,7 +102,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 
     protected static function getMethod($name)
     {
-        $class = new \ReflectionClass('Hashbangcode\Wevolution\Type\Number\Number');
+        $class = new \ReflectionClass('Hashbangcode\Webolution\Type\Number\Number');
         $method = $class->getMethod($name);
         $method->setAccessible(true);
         return $method;

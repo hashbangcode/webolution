@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\StyleIndividualDecoratorCli;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\StyleIndividualDecoratorCli;
 use Prophecy\Prophet;
 
 class StyleIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
@@ -17,20 +17,20 @@ class StyleIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectCreation()
     {
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\StyleIndividual');
         $individualDecorator = new StyleIndividualDecoratorCli($individual->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\StyleIndividualDecoratorCli', $individualDecorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\StyleIndividualDecoratorCli', $individualDecorator);
     }
 
     public function testRenderSimpleStyle()
     {
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Style\Style');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Style\Style');
         $object->getSelector()->willReturn('.test');
         $object->getAttributes()->willReturn([
             'background' => 'black',
         ]);
 
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\StyleIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $objectIndividualDecorator = new StyleIndividualDecoratorCli($objectIndividual->reveal());
@@ -41,7 +41,7 @@ class StyleIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderComplexStyle()
     {
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Style\Style');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Style\Style');
         $object->getSelector()->willReturn('div.test');
         $object->getAttributes()->willReturn([
             'background' => 'black',
@@ -51,7 +51,7 @@ class StyleIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
             'font-family' => "'Ubuntu',sans-serif",
         ]);
 
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\StyleIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $objectIndividualDecorator = new StyleIndividualDecoratorCli($objectIndividual->reveal());
@@ -62,16 +62,16 @@ class StyleIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderObjectStyle()
     {
-        $unit1 = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Unit\Unit');
+        $unit1 = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\Unit');
         $unit1->getNumber()->willReturn('1');
         $unit1->getUnit()->willReturn('px');
 
-        $unitIndividual = new \Hashbangcode\Wevolution\Evolution\Individual\UnitIndividual($unit1->reveal());
+        $unitIndividual = new \Hashbangcode\Webolution\Evolution\Individual\UnitIndividual($unit1->reveal());
 
-        //$unitIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\UnitIndividual');
+        //$unitIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\UnitIndividual');
         //$unitIndividual->getObject()->willReturn($unit1->reveal());
 
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Style\Style');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Style\Style');
         $object->getSelector()->willReturn('div.test');
         $object->getAttributes()->willReturn([
             'background' => 'black',
@@ -82,7 +82,7 @@ class StyleIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
             ],
         ]);
 
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\StyleIndividual');
         $objectIndividual->getObject()->willReturn($object->reveal());
 
         $objectIndividualDecorator = new StyleIndividualDecoratorCli($objectIndividual->reveal());

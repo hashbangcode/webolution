@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual;
+use Hashbangcode\Webolution\Evolution\Individual\NumberIndividual;
 
 /**
  * Test class for ColorIndividual
@@ -13,8 +13,8 @@ class NumberIndividualTest extends \PHPUnit_Framework_TestCase
     public function testCreateIndividual()
     {
         $object = NumberIndividual::generateFromNumber(1);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Number\Number', $object->getObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Number\Number', $object->getObject());
     }
 
     public function testMutateNumberThroughIndividual()

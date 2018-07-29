@@ -1,11 +1,11 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Color\Exception;
+namespace Hashbangcode\Webolution\Type\Color\Exception;
 
 /**
  * Class InvalidRGBValueException.
  *
- * @package Hashbangcode\Wevolution\Type\Color\Exception
+ * @package Hashbangcode\Webolution\Type\Color\Exception
  */
 class InvalidRGBValueException extends \Exception
 {

@@ -1,8 +1,8 @@
 {
-  "name": "hashbangcode/wevolution",
-  "description": "Wevolution, an evolution engine.",
+  "name": "hashbangcode/webolution",
+  "description": "Webolution, an evolution engine.",
   "license": "MIT",
-  "keywords": ["wevolution"],
+  "keywords": ["webolution"],
   "authors": [
     {
       "name": "Philip Norton",
@@ -20,12 +20,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Hashbangcode\\Wevolution\\": "src"
+      "Hashbangcode\\Webolution\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-    "Hashbangcode\\Wevolution\\Test\\": "tests"
+    "Hashbangcode\\Webolution\\Test\\": "tests"
     }
   },
   "scripts": {

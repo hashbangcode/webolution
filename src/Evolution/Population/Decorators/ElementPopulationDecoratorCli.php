@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Population\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\ElementIndividualDecoratorCli;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\ElementIndividualDecoratorCli;
 
 /**
  * Class NumberPopulationDecoratorCli.
  *
- * @package Hashbangcode\Wevolution\Evolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Population\Decorators
  */
 class ElementPopulationDecoratorCli extends PopulationDecorator
 {

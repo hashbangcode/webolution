@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual;
+namespace Hashbangcode\Webolution\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Type\TypeInterface;
+use Hashbangcode\Webolution\Type\TypeInterface;
 use phpDocumentor\Parser\Exception;
 
 /**
  * Class Individual
- * @package Hashbangcode\Wevolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Evolution\Individual
  */
 abstract class Individual implements IndividualInterface
 {

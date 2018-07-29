@@ -1,9 +1,9 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Type\Style;
+namespace Hashbangcode\Webolution\Test\Type\Style;
 
-use Hashbangcode\Wevolution\Type\Style\Style;
-use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
+use Hashbangcode\Webolution\Type\Style\Style;
+use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
 
 /**
  * Test class for Color
@@ -14,7 +14,7 @@ class StyleTest extends \PHPUnit_Framework_TestCase
     public function testCreateStyle()
     {
         $object = new Style('.element');
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Style\Style', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Style\Style', $object);
     }
 
     public function testSetAndGetAttributes()

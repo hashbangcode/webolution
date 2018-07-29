@@ -1,21 +1,21 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population;
+namespace Hashbangcode\Webolution\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Individual;
-use Hashbangcode\Wevolution\Evolution\Statistics\Statistics;
+use Hashbangcode\Webolution\Evolution\Individual\Individual;
+use Hashbangcode\Webolution\Evolution\Statistics\Statistics;
 
 /**
  * Class Population.
  *
- * @package Hashbangcode\Wevolution\Evolution\Population
+ * @package Hashbangcode\Webolution\Evolution\Population
  */
 abstract class Population implements PopulationInterface
 {
     /**
      * The statistics object.
      *
-     * @var \Hashbangcode\Wevolution\Evolution\Statistics\Statistics|null
+     * @var \Hashbangcode\Webolution\Evolution\Statistics\Statistics|null
      */
     protected $statistics;
 
@@ -398,7 +398,7 @@ abstract class Population implements PopulationInterface
     /**
      * Get the statistics object.
      *
-     * @return \Hashbangcode\Wevolution\Evolution\Statistics\Statistics|null
+     * @return \Hashbangcode\Webolution\Evolution\Statistics\Statistics|null
      *   The statistics object.
      */
     public function getStatistics()
@@ -414,7 +414,7 @@ abstract class Population implements PopulationInterface
     /**
      * Set the statistics object.
      *
-     * @param \Hashbangcode\Wevolution\Evolution\Statistics\Statistics $statistics
+     * @param \Hashbangcode\Webolution\Evolution\Statistics\Statistics $statistics
      *   The statistics object.
      */
     public function setStatistics(Statistics $statistics)

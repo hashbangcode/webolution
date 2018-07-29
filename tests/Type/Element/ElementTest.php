@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Type\Element;
+namespace Hashbangcode\Webolution\Test\Type\Element;
 
-use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Webolution\Type\Element\Element;
 use Prophecy\Prophet;
 
 /**
@@ -14,7 +14,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     public function testCreateObject()
     {
         $object = new Element();
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Element\Element', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Element\Element', $object);
     }
 
     public function testGetAttribute()
@@ -64,7 +64,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $inner_element->setType('div');
 
         $message = 'Cant add child of type "div" to "ol"';
-        $this->setExpectedException('Hashbangcode\Wevolution\Type\Element\Exception\InvalidChildTypeException', $message);
+        $this->setExpectedException('Hashbangcode\Webolution\Type\Element\Exception\InvalidChildTypeException', $message);
         $outer_element->addChild($inner_element);
     }
 
@@ -72,7 +72,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     {
         $element = new Element();
         $element->setType('p');
-        $this->setExpectedException('Hashbangcode\Wevolution\Type\Element\Exception\InvalidAttributesException');
+        $this->setExpectedException('Hashbangcode\Webolution\Type\Element\Exception\InvalidAttributesException');
         $element->setAttributes(2);
     }
 
@@ -344,7 +344,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
 
         $child = $element1->getRandomElement();
 
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Element\Element', $child);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Element\Element', $child);
     }
 
     public function testRemoveChild()

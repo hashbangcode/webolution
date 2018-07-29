@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Statistics;
+namespace Hashbangcode\Webolution\Test\Evolution\Statistics;
 
-use Hashbangcode\Wevolution\Evolution\Statistics\Statistics;
+use Hashbangcode\Webolution\Evolution\Statistics\Statistics;
 use Prophecy\Prophet;
 
 class StatisticsTest extends \PHPUnit_Framework_TestCase
@@ -18,7 +18,7 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
     public function testStatisticsObjectCreation()
     {
         $statistics = new Statistics();
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Statistics\Statistics', $statistics);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Statistics\Statistics', $statistics);
     }
 
     public function testSetMaxFitness()
@@ -45,14 +45,14 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
     public function testCalculateMeanFitness()
     {
         $statistics = new Statistics();
-        $numberPopulation = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Population\NumberPopulation');
+        $numberPopulation = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Population\NumberPopulation');
 
         $numberIndividual1 = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual');
         $numberIndividual1->getFitness()->willReturn(5);
 
         $numberIndividual2 = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual');
         $numberIndividual2->getFitness()->willReturn(5);
 
         $individuals = [
@@ -71,12 +71,12 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
     {
         $statistics = new Statistics();
         $numberIndividual = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual');
         $numberIndividual->getFitness()->willReturn(1);
 
         $statistics->setMaxFitnessIndividual($numberIndividual->reveal());
 
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $statistics->getMaxFitnessIndividual());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual', $statistics->getMaxFitnessIndividual());
         $this->assertEquals(1, $statistics->getMaxFitness());
     }
 
@@ -84,12 +84,12 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
     {
         $statistics = new Statistics();
         $numberIndividual = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual');
         $numberIndividual->getFitness()->willReturn(1);
 
         $statistics->setMinFitnessIndividual($numberIndividual->reveal());
 
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $statistics->getMinFitnessIndividual());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual', $statistics->getMinFitnessIndividual());
         $this->assertEquals(1, $statistics->getMinFitness());
     }
 
@@ -97,29 +97,29 @@ class StatisticsTest extends \PHPUnit_Framework_TestCase
     {
         $statistics = new Statistics();
         $numberIndividual = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual');
         $numberIndividual->getFitness()->willReturn(1);
 
         $statistics->setMedianFitnessIndividual($numberIndividual->reveal());
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual', $statistics->getMedianFitnessIndividual());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual', $statistics->getMedianFitnessIndividual());
         $this->assertEquals(1, $statistics->getMedianFitness());
     }
 
     public function testExtractFitnessIndividuals()
     {
         $statistics = new Statistics();
-        $numberPopulation = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Population\NumberPopulation');
+        $numberPopulation = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Population\NumberPopulation');
 
         $numberIndividual1 = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual');
         $numberIndividual1->getFitness()->willReturn(1);
 
         $numberIndividual2 = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual');
         $numberIndividual2->getFitness()->willReturn(2);
 
         $numberIndividual3 = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual');
         $numberIndividual3->getFitness()->willReturn(3);
 
         $individuals = [

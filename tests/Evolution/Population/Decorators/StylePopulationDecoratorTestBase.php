@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Population\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Population\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Population\Decorators\StylePopulationDecoratorCli;
+use Hashbangcode\Webolution\Evolution\Population\Decorators\StylePopulationDecoratorCli;
 use Prophecy\Prophet;
 
 class StylePopulationDecoratorTestBase extends \PHPUnit_Framework_TestCase
@@ -15,30 +15,30 @@ class StylePopulationDecoratorTestBase extends \PHPUnit_Framework_TestCase
     {
         $this->prophet = new Prophet();
 
-        $text1 = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Style\Style');
+        $text1 = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Style\Style');
         $text1->getSelector()->willReturn('div');
         $text1->getAttributes()->willReturn(['color' => 'red']);
 
-        $text2 = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Style\Style');
+        $text2 = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Style\Style');
         $text2->getSelector()->willReturn('p');
         $text2->getAttributes()->willReturn(['color' => 'red']);
 
-        $text3 = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Style\Style');
+        $text3 = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Style\Style');
         $text3->getSelector()->willReturn('div.test');
         $text3->getAttributes()->willReturn(['color' => 'red']);
 
-        $textPopulation = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Population\StylePopulation');
+        $textPopulation = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Population\StylePopulation');
 
         $textIndividual1 = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\StyleIndividual');
         $textIndividual1->getObject()->willReturn($text1);
 
         $textIndividual2 = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\StyleIndividual');
         $textIndividual2->getObject()->willReturn($text2);
 
         $textIndividual3 = $this->prophet
-            ->prophesize('Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual');
+            ->prophesize('Hashbangcode\Webolution\Evolution\Individual\StyleIndividual');
         $textIndividual3->getObject()->willReturn($text3);
 
         $individuals = [

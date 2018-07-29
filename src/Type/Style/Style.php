@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Style;
+namespace Hashbangcode\Webolution\Type\Style;
 
-use Hashbangcode\Wevolution\Type\TypeInterface;
+use Hashbangcode\Webolution\Type\TypeInterface;
 
 /**
  * Class Style. This class represents the css style object.
  *
- * @package Hashbangcode\Wevolution\Type\Style
+ * @package Hashbangcode\Webolution\Type\Style
  */
 class Style implements TypeInterface
 {

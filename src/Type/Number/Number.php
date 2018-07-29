@@ -1,14 +1,14 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Number;
+namespace Hashbangcode\Webolution\Type\Number;
 
-use Hashbangcode\Wevolution\Type\TypeInterface;
-use Hashbangcode\Wevolution\Type\Number\Exception\InvalidNumberException;
+use Hashbangcode\Webolution\Type\TypeInterface;
+use Hashbangcode\Webolution\Type\Number\Exception\InvalidNumberException;
 
 /**
  * Class Number.
  *
- * @package Hashbangcode\Wevolution\Type\Number
+ * @package Hashbangcode\Webolution\Type\Number
  */
 class Number implements TypeInterface
 {

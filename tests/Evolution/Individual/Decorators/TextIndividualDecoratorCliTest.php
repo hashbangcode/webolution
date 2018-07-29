@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\TextIndividualDecoratorCli;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\TextIndividualDecoratorCli;
 use Prophecy\Prophet;
 
 class TextIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
@@ -17,16 +17,16 @@ class TextIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectCreation()
     {
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\TextIndividual');
         $individualDecorator = new TextIndividualDecoratorCli($individual->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\TextIndividualDecoratorCli', $individualDecorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\TextIndividualDecoratorCli', $individualDecorator);
     }
 
     public function testRender()
     {
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Text\Text');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Text\Text');
         $object->getText()->willReturn('abc');
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\TextIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $objectIndividualDecorator = new TextIndividualDecoratorCli($objectIndividual->reveal());

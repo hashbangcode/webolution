@@ -11,7 +11,7 @@
          stopOnFailure="false">
 
     <testsuites>
-        <testsuite name="Wevolution Test Suite">
+        <testsuite name="Webolution Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>

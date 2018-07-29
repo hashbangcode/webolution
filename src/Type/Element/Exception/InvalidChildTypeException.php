@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Element\Exception;
+namespace Hashbangcode\Webolution\Type\Element\Exception;
 
 class InvalidChildTypeException extends \Exception
 {

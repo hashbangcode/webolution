@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Statistics\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Statistics\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Statistics\StatisticsInterface;
+use Hashbangcode\Webolution\Evolution\Statistics\StatisticsInterface;
 
 /**
  * Interface StatisticsDecoratorInterface.
  *
- * @package Hashbangcode\Wevolution\Evolution\Statistics\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Statistics\Decorators
  */
 interface StatisticsDecoratorInterface
 {

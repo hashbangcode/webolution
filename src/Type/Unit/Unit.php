@@ -1,15 +1,15 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Unit;
+namespace Hashbangcode\Webolution\Type\Unit;
 
-use Hashbangcode\Wevolution\Type\TypeInterface;
-use Hashbangcode\Wevolution\Type\Unit\Exception\InvalidUnitException;
-use Hashbangcode\Wevolution\Type\Unit\Exception\InvalidNumberException;
+use Hashbangcode\Webolution\Type\TypeInterface;
+use Hashbangcode\Webolution\Type\Unit\Exception\InvalidUnitException;
+use Hashbangcode\Webolution\Type\Unit\Exception\InvalidNumberException;
 
 /**
  * Class Number.
  *
- * @package Hashbangcode\Wevolution\Type\Number
+ * @package Hashbangcode\Webolution\Type\Number
  */
 class Unit implements TypeInterface
 {

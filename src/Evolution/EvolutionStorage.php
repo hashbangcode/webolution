@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution;
+namespace Hashbangcode\Webolution\Evolution;
 
-use Hashbangcode\Wevolution\Evolution\Population\Population;
+use Hashbangcode\Webolution\Evolution\Population\Population;
 
 /**
  * Class EvolutionStorage.
  *
- * @package Hashbangcode\Wevolution\Evolution
+ * @package Hashbangcode\Webolution\Evolution
  */
 class EvolutionStorage extends Evolution
 {
@@ -311,7 +311,7 @@ CREATE TABLE "populations" (
      */
     public function loadPopulation()
     {
-        if (!($this->population instanceof \Hashbangcode\Wevolution\Evolution\Population\Population)) {
+        if (!($this->population instanceof \Hashbangcode\Webolution\Evolution\Population\Population)) {
             // If the population isn't set then attempt to load it from the database.
             $populationSql = "SELECT * FROM populations ";
             $populationSql .= "WHERE evolution_id = :evolution_id AND population_id = :population_id";

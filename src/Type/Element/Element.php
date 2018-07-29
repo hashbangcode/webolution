@@ -1,15 +1,15 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Element;
+namespace Hashbangcode\Webolution\Type\Element;
 
-use Hashbangcode\Wevolution\Type\Element\Exception\InvalidChildTypeException;
-use Hashbangcode\Wevolution\Utilities\TextUtilities;
-use Hashbangcode\Wevolution\Type\TypeInterface;
+use Hashbangcode\Webolution\Type\Element\Exception\InvalidChildTypeException;
+use Hashbangcode\Webolution\Utilities\TextUtilities;
+use Hashbangcode\Webolution\Type\TypeInterface;
 
 /**
  * Class Element.
  *
- * @package Hashbangcode\Wevolution\Type\Element
+ * @package Hashbangcode\Webolution\Type\Element
  */
 class Element implements TypeInterface
 {

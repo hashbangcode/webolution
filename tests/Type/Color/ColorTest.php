@@ -1,9 +1,9 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Type\Color;
+namespace Hashbangcode\Webolution\Test\Type\Color;
 
-use Hashbangcode\Wevolution\Type\Color\Color;
-use Hashbangcode\Wevolution\Type\Color\Exception;
+use Hashbangcode\Webolution\Type\Color\Color;
+use Hashbangcode\Webolution\Type\Color\Exception;
 
 /**
  * Test class for Color
@@ -14,7 +14,7 @@ class ColorTest extends \PHPUnit_Framework_TestCase
     public function testCreateColour()
     {
         $color = new Color('100', '100', '100');
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $color);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\Color', $color);
     }
 
     public function testCreateColorFromStrings()
@@ -220,7 +220,7 @@ class ColorTest extends \PHPUnit_Framework_TestCase
     {
 
         try {
-            $this->setExpectedException('Hashbangcode\Wevolution\Type\Color\Exception\InvalidRGBValueException');
+            $this->setExpectedException('Hashbangcode\Webolution\Type\Color\Exception\InvalidRGBValueException');
             $color = new Color($r, $g, $b);
         } catch (Exception $e) {
         }

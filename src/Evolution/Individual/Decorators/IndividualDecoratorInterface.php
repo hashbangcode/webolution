@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\IndividualInterface;
+use Hashbangcode\Webolution\Evolution\Individual\IndividualInterface;
 
 /**
  * Interface IndividualDecoratorInterface.
  *
- * @package Hashbangcode\Wevolution\Evolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
  */
 interface IndividualDecoratorInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual;
+namespace Hashbangcode\Webolution\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Type\Color\Color;
+use Hashbangcode\Webolution\Type\Color\Color;
 
 /**
  * Class ColorIndividual.
  *
- * @package Hashbangcode\Wevolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Evolution\Individual
  */
 class ColorIndividual extends Individual
 {

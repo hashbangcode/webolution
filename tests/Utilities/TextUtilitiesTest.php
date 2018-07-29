@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Utilities;
+namespace Hashbangcode\Webolution\Test\Utilities;
 
-use Hashbangcode\Wevolution\Utilities\TextUtilities;
+use Hashbangcode\Webolution\Utilities\TextUtilities;
 
 /**
  * Test class for Color

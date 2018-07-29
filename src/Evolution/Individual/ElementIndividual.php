@@ -1,12 +1,12 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual;
+namespace Hashbangcode\Webolution\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Webolution\Type\Element\Element;
 
 /**
  * Class ElementIndividual
- * @package Hashbangcode\Wevolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Evolution\Individual
  */
 class ElementIndividual extends Individual
 {
@@ -110,7 +110,7 @@ class ElementIndividual extends Individual
     {
         $fitness = 0;
 
-        /** @var \Hashbangcode\Wevolution\Type\Element\Element $element */
+        /** @var \Hashbangcode\Webolution\Type\Element\Element $element */
         $element = $this->getObject();
 
         // Get the number of elements contained within the object.

@@ -1,9 +1,9 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Population;
+namespace Hashbangcode\Webolution\Test\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Population\TextPopulation;
-use Hashbangcode\Wevolution\Evolution\Individual\TextIndividual;
+use Hashbangcode\Webolution\Evolution\Population\TextPopulation;
+use Hashbangcode\Webolution\Evolution\Individual\TextIndividual;
 
 class TextPopulationTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,7 +26,7 @@ class TextPopulationTest extends \PHPUnit_Framework_TestCase
         $population = new TextPopulation();
         $population->addIndividual();
         $this->assertEquals(1, $population->getLength());
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual', $population->getRandomIndividual());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\TextIndividual', $population->getRandomIndividual());
     }
 
     public function testAddItemsToTextPopulation()
@@ -71,7 +71,7 @@ class TextPopulationTest extends \PHPUnit_Framework_TestCase
         $individuals = $population->getIndividuals();
 
         foreach ($individuals[0]->getObject() as $text) {
-            $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Text\Text', $text);
+            $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\Text', $text);
         }
         $this->assertEquals(3, $population->getLength());
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Evolution\Individual\TextIndividual;
+use Hashbangcode\Webolution\Evolution\Individual\TextIndividual;
 
 /**
  * Test class for ColorIndividual
@@ -13,8 +13,8 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
     public function testCreateIndividual()
     {
         $object = TextIndividual::generateRandomTextIndividual(1);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Text\Text', $object->getObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\TextIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\Text', $object->getObject());
     }
 
     public function testMutateTextThroughIndividual()
@@ -27,8 +27,8 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
     public function testGenerateRandomText()
     {
         $object = TextIndividual::generateRandomTextIndividual();
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Text\Text', $object->getObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\TextIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\Text', $object->getObject());
         $text = $object->getObject()->getText();
         $this->assertEquals(7, strlen($text));
     }
@@ -36,8 +36,8 @@ class TextIndividualTest extends \PHPUnit_Framework_TestCase
     public function testGenerateRandomTextWithArguments()
     {
         $object = TextIndividual::generateRandomTextIndividual(20);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\TextIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Text\Text', $object->getObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\TextIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\Text', $object->getObject());
         $text = $object->getObject()->getText();
         $this->assertEquals(20, strlen($text));
     }

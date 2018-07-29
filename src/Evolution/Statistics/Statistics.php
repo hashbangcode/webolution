@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Statistics;
+namespace Hashbangcode\Webolution\Evolution\Statistics;
 
-use Hashbangcode\Wevolution\Evolution\Population\PopulationInterface;
+use Hashbangcode\Webolution\Evolution\Population\PopulationInterface;
 
 /**
  * Class Statistics.
  *
- * @package Hashbangcode\Wevolution\Evolution
+ * @package Hashbangcode\Webolution\Evolution
  */
 class Statistics implements StatisticsInterface
 {
@@ -42,21 +42,21 @@ class Statistics implements StatisticsInterface
     /**
      * Max fitness individual.
      *
-     * @var \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
+     * @var \Hashbangcode\Webolution\Evolution\Individual\Individual|null
      */
     protected $maxFitnessIndividual;
 
     /**
      * Min fitness individual.
      *
-     * @var \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
+     * @var \Hashbangcode\Webolution\Evolution\Individual\Individual|null
      */
     protected $minFitnessIndividual;
 
     /**
      * Median fitness individual.
      *
-     * @var \Hashbangcode\Wevolution\Evolution\Individual\Individual|null
+     * @var \Hashbangcode\Webolution\Evolution\Individual\Individual|null
      */
     protected $medianFitnessIndividual;
 

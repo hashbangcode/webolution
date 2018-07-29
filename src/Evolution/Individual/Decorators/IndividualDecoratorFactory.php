@@ -1,14 +1,14 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\Exception\IndividualDecoratorNotFoundException;
-use Hashbangcode\Wevolution\Evolution\Individual\IndividualInterface;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\Exception\IndividualDecoratorNotFoundException;
+use Hashbangcode\Webolution\Evolution\Individual\IndividualInterface;
 
 /**
  * Class IndividualDecoratorFactory.
  *
- * @package Hashbangcode\Wevolution\Evolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
  */
 class IndividualDecoratorFactory
 {
@@ -16,12 +16,12 @@ class IndividualDecoratorFactory
     /**
      * Given a population object and a type of render, find and instansiate the object.
      *
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\IndividualInterface $individual
+     * @param \Hashbangcode\Webolution\Evolution\Individual\IndividualInterface $individual
      *   The individual.
      * @param string $type
      *   The current render type.
      *
-     * @return \Hashbangcode\Wevolution\Evolution\Population\Decorators\PopulationDecoratorInterface
+     * @return \Hashbangcode\Webolution\Evolution\Population\Decorators\PopulationDecoratorInterface
      *   The decorator.
      *
      * @throws IndividualDecoratorNotFoundException

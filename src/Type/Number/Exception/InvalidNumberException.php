@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Number\Exception;
+namespace Hashbangcode\Webolution\Type\Number\Exception;
 
 class InvalidNumberException extends \Exception
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\PageIndividualDecoratorHtml;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\PageIndividualDecoratorHtml;
 use Prophecy\Prophet;
 
 class PageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
@@ -17,18 +17,18 @@ class PageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectCreation()
     {
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\PageIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\PageIndividual');
         $individualDecorator = new PageIndividualDecoratorHtml($individual->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\PageIndividualDecoratorHtml', $individualDecorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\PageIndividualDecoratorHtml', $individualDecorator);
     }
 
     public function testSimplePageCreation()
     {
-        $page = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Page\Page');
+        $page = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Page\Page');
         $page->getStyles()->willReturn([]);
         $page->getBody()->willReturn(null);
 
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\PageIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\PageIndividual');
         $individual->getObject()->willReturn($page);
 
         $individualDecorator = new PageIndividualDecoratorHtml($individual->reveal());
@@ -38,13 +38,13 @@ class PageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testPageCreationWithBody()
     {
-        $body = new \Hashbangcode\Wevolution\Type\Element\Element();
+        $body = new \Hashbangcode\Webolution\Type\Element\Element();
 
-        $page = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Page\Page');
+        $page = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Page\Page');
         $page->getStyles()->willReturn([]);
         $page->getBody()->willReturn($body);
 
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\PageIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\PageIndividual');
         $individual->getObject()->willReturn($page);
 
         $individualDecorator = new PageIndividualDecoratorHtml($individual->reveal());
@@ -55,15 +55,15 @@ class PageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testPageCreationWithBodyAndStyle()
     {
-        $body = new \Hashbangcode\Wevolution\Type\Element\Element();
+        $body = new \Hashbangcode\Webolution\Type\Element\Element();
 
-        $style = new \Hashbangcode\Wevolution\Type\Style\Style('div.test', ['color' => 'red']);
+        $style = new \Hashbangcode\Webolution\Type\Style\Style('div.test', ['color' => 'red']);
 
-        $page = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Page\Page');
+        $page = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Page\Page');
         $page->getStyles()->willReturn([$style]);
         $page->getBody()->willReturn($body);
 
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\PageIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\PageIndividual');
         $individual->getObject()->willReturn($page);
 
         $individualDecorator = new PageIndividualDecoratorHtml($individual->reveal());

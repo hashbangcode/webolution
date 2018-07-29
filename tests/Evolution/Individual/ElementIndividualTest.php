@@ -1,9 +1,9 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
-use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Webolution\Evolution\Individual\ElementIndividual;
+use Hashbangcode\Webolution\Type\Element\Element;
 
 /**
  * Test class for ColorIndividual
@@ -14,8 +14,8 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
     public function testCreateIndividual()
     {
         $object = new ElementIndividual(new Element('div'));
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Element\Element', $object->getObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\ElementIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Element\Element', $object->getObject());
     }
 
     public function testMutateElementThroughIndividual()

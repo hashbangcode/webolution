@@ -1,9 +1,9 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Population;
+namespace Hashbangcode\Webolution\Test\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Population\StylePopulation;
-use Hashbangcode\Wevolution\Evolution\Individual\StyleIndividual;
+use Hashbangcode\Webolution\Evolution\Population\StylePopulation;
+use Hashbangcode\Webolution\Evolution\Individual\StyleIndividual;
 
 class StylePopulationTest extends \PHPUnit_Framework_TestCase
 {

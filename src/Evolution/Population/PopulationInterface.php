@@ -1,15 +1,15 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population;
+namespace Hashbangcode\Webolution\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Individual;
+use Hashbangcode\Webolution\Evolution\Individual\Individual;
 
 interface PopulationInterface
 {
     /**
      * Add an individual to the population.
      *
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
+     * @param \Hashbangcode\Webolution\Evolution\Individual\Individual|null $individual
      */
     public function addIndividual(Individual $individual = null);
 

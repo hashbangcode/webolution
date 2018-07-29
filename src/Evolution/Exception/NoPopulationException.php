@@ -1,11 +1,11 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Exception;
+namespace Hashbangcode\Webolution\Evolution\Exception;
 
 /**
  * Class NoPopulationException.
  *
- * @package Hashbangcode\Wevolution\Evolution\Exception
+ * @package Hashbangcode\Webolution\Evolution\Exception
  */
 class NoPopulationException extends \Exception
 {

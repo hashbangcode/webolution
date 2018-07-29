@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Image;
+namespace Hashbangcode\Webolution\Type\Image;
 
-use Hashbangcode\Wevolution\Type\TypeInterface;
+use Hashbangcode\Webolution\Type\TypeInterface;
 
 /**
  * Class Image
  *
- * @package Hashbangcode\Wevolution\Type\Image
+ * @package Hashbangcode\Webolution\Type\Image
  */
 class Image implements TypeInterface
 {

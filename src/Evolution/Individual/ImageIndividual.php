@@ -1,12 +1,12 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual;
+namespace Hashbangcode\Webolution\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Type\Image\Image;
+use Hashbangcode\Webolution\Type\Image\Image;
 
 /**
  * Class ImageIndividual
- * @package Hashbangcode\Wevolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Evolution\Individual
  */
 class ImageIndividual extends Individual
 {
@@ -24,7 +24,7 @@ class ImageIndividual extends Individual
     }
 
     /**
-     * @return \Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual
+     * @return \Hashbangcode\Webolution\Evolution\Individual\ImageIndividual
      */
     public static function generateRandomImage()
     {
@@ -40,7 +40,7 @@ class ImageIndividual extends Individual
      * @param array $matrix
      *   The matrix to generate the image from.
      *
-     * @return \Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual
+     * @return \Hashbangcode\Webolution\Evolution\Individual\ImageIndividual
      */
     public static function generateFromMatrix($matrix)
     {

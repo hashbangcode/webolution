@@ -1,10 +1,10 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Population;
+namespace Hashbangcode\Webolution\Test\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Population\PagePopulation;
-use Hashbangcode\Wevolution\Evolution\Individual\PageIndividual;
-use Hashbangcode\Wevolution\Type\Page\Page;
+use Hashbangcode\Webolution\Evolution\Population\PagePopulation;
+use Hashbangcode\Webolution\Evolution\Individual\PageIndividual;
+use Hashbangcode\Webolution\Type\Page\Page;
 
 class PagePopulationTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +13,7 @@ class PagePopulationTest extends \PHPUnit_Framework_TestCase
     public function testCreateObject()
     {
         $object = new PagePopulation();
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Population\PagePopulation', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Population\PagePopulation', $object);
     }
 
     public function testCreatePopulationWithElement()
@@ -21,6 +21,6 @@ class PagePopulationTest extends \PHPUnit_Framework_TestCase
         $object = new PagePopulation();
         $object->addIndividual();
         $individual = $object->getIndividuals()[0];
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\PageIndividual', $individual);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\PageIndividual', $individual);
     }
 }

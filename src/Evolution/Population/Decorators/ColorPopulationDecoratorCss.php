@@ -1,11 +1,11 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Population\Decorators;
 
 /**
  * Class ColorPopulationDecoratorCss.
  *
- * @package Hashbangcode\Wevolution\Evolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Population\Decorators
  */
 class ColorPopulationDecoratorCss extends PopulationDecorator
 {

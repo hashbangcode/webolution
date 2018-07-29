@@ -1,18 +1,18 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution;
+namespace Hashbangcode\Webolution\Evolution;
 
-use Hashbangcode\Wevolution\Evolution\Exception\NoPopulationException;
-use Hashbangcode\Wevolution\Evolution\Population\Decorators\PopulationDecoratorFactory;
-use Hashbangcode\Wevolution\Evolution\Population\Population;
-use Hashbangcode\Wevolution\Evolution\Statistics\Decorators\StatisticsDecoratorCli;
-use Hashbangcode\Wevolution\Evolution\Statistics\Decorators\StatisticsDecoratorHtml;
-use Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException;
+use Hashbangcode\Webolution\Evolution\Exception\NoPopulationException;
+use Hashbangcode\Webolution\Evolution\Population\Decorators\PopulationDecoratorFactory;
+use Hashbangcode\Webolution\Evolution\Population\Population;
+use Hashbangcode\Webolution\Evolution\Statistics\Decorators\StatisticsDecoratorCli;
+use Hashbangcode\Webolution\Evolution\Statistics\Decorators\StatisticsDecoratorHtml;
+use Hashbangcode\Webolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException;
 
 /**
  * Class Evolution.
  *
- * @package Hashbangcode\Wevolution\Evolution
+ * @package Hashbangcode\Webolution\Evolution
  */
 class Evolution
 {
@@ -447,7 +447,7 @@ class Evolution
      * @return string
      *   The rendered output.
      *
-     * @throws \Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException
+     * @throws \Hashbangcode\Webolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException
      *   Throws an exception if the decorator is not found.
      */
     public function renderGenerations($printStats = false, $format = 'html')

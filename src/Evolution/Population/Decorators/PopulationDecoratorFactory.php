@@ -1,14 +1,14 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Population\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException;
-use Hashbangcode\Wevolution\Evolution\Population\PopulationInterface;
+use Hashbangcode\Webolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException;
+use Hashbangcode\Webolution\Evolution\Population\PopulationInterface;
 
 /**
  * Class PopulationDecoratorFactory.
  *
- * @package Hashbangcode\Wevolution\Evolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Population\Decorators
  */
 class PopulationDecoratorFactory
 {
@@ -16,12 +16,12 @@ class PopulationDecoratorFactory
     /**
      * Given a population object and a type of render, find and instansiate the object.
      *
-     * @param \Hashbangcode\Wevolution\Evolution\Population\PopulationInterface $population
+     * @param \Hashbangcode\Webolution\Evolution\Population\PopulationInterface $population
      *   The population.
      * @param string $type
      *   The current render type.
      *
-     * @return \Hashbangcode\Wevolution\Evolution\Population\Decorators\PopulationDecoratorInterface
+     * @return \Hashbangcode\Webolution\Evolution\Population\Decorators\PopulationDecoratorInterface
      *   The recorator.
      *
      * @throws PopulationDecoratorNotFoundException

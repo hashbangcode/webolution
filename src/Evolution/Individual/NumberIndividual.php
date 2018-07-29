@@ -1,12 +1,12 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual;
+namespace Hashbangcode\Webolution\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Type\Number\Number;
+use Hashbangcode\Webolution\Type\Number\Number;
 
 /**
  * Class NumberIndividual
- * @package Hashbangcode\Wevolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Evolution\Individual
  */
 class NumberIndividual extends Individual
 {

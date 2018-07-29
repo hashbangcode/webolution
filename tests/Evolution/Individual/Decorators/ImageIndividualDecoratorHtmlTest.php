@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\ImageIndividualDecoratorHtml;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\ImageIndividualDecoratorHtml;
 use Prophecy\Prophet;
 
 class ImageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
@@ -17,14 +17,14 @@ class ImageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectCreation()
     {
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\ImageIndividual');
         $individualDecorator = new ImageIndividualDecoratorHtml($individual->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\ImageIndividualDecoratorHtml', $individualDecorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\ImageIndividualDecoratorHtml', $individualDecorator);
     }
 
     public function testRender()
     {
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Image\Image');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Image\Image');
 
         $imageMatrix = array_fill_keys(range(0, 9), 0);
         foreach ($imageMatrix as $id => $imagePart) {
@@ -32,7 +32,7 @@ class ImageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
         }
 
         $object->getImageMatrix()->willReturn($imageMatrix);
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\ImageIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $objectIndividualDecorator = new ImageIndividualDecoratorHtml($objectIndividual->reveal());

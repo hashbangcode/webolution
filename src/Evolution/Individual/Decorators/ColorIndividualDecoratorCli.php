@@ -1,11 +1,11 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Individual\Decorators;
 
 /**
  * Class ColorIndividualDecoratorCli.
  *
- * @package Hashbangcode\Wevolution\Evolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
  */
 class ColorIndividualDecoratorCli extends IndividualDecorator
 {

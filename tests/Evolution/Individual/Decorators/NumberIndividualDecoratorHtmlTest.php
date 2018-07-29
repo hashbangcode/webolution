@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\NumberIndividualDecoratorHtml;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\NumberIndividualDecoratorHtml;
 use Prophecy\Prophet;
 
 class NumberIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
@@ -17,16 +17,16 @@ class NumberIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectCreation()
     {
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual');
         $individualDecorator = new NumberIndividualDecoratorHtml($individual->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\NumberIndividualDecoratorHtml', $individualDecorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\NumberIndividualDecoratorHtml', $individualDecorator);
     }
 
     public function testRender()
     {
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Number\Number');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Number\Number');
         $object->getNumber()->willReturn(123);
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\NumberIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $objectIndividualDecorator = new NumberIndividualDecoratorHtml($objectIndividual->reveal());

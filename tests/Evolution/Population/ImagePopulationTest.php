@@ -1,10 +1,10 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Population;
+namespace Hashbangcode\Webolution\Test\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Population\ImagePopulation;
-use Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual;
-use Hashbangcode\Wevolution\Type\Image\Image;
+use Hashbangcode\Webolution\Evolution\Population\ImagePopulation;
+use Hashbangcode\Webolution\Evolution\Individual\ImageIndividual;
+use Hashbangcode\Webolution\Type\Image\Image;
 
 class ImagePopulationTest extends \PHPUnit_Framework_TestCase
 {

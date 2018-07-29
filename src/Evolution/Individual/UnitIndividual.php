@@ -1,19 +1,19 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual;
+namespace Hashbangcode\Webolution\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Type\Unit\Unit;
+use Hashbangcode\Webolution\Type\Unit\Unit;
 
 /**
  * Class UnitIndividual
- * @package Hashbangcode\Wevolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Evolution\Individual
  */
 class UnitIndividual extends Individual
 {
     /**
      * Generate a random Unit individual.
      *
-     * @return \Hashbangcode\Wevolution\Evolution\Individual\UnitIndividual
+     * @return \Hashbangcode\Webolution\Evolution\Individual\UnitIndividual
      */
     public static function generateRandomUnit()
     {

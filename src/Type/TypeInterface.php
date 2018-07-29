@@ -1,11 +1,11 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type;
+namespace Hashbangcode\Webolution\Type;
 
 /**
  * Interface TypeInterface.
  *
- * @package Hashbangcode\Wevolution\Type
+ * @package Hashbangcode\Webolution\Type
  */
 interface TypeInterface
 {

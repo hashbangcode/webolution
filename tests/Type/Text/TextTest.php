@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Type\Text;
+namespace Hashbangcode\Webolution\Test\Type\Text;
 
-use Hashbangcode\Wevolution\Type\Text\Text;
+use Hashbangcode\Webolution\Type\Text\Text;
 
 /**
  * Test class for Color
@@ -13,7 +13,7 @@ class TextTest extends \PHPUnit_Framework_TestCase
     public function testCreateText()
     {
         $object = new Text('fhsdlakjfhalksjdfhl');
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Text\Text', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\Text', $object);
     }
 
     public function testGetText()

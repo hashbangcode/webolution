@@ -1,11 +1,11 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Statistics\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Statistics\Decorators;
 
 /**
  * Class StatisticsDecorator.
  *
- * @package Hashbangcode\Wevolution\Evolution\Statistics\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Statistics\Decorators
  */
 class StatisticsDecoratorCli extends StatisticsDecorator
 {

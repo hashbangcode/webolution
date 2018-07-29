@@ -1,11 +1,11 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Utilities;
+namespace Hashbangcode\Webolution\Utilities;
 
 /**
  * Class TextUtilities. Stores some text utilities that can be used elsewhere in the application.
  *
- * @package Hashbangcode\Wevolution\Utilities
+ * @package Hashbangcode\Webolution\Utilities
  */
 trait TextUtilities
 {

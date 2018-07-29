@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Statistics\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Statistics\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Statistics\Decorators\StatisticsDecoratorHtml;
+use Hashbangcode\Webolution\Evolution\Statistics\Decorators\StatisticsDecoratorHtml;
 use Prophecy\Prophet;
 
 class StatisticsDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
@@ -17,14 +17,14 @@ class StatisticsDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testStatisticsObjectCreation()
     {
-        $statistics = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Statistics\Statistics');
+        $statistics = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Statistics\Statistics');
         $statisticsDecorator = new StatisticsDecoratorHtml($statistics->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Statistics\Decorators\StatisticsDecoratorHtml', $statisticsDecorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Statistics\Decorators\StatisticsDecoratorHtml', $statisticsDecorator);
     }
 
     public function testRender()
     {
-        $statistics = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Statistics\Statistics');
+        $statistics = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Statistics\Statistics');
         $statistics->getMinFitness()->willReturn(1);
         $statistics->getMaxFitness()->willReturn(2);
         $statistics->getMeanFitness()->willReturn(3);

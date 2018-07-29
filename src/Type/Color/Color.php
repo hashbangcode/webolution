@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Color;
+namespace Hashbangcode\Webolution\Type\Color;
 
-use Hashbangcode\Wevolution\Type\TypeInterface;
+use Hashbangcode\Webolution\Type\TypeInterface;
 
 /**
  * Class Color.
  *
- * @package Hashbangcode\Wevolution\Type\Color
+ * @package Hashbangcode\Webolution\Type\Color
  */
 class Color implements TypeInterface
 {
@@ -147,7 +147,7 @@ class Color implements TypeInterface
      * @param string $hex
      *   The vex value. May, or may not contain a # in front.
      *
-     * @return \Hashbangcode\Wevolution\Type\Color\Color
+     * @return \Hashbangcode\Webolution\Type\Color\Color
      *   The new colour object.
      *
      * @throws Exception\InvalidRGBValueException
@@ -179,7 +179,7 @@ class Color implements TypeInterface
      * @param float $value
      *   The value.
      *
-     * @return \Hashbangcode\Wevolution\Type\Color\Color
+     * @return \Hashbangcode\Webolution\Type\Color\Color
      *   A new Color object.
      *
      * @throws Exception\InvalidRGBValueException
@@ -249,7 +249,7 @@ class Color implements TypeInterface
      * @param float $lightness
      *   The lightness.
      *
-     * @return \Hashbangcode\Wevolution\Type\Color\Color
+     * @return \Hashbangcode\Webolution\Type\Color\Color
      *   A new Color object.
      *
      * @throws Exception\InvalidRGBValueException
@@ -312,7 +312,7 @@ class Color implements TypeInterface
     /**
      * Generate red, green and blue values and then create a Color object.
      *
-     * @return \Hashbangcode\Wevolution\Type\Color\Color
+     * @return \Hashbangcode\Webolution\Type\Color\Color
      *   A new color object.
      *
      * @throws Exception\InvalidRGBValueException

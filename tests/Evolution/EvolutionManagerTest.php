@@ -1,17 +1,17 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution;
+namespace Hashbangcode\Webolution\Test\Evolution;
 
-use Hashbangcode\Wevolution\Evolution\Evolution;
-use Hashbangcode\Wevolution\Evolution\EvolutionManager;
-use Hashbangcode\Wevolution\Evolution\Population\NumberPopulation;
+use Hashbangcode\Webolution\Evolution\Evolution;
+use Hashbangcode\Webolution\Evolution\EvolutionManager;
+use Hashbangcode\Webolution\Evolution\Population\NumberPopulation;
 
 class EvolutionManagerTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateObject()
     {
         $object = new EvolutionManager();
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Evolution', $object->getEvolutionObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Evolution', $object->getEvolutionObject());
     }
 
     public function testSetEvolutionOption()
@@ -32,7 +32,7 @@ class EvolutionManagerTest extends \PHPUnit_Framework_TestCase
     {
         $object = new EvolutionManager();
         $message = 'No population object exists in evolution class.';
-        $this->setExpectedException('Hashbangcode\Wevolution\Evolution\Exception\NoPopulationException', $message);
+        $this->setExpectedException('Hashbangcode\Webolution\Evolution\Exception\NoPopulationException', $message);
         $object->runEvolution();
     }
 

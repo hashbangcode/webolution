@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Population\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Population\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Population\Decorators\PopulationDecoratorFactory;
+use Hashbangcode\Webolution\Evolution\Population\Decorators\PopulationDecoratorFactory;
 
 class PopulationDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,44 +26,44 @@ class PopulationDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
 
         return [
             [
-                '\Hashbangcode\Wevolution\Evolution\Population\NumberPopulation',
+                '\Hashbangcode\Webolution\Evolution\Population\NumberPopulation',
                 'Cli',
-                '\Hashbangcode\Wevolution\Evolution\Population\Decorators\NumberPopulationDecoratorCli'
+                '\Hashbangcode\Webolution\Evolution\Population\Decorators\NumberPopulationDecoratorCli'
             ],
             [
-                '\Hashbangcode\Wevolution\Evolution\Population\NumberPopulation',
+                '\Hashbangcode\Webolution\Evolution\Population\NumberPopulation',
                 'Html',
-                '\Hashbangcode\Wevolution\Evolution\Population\Decorators\NumberPopulationDecoratorHtml'
+                '\Hashbangcode\Webolution\Evolution\Population\Decorators\NumberPopulationDecoratorHtml'
             ],
             [
-                '\Hashbangcode\Wevolution\Evolution\Population\ColorPopulation',
+                '\Hashbangcode\Webolution\Evolution\Population\ColorPopulation',
                 'Cli',
-                '\Hashbangcode\Wevolution\Evolution\Population\Decorators\ColorPopulationDecoratorCli'
+                '\Hashbangcode\Webolution\Evolution\Population\Decorators\ColorPopulationDecoratorCli'
             ],
             [
-                '\Hashbangcode\Wevolution\Evolution\Population\ColorPopulation',
+                '\Hashbangcode\Webolution\Evolution\Population\ColorPopulation',
                 'Html',
-                '\Hashbangcode\Wevolution\Evolution\Population\Decorators\ColorPopulationDecoratorHtml'
+                '\Hashbangcode\Webolution\Evolution\Population\Decorators\ColorPopulationDecoratorHtml'
             ],
             [
-                '\Hashbangcode\Wevolution\Evolution\Population\ColorPopulation',
+                '\Hashbangcode\Webolution\Evolution\Population\ColorPopulation',
                 'cli',
-                '\Hashbangcode\Wevolution\Evolution\Population\Decorators\ColorPopulationDecoratorCli'
+                '\Hashbangcode\Webolution\Evolution\Population\Decorators\ColorPopulationDecoratorCli'
             ],
             [
-                '\Hashbangcode\Wevolution\Evolution\Population\ColorPopulation',
+                '\Hashbangcode\Webolution\Evolution\Population\ColorPopulation',
                 'html',
-                '\Hashbangcode\Wevolution\Evolution\Population\Decorators\ColorPopulationDecoratorHtml'
+                '\Hashbangcode\Webolution\Evolution\Population\Decorators\ColorPopulationDecoratorHtml'
             ],
         ];
     }
 
     public function testNotFindPopulationDecorator()
     {
-        $exception = '\Hashbangcode\Wevolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException';
+        $exception = '\Hashbangcode\Webolution\Evolution\Population\Decorators\Exception\PopulationDecoratorNotFoundException';
         $this->expectException($exception);
 
-        $numberPopulationClass = '\Hashbangcode\Wevolution\Evolution\Population\ColorPopulation';
+        $numberPopulationClass = '\Hashbangcode\Webolution\Evolution\Population\ColorPopulation';
         $type = 'Something';
 
         $numberPopulation = new $numberPopulationClass();

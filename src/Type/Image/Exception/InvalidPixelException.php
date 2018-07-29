@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Type\Image\Exception;
+namespace Hashbangcode\Webolution\Type\Image\Exception;
 
 class InvalidPixelException extends \Exception
 {

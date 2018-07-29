@@ -1,11 +1,11 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual\Exception;
+namespace Hashbangcode\Webolution\Evolution\Individual\Exception;
 
 /**
  * Class IndividualNotFoundException.
  *
- * @package Hashbangcode\Wevolution\Evolution\Individual\Exception
+ * @package Hashbangcode\Webolution\Evolution\Individual\Exception
  */
 class IndividualNotFoundException extends \Exception
 {

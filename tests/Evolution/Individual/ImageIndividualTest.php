@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual;
+use Hashbangcode\Webolution\Evolution\Individual\ImageIndividual;
 
 /**
  * Test class for ColorIndividual
@@ -13,15 +13,15 @@ class ImageIndividualTest extends \PHPUnit_Framework_TestCase
     public function testCreateIndividual()
     {
         $object = ImageIndividual::generateRandomImage();
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Image\Image', $object->getObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\ImageIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Image\Image', $object->getObject());
     }
 
     public function testCreateRandomIndividual()
     {
         $object = ImageIndividual::generateRandomImage();
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ImageIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Image\Image', $object->getObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\ImageIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Image\Image', $object->getObject());
     }
 
     public function testFitnessOfBlankImage()

@@ -1,9 +1,9 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Population;
+namespace Hashbangcode\Webolution\Test\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Population\ColorPopulation;
-use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
+use Hashbangcode\Webolution\Evolution\Population\ColorPopulation;
+use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
 
 class ColorPopulationTest extends \PHPUnit_Framework_TestCase
 {
@@ -43,7 +43,7 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
         $population = $colorColorPopulation->getIndividuals();
 
         foreach ($population as $color) {
-            $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $color->getObject());
+            $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\Color', $color->getObject());
         }
     }
 
@@ -58,7 +58,7 @@ class ColorPopulationTest extends \PHPUnit_Framework_TestCase
         $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
 
         $object = $colorColorPopulation->getRandomIndividual();
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $object->getObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\ColorIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\Color', $object->getObject());
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual;
 
-use Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual;
+use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
 
 /**
  * Test class for ColorIndividual
@@ -13,15 +13,15 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
     public function testCreateIndividual()
     {
         $object = ColorIndividual::generateFromRgb(0, 0, 0);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $object->getObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\ColorIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\Color', $object->getObject());
     }
 
     public function testGenerateFromHex()
     {
         $object = ColorIndividual::generateFromHex('123456');
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Color\Color', $object->getObject());
+        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\ColorIndividual', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\Color', $object->getObject());
 
         $this->assertEquals('123456', $object->getObject()->getHex());
     }

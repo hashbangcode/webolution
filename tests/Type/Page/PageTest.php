@@ -1,10 +1,10 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Type\Page;
+namespace Hashbangcode\Webolution\Test\Type\Page;
 
-use Hashbangcode\Wevolution\Type\Page\Page;
-use Hashbangcode\Wevolution\Type\Style\Style;
-use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Webolution\Type\Page\Page;
+use Hashbangcode\Webolution\Type\Style\Style;
+use Hashbangcode\Webolution\Type\Element\Element;
 
 /**
  * Test class for Page
@@ -15,7 +15,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
     public function testCreateObject()
     {
         $object = new Page();
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Page\Page', $object);
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Page\Page', $object);
     }
     
     public function testGetAndSetStyles()
@@ -30,7 +30,7 @@ class PageTest extends \PHPUnit_Framework_TestCase
         $element = new Element('div');
         $object->setBody($element);
 
-        $this->assertInstanceOf('Hashbangcode\Wevolution\Type\Style\Style', $object->getStyle('div'));
+        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Style\Style', $object->getStyle('div'));
     }
 
     public function testGetNonExistantStyle()

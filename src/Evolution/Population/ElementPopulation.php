@@ -1,15 +1,15 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population;
+namespace Hashbangcode\Webolution\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Individual;
-use Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual;
-use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Webolution\Evolution\Individual\Individual;
+use Hashbangcode\Webolution\Evolution\Individual\ElementIndividual;
+use Hashbangcode\Webolution\Type\Element\Element;
 
 /**
  * Class ElementPopulation.
  *
- * @package Hashbangcode\Wevolution\Evolution\Population
+ * @package Hashbangcode\Webolution\Evolution\Population
  */
 class ElementPopulation extends Population
 {

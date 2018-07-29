@@ -1,15 +1,15 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\IndividualFactory;
-use Hashbangcode\Wevolution\Type\Style\Style;
-use Hashbangcode\Wevolution\Type\Element\Element;
+use Hashbangcode\Webolution\Evolution\Individual\IndividualFactory;
+use Hashbangcode\Webolution\Type\Style\Style;
+use Hashbangcode\Webolution\Type\Element\Element;
 
 /**
  * Class PageIndividualDecoratorHtml.
  *
- * @package Hashbangcode\Wevolution\Evolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
  */
 class PageIndividualDecoratorIframe extends PageIndividualDecoratorHtml
 {

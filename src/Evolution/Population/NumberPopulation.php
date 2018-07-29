@@ -1,20 +1,20 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population;
+namespace Hashbangcode\Webolution\Evolution\Population;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Individual;
-use Hashbangcode\Wevolution\Evolution\Individual\NumberIndividual;
+use Hashbangcode\Webolution\Evolution\Individual\Individual;
+use Hashbangcode\Webolution\Evolution\Individual\NumberIndividual;
 
 /**
  * Class NumberPopulation
- * @package Hashbangcode\Wevolution\Evolution\Population
+ * @package Hashbangcode\Webolution\Evolution\Population
  */
 class NumberPopulation extends Population
 {
     /**
      * Add an individual.
      *
-     * @param \Hashbangcode\Wevolution\Evolution\Individual\Individual|null $individual
+     * @param \Hashbangcode\Webolution\Evolution\Individual\Individual|null $individual
      *   The individual.
      *
      * @return self

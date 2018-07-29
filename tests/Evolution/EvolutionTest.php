@@ -1,9 +1,9 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution;
+namespace Hashbangcode\Webolution\Test\Evolution;
 
-use Hashbangcode\Wevolution\Evolution\Evolution;
-use Hashbangcode\Wevolution\Evolution\Population\ColorPopulation;
+use Hashbangcode\Webolution\Evolution\Evolution;
+use Hashbangcode\Webolution\Evolution\Population\ColorPopulation;
 use Prophecy\Prophet;
 
 class EvolutionTest extends \PHPUnit_Framework_TestCase

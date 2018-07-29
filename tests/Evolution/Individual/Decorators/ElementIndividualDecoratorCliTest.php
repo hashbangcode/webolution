@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\ElementIndividualDecoratorCli;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\ElementIndividualDecoratorCli;
 use Prophecy\Prophet;
 
 class ElementIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
@@ -17,20 +17,20 @@ class ElementIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectCreation()
     {
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\ElementIndividual');
         $individualDecorator = new ElementIndividualDecoratorCli($individual->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\ElementIndividualDecoratorCli', $individualDecorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\ElementIndividualDecoratorCli', $individualDecorator);
     }
 
     public function testRenderEmptyElement()
     {
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Element\Element');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Element\Element');
         $object->getType()->willReturn('div');
         $object->getAttributes()->willReturn(null);
         $object->getChildren()->willReturn([]);
         $object->getElementText()->willReturn('');
 
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\ElementIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $objectIndividualDecorator = new ElementIndividualDecoratorCli($objectIndividual->reveal());
@@ -41,13 +41,13 @@ class ElementIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderElementWithAttribute()
     {
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Element\Element');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Element\Element');
         $object->getType()->willReturn('div');
         $object->getAttributes()->willReturn(['class' => 'class']);
         $object->getChildren()->willReturn([]);
         $object->getElementText()->willReturn('');
 
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\ElementIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $objectIndividualDecorator = new ElementIndividualDecoratorCli($objectIndividual->reveal());
@@ -58,13 +58,13 @@ class ElementIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderElementWithAttributeAndText()
     {
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Element\Element');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Element\Element');
         $object->getType()->willReturn('div');
         $object->getAttributes()->willReturn(['class' => 'class']);
         $object->getChildren()->willReturn([]);
         $object->getElementText()->willReturn('text');
 
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\ElementIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $objectIndividualDecorator = new ElementIndividualDecoratorCli($objectIndividual->reveal());
@@ -75,21 +75,21 @@ class ElementIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderElementWithChild()
     {
-        $child = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Element\Element');
+        $child = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Element\Element');
         $child->getType()->willReturn('p');
         $child->getAttributes()->willReturn(null);
         $child->getChildren()->willReturn([]);
         $child->getElementText()->willReturn('');
 
-        $childIndividual = new \Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual($child->reveal());
+        $childIndividual = new \Hashbangcode\Webolution\Evolution\Individual\ElementIndividual($child->reveal());
 
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Element\Element');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Element\Element');
         $object->getType()->willReturn('div');
         $object->getAttributes()->willReturn(['class' => 'class']);
         $object->getChildren()->willReturn([$childIndividual]);
         $object->getElementText()->willReturn('');
 
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ElementIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\ElementIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $objectIndividualDecorator = new ElementIndividualDecoratorCli($objectIndividual->reveal());

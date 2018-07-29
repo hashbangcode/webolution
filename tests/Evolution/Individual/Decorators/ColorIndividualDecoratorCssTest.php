@@ -1,8 +1,8 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Test\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Individual\Decorators\ColorIndividualDecoratorCss;
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\ColorIndividualDecoratorCss;
 use Prophecy\Prophet;
 
 class ColorIndividualDecoratorCssTest extends \PHPUnit_Framework_TestCase
@@ -17,16 +17,16 @@ class ColorIndividualDecoratorCssTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectCreation()
     {
-        $individual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual');
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\ColorIndividual');
         $ndividualDecorator = new ColorIndividualDecoratorCss($individual->reveal());
-        $this->assertInstanceOf('\Hashbangcode\Wevolution\Evolution\Individual\Decorators\ColorIndividualDecoratorCss', $ndividualDecorator);
+        $this->assertInstanceOf('\Hashbangcode\Webolution\Evolution\Individual\Decorators\ColorIndividualDecoratorCss', $ndividualDecorator);
     }
 
     public function testRender()
     {
-        $object = $this->prophet->prophesize('Hashbangcode\Wevolution\Type\Color\Color');
+        $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Color\Color');
         $object->getHex()->willReturn('000');
-        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Wevolution\Evolution\Individual\ColorIndividual');
+        $objectIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Evolution\Individual\ColorIndividual');
         $objectIndividual->getObject()->willReturn($object);
 
         $objectIndividualDecorator = new ColorIndividualDecoratorCss($objectIndividual->reveal());

@@ -1,13 +1,13 @@
 <?php
 
-namespace Hashbangcode\Wevolution\Evolution\Population\Decorators;
+namespace Hashbangcode\Webolution\Evolution\Population\Decorators;
 
-use Hashbangcode\Wevolution\Evolution\Population\PopulationInterface;
+use Hashbangcode\Webolution\Evolution\Population\PopulationInterface;
 
 /**
  * Class PopulationDecorator.
  *
- * @package Hashbangcode\Wevolution\Evolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Evolution\Population\Decorators
  */
 abstract class PopulationDecorator implements PopulationDecoratorInterface
 {
@@ -15,7 +15,7 @@ abstract class PopulationDecorator implements PopulationDecoratorInterface
     /**
      * The population object.
      *
-     * @var \Hashbangcode\Wevolution\Evolution\Population\PopulationInterface
+     * @var \Hashbangcode\Webolution\Evolution\Population\PopulationInterface
      */
     protected $population;
 
