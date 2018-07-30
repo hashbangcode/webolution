@@ -189,7 +189,7 @@ CREATE TABLE "populations" (
      */
     private function createEvolution($evolution_id)
     {
-        $sql = "INSERT INTO evolution(evolution_id, current_generation) VALUES(:evolution_id, 1)";
+        $sql = "INSERT INTO evolution(evolution_id, current_generation) VALUES(:evolution_id, 0)";
         $query = $this->database->prepare($sql);
         $query->execute(array('evolution_id' => $evolution_id));
     }
