@@ -3,7 +3,7 @@
 namespace Hashbangcode\Webolution\Evolution\Individual;
 
 use Hashbangcode\Webolution\Type\Style\Style;
-use Hashbangcode\Webolution\Utilities\TextUtilities;
+use Hashbangcode\Webolution\Generators\RandomText;
 use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
 
 /**
@@ -12,7 +12,7 @@ use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
  */
 class StyleIndividual extends Individual
 {
-    use TextUtilities;
+    use RandomText;
 
     /**
      * StyleIndividual constructor.

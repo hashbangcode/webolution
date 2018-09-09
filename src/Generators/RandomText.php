@@ -1,25 +1,37 @@
 <?php
 
-namespace Hashbangcode\Webolution\Utilities;
+namespace Hashbangcode\Webolution\Generators;
 
 /**
- * Class TextUtilities. Stores some text utilities that can be used elsewhere in the application.
+ * Class RandomTextGenerator.
  *
- * @package Hashbangcode\Webolution\Utilities
+ * Allows the creation of random bits of text.
+ *
+ * @package Hashbangcode\Webolution\Generators
  */
-trait TextUtilities
+trait RandomText
 {
 
     /**
-     * Generate a random letter. This will be in the range a - z and A - Z.
+     * Generate an array of characters containing a-z, A-Z and a space.
      *
-     * @return mixed
+     * @return array
+     *   An array of characters.
+     */
+    protected static function generateCharacterArray()
+    {
+        return array_merge(range('a', 'z'), range('A', 'Z'), [' ']);
+    }
+
+    /**
+     * Generate a random letter.
+     *
+     * @return string
      *   A random letter.
      */
     public function getRandomLetter()
     {
-        $charArray = array_merge(range('a', 'z'), range('A', 'Z'));
-        $charArray[] = ' ';
+        $charArray = static::generateCharacterArray();
         $randItem = array_rand($charArray);
         return $charArray[$randItem];
     }
@@ -36,7 +48,7 @@ trait TextUtilities
     public static function generateRandomText($textLength = 7)
     {
         $text = "";
-        $charArray = array_merge(range('a', 'z'), range('A', 'Z'), [' ']);
+        $charArray = static::generateCharacterArray();
         for ($i = 0; $i < $textLength; $i++) {
             $randItem = array_rand($charArray);
             $text .= $charArray[$randItem];

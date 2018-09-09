@@ -3,7 +3,7 @@
 namespace Hashbangcode\Webolution\Evolution\Individual;
 
 use Hashbangcode\Webolution\Type\Text\Text;
-use Hashbangcode\Webolution\Utilities\TextUtilities;
+use Hashbangcode\Webolution\Generators\RandomText;
 
 /**
  * Class TextIndividual
@@ -11,7 +11,7 @@ use Hashbangcode\Webolution\Utilities\TextUtilities;
  */
 class TextIndividual extends Individual
 {
-    use TextUtilities;
+    use RandomText;
 
     /**
      * The fitness goal that the string should aspire to.

@@ -1,15 +1,15 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Utilities;
+namespace Hashbangcode\Webolution\Test\Generators;
 
-use Hashbangcode\Webolution\Utilities\TextUtilities;
+use Hashbangcode\Webolution\Generators\RandomText;
 
 /**
  * Test class for Color
  */
-class TextUtilitiesTest extends \PHPUnit_Framework_TestCase
+class RandomTextTest extends \PHPUnit_Framework_TestCase
 {
-    use TextUtilities;
+    use RandomText;
 
     public function testCreateLetter()
     {

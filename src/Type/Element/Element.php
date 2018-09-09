@@ -3,7 +3,7 @@
 namespace Hashbangcode\Webolution\Type\Element;
 
 use Hashbangcode\Webolution\Type\Element\Exception\InvalidChildTypeException;
-use Hashbangcode\Webolution\Utilities\TextUtilities;
+use Hashbangcode\Webolution\Generators\RandomText;
 use Hashbangcode\Webolution\Type\TypeInterface;
 
 /**
@@ -14,7 +14,7 @@ use Hashbangcode\Webolution\Type\TypeInterface;
 class Element implements TypeInterface
 {
 
-    use TextUtilities;
+    use RandomText;
 
     /**
      * The type of element.
