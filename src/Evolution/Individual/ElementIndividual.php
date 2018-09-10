@@ -41,6 +41,8 @@ class ElementIndividual extends Individual
      */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
+        // @todo abstract this.
+
         $action = mt_rand(0, 100);
         $action = $action + $mutationFactor;
 
@@ -127,5 +129,4 @@ class ElementIndividual extends Individual
 
         return $fitness;
     }
-
 }
