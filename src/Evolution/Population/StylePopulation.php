@@ -37,11 +37,8 @@ class StylePopulation extends Population
     public function addIndividual(Individual $individual = null)
     {
         if (is_null($individual)) {
-            $style = new Style();
-
-            $individual = new StyleIndividual($style);
+            $individual = new StyleIndividual(new Style());
         }
-
         $this->individuals[] = $individual;
     }
 

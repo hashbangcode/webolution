@@ -24,8 +24,7 @@ class ImageIndividual extends Individual
      */
     public static function generateFromImageSize($x = 20, $y = 20)
     {
-        $image = new Image($x, $y);
-        return new self($image);
+        return new self(new Image($x, $y));
     }
 
     /**
@@ -36,10 +35,7 @@ class ImageIndividual extends Individual
      */
     public static function generateRandomImage()
     {
-        $imageX = mt_rand(1, 20);
-        $imageY = mt_rand(1, 20);
-        $imageObject = new Image($imageX, $imageY);
-        return new self($imageObject);
+        return new self(new Image(mt_rand(1, 20), mt_rand(1, 20)));
     }
 
     /**
@@ -57,7 +53,6 @@ class ImageIndividual extends Individual
         $imageObject->setImageMatrix($matrix);
         return new self($imageObject);
     }
-
 
     /**
      * {@inheritdoc}

@@ -22,9 +22,7 @@ class NumberIndividual extends Individual
      */
     public static function generateFromNumber($number)
     {
-        // Create the ColorIndividual and assign the passed Color object to it.
-        $numberObject = new Number($number);
-        return new self($numberObject);
+        return new self(new Number($number));
     }
 
     /**
@@ -37,9 +35,7 @@ class NumberIndividual extends Individual
      */
     public static function generateRandomNumber()
     {
-        $number = mt_rand(1, 10);
-        $numberObject = new Number($number);
-        return new self($numberObject);
+        return new self(new Number(mt_rand(1, 10)));
     }
 
     /**

@@ -45,16 +45,7 @@ class ColorIndividual extends Individual
      */
     public static function generateRandomColor()
     {
-        // Create the random colors.
-        $red = ceil(mt_rand(0, 255));
-        $green = ceil(mt_rand(0, 255));
-        $blue = ceil(mt_rand(0, 255));
-
-        // Create the Color object.
-        $color = new Color($red, $green, $blue);
-
-        // Generate and return the ColorIndividual object.
-        return new ColorIndividual($color);
+        return new self(Color::generateRandomColor());
     }
 
     /**
@@ -70,11 +61,7 @@ class ColorIndividual extends Individual
      */
     public static function generateFromHex($hex)
     {
-        // Generate the Color object.
-        $color = Color::generateFromHex($hex);
-
-        // Generate and return the ColorIndividual object.
-        return new ColorIndividual($color);
+        return new self(Color::generateFromHex($hex));
     }
 
     /**
@@ -135,5 +122,4 @@ class ColorIndividual extends Individual
                 return abs($color->getLightness() * 10);
         }
     }
-
 }

@@ -27,8 +27,7 @@ class StyleIndividual extends Individual
      */
     public static function generateFromSelector($selector)
     {
-        $styleObject = new Style($selector);
-        return new self($styleObject);
+        return new self(new Style($selector));
     }
 
     /**

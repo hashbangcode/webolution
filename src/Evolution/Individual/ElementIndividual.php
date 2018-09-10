@@ -22,8 +22,7 @@ class ElementIndividual extends Individual
      */
     public static function generateFromElementType($type)
     {
-        $elementObject = new Element($type);
-        return new self($elementObject);
+        return new self(new Element($type));
     }
 
     /**
