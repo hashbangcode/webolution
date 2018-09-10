@@ -58,7 +58,7 @@ class PageIndividual extends Individual
         $body = $this->getObject()->getBody();
 
         // Mutate the body.
-        if (!($body instanceof \Hashbangcode\Webolution\Evolution\Individual\Individual)) {
+        if (!($body instanceof IndividualInterface)) {
             // If the body isn't an individual then wrap it so we can mutate it.
             $body = new ElementIndividual($body);
         }
@@ -80,7 +80,7 @@ class PageIndividual extends Individual
 
         // Mutate styles.
         $randomStyle = $styles[array_rand($styles)];
-        if (!($randomStyle instanceof \Hashbangcode\Webolution\Evolution\Individual\Individual)) {
+        if (!($randomStyle instanceof IndividualInterface)) {
             // If the style is not an individual then wrap it so we can mutate it.
             $randomStyle = new StyleIndividual($randomStyle);
         }
