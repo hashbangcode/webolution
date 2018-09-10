@@ -14,13 +14,6 @@ use Hashbangcode\Webolution\Type\Element\Element;
 class PageIndividualDecoratorIframe extends PageIndividualDecoratorHtml
 {
     /**
-     * The type of rendering.
-     *
-     * @var string
-     */
-    protected $type = 'html';
-
-    /**
      * {@inheritdoc}
      */
     public function render()
