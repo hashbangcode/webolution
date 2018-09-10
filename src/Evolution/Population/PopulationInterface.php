@@ -43,13 +43,6 @@ interface PopulationInterface
     public function setIndividuals($individuals);
 
     /**
-     * Render the population.
-     *
-     * @return string
-     */
-    public function render();
-
-    /**
      * Perform a crossover function on certain members of the population.
      */
     public function crossover();

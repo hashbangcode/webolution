@@ -110,22 +110,4 @@ class PageIndividual extends Individual
 
         return $fitness;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render($renderType = 'cli')
-    {
-        $output = '';
-        switch ($renderType) {
-            case self::RENDER_HTML:
-                $output .= $this->getObject()->render();
-                break;
-            case self::RENDER_CLI:
-                // Intentional fall through.
-            default:
-                $output .= $this->getObject()->render();
-        }
-        return $output;
-    }
 }

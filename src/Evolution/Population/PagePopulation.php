@@ -18,42 +18,6 @@ class PagePopulation extends Population
     /**
      * {@inheritdoc}
      */
-    public function render()
-    {
-        $output = '';
-
-        // Ensure that the items are sorted.
-        $this->sort();
-
-        foreach ($this->getIndividuals() as $individual) {
-            $renderType = $this->getDefaultRenderType();
-
-            switch ($renderType) {
-              case self::RENDER_HTML:
-                    $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
-                    break;
-
-                case 'htmltextarea':
-                    $output .= '<textarea rows="10" cols="25">' . $individual->render($renderType) . '</textarea>';
-                    break;
-
-                case 'htmlfull':
-                    $output .= '<iframe class="elementframe" height="200" width="200" srcdoc=\'' . $individual->render($renderType) . '\'></iframe>';
-                    $output .= '<textarea rows="35" cols="35">' . $individual->render($renderType) . '</textarea>';
-                    break;
-
-                case self::RENDER_CLI:
-                default:
-                    $output .= $individual->render($renderType);
-            }
-        }
-
-        return $output;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function sort()
     {
         // Do not sort pages.

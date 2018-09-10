@@ -107,32 +107,4 @@ class ImageIndividual extends Individual
                 return $this->getObject()->getActivePixels();
         }
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render($renderType = 'cli')
-    {
-        switch ($renderType) {
-            case 'image':
-                $imageMatrix = $this->getObject()->getImageMatrix();
-
-                // Calculate the size of the image.
-                $imageX = (count($imageMatrix) + 100);
-                $imageY = (count($imageMatrix[0]) + 100);
-
-                // Render the image.
-                $image = $this->getObject()->renderBase64Image();
-
-                return '<img width="' . $imageX . '" height="' . $imageY . '" src="' . $image . '" /> ';
-            case self::RENDER_HTML:
-                $output = '<p>' . nl2br($this->object->render()) . '</p>';
-                break;
-            case self::RENDER_CLI:
-                // Default fall through.
-            default:
-                $output = $this->object->render() . ' ';
-        }
-        return $output;
-    }
 }

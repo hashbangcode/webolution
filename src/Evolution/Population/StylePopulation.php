@@ -16,16 +16,6 @@ class StylePopulation extends Population
     /**
      * {@inheritdoc}
      */
-    public function render()
-    {
-        $output = parent::render();
-
-        return $output;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function sort()
     {
         // Don't sort style elements.

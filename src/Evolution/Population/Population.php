@@ -208,27 +208,6 @@ abstract class Population implements PopulationInterface
     }
 
     /**
-     * Render the entire population.
-     *
-     * @return string
-     *   The rendered population.
-     */
-    public function render()
-    {
-        $output = '';
-
-        // Ensure that the items are sorted before rendering.
-        $this->sort();
-
-        /* @var Individual $individual */
-        foreach ($this->getIndividuals() as $individual) {
-            $output .= $individual->render($this->getDefaultRenderType());
-        }
-
-        return $output;
-    }
-
-    /**
      * {@inheritdoc}
      */
     abstract public function sort();

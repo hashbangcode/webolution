@@ -62,25 +62,6 @@ class ImagePopulation extends Population
     /**
      * {@inheritdoc}
      */
-    public function render()
-    {
-        $output = parent::render();
-        switch ($this->getDefaultRenderType()) {
-            case self::RENDER_HTML:
-                $output .= ' (' . $this->getLength() . ' items)<br>';
-                break;
-            case self::RENDER_CLI:
-                // Intentional fall through.
-            default:
-                $output .= ' (' . $this->getLength() . ' items)' . PHP_EOL;
-                break;
-        }
-        return $output;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function crossover()
     {
         // Get two individuals from the population.
