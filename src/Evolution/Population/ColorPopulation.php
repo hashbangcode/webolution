@@ -6,7 +6,8 @@ use Hashbangcode\Webolution\Evolution\Individual\Individual;
 use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
 
 /**
- * Class ColorPopulation
+ * Class ColorPopulation.
+ *
  * @package Hashbangcode\Webolution\Evolution\Population
  */
 class ColorPopulation extends Population
@@ -93,7 +94,6 @@ class ColorPopulation extends Population
         if (is_null($individual)) {
             $individual = ColorIndividual::generateRandomColor();
         }
-
         $this->individuals[] = $individual;
     }
 

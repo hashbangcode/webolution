@@ -23,6 +23,8 @@ class ColorIndividual extends Individual
      *
      * @return ColorIndividual
      *   A new ColorIndividual object.
+     *
+     * @throws \Hashbangcode\Webolution\Type\Color\Exception\InvalidRGBValueException
      */
     public static function generateFromRgb($red, $green, $blue)
     {
@@ -34,8 +36,12 @@ class ColorIndividual extends Individual
     }
 
     /**
+     * Generate a ColorIndividual object containing a Color object with random color.
+     *
      * @return ColorIndividual
      *   The ColorIndividual object with a Color object with random RGB values.
+     *
+     * @throws \Hashbangcode\Webolution\Type\Color\Exception\InvalidRGBValueException
      */
     public static function generateRandomColor()
     {
@@ -52,10 +58,15 @@ class ColorIndividual extends Individual
     }
 
     /**
-     * Generate a ColorIndividual object from a hex value.
+     * Generate a ColorIndividual object containing a Color object from a hex value.
      *
-     * @param $hex
+     * @param string $hex
+     *   The hex value.
+     *
      * @return ColorIndividual
+     *   A ColorIndividual object.
+     *
+     * @throws \Hashbangcode\Webolution\Type\Color\Exception\InvalidRGBValueException
      */
     public static function generateFromHex($hex)
     {

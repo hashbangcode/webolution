@@ -6,7 +6,8 @@ use Hashbangcode\Webolution\Evolution\Individual\Individual;
 use Hashbangcode\Webolution\Evolution\Individual\NumberIndividual;
 
 /**
- * Class NumberPopulation
+ * Class NumberPopulation.
+ *
  * @package Hashbangcode\Webolution\Evolution\Population
  */
 class NumberPopulation extends Population
@@ -17,7 +18,7 @@ class NumberPopulation extends Population
      * @param \Hashbangcode\Webolution\Evolution\Individual\Individual|null $individual
      *   The individual.
      *
-     * @return self
+     * @return $this
      */
     public function addIndividual(Individual $individual = null)
     {

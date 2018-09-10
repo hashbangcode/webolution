@@ -13,104 +13,77 @@ class Color implements TypeInterface
 {
 
     /**
-     * The amount of red.
-     *
-     * @var int|null
+     * @var int|null The amount of red.
      */
     private $red = null;
 
     /**
-     * The amount of green.
-     *
-     * @var int|null
+     * @var int|null The amount of green.
      */
     private $green = null;
 
     /**
-     * The amount of blue.
-     *
-     * @var int|null
+     * @var int|null The amount of blue.
      */
     private $blue = null;
 
     /**
-     * The hue of the color.
-     *
-     * @var null
+     * @var float|null The hue of the color.
      */
     private $hue = null;
 
     /**
-     * The hue2 value of the color.
-     *
-     * @var null
+     * @var float|null The hue2 value of the color.
      */
     private $hue2 = null;
 
     /**
-     * The croma value of the color.
-     *
-     * @var null
+     * @var float|null The croma value of the color.
      */
     private $croma = null;
 
     /**
-     * The croma2 value of the color.
-     *
-     * @var null
+     * @var float|null The croma2 value of the color.
      */
     private $croma2 = null;
 
     /**
-     * @var null
-     *   The value of the color.
+     * @var float|null The value of the color.
      */
     private $value = null;
 
     /**
-     * The lightness of the color.
-     *
-     * @var null
+     * @var float|null The lightness of the color.
      */
     private $lightness = null;
 
     /**
-     * The intensity of the color.
-     *
-     * @var null
+     * @var float|null The intensity of the color.
      */
     private $intensity = null;
 
     /**
-     * The luma, based on Rec. 601 NTSC primaries.
-     *
-     * @var float
+     * @var float|null The luma, based on Rec. 601 NTSC primaries.
      */
     private $luma = null;
 
     /**
-     * The HSV saturation value of the color.
-     *
-     * @var null
+     * @var float|null The HSV saturation value of the color.
      */
     private $hsv_saturation = null;
 
     /**
-     * The HSL saturation value of the color.
-     *
-     * @var null
+     * @var float|null The HSL saturation value of the color.
      */
     private $hsl_saturation = null;
 
     /**
-     * The HSI saturation value of the color.
-     *
-     * @var null
+     * @var float|null The HSI saturation value of the color.
      */
     private $hsi_saturation = null;
 
     /**
-     * Color contrsuctor.
+     * Color constructor.
      *
      * @param int $red
      *   The red level, between 0 and 255.

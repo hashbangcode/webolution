@@ -5,7 +5,7 @@ namespace Hashbangcode\Webolution\Evolution\Population\Decorators;
 use Hashbangcode\Webolution\Evolution\Individual\Decorators\StyleIndividualDecoratorCli;
 
 /**
- * Class NumberPopulationDecoratorCli.
+ * Class StylePopulationDecoratorCli.
  *
  * @package Hashbangcode\Webolution\Evolution\Population\Decorators
  */

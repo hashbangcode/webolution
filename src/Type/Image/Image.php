@@ -13,9 +13,7 @@ class Image implements TypeInterface
 {
 
     /**
-     * The image matrix.
-     *
-     * @var array
+     * @var array The image matrix.
      */
     private $imageMatrix = [];
 

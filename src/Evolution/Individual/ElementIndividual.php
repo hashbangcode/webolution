@@ -5,7 +5,8 @@ namespace Hashbangcode\Webolution\Evolution\Individual;
 use Hashbangcode\Webolution\Type\Element\Element;
 
 /**
- * Class ElementIndividual
+ * Class ElementIndividual.
+ *
  * @package Hashbangcode\Webolution\Evolution\Individual
  */
 class ElementIndividual extends Individual

@@ -2,6 +2,8 @@
 
 namespace Hashbangcode\Webolution\Evolution\Population\Decorators;
 
+use Hashbangcode\Webolution\Evolution\Individual\Decorators\ColorIndividualDecoratorCss;
+
 /**
  * Class ColorPopulationDecoratorCss.
  *

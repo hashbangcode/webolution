@@ -14,9 +14,11 @@ class NumberIndividual extends Individual
      * Generate a NumberIndividual from a Number object.
      *
      * @param int $number
-     *   The number
-     *
+     *   The number.
      * @return NumberIndividual
+     *   The new NumberIndividual object.
+     *
+     * @throws \Hashbangcode\Webolution\Type\Number\Exception\InvalidNumberException
      */
     public static function generateFromNumber($number)
     {
@@ -26,7 +28,12 @@ class NumberIndividual extends Individual
     }
 
     /**
+     * Generate a random NumberIndividual containing a new Number object.
+     *
      * @return NumberIndividual
+     *   A new NumberIndividual object.
+     *
+     * @throws \Hashbangcode\Webolution\Type\Number\Exception\InvalidNumberException
      */
     public static function generateRandomNumber()
     {

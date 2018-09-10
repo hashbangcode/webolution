@@ -11,15 +11,13 @@ use Hashbangcode\Webolution\Type\TypeInterface;
 class Text implements TypeInterface
 {
     /**
-     * The text.
-     *
-     * @var string
+     * @var string The text.
      */
     protected $text = '';
 
     /**
      * Get the text.
-
+     *
      * @return string
      *  The text.
      */

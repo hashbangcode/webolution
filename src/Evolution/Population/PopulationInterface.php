@@ -30,6 +30,7 @@ interface PopulationInterface
      * Get the individuals for this population.
      *
      * @return array
+     *   The individual array.
      */
     public function getIndividuals();
 

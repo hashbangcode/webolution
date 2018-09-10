@@ -12,51 +12,37 @@ use Hashbangcode\Webolution\Evolution\Population\PopulationInterface;
 class Statistics implements StatisticsInterface
 {
     /**
-     * The max fitness.
-     *
-     * @var int
+     * @var int The max fitness.
      */
     protected $maxFitness = 0;
 
     /**
-     * The min fitness.
-     *
-     * @var int
+     * @var int The min fitness.
      */
     protected $minFitness = 0;
 
     /**
-     * The median fitness.
-     *
-     * @var int
+     * @var int The median fitness.
      */
     protected $medianFitness = 0;
 
     /**
-     * The mean fitness.
-     *
-     * @var int
+     * @var int The mean fitness.
      */
     protected $meanFitness = 0;
 
     /**
-     * Max fitness individual.
-     *
-     * @var \Hashbangcode\Webolution\Evolution\Individual\Individual|null
+     * @var \Hashbangcode\Webolution\Evolution\Individual\Individual|null Max fitness individual.
      */
     protected $maxFitnessIndividual;
 
     /**
-     * Min fitness individual.
-     *
-     * @var \Hashbangcode\Webolution\Evolution\Individual\Individual|null
+     * @var \Hashbangcode\Webolution\Evolution\Individual\Individual|null Min fitness individual.
      */
     protected $minFitnessIndividual;
 
     /**
-     * Median fitness individual.
-     *
-     * @var \Hashbangcode\Webolution\Evolution\Individual\Individual|null
+     * @var \Hashbangcode\Webolution\Evolution\Individual\Individual|null Median fitness individual.
      */
     protected $medianFitnessIndividual;
 

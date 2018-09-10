@@ -14,16 +14,12 @@ use Hashbangcode\Webolution\Type\TypeInterface;
 class Page implements TypeInterface
 {
     /**
-     * The page styles.
-     *
-     * @var array
+     * @var array The page styles.
      */
     protected $styles = [];
 
     /**
-     * The root Element object.
-     *
-     * @var Element
+     * @var \Hashbangcode\Webolution\Type\Element\Element The root Element object.
      */
     protected $body;
 

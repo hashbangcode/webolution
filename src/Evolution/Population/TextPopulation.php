@@ -37,6 +37,7 @@ class TextPopulation extends Population
      */
     public function sort()
     {
+        // @todo this is not a sorting function.
         sort($this->individuals);
     }
 

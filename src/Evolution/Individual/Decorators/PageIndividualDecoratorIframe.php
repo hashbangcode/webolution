@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\Type\Style\Style;
 use Hashbangcode\Webolution\Type\Element\Element;
 
 /**
- * Class PageIndividualDecoratorHtml.
+ * Class PageIndividualDecoratorIframe.
  *
  * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
  */

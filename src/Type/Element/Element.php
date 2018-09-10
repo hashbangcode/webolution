@@ -17,37 +17,29 @@ class Element implements TypeInterface
     use RandomText;
 
     /**
-     * The type of element.
-     *
-     * @var string
+     * @var string The type of element.
      */
     protected $type;
 
     /**
-     * An associative array of attributes.
-     *
-     * @var array
+     * @var array An associative array of attributes.
      */
     protected $attributes = null;
 
     /**
-     * The children of this element.
-     *
-     * @var array
+     * @var array The children of this element.
      */
     protected $children = [];
 
     /**
-     * The text node of this element.
-     *
-     * @var string
+     * @var string The text node of this element.
      */
     protected $elementText = '';
 
     /**
-     * An optional object that can be used in place of an element.
+     * @todo false?
      *
-     * @var bool|object
+     * @var bool|object An optional object that can be used in place of an element.
      */
     protected $object = false;
 

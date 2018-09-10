@@ -13,9 +13,7 @@ use Hashbangcode\Webolution\Type\Number\Exception\InvalidNumberException;
 class Number implements TypeInterface
 {
     /**
-     * The number.
-     *
-     * @var int
+     * @var int The number.
      */
     protected $number;
 
@@ -52,6 +50,8 @@ class Number implements TypeInterface
      *
      * @param int $number
      *   The number.
+     *
+     * @throws InvalidNumberException
      */
     public function __construct($number)
     {
@@ -64,8 +64,10 @@ class Number implements TypeInterface
      * @param $x integer
      *   The number.
      *
-     * @return self
+     * @return $this
      *   The current object.
+     *
+     * @throws InvalidNumberException
      */
     public function add($x)
     {
@@ -79,8 +81,10 @@ class Number implements TypeInterface
      * @param $x integer
      *   The number.
      *
-     * @return self
+     * @return $this
      *   The current object.
+     *
+     * @throws InvalidNumberException
      */
     public function subtract($x)
     {

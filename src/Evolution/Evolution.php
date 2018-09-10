@@ -27,72 +27,52 @@ class Evolution
     const REPLICATION_TYPE_CROSSOVER = 'crossover';
     
     /**
-     * The global fitness goal.
-     *
-     * @var mixed|null
+     * @var mixed|null The global fitness goal.
      */
     public $globalFitnessGoal = null;
 
     /**
-     * The current generation number.
-     *
-     * @var int
+     * @var int The current generation number.
      */
     protected $generation = 0;
 
     /**
-     * The global mutation factor.
-     *
-     * @var int
+     * @var int The global mutation factor.
      */
     protected $globalMutationFactor = 50;
 
     /**
-     * The global mutation amount.
-     *
-     * @var int
+     * @var int The global mutation amount.
      */
     protected $globalMutationAmount = 1;
 
     /**
-     * The maximum number of generations to run.
-     *
-     * @var int
+     * @var int The maximum number of generations to run.
      */
     protected $maxGenerations = 30;
 
     /**
-     * The minimum number of individuals per generation.
-     *
-     * @var int
+     * @var int The minimum number of individuals per generation.
      */
     protected $individualsPerGeneration = 30;
 
     /**
-     * The allowed fitness value.
-     *
-     * @var int
+     * @var int The allowed fitness value.
      */
     protected $allowedFitness = 8;
 
     /**
-     * The way in which populations are replicated into the next generation.
-     *
-     * @var string
+     * @var string The way in which populations are replicated into the next generation.
      */
     protected $replicationType = 'clone';
 
     /**
-     * The current Population object.
-     *
-     * @var Population
+     * @var Population  The current Population object.
      */
     protected $population;
 
     /**
-     * A store of the previous generations.
-     *
-     * @var array
+     * @var array A store of the previous generations.
      */
     protected $previousGenerations = array();
 

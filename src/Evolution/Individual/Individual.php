@@ -6,16 +6,14 @@ use Hashbangcode\Webolution\Type\TypeInterface;
 use phpDocumentor\Parser\Exception;
 
 /**
- * Class Individual
+ * Class Individual.
+ *
  * @package Hashbangcode\Webolution\Evolution\Individual
  */
 abstract class Individual implements IndividualInterface
 {
-
     /**
-     * The type object.
-     *
-     * @var object
+     * @var object The type object.
      */
     protected $object;
 
@@ -56,5 +54,4 @@ abstract class Individual implements IndividualInterface
     {
         return $this->object;
     }
-
 }

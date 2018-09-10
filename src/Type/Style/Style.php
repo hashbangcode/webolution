@@ -12,9 +12,8 @@ use Hashbangcode\Webolution\Type\TypeInterface;
 class Style implements TypeInterface
 {
     /**
-     * The style selector.
-     *
      * @var null|string
+     *   The style selector.
      */
     protected $selector = '';
 
@@ -98,7 +97,7 @@ class Style implements TypeInterface
      * Set all attributes.
      *
      * @param array $attributes
-     *   Array of attibutes, as a key value set.
+     *   Array of attributes, as a key value set.
      */
     public function setAttributes($attributes)
     {
@@ -119,7 +118,7 @@ class Style implements TypeInterface
     }
 
     /**
-     * Set an attrobite.
+     * Set an attribute.
      *
      * @param string $name
      *   Name of the attribute.

@@ -14,9 +14,9 @@ use Hashbangcode\Webolution\Type\Element\Element;
 class PageIndividualDecoratorHtml extends IndividualDecorator
 {
     /**
-     * The type of rendering.
+     * @todo why is this property here?
      *
-     * @var string
+     * @var string The type of rendering.
      */
     protected $type = 'html';
 

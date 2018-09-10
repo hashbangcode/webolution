@@ -7,7 +7,8 @@ use Hashbangcode\Webolution\Generators\RandomText;
 use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
 
 /**
- * Class StyleIndividual
+ * Class StyleIndividual.
+ *
  * @package Hashbangcode\Webolution\Evolution\Individual
  */
 class StyleIndividual extends Individual

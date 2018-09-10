@@ -11,11 +11,8 @@ use Hashbangcode\Webolution\Evolution\Individual\IndividualInterface;
  */
 abstract class IndividualDecorator implements IndividualDecoratorInterface
 {
-
     /**
-     * The individual object.
-     *
-     * @var \Hashbangcode\Webolution\Evolution\Individual\IndividualInterface
+     * @var \Hashbangcode\Webolution\Evolution\Individual\IndividualInterface The individual object.
      */
     protected $individual;
 

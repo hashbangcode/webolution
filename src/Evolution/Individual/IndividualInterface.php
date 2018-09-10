@@ -2,8 +2,6 @@
 
 namespace Hashbangcode\Webolution\Evolution\Individual;
 
-use Hashbangcode\Webolution\Type\TypeInterface;
-
 /**
  * Interface IndividualInterface.
  *

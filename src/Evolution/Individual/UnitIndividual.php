@@ -5,7 +5,8 @@ namespace Hashbangcode\Webolution\Evolution\Individual;
 use Hashbangcode\Webolution\Type\Unit\Unit;
 
 /**
- * Class UnitIndividual
+ * Class UnitIndividual.
+ *
  * @package Hashbangcode\Webolution\Evolution\Individual
  */
 class UnitIndividual extends Individual
@@ -14,9 +15,11 @@ class UnitIndividual extends Individual
      * Generate a random Unit individual.
      *
      * @return \Hashbangcode\Webolution\Evolution\Individual\UnitIndividual
+     *   A new UnitIndividual object.
      */
     public static function generateRandomUnit()
     {
+        // @todo move this random generation into the Unit class.
         $number = mt_rand(1, 100);
         $units = ['px', 'em', '%', 'auto'];
         $unit = $units[array_rand($units)];
@@ -25,9 +28,15 @@ class UnitIndividual extends Individual
     }
 
     /**
-     * @param $number
-     * @param $unit
-     * @return UnitIndividual
+     * Generate a UnitIndividual object from Unit object, created using a number and a string.
+     *
+     * @param int $number
+     *   The number.
+     * @param string $unit
+     *   The unit.
+     *
+     * @return \Hashbangcode\Webolution\Evolution\Individual\UnitIndividual
+     *   A new UnitIndividual object.
      */
     public static function generateFromUnitArguments($number, $unit)
     {

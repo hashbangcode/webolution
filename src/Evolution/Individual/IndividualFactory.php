@@ -20,8 +20,8 @@ class IndividualFactory
      * @param \Hashbangcode\Webolution\Type\TypeInterface $type
      *   The individual.
      *
-     * @return \Hashbangcode\Webolution\Evolution\Population\\PopulationInterface
-     *   The recorator.
+     * @return \Hashbangcode\Webolution\Evolution\Population\PopulationInterface
+     *   The decorator.
      *
      * @throws IndividualNotFoundException
      */

@@ -14,9 +14,7 @@ class TextIndividual extends Individual
     use RandomText;
 
     /**
-     * The fitness goal that the string should aspire to.
-     *
-     * @var string
+     * @var string The fitness goal that the string should aspire to.
      */
     protected $fitnessGoal = '';
 

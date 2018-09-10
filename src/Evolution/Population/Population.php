@@ -16,6 +16,7 @@ abstract class Population implements PopulationInterface
      * The statistics object.
      *
      * @var \Hashbangcode\Webolution\Evolution\Statistics\Statistics|null
+     *   A Statistics object, if created.
      */
     protected $statistics;
 
@@ -407,7 +408,6 @@ abstract class Population implements PopulationInterface
             // If we don't have any statistics yet then generate them.
             $this->generateStatistics();
         }
-
         return $this->statistics;
     }
 

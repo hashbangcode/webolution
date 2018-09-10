@@ -11,11 +11,8 @@ use Hashbangcode\Webolution\Evolution\Population\PopulationInterface;
  */
 abstract class PopulationDecorator implements PopulationDecoratorInterface
 {
-
     /**
-     * The population object.
-     *
-     * @var \Hashbangcode\Webolution\Evolution\Population\PopulationInterface
+     * @var \Hashbangcode\Webolution\Evolution\Population\PopulationInterface The population object.
      */
     protected $population;
 

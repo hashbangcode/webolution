@@ -12,10 +12,15 @@ class ImageIndividual extends Individual
 {
 
     /**
-     * @param int $x
-     * @param int $y
+     * Generate an image with a given size.
      *
-     * @return ImageIndividual
+     * @param int $x
+     *   The width of the image.
+     * @param int $y
+     *   The height of the image.
+     *
+     * @return \Hashbangcode\Webolution\Evolution\Individual\ImageIndividual
+     *   An ImageIndividual.
      */
     public static function generateFromImageSize($x = 20, $y = 20)
     {
@@ -24,7 +29,10 @@ class ImageIndividual extends Individual
     }
 
     /**
+     * Generate a random image with a ranom size.
+     *
      * @return \Hashbangcode\Webolution\Evolution\Individual\ImageIndividual
+     *   An ImageIndividual.
      */
     public static function generateRandomImage()
     {
@@ -41,6 +49,7 @@ class ImageIndividual extends Individual
      *   The matrix to generate the image from.
      *
      * @return \Hashbangcode\Webolution\Evolution\Individual\ImageIndividual
+     *   An ImageIndividual.
      */
     public static function generateFromMatrix($matrix)
     {

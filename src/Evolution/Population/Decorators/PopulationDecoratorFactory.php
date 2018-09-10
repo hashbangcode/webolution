@@ -12,7 +12,6 @@ use Hashbangcode\Webolution\Evolution\Population\PopulationInterface;
  */
 class PopulationDecoratorFactory
 {
-
     /**
      * Given a population object and a type of render, find and instansiate the object.
      *
