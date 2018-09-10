@@ -14,14 +14,6 @@ use Hashbangcode\Webolution\Type\Text\Text;
 class TextPopulation extends Population
 {
     /**
-     * @param mixed $text
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function addIndividual(Individual $individual = null)
