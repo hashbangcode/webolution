@@ -41,8 +41,6 @@ class ElementIndividual extends Individual
      */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
-        // @todo abstract this.
-
         $action = mt_rand(0, 100);
         $action = $action + $mutationFactor;
 
@@ -50,34 +48,58 @@ class ElementIndividual extends Individual
         $element = $this->getObject();
 
         if ($action <= 20 && count($element->getAttributes()) > 0) {
-            // Mutate an attribute.
             $this->mutateAttribute();
         } elseif ($action > 20 && $action <= 40) {
-            // Add attribute to a random element.
-            $element = $this->getObject()->getRandomElement();
-
-            $attributes = [
-                'id',
-                'class',
-            ];
-
-            $attribute = $attributes[array_rand($attributes)];
-
-            $element->setAttribute($attribute, $element->generateRandomText(5));
+            $this->addAttributeToRandomElement();
         } elseif ($action > 40 && $action <= 50) {
-            // Add children element.
-            $randomElement = $this->getObject()->getRandomElement();
-            $child_types = $randomElement->getAvailableChildTypes($randomElement->getType());
-            $child_type = $child_types[array_rand($child_types)];
-            $newElement = new Element($child_type);
-            $randomElement->addChild($newElement);
+            $this->addChildrenElement();
         } elseif ($action > 50 && $action <= 55) {
-            // Remove child.
             $this->getObject()->removeRandomChild();
         } elseif ($action > 55 && $action <= 80) {
-            // Alter the tag itself.
-            // @todo : complete this.
+            $this->mutateTag();
         }
+    }
+
+    /**
+     * Alter the tag of the Element object.
+     */
+    public function mutateTag()
+    {
+        $currentTag = $this->getObject()->getType();
+        $availableTags = array_keys($this->getObject()->getAvailableChildTypes());
+        unset($availableTags[$currentTag]);
+        $newTag = array_rand($availableTags);
+        $this->getObject()->setType($newTag);
+    }
+
+    /**
+     * Add an attribute to a random element.
+     */
+    public function addAttributeToRandomElement()
+    {
+        $element = $this->getObject()->getRandomElement();
+
+        $attributes = [
+            'id',
+            'class',
+        ];
+
+        $attribute = $attributes[array_rand($attributes)];
+
+        $element->setAttribute($attribute, $element->generateRandomText(5));
+    }
+
+    /**
+     * Add a child element to a random place in the element object.
+     */
+    public function addChildrenElement()
+    {
+        // Add children element.
+        $randomElement = $this->getObject()->getRandomElement();
+        $child_types = $randomElement->getAvailableChildTypes($randomElement->getType());
+        $child_type = $child_types[array_rand($child_types)];
+        $newElement = new Element($child_type);
+        $randomElement->addChild($newElement);
     }
 
     /**
