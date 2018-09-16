@@ -279,14 +279,6 @@ class ColorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($hue2, $color->getHue2());
     }
 
-    public function testSetIntensity()
-    {
-        $color = new Color(255, 255, 255);
-        $intensity = 1;
-        $color->setIntensity($intensity);
-        $this->assertEquals($intensity, $color->getIntensity());
-    }
-
     public function testSetLuma()
     {
         $color = new Color(0, 0, 0);
