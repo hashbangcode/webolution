@@ -37,8 +37,6 @@ class Element implements TypeInterface
     protected $elementText = '';
 
     /**
-     * @todo false?
-     *
      * @var bool|object An optional object that can be used in place of an element.
      */
     protected $object = false;
