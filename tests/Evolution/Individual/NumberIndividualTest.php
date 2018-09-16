@@ -41,7 +41,6 @@ class NumberIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateNumber()
     {
-        // @todo : this test fails randomly. consider refactoring.
         $object = NumberIndividual::generateFromNumber(1);
         $this->assertEquals(1, $object->getObject()->getNumber());
         $object->mutate();

@@ -38,15 +38,6 @@ class NumberPopulationTest extends \PHPUnit_Framework_TestCase
         $numberPopulation->addIndividual();
 
         $this->assertEquals(3, $numberPopulation->getLength());
-    }
-
-    public function testNumberIteration()
-    {
-        $numberPopulation = new NumberPopulation();
-        // @todo : refactor using prophecy.
-        $numberPopulation->addIndividual(NumberIndividual::generateRandomNumber());
-        $numberPopulation->addIndividual(NumberIndividual::generateRandomNumber());
-        $numberPopulation->addIndividual(NumberIndividual::generateRandomNumber());
 
         $population = $numberPopulation->getIndividuals();
 

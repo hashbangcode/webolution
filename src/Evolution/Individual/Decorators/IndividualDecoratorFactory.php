@@ -40,7 +40,8 @@ class IndividualDecoratorFactory
         $decoratorClass .= join('', array_slice(explode('\\', $class), -1)) . 'Decorator' . $type;
 
         if (!class_exists($decoratorClass)) {
-            throw new IndividualDecoratorNotFoundException('Decorator class ' . $decoratorClass . ' not found from class ' . $class . '.');
+            $message = 'Decorator class ' . $decoratorClass . ' not found from class ' . $class . '.';
+            throw new IndividualDecoratorNotFoundException($message);
         }
 
         $decorator = new $decoratorClass($individual);

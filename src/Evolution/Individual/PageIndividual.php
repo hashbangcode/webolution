@@ -20,7 +20,6 @@ class PageIndividual extends Individual
      */
     public static function generateBlankPage()
     {
-        // @todo Why do I have this?
         return new self(new Page());
     }
 

@@ -290,11 +290,11 @@ class ColorTest extends \PHPUnit_Framework_TestCase
     {
         $color = new Color(0, 0, 0);
         $statistics = $color->renderColorStatistics();
-        $this->assertTrue(strstr($statistics, 'Red: 0') !== FALSE);
-        $this->assertTrue(strstr($statistics, 'Green: 0') !== FALSE);
-        $this->assertTrue(strstr($statistics, 'Blue: 0') !== FALSE);
-        $this->assertTrue(strstr($statistics, 'Hex: 000000') !== FALSE);
-        $this->assertTrue(strstr($statistics, 'Lightness: 0') !== FALSE);
-        $this->assertTrue(strstr($statistics, 'Value: 0') !== FALSE);
+        $this->assertTrue(strstr($statistics, 'Red: 0') !== false);
+        $this->assertTrue(strstr($statistics, 'Green: 0') !== false);
+        $this->assertTrue(strstr($statistics, 'Blue: 0') !== false);
+        $this->assertTrue(strstr($statistics, 'Hex: 000000') !== false);
+        $this->assertTrue(strstr($statistics, 'Lightness: 0') !== false);
+        $this->assertTrue(strstr($statistics, 'Value: 0') !== false);
     }
 }
