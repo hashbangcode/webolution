@@ -14,11 +14,9 @@ use Hashbangcode\Webolution\Type\Element\Element;
 class PageIndividualDecoratorHtml extends IndividualDecorator
 {
     /**
-     * @todo why is this property here?
-     *
      * @var string The type of rendering.
      */
-    protected $type = 'html';
+    public const TYPE = 'html';
 
     /**
      * {@inheritdoc}
@@ -37,7 +35,7 @@ class PageIndividualDecoratorHtml extends IndividualDecorator
             foreach ($object->getStyles() as $styleObject) {
                 if ($styleObject instanceof Style) {
                     $styleIndividual = IndividualFactory::getIndividual($styleObject);
-                    $decorator = IndividualDecoratorFactory::getIndividualDecorator($styleIndividual, $this->type);
+                    $decorator = IndividualDecoratorFactory::getIndividualDecorator($styleIndividual, static::TYPE);
 
                     $style .= PHP_EOL . '        ' . $decorator->render();
                 }
@@ -49,7 +47,7 @@ class PageIndividualDecoratorHtml extends IndividualDecorator
         // Render the body.
         if ($object->getBody() instanceof Element) {
             $elementIndividual = IndividualFactory::getIndividual($object->getBody());
-            $decorator = IndividualDecoratorFactory::getIndividualDecorator($elementIndividual, $this->type);
+            $decorator = IndividualDecoratorFactory::getIndividualDecorator($elementIndividual, static::TYPE);
 
             $body .= $decorator->render() . PHP_EOL;
         }

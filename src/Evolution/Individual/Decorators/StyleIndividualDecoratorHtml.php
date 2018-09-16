@@ -12,7 +12,7 @@ class StyleIndividualDecoratorHtml extends IndividualDecorator
     /**
      * @var string The type of rendering.
      */
-    protected $type = 'html';
+    public const TYPE = 'html';
 
     /**
      * {@inheritdoc}
@@ -33,7 +33,7 @@ class StyleIndividualDecoratorHtml extends IndividualDecorator
                 $output .= $attribute . ':';
 
                 // This might be a unit or a color object.
-                $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($value, $this->type);
+                $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($value, static::TYPE);
                 $output .= $individualDecorator->render();
 
                 $output .= ';';
@@ -42,7 +42,7 @@ class StyleIndividualDecoratorHtml extends IndividualDecorator
                 $output .= $attribute . ':';
                 $valueArray = [];
                 foreach ($value as $val) {
-                    $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($val, $this->type);
+                    $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($val, static::TYPE);
                     $valueArray[] = $individualDecorator->render();
                 }
                 $output .= implode(' ', $valueArray) . ';';

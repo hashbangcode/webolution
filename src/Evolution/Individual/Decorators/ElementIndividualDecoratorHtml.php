@@ -13,11 +13,9 @@ use Hashbangcode\Webolution\Evolution\Individual\IndividualInterface;
 class ElementIndividualDecoratorHtml extends IndividualDecorator
 {
     /**
-     * The type of rendering.
-     *
-     * @var string
+     * @var string The type of rendering.
      */
-    protected $type = 'html';
+    public const TYPE = 'html';
 
     /**
      * {@inheritdoc}
@@ -27,7 +25,7 @@ class ElementIndividualDecoratorHtml extends IndividualDecorator
         $object = $this->getIndividual()->getObject();
 
         if ($object->getType() === false && is_object($object->getObject())) {
-            $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($object, $this->type);
+            $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($object, static::TYPE);
             return $individualDecorator->render();
         }
 
@@ -49,9 +47,9 @@ class ElementIndividualDecoratorHtml extends IndividualDecorator
             foreach ($object->getChildren() as $index => $child) {
                 if (($child instanceof IndividualInterface) == false) {
                     $individualChild = new ElementIndividual($child);
-                    $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($individualChild, $this->type);
+                    $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($individualChild, static::TYPE);
                 } else {
-                    $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($child, $this->type);
+                    $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($child, static::TYPE);
                 }
                 $output .= $individualDecorator->render();
             }

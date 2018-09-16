@@ -10,10 +10,7 @@ namespace Hashbangcode\Webolution\Evolution\Individual\Decorators;
 class PageIndividualDecoratorCli extends PageIndividualDecoratorHtml
 {
     /**
-     * The type of rendering.
-     *
-     * @var string
+     * @var string The type of rendering.
      */
-    protected $type = 'cli';
-
+    public const TYPE = 'cli';
 }
