@@ -39,7 +39,7 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
 
         $object = new ElementIndividual($html);
 
-        $object->mutate(-10);
+        $object->mutate(-100);
         $this->assertEquals('html', $object->getObject()->getType());
     }
 

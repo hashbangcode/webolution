@@ -66,10 +66,22 @@ class ElementIndividual extends Individual
     public function mutateTag()
     {
         $currentTag = $this->getObject()->getType();
-        $availableTags = array_keys($this->getObject()->getAvailableChildTypes());
-        unset($availableTags[$currentTag]);
-        $newTag = array_rand($availableTags);
-        $this->getObject()->setType($newTag);
+        echo $currentTag;
+        $availableTags = $this->getObject()->getAvailableChildTypes();
+
+
+        $foundTag = array_search($this->getObject()->getType(), $availableTags);
+
+        if ($foundTag != false) {
+            unset($availableTags[$foundTag]);
+        }
+
+        print_r($availableTags);
+
+        if (count($availableTags) > 0) {
+            $newTag = array_rand($availableTags);
+            $this->getObject()->setType($availableTags[$newTag]);
+        }
     }
 
     /**
