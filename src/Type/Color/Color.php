@@ -58,11 +58,6 @@ class Color implements TypeInterface
     private $lightness = null;
 
     /**
-     * @var float|null The intensity of the color.
-     */
-    private $intensity = null;
-
-    /**
      * @var float|null The luma, based on Rec. 601 NTSC primaries.
      */
     private $luma = null;
@@ -660,29 +655,6 @@ class Color implements TypeInterface
     }
 
     /**
-     * Get the intensity.
-     *
-     * @return null
-     *   The intensity.
-     */
-    public function getIntensity()
-    {
-        return $this->intensity;
-    }
-
-    /**
-     * Set the intensity.
-     *
-     * @param null $intensity
-     *   The intensity.
-     */
-    public function setIntensity($intensity)
-    {
-        // @todo : nothing actually sets the intensity
-        $this->intensity = $intensity;
-    }
-
-    /**
      * Get the lightness.
      *
      * @return float
@@ -789,7 +761,6 @@ class Color implements TypeInterface
 
         $this->value = null;
         $this->lightness = null;
-        $this->intensity = null;
 
         $this->luma = null;
 
@@ -848,7 +819,6 @@ class Color implements TypeInterface
         $output .= 'Hsi Saturation: ' . $this->getHsiSaturation() . PHP_EOL;
         $output .= 'Hsl Saturation: ' . $this->getHslSaturation() . PHP_EOL;
         $output .= 'Hsv Saturation: ' . $this->getHsvSaturation() . PHP_EOL;
-        $output .= 'Intensity: ' . $this->getIntensity() . PHP_EOL;
         $output .= 'Lightness: ' . $this->getLightness() . PHP_EOL;
         $output .= 'Value: ' . $this->getValue() . PHP_EOL;
 
