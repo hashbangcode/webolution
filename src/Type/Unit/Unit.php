@@ -90,11 +90,31 @@ class Unit implements TypeInterface
      *   The number.
      * @param string $unit
      *   The unit.
+     *
+     * @throws InvalidNumberException
+     * @throws InvalidUnitException
      */
     public function __construct($number, $unit)
     {
         $this->setNumber($number);
         $this->setUnit($unit);
+    }
+
+    /**
+     * Generate a Unit object with some random properties.
+     *
+     * @return Unit
+     *   A new unit object with random properties.
+     *
+     * @throws InvalidNumberException
+     * @throws InvalidUnitException
+     */
+    public static function generateRandomUnit()
+    {
+        $number = mt_rand(1, 500);
+        $units = ['px', 'em', '%', 'auto'];
+        $unit = $units[array_rand($units)];
+        return new Unit($number, $unit);
     }
 
     /**
@@ -105,6 +125,8 @@ class Unit implements TypeInterface
      *
      * @return Unit
      *   The current object.
+     *
+     * @throws InvalidNumberException
      */
     public function add($x)
     {
@@ -120,24 +142,12 @@ class Unit implements TypeInterface
      *
      * @return Unit
      *   The current object.
+     *
+     * @throws InvalidNumberException
      */
     public function subtract($x)
     {
         $this->setNumber($this->getNumber() - $x);
         return $this;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-//    public function render()
-//    {
-//        if ($this->getUnit() == 'auto') {
-//            // If the unit is 'auto' then return just that.
-//            return 'auto';
-//        }
-//
-//        // Return the combination of number and unit.
-//        return $this->getNumber() . '' . $this->getUnit();
-//    }
 }

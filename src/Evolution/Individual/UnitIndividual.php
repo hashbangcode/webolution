@@ -16,15 +16,13 @@ class UnitIndividual extends Individual
      *
      * @return \Hashbangcode\Webolution\Evolution\Individual\UnitIndividual
      *   A new UnitIndividual object.
+     *
+     * @throws \Hashbangcode\Webolution\Type\Unit\Exception\InvalidNumberException
+     * @throws \Hashbangcode\Webolution\Type\Unit\Exception\InvalidUnitException
      */
     public static function generateRandomUnit()
     {
-        // @todo move this random generation into the Unit class.
-        $number = mt_rand(1, 100);
-        $units = ['px', 'em', '%', 'auto'];
-        $unit = $units[array_rand($units)];
-        $unitObject = new Unit($number, $unit);
-        return new self($unitObject);
+        return new self(Unit::generateRandomUnit());
     }
 
     /**
@@ -37,6 +35,9 @@ class UnitIndividual extends Individual
      *
      * @return \Hashbangcode\Webolution\Evolution\Individual\UnitIndividual
      *   A new UnitIndividual object.
+     *
+     * @throws \Hashbangcode\Webolution\Type\Unit\Exception\InvalidNumberException
+     * @throws \Hashbangcode\Webolution\Type\Unit\Exception\InvalidUnitException
      */
     public static function generateFromUnitArguments($number, $unit)
     {
