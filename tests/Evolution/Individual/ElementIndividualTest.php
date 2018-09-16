@@ -18,18 +18,6 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Element\Element', $object->getObject());
     }
 
-    public function testMutateElementThroughIndividual()
-    {
-        $html = new Element('html');
-        $body = new Element('body');
-        $html->addChild($body);
-
-        $object = new ElementIndividual($html);
-
-        $object->mutate();
-        $this->assertEquals('html', $object->getObject()->getType());
-    }
-
     public function testMutateElementThroughIndividualWithDifferentFactor()
     {
 
