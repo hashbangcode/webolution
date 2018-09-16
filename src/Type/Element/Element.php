@@ -309,7 +309,7 @@ class Element implements TypeInterface
 
         foreach ($this->getChildren() as $child) {
             $types[] = $child->getType();
-            if (count($child->getChildren() > 0)) {
+            if (count($child->getChildren()) > 0) {
                 $children = $child->getChildTypes();
                 $types = array_merge($types, $children);
             }
@@ -347,7 +347,7 @@ class Element implements TypeInterface
             if ($class !== false) {
                 $types[] = $class;
             }
-            if (count($child->getChildren() > 0)) {
+            if (count($child->getChildren()) > 0) {
                 $children = $child->getChildClasses();
                 $types = array_merge($types, $children);
             }
@@ -381,7 +381,7 @@ class Element implements TypeInterface
 
         foreach ($this->getChildren() as $child) {
             $list[] = $child->extractSelector();
-            if (count($child->getChildren() > 0)) {
+            if (count($child->getChildren()) > 0) {
                 $children = $child->getChildSelectors();
                 $list = array_merge($list, $children);
             }
@@ -432,7 +432,7 @@ class Element implements TypeInterface
 
         foreach ($this->getChildren() as $child) {
             $list[] = $child;
-            if (count($child->getChildren() > 0)) {
+            if (count($child->getChildren()) > 0) {
                 $children = $child->getAllChildElements();
                 $list = array_merge($list, $children);
             }
@@ -483,7 +483,7 @@ class Element implements TypeInterface
                 return true;
             }
 
-            if (count($child->getChildren() > 0)) {
+            if (count($child->getChildren()) > 0) {
                 // This element has children so go into those children in an attempt to find the correct element.
                 return $child->removeChild($removeChild);
             }
