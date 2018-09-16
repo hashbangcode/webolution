@@ -19,6 +19,8 @@ class NumberPopulation extends Population
      *   The individual.
      *
      * @return $this
+     *
+     * @throws \Hashbangcode\Webolution\Type\Number\Exception\InvalidNumberException
      */
     public function addIndividual(Individual $individual = null)
     {
@@ -36,7 +38,18 @@ class NumberPopulation extends Population
      */
     public function sort()
     {
-        asort($this->individuals);
+        usort($this->individuals, function ($a, $b) {
+            $aValue = $a->getFitness();
+            $bValue = $b->getFitness();
+
+            if ($aValue == $bValue) {
+                return 0;
+            }
+
+            return ($aValue < $bValue) ? -1 : 1;
+        });
+
+        return $this;
     }
 
     /**

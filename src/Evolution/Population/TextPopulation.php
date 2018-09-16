@@ -29,8 +29,16 @@ class TextPopulation extends Population
      */
     public function sort()
     {
-        // @todo this is not a sorting function.
-        sort($this->individuals);
+        usort($this->individuals, function ($a, $b) {
+            $aValue = $a->getFitness();
+            $bValue = $b->getFitness();
+
+            if ($aValue == $bValue) {
+                return 0;
+            }
+
+            return ($aValue < $bValue) ? -1 : 1;
+        });
     }
 
     /**
