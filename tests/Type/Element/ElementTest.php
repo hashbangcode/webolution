@@ -103,7 +103,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
            ['type' => 'head', 'childTypes' => ['style']],
            ['type' => 'ul', 'childTypes' => ['li']],
            ['type' => 'ol', 'childTypes' => ['li']],
-           ['type' => 'p', 'childTypes' => ['ul', 'ol', 'div', 'p', 'h1', 'h2']],
+           ['type' => 'p', 'childTypes' => ['ul', 'ol', 'div', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'strong', 'em',]],
         ];
     }
 

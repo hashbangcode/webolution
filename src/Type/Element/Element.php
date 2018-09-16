@@ -100,7 +100,17 @@ class Element implements TypeInterface
      */
     public function getTextTypes()
     {
-        return array('p', 'li', 'h1', 'h2', 'h3', 'h4', 'h5');
+        return [
+            'p',
+            'li',
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'h5',
+            'strong',
+            'em',
+        ];
     }
 
     /**
@@ -257,14 +267,32 @@ class Element implements TypeInterface
 
         switch ($this->type) {
             case 'html':
-                return ['body'];
+                return [
+                    'body'
+                ];
             case 'head':
-                return ['style'];
+                return [
+                    'style'
+                ];
             case 'ul':
             case 'ol':
-                return ['li'];
+                return [
+                    'li'
+                ];
             default:
-                return ['ul', 'ol', 'div', 'p', 'h1', 'h2'];
+                return [
+                    'ul',
+                    'ol',
+                    'div',
+                    'p',
+                    'h1',
+                    'h2',
+                    'h3',
+                    'h4',
+                    'h5',
+                    'strong',
+                    'em',
+                ];
         }
     }
 
@@ -285,7 +313,7 @@ class Element implements TypeInterface
     }
 
     /**
-     * Get all types.
+     * Get all types contained within the object structure.
      *
      * @return array
      *   The types.
