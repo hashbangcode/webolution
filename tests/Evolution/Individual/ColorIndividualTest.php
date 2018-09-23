@@ -10,13 +10,6 @@ use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
 class ColorIndividualTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testCreateIndividual()
-    {
-        $object = ColorIndividual::generateFromRgb(0, 0, 0);
-        $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\ColorIndividual', $object);
-        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\Color', $object->getObject());
-    }
-
     public function testGenerateFromHex()
     {
         $object = ColorIndividual::generateFromHex('123456');
@@ -46,8 +39,12 @@ class ColorIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(10, $object->getFitness());
 
         $object = ColorIndividual::generateFromRgb(125, 125, 125);
-
         $this->assertEquals(4.902, $object->getFitness());
+
+        $this->assertEquals($object->getObject()->getHue(), $object->getFitness('hue'));
+        $this->assertEquals($object->getObject()->getHsvSaturation(), $object->getFitness('saturation'));
+        $this->assertEquals($object->getObject()->getValue(), $object->getFitness('value'));
+        $this->assertEquals($object->getObject()->getLightness(), $object->getFitness('lightness'));
     }
 
     public function testColorMutation()
