@@ -10,19 +10,12 @@ use Hashbangcode\Webolution\Type\Color\Exception;
  */
 class ColorTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function testCreateColour()
-    {
-        $color = new Color('100', '100', '100');
-        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\Color', $color);
-    }
-
     public function testCreateColorFromStrings()
     {
         $color = new Color('100', '100', '100');
-        $this->assertEquals('100', $color->getRed());
-        $this->assertEquals('100', $color->getGreen());
-        $this->assertEquals('100', $color->getBlue());
+        $this->assertEquals(100, $color->getRed());
+        $this->assertEquals(100, $color->getGreen());
+        $this->assertEquals(100, $color->getBlue());
         $this->assertEquals('100100100', $color->getRGB());
     }
 

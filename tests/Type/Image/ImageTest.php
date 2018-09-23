@@ -9,13 +9,6 @@ use Hashbangcode\Webolution\Type\Image\Image;
  */
 class ImageTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function testCreateImage()
-    {
-        $object = new Image();
-        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Image\Image', $object);
-    }
-
     public function testCreateSizedImage()
     {
         $object = new Image(30, 30);

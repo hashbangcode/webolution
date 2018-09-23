@@ -9,13 +9,6 @@ use Hashbangcode\Webolution\Type\Text\Text;
  */
 class TextTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function testCreateText()
-    {
-        $object = new Text('fhsdlakjfhalksjdfhl');
-        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\Text', $object);
-    }
-
     public function testGetText()
     {
         $text = 'fhsdlakjfhalksjdfhl';

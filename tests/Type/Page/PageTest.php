@@ -11,13 +11,6 @@ use Hashbangcode\Webolution\Type\Element\Element;
  */
 class PageTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function testCreateObject()
-    {
-        $object = new Page();
-        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Page\Page', $object);
-    }
-    
     public function testGetAndSetStyles()
     {
         $object = new Page();

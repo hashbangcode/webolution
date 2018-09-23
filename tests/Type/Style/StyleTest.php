@@ -10,13 +10,6 @@ use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
  */
 class StyleTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function testCreateStyle()
-    {
-        $object = new Style('.element');
-        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Style\Style', $object);
-    }
-
     public function testSetAndGetAttributes()
     {
         $object = new Style('.element');

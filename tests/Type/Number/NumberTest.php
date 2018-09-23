@@ -9,13 +9,6 @@ use Hashbangcode\Webolution\Type\Number\Number;
  */
 class NumberTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function testCreateNumber()
-    {
-        $object = new Number(1);
-        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Number\Number', $object);
-    }
-
     /**
      * @dataProvider numbersProvider
      */

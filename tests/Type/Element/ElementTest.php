@@ -10,13 +10,6 @@ use Prophecy\Prophet;
  */
 class ElementTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function testCreateObject()
-    {
-        $object = new Element();
-        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Element\Element', $object);
-    }
-
     public function testGetAttribute()
     {
         $object = new Element();

@@ -10,12 +10,6 @@ use Hashbangcode\Webolution\Type\Unit\Unit;
 class UnitTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testCreateUnit()
-    {
-        $object = new Unit(1, 'px');
-        $this->assertInstanceOf('Hashbangcode\Webolution\Type\Unit\Unit', $object);
-    }
-
     public function testSetAndGetUnit()
     {
         $object = new Unit(1, 'px');
@@ -30,6 +24,15 @@ class UnitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $object->getNumber());
         $object->setNumber(2);
         $this->assertEquals(2, $object->getNumber());
+    }
+
+    public function testAddAndSubtractNumber()
+    {
+        $object = new Unit(1, 'px');
+        $object->add(1);
+        $this->assertEquals(2, $object->getNumber());
+        $object->subtract(1);
+        $this->assertEquals(1, $object->getNumber());
     }
 
     public function testInvalidUnit()
