@@ -25,7 +25,7 @@ class Evolution
      * Constant for selecting crossover type replication.
      */
     const REPLICATION_TYPE_CROSSOVER = 'crossover';
-    
+
     /**
      * @var mixed|null The global fitness goal.
      */
@@ -207,7 +207,7 @@ class Evolution
      */
     public function setPopulation($population)
     {
-        if (count($this->previousGenerations) == 0) {
+        if (count($this->previousGenerations) == 0 && $this->generation == 0) {
             $population->generateStatistics();
             $this->addPreviousGeneration($population);
         }
