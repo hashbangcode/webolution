@@ -43,7 +43,7 @@ class NumberIndividualTest extends \PHPUnit_Framework_TestCase
     {
         $object = NumberIndividual::generateFromNumber(1);
         $this->assertEquals(1, $object->getObject()->getNumber());
-        $object->mutate();
+        $object->mutate(-1);
         $this->assertNotEquals(1, $object->getObject()->getNumber());
     }
 
