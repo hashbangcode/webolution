@@ -40,7 +40,7 @@ class ImagePopulation extends Population
      */
     public function sort($direction = 'ASC')
     {
-        usort($this->individuals, function ($a, $b) use ($direction) {
+        uasort($this->individuals, function ($a, $b) use ($direction) {
 
             $aValue = $a->getFitness($this->getPopulationFitnessType());
             $bValue = $b->getFitness($this->getPopulationFitnessType());

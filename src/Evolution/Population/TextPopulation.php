@@ -29,7 +29,7 @@ class TextPopulation extends Population
      */
     public function sort()
     {
-        usort($this->individuals, function ($a, $b) {
+        uasort($this->individuals, function ($a, $b) {
             $aValue = $a->getFitness();
             $bValue = $b->getFitness();
 
