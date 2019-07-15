@@ -2,6 +2,10 @@
 
 namespace Hashbangcode\Webolution\Evolution\Individual\Decorators;
 
+use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
+use Hashbangcode\Webolution\Evolution\Individual\StyleIndividual;
+use Hashbangcode\Webolution\Type\Color\Color;
+
 /**
  * Class StyleIndividualDecoratorHtml.
  *
@@ -29,11 +33,15 @@ class StyleIndividualDecoratorHtml extends IndividualDecorator
             // Render the style.
             if (is_object($value)) {
                 // Render an object.
-
                 $output .= $attribute . ':';
 
                 // This might be a unit or a color object.
-                $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($value, static::TYPE);
+                if ($value instanceof ColorIndividual) {
+                  // Printing colors in CSS needs a special situation.
+                  $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($value, 'css');
+                } else {
+                  $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($value, static::TYPE);
+                }
                 $output .= $individualDecorator->render();
 
                 $output .= ';';
