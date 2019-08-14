@@ -211,12 +211,8 @@ class ColorTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidRBGValue($r, $g, $b)
     {
-
-        try {
-            $this->setExpectedException('Hashbangcode\Webolution\Type\Color\Exception\InvalidRGBValueException');
-            $color = new Color($r, $g, $b);
-        } catch (Exception $e) {
-        }
+      $this->setExpectedException('Hashbangcode\Webolution\Type\Color\Exception\InvalidRGBValueException');
+      $color = new Color($r, $g, $b);
     }
 
     public function invalidRGBValues()
