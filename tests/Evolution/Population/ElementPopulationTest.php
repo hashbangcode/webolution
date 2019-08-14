@@ -17,7 +17,7 @@ class ElementPopulationTest extends \PHPUnit_Framework_TestCase
         $element = new Element();
         $element->setType('html');
         $element_individual = new ElementIndividual($element);
-        $object = new ElementPopulation($element_individual);
+        $object = new ElementPopulation();
         $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Population\ElementPopulation', $object);
     }
 }

@@ -12,7 +12,7 @@ class UnitIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateIndividual()
     {
-        $object = UnitIndividual::generateRandomUnit(1, 'px');
+        $object = UnitIndividual::generateRandomUnit();
         $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\UnitIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Unit\Unit', $object->getObject());
     }
