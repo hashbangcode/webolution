@@ -38,7 +38,7 @@ class ImageIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
         $objectIndividualDecorator = new ImageIndividualDecoratorCli($objectIndividual->reveal());
         $render = $objectIndividualDecorator->render();
 
-        $this->assertStringEqualsFile('tests/Evolution/Individual/Decorators/data/image01.txt', $render);
+        $this->assertStringEqualsFile(__DIR__ . '/data/image01.txt', $render);
     }
 
     public function testRenderWithPixelsSet()
@@ -60,7 +60,7 @@ class ImageIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
         $objectIndividualDecorator = new ImageIndividualDecoratorCli($objectIndividual->reveal());
         $render = $objectIndividualDecorator->render();
 
-        $this->assertStringEqualsFile('tests/Evolution/Individual/Decorators/data/image02.txt', $render);
+        $this->assertStringEqualsFile(__DIR__ . '/data/image02.txt', $render);
     }
 
     protected function tearDown()

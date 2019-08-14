@@ -19,6 +19,6 @@ class PagePopulationDecoratorHtmlTest extends PagePopulationDecoratorTestBase
     {
         $numberPopulationDecorator = new PagePopulationDecoratorHtml($this->textPopulation->reveal());
         $render = $numberPopulationDecorator->render();
-        $this->assertStringEqualsFile('tests/Evolution/Population/Decorators/data/page01html.txt', $render);
+        $this->assertStringEqualsFile(__DIR__ . '/data/page01html.txt', $render);
     }
 }

@@ -19,6 +19,6 @@ class PagePopulationDecoratorCliTest extends PagePopulationDecoratorTestBase
     {
         $populationDecorator = new PagePopulationDecoratorCli($this->textPopulation->reveal());
         $render = $populationDecorator->render();
-        $this->assertStringEqualsFile('tests/Evolution/Population/Decorators/data/page01cli.txt', $render);
+        $this->assertStringEqualsFile(__DIR__ . '/data/page01cli.txt', $render);
     }
 }

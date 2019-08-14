@@ -33,7 +33,7 @@ class PageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
 
         $individualDecorator = new PageIndividualDecoratorHtml($individual->reveal());
         $output = $individualDecorator->render();
-        $this->assertStringEqualsFile('tests/Evolution/Individual/Decorators/data/page01.html', $output);
+        $this->assertStringEqualsFile(__DIR__ . '/data/page01.html', $output);
     }
 
     public function testPageCreationWithBody()
@@ -50,7 +50,7 @@ class PageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
         $individualDecorator = new PageIndividualDecoratorHtml($individual->reveal());
         $output = $individualDecorator->render();
 
-        $this->assertStringEqualsFile('tests/Evolution/Individual/Decorators/data/page02.html', $output);
+        $this->assertStringEqualsFile(__DIR__ . '/data/page02.html', $output);
     }
 
     public function testPageCreationWithBodyAndStyle()
@@ -69,7 +69,7 @@ class PageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
         $individualDecorator = new PageIndividualDecoratorHtml($individual->reveal());
         $output = $individualDecorator->render();
 
-        $this->assertStringEqualsFile('tests/Evolution/Individual/Decorators/data/page03.html', $output);
+        $this->assertStringEqualsFile(__DIR__ . '/data/page03.html', $output);
     }
 
   public function testPageCreationWithBodyAndStyleWithColorObject()
@@ -90,7 +90,7 @@ class PageIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
     $individualDecorator = new PageIndividualDecoratorHtml($individual->reveal());
     $output = $individualDecorator->render();
 
-    $this->assertStringEqualsFile('tests/Evolution/Individual/Decorators/data/page04.html', $output);
+    $this->assertStringEqualsFile(__DIR__ . '/data/page04.html', $output);
   }
 
     protected function tearDown()
