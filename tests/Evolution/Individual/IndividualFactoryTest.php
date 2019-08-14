@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Evolution\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Evolution\Individual;
 
 use Hashbangcode\Webolution\Evolution\Individual\IndividualFactory;
 
