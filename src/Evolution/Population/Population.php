@@ -95,8 +95,6 @@ abstract class Population implements PopulationInterface
      *
      * @param Individual|null $individual
      *   The individual to add.
-     *
-     * @return null
      */
     abstract public function addIndividual(Individual $individual = null);
 
@@ -216,7 +214,10 @@ abstract class Population implements PopulationInterface
     }
 
     /**
-     * @param $individuals
+     * Set an entire population of individuals.
+     *
+     * @param array $individuals
+     *   An array of individuals.
      */
     public function setIndividuals($individuals)
     {

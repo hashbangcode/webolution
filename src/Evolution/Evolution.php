@@ -270,7 +270,7 @@ class Evolution
             $this->population->setMutationFactor($this->getGlobalMutationFactor());
         }
 
-        if (!is_null($this->getGlobalMutationAmount())) {
+        if ($this->getGlobalMutationAmount()) {
             // Ensure the mutation amount is set in the population.
             $this->population->setMutationAmount($this->getGlobalMutationAmount());
         }
@@ -364,7 +364,7 @@ class Evolution
     /**
      * Set the global mutation factor.
      *
-     * @param null $globalMutationFactor
+     * @param int $globalMutationFactor
      */
     public function setGlobalMutationFactor($globalMutationFactor)
     {

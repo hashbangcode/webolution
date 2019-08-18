@@ -17,7 +17,7 @@ class Element implements TypeInterface
     use RandomText;
 
     /**
-     * @var string The type of element.
+     * @var bool|string The type of element.
      */
     protected $type;
 
@@ -44,7 +44,7 @@ class Element implements TypeInterface
     /**
      * Get the object.
      *
-     * @return object
+     * @return bool|object
      *   The object.
      */
     public function getObject()
@@ -239,7 +239,7 @@ class Element implements TypeInterface
      */
     public function addChild(Element $element)
     {
-        if (!in_array($element->getType(), $this->getAvailableChildTypes())) {
+        if (is_array($this->getAvailableChildTypes()) && !in_array($element->getType(), $this->getAvailableChildTypes())) {
             // Invalid child Element.
             $message = 'Cant add child of type "' . $element->getType() . '" to "' . $this->getType() . '".';
             throw new Exception\InvalidChildTypeException($message);

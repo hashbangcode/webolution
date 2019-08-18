@@ -125,13 +125,13 @@ class Color implements TypeInterface
         $hex = str_replace("#", "", $hex);
 
         if (strlen($hex) == 3) {
-            $red = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
-            $green = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
-            $blue = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
+            $red = (int) hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
+            $green = (int) hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
+            $blue = (int) hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
         } else {
-            $red = hexdec(substr($hex, 0, 2));
-            $green = hexdec(substr($hex, 2, 2));
-            $blue = hexdec(substr($hex, 4, 2));
+            $red = (int) hexdec(substr($hex, 0, 2));
+            $green = (int) hexdec(substr($hex, 2, 2));
+            $blue = (int) hexdec(substr($hex, 4, 2));
         }
 
         return new Color($red, $green, $blue);
@@ -196,9 +196,9 @@ class Color implements TypeInterface
             }
         }
 
-        $red = round(($red + $match) * 255);
-        $green = round(($green + $match) * 255);
-        $blue = round(($blue + $match) * 255);
+        $red = (int) round(($red + $match) * 255);
+        $green = (int) round(($green + $match) * 255);
+        $blue = (int) round(($blue + $match) * 255);
 
         $new_color = new Color($red, $green, $blue);
         $new_color->setHue($hue);
@@ -266,9 +266,9 @@ class Color implements TypeInterface
             }
         }
 
-        $red = round(($red + $match) * 255);
-        $green = round(($green + $match) * 255);
-        $blue = round(($blue + $match) * 255);
+        $red = (int) round(($red + $match) * 255);
+        $green = (int) round(($green + $match) * 255);
+        $blue = (int) round(($blue + $match) * 255);
 
         $new_color = new Color($red, $green, $blue);
         $new_color->setHue($hue);
@@ -287,9 +287,9 @@ class Color implements TypeInterface
      */
     public static function generateRandomColor()
     {
-        $red = ceil(mt_rand(0, 255));
-        $green = ceil(mt_rand(0, 255));
-        $blue = ceil(mt_rand(0, 255));
+        $red = (int) ceil(mt_rand(0, 255));
+        $green = (int) ceil(mt_rand(0, 255));
+        $blue = (int) ceil(mt_rand(0, 255));
 
         return new Color($red, $blue, $green);
     }
@@ -301,9 +301,9 @@ class Color implements TypeInterface
      */
     public function getRGB()
     {
-        return str_pad($this->getRed(), 3, STR_PAD_LEFT) .
-            str_pad($this->getGreen(), 3, STR_PAD_LEFT) .
-            str_pad($this->getBlue(), 3, STR_PAD_LEFT);
+        return str_pad((string) $this->getRed(), 3, '0', STR_PAD_LEFT) .
+            str_pad((string) $this->getGreen(), 3, '0', STR_PAD_LEFT) .
+            str_pad((string) $this->getBlue(), 3, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -375,7 +375,7 @@ class Color implements TypeInterface
     /**
      * Get the croma value of the color.
      *
-     * @return null
+     * @return null|float
      *   The croma value.
      */
     public function getCroma()
@@ -386,7 +386,7 @@ class Color implements TypeInterface
     /**
      * Set the croma.
      *
-     * @param null $croma
+     * @param float $croma
      *   The croma.
      */
     public function setCroma($croma)
@@ -397,7 +397,7 @@ class Color implements TypeInterface
     /**
      * Get croma2.
      *
-     * @return null
+     * @return null|float
      *   The croma2.
      */
     public function getCroma2()
@@ -408,7 +408,7 @@ class Color implements TypeInterface
     /**
      * Set croma2.
      *
-     * @param null $croma2
+     * @param float $croma2
      *   The croma2.
      */
     public function setCroma2($croma2)
@@ -419,7 +419,7 @@ class Color implements TypeInterface
     /**
      * Get the HSI saturation.
      *
-     * @return null
+     * @return null|float
      *   The HSI saturation.
      */
     public function getHsiSaturation()
@@ -431,7 +431,7 @@ class Color implements TypeInterface
     /**
      * Set the HSI saturation.
      *
-     * @param null $hsi_saturation
+     * @param float $hsi_saturation
      *   The hsi saturation.
      */
     public function setHsiSaturation($hsi_saturation)
@@ -463,7 +463,7 @@ class Color implements TypeInterface
     /**
      * Get the HSL saturation value for the color. This method calculates the value if it isn't set.
      *
-     * @return null|int
+     * @return null|float
      *   The HSL saturation value.
      */
     public function getHslSaturation()
@@ -475,7 +475,7 @@ class Color implements TypeInterface
     /**
      * Set the HSL saturation.
      *
-     * @param null $hsl_saturation
+     * @param float $hsl_saturation
      *   The HSL saturation.
      */
     public function setHslSaturation($hsl_saturation)
@@ -533,7 +533,7 @@ class Color implements TypeInterface
     /**
      * Get the HSV saturation.
      *
-     * @return null
+     * @return null|float
      *   The HSV saturation.
      */
     public function getHsvSaturation()
@@ -545,7 +545,7 @@ class Color implements TypeInterface
     /**
      * Set the HSV saturation.
      *
-     * @param null $hsv_saturation
+     * @param float $hsv_saturation
      *   The HSV saturation.
      */
     public function setHsvSaturation($hsv_saturation)
@@ -612,7 +612,7 @@ class Color implements TypeInterface
     /**
      * Get the hue.
      *
-     * @return null
+     * @return null|float
      *   The hue.
      */
     public function getHue()
@@ -624,7 +624,7 @@ class Color implements TypeInterface
     /**
      * Set the hue.
      *
-     * @param null $hue
+     * @param float $hue
      *   The hue.
      */
     public function setHue($hue)
@@ -635,7 +635,7 @@ class Color implements TypeInterface
     /**
      * Get the hue2.
      *
-     * @return null
+     * @return null|float
      *   The hue2.
      */
     public function getHue2()
@@ -646,7 +646,7 @@ class Color implements TypeInterface
     /**
      * Set hue2.
      *
-     * @param null $hue2
+     * @param float $hue2
      *   The hue2.
      */
     public function setHue2($hue2)
@@ -657,7 +657,7 @@ class Color implements TypeInterface
     /**
      * Get the lightness.
      *
-     * @return float
+     * @return null|float
      *   The lightness.
      */
     public function getLightness()
@@ -669,7 +669,8 @@ class Color implements TypeInterface
     /**
      * Set the lightness.
      *
-     * @param null $lightness
+     * @param float $lightness
+     *   The lightness value to set.
      */
     public function setLightness($lightness)
     {
@@ -679,7 +680,8 @@ class Color implements TypeInterface
     /**
      * Get he luma.
      *
-     * @return float The current luma.
+     * @return null|float
+     *   The current luma.
      */
     public function getLuma()
     {
@@ -690,7 +692,8 @@ class Color implements TypeInterface
     /**
      * Set the luma.
      *
-     * @param float $luma The luma to set
+     * @param float $luma
+     *   The luma to set
      */
     public function setLuma($luma)
     {
@@ -698,7 +701,10 @@ class Color implements TypeInterface
     }
 
     /**
-     * @return null
+     * Get the value.
+     *
+     * @return null|float
+     *   The value.
      */
     public function getValue()
     {
@@ -707,7 +713,9 @@ class Color implements TypeInterface
     }
 
     /**
-     * @param null $value
+     * The set value.
+     *
+     * @param float $value
      *   The value of the color.
      */
     public function setValue($value)

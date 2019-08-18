@@ -57,9 +57,9 @@ class Image implements TypeInterface
      *
      * @param int $x
      *   The x coordinates.
-     * @param $y
+     * @param int $y
      *   The y coordinates.
-     * @param $value
+     * @param int $value
      *   The value to set the pixel to.
      *
      * @throws Exception\InvalidPixelException
@@ -82,7 +82,7 @@ class Image implements TypeInterface
      *
      * @param int $x
      *   The x coordinates.
-     * @param $y
+     * @param int $y
      *   The y coordinates.
      *
      * @return mixed

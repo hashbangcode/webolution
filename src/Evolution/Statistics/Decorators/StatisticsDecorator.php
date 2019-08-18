@@ -14,7 +14,7 @@ abstract class StatisticsDecorator implements StatisticsDecoratorInterface
     /**
      * The Statistics object.
      *
-     * @var \Hashbangcode\Webolution\Evolution\Statistics\Statistics
+     * @var \Hashbangcode\Webolution\Evolution\Statistics\StatisticsInterface
      */
     protected $statistics;
 

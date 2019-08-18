@@ -15,7 +15,7 @@ interface StatisticsDecoratorInterface
     /**
      * StatisticsDecoratorInterface constructor.
      *
-     * @param StatisticsInterface $statistics
+     * @param \Hashbangcode\Webolution\Evolution\Statistics\StatisticsInterface $statistics
      *   The statistics to wrap.
      */
     public function __construct(StatisticsInterface $statistics);

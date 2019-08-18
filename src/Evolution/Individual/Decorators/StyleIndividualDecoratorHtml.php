@@ -38,10 +38,15 @@ class StyleIndividualDecoratorHtml extends IndividualDecorator
                 // This might be a unit or a color object.
                 if ($value instanceof ColorIndividual) {
                   // Printing colors in CSS needs a special situation.
-                  $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($value, 'css');
-                } else {
-                  $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($value, static::TYPE);
+                  $type = 'css';
                 }
+                else {
+                  // Otherwise we just use the default.
+                  $type = static::TYPE;
+                }
+
+                $individualDecorator = IndividualDecoratorFactory::getIndividualDecorator($value, $type);
+
                 $output .= $individualDecorator->render();
 
                 $output .= ';';

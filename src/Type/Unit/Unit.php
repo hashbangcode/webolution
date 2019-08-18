@@ -120,7 +120,7 @@ class Unit implements TypeInterface
     /**
      * Add an amount to the number.
      *
-     * @param $x integer
+     * @param int $x
      *   The number.
      *
      * @return Unit
@@ -137,7 +137,7 @@ class Unit implements TypeInterface
     /**
      * Subtract an amount from the number.
      *
-     * @param $x integer
+     * @param int $x
      *   The number.
      *
      * @return Unit

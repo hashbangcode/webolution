@@ -168,7 +168,7 @@ class Statistics implements StatisticsInterface
 
         // Get Median.
         $individuals = $population->getIndividuals();
-        $slicedArray = array_slice($individuals, floor(count($individuals) / 2), 1);
+        $slicedArray = array_slice($individuals, (int) floor(count($individuals) / 2), 1);
         $this->setMedianFitnessIndividual(array_pop($slicedArray));
 
         return $this;
