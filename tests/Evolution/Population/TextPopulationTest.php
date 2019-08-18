@@ -36,6 +36,21 @@ class TextPopulationTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($population->getRandomIndividual());
     }
 
+    public function testGetRandomIndividualsWithEmptyPopulation()
+    {
+        $population = new TextPopulation();
+        $this->assertEquals(0, $population->getLength());
+        $this->assertFalse($population->getRandomIndividuals(2));
+    }
+
+    public function testGetRandomIndividualsWithAmountGreaterThanTheCurrentPopulation()
+    {
+        $population = new TextPopulation();
+        $population->addIndividual();
+        $this->assertEquals(1, $population->getLength());
+        $this->assertFalse($population->getRandomIndividuals(2));
+    }
+
     public function testAddItemsToTextPopulation()
     {
         $population = new TextPopulation();
