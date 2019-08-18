@@ -154,14 +154,9 @@ abstract class Population implements PopulationInterface
             return false;
         }
 
-
         // @todo : instead of this being true random it needs to be slanted towards those individuals who are fitter.
         $random_key = array_rand($this->individuals);
-        if (!is_null($random_key)) {
-            return $this->individuals[$random_key];
-        }
-
-        return false;
+        return $this->individuals[$random_key];
     }
 
     /**

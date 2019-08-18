@@ -29,6 +29,13 @@ class TextPopulationTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Hashbangcode\Webolution\Evolution\Individual\TextIndividual', $population->getRandomIndividual());
     }
 
+    public function testGetRandomIndividualWithEmptyPopulation()
+    {
+        $population = new TextPopulation();
+        $this->assertEquals(0, $population->getLength());
+        $this->assertFalse($population->getRandomIndividual());
+    }
+
     public function testAddItemsToTextPopulation()
     {
         $population = new TextPopulation();
