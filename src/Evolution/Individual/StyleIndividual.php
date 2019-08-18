@@ -76,18 +76,39 @@ class StyleIndividual extends Individual
             'margin',
             'width',
             'height',
+            'border-color',
+            'border-top-color',
+            'border-right-color',
+            'border-bottom-color',
+            'border-left-color',
+            'border-radius',
+            'border-top-left-radius',
+            'border-top-right-radius',
+            'border-bottom-right-radius',
+            'border-bottom-left-radius',
+            'border-style',
+            'border-top-style',
+            'border-right-style',
+            'border-bottom-style',
+            'border-left-style',
+            'border-width',
+            'border-top-width',
+            'border-right-width',
+            'border-bottom-width',
+            'border-left-width',
         ];
         $attribute = $attributes[array_rand($attributes)];
 
         switch ($attribute) {
             case 'color':
-                if ($style->getAttribute('color') == false) {
-                    $style->setAttribute('color', ColorIndividual::generateRandomColor());
-                }
-                break;
             case 'background-color':
-                if ($style->getAttribute('background-color') == false) {
-                    $style->setAttribute('background-color', ColorIndividual::generateRandomColor());
+            case 'border-color':
+            case 'border-top-color':
+            case 'border-right-color':
+            case 'border-bottom-color':
+            case 'border-left-color':
+                if ($style->getAttribute($attribute) == false) {
+                    $style->setAttribute($attribute, ColorIndividual::generateRandomColor());
                 }
                 break;
             case 'float':
@@ -96,7 +117,7 @@ class StyleIndividual extends Individual
                     'right',
                     'none',
                 ];
-                $style->setAttribute('float', $floats[array_rand($floats)]);
+                $style->setAttribute($attribute, $floats[array_rand($floats)]);
                 break;
             case 'position':
                 $positions = [
@@ -106,7 +127,7 @@ class StyleIndividual extends Individual
                     'sticky',
                     'fixed',
                 ];
-                $style->setAttribute('position', $positions[array_rand($positions)]);
+                $style->setAttribute($attribute, $positions[array_rand($positions)]);
                 break;
             case 'clear':
                 $clears = [
@@ -115,7 +136,7 @@ class StyleIndividual extends Individual
                     'right',
                     'both',
                 ];
-                $style->setAttribute('clear', $clears[array_rand($clears)]);
+                $style->setAttribute($attribute, $clears[array_rand($clears)]);
                 break;
             case 'text-align':
                 $textAlign = [
@@ -127,17 +148,9 @@ class StyleIndividual extends Individual
                     'justify',
                     'match-parent',
                 ];
-                $style->setAttribute('text-align', $textAlign[array_rand($textAlign)]);
+                $style->setAttribute($attribute, $textAlign[array_rand($textAlign)]);
                 break;
             case 'padding':
-                $units = [
-                    UnitIndividual::generateRandomUnit(),
-                    UnitIndividual::generateRandomUnit(),
-                    UnitIndividual::generateRandomUnit(),
-                    UnitIndividual::generateRandomUnit(),
-                ];
-                $style->setAttribute('padding', $units);
-                break;
             case 'margin':
                 $units = [
                     UnitIndividual::generateRandomUnit(),
@@ -145,15 +158,40 @@ class StyleIndividual extends Individual
                     UnitIndividual::generateRandomUnit(),
                     UnitIndividual::generateRandomUnit(),
                 ];
-                $style->setAttribute('margin', $units);
+                $style->setAttribute($attribute, $units);
                 break;
             case 'width':
-                $style->setAttribute('width', UnitIndividual::generateRandomUnit());
-                break;
             case 'height':
-                $style->setAttribute('height', UnitIndividual::generateRandomUnit());
+            case 'border-radius':
+            case 'border-top-left-radius':
+            case 'border-top-right-radius':
+            case 'border-bottom-right-radius':
+            case 'border-bottom-left-radius':
+            case 'border-width':
+            case 'border-top-width':
+            case 'border-right-width':
+            case 'border-bottom-width':
+            case 'border-left-width':
+                $style->setAttribute($attribute, UnitIndividual::generateRandomUnit());
                 break;
-            case 'border':
+            case 'border-style':
+            case 'border-top-style':
+            case 'border-right-style':
+            case 'border-bottom-style':
+            case 'border-left-style':
+                $borderStyles = [
+                  'none',
+                  'hidden',
+                  'dotted',
+                  'dashed',
+                  'solid',
+                  'double',
+                  'groove',
+                  'ridge',
+                  'inset',
+                  'outset',
+                ];
+                $style->setAttribute($attribute, $borderStyles[array_rand($borderStyles)]);
                 break;
         }
     }
@@ -201,6 +239,23 @@ class StyleIndividual extends Individual
         switch ($attribute) {
             case 'color':
             case 'background-color':
+            case 'border-color':
+            case 'border-top-color':
+            case 'border-right-color':
+            case 'border-bottom-color':
+            case 'border-left-color':
+            case 'width':
+            case 'height':
+            case 'border-radius':
+            case 'border-top-left-radius':
+            case 'border-top-right-radius':
+            case 'border-bottom-right-radius':
+            case 'border-bottom-left-radius':
+            case 'border-width':
+            case 'border-top-width':
+            case 'border-right-width':
+            case 'border-bottom-width':
+            case 'border-left-width':
                 $attributeProperty->mutate(0, 1000);
                 break;
             case 'float':
@@ -239,22 +294,29 @@ class StyleIndividual extends Individual
                 ];
                 return $textAlign[array_rand($textAlign)];
             case 'padding':
-                $randomUnit = array_rand($attributeProperty);
-                $unit = $attributeProperty[$randomUnit];
-                $unit->mutate();
-                break;
             case 'margin':
                 $randomUnit = array_rand($attributeProperty);
                 $unit = $attributeProperty[$randomUnit];
                 $unit->mutate();
                 break;
-            case 'width':
-                $attributeProperty->mutate(0, 1000);
-                break;
-            case 'height':
-                $attributeProperty->mutate(0, 1000);
-                break;
-            case 'border':
+            case 'border-style':
+            case 'border-top-style':
+            case 'border-right-style':
+            case 'border-bottom-style':
+            case 'border-left-style':
+                $borderStyles = [
+                  'none',
+                  'hidden',
+                  'dotted',
+                  'dashed',
+                  'solid',
+                  'double',
+                  'groove',
+                  'ridge',
+                  'inset',
+                  'outset',
+                ];
+                return $borderStyles[array_rand($borderStyles)];
                 break;
         }
     }
