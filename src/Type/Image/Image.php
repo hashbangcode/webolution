@@ -191,7 +191,7 @@ class Image implements TypeInterface
      * Get the number of active pixels.
      *
      * @return int
-     *   The number of activ pixels.
+     *   The number of active pixels.
      */
     public function getActivePixels()
     {
