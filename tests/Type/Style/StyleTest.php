@@ -3,7 +3,7 @@
 namespace Hashbangcode\Webolution\Test\Type\Style;
 
 use Hashbangcode\Webolution\Type\Style\Style;
-use Hashbangcode\Webolution\Evolution\Individual\ColorIndividual;
+use Hashbangcode\Webolution\Type\Color\ColorIndividual;
 
 /**
  * Test class for Color

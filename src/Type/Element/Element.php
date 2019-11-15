@@ -3,7 +3,7 @@
 namespace Hashbangcode\Webolution\Type\Element;
 
 use Hashbangcode\Webolution\Type\Element\Exception\InvalidChildTypeException;
-use Hashbangcode\Webolution\Generators\RandomText;
+use Hashbangcode\Webolution\Generator\RandomText;
 use Hashbangcode\Webolution\Type\TypeInterface;
 
 /**
