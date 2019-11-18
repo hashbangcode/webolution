@@ -54,7 +54,7 @@ class UnitIndividual extends Individual
 
         if ($action < 75) {
             // Mutate the number component.
-            $operators = array('add', 'subtract');
+            $operators = ['add', 'subtract'];
 
             switch ($operators[array_rand($operators)]) {
                 case 'subtract':

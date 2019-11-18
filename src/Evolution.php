@@ -74,7 +74,7 @@ class Evolution
     /**
      * @var array A store of the previous generations.
      */
-    protected $previousGenerations = array();
+    protected $previousGenerations = [];
 
     /**
      * Evolution class constructor.

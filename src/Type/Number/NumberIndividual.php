@@ -46,7 +46,7 @@ class NumberIndividual extends Individual
         $random = mt_rand(0, 100);
 
         if ($random > $mutationFactor) {
-            $operators = array('add', 'subtract');
+            $operators = ['add', 'subtract'];
 
             switch ($operators[array_rand($operators)]) {
                 case 'subtract':

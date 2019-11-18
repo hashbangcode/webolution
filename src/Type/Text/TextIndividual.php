@@ -56,7 +56,7 @@ class TextIndividual extends Individual
 
         $action = mt_rand(0, 100);
         if ($action < 1 && $text_length != $goal_length) {
-            $operators = array('add', 'subtract');
+            $operators = ['add', 'subtract'];
 
             switch ($operators[array_rand($operators)]) {
                 case 'add':

@@ -36,7 +36,7 @@ class ElementIndividualDecoratorHtml extends IndividualDecorator
         $output .= '<' . $object->getType();
 
         if ($object->getAttributes() > 0) {
-            $attributes = array();
+            $attributes = [];
             foreach ($object->getAttributes() as $attribute => $value) {
                 $attributes[] = $attribute . '="' . $value . '"';
             }

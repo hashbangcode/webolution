@@ -74,7 +74,7 @@ class ColorIndividual extends Individual
 
             $rgb_key = ucfirst($rgb[array_rand($rgb)]);
 
-            $operators = array('add', 'subtract');
+            $operators = ['add', 'subtract'];
 
             switch ($operators[array_rand($operators)]) {
                 case 'add':
