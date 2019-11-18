@@ -10,7 +10,7 @@ use Hashbangcode\Webolution\Type\Style\Style;
 /**
  * Class ElementPopulation.
  *
- * @package Hashbangcode\Webolution\Evolution\Population
+ * @package Hashbangcode\Webolution\Population
  */
 class PagePopulation extends Population
 {
@@ -25,7 +25,7 @@ class PagePopulation extends Population
     /**
      * Add an individual.
      *
-     * @param \Hashbangcode\Webolution\Type\Individual|null $\Individual|null $Individual
+     * @param \Hashbangcode\Webolution\Individual|null $individual
      *   Add an individual.
      *
      * @return $this

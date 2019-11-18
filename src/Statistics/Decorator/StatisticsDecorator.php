@@ -7,14 +7,14 @@ use Hashbangcode\Webolution\Statistics\StatisticsInterface;
 /**
  * Class StatisticsDecorator.
  *
- * @package Hashbangcode\Webolution\Evolution\Statistics\Decorators
+ * @package Hashbangcode\Webolution\Statistics\Decorators
  */
 abstract class StatisticsDecorator implements StatisticsDecoratorInterface
 {
     /**
      * The Statistics object.
      *
-     * @var \Hashbangcode\Webolution\Evolution\Statistics\StatisticsInterface
+     * @var \Hashbangcode\Webolution\Statistics\StatisticsInterface
      */
     protected $statistics;
 

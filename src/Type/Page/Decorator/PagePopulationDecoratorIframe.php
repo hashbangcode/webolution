@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\Type\Page\Decorator\PageIndividualDecoratorIframe;
 /**
  * Class NumberPopulationDecoratorHtml.
  *
- * @package Hashbangcode\Webolution\Evolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Population\Decorators
  */
 class PagePopulationDecoratorIframe extends PagePopulationDecoratorHtml
 {

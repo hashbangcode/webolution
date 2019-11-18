@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\Individual;
 /**
  * Class ElementIndividual.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Individual
  */
 class ElementIndividual extends Individual
 {

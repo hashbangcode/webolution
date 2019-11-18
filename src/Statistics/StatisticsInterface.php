@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\PopulationInterface;
 /**
  * Interface Statistics.
  *
- * @package Hashbangcode\Webolution\Evolution\Statistics
+ * @package Hashbangcode\Webolution\Statistics
  */
 interface StatisticsInterface
 {
@@ -30,7 +30,7 @@ interface StatisticsInterface
     /**
      * Get the median fitness individual.
      *
-     * @return \Hashbangcode\Webolution\Evolution\Individual\Individual|null
+     * @return \Hashbangcode\Webolution\Individual|null
      *   The median fitness individual.
      */
     public function getMedianFitnessIndividual();
@@ -38,7 +38,7 @@ interface StatisticsInterface
     /**
      * Set the median fitness individual.
      *
-     * @param \Hashbangcode\Webolution\Type\Individual|null $medianFitness\Individual|null $medianFitnessIndividual
+     * @param \Hashbangcode\Webolution\Individual|null $medianFitnessIndividual
      *   The median fitness individual.
      */
     public function setMedianFitnessIndividual($medianFitnessIndividual);
@@ -117,7 +117,7 @@ interface StatisticsInterface
     /**
      * Get the max fitness individual.
      *
-     * @return \Hashbangcode\Webolution\Evolution\Individual\Individual|null
+     * @return \Hashbangcode\Webolution\Individual|null
      *   The max fitness individual.
      */
     public function getMaxFitnessIndividual();
@@ -125,7 +125,7 @@ interface StatisticsInterface
     /**
      * Set the max fitness individual.
      *
-     * @param \Hashbangcode\Webolution\Type\Individual|null $maxFitness\Individual|null $maxFitnessIndividual
+     * @param \Hashbangcode\Webolution\Individual|null $maxFitnessIndividual
      *   The max fitness individual.
      */
     public function setMaxFitnessIndividual($maxFitnessIndividual);
@@ -133,7 +133,7 @@ interface StatisticsInterface
     /**
      * Get the min fitness individual.
      *
-     * @return \Hashbangcode\Webolution\Evolution\Individual\Individual|null
+     * @return \Hashbangcode\Webolution\Individual|null
      *    The min fitness individual.
      */
     public function getMinFitnessIndividual();
@@ -141,7 +141,7 @@ interface StatisticsInterface
     /**
      * Set the min fitness individual.
      *
-     * @param \Hashbangcode\Webolution\Type\Individual|null $minFitness\Individual|null $minFitnessIndividual
+     * @param \Hashbangcode\Webolution\Individual|null $minFitnessIndividual
      *    The min fitness individual.
      */
     public function setMinFitnessIndividual($minFitnessIndividual);

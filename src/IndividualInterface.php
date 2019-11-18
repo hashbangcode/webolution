@@ -5,7 +5,7 @@ namespace Hashbangcode\Webolution;
 /**
  * Interface IndividualInterface.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Individual
  */
 interface IndividualInterface
 {

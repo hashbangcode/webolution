@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\Individual;
 /**
  * Class ColorIndividual.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Individual
  */
 class ColorIndividual extends Individual
 {

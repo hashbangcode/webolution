@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\IndividualDecorator;
 /**
  * Class NumberIndividualDecoratorHtml.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Individual\Decorators
  */
 class NumberIndividualDecoratorHtml extends IndividualDecorator
 {

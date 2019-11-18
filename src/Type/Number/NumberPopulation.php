@@ -15,7 +15,7 @@ class NumberPopulation extends Population
     /**
      * Add an individual.
      *
-     * @param \Hashbangcode\Webolution\Type\Individual|null $\Individual|null $Individual
+     * @param \Hashbangcode\Webolution\Individual|null $individual
      *   The individual.
      *
      * @return $this

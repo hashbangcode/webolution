@@ -5,12 +5,12 @@ namespace Hashbangcode\Webolution;
 /**
  * Class IndividualDecorator.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
+ * @package \Hashbangcode\Webolution\Decorators
  */
 abstract class IndividualDecorator implements IndividualDecoratorInterface
 {
     /**
-     * @var \Hashbangcode\Webolution\Type\IndividualInterface The \IndividualInterface The Individual object.
+     * @var \Hashbangcode\Webolution\IndividualInterface The Individual object.
      */
     protected $individual;
 

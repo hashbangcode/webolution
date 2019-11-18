@@ -2,12 +2,12 @@
 
 namespace Hashbangcode\Webolution\Type\Color\Decorator;
 
-use Hashbangcode\Webolution\Population;
+use Hashbangcode\Webolution\PopulationDecorator;
 
 /**
  * Class ColorPopulationDecoratorCss.
  *
- * @package Hashbangcode\Webolution\Evolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Population\Decorators
  */
 class ColorPopulationDecoratorCss extends PopulationDecorator
 {

@@ -5,19 +5,19 @@ namespace Hashbangcode\Webolution;
 /**
  * Class PopulationDecorator.
  *
- * @package Hashbangcode\Webolution\Evolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Population\Decorators
  */
 abstract class PopulationDecorator implements PopulationDecoratorInterface
 {
     /**
-     * @var \Hashbangcode\Webolution\Evolution\Population\PopulationInterface The population object.
+     * @var \Hashbangcode\Webolution\PopulationInterface The population object.
      */
     protected $population;
 
     /**
      * Get the population.
      *
-     * @return PopulationInterface
+     * @return \Hashbangcode\Webolution\PopulationInterface
      *   The population.
      */
     public function getPopulation(): PopulationInterface

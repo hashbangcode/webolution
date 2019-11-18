@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\PopulationInterface;
 /**
  * Class Statistics.
  *
- * @package Hashbangcode\Webolution\Evolution
+ * @package Hashbangcode\Webolution
  */
 class Statistics implements StatisticsInterface
 {
@@ -32,17 +32,17 @@ class Statistics implements StatisticsInterface
     protected $meanFitness = 0;
 
     /**
-     * @var \Hashbangcode\Webolution\Type\Individual|null Max fitness \Individual|null Max fitness Individual.
+     * @var \Hashbangcode\Webolution\Individual|null Max fitness Individual.
      */
     protected $maxFitnessIndividual;
 
     /**
-     * @var \Hashbangcode\Webolution\Type\Individual|null Min fitness \Individual|null Min fitness Individual.
+     * @var \Hashbangcode\Webolution\Individual|null Min fitness Individual.
      */
     protected $minFitnessIndividual;
 
     /**
-     * @var \Hashbangcode\Webolution\Type\Individual|null Median fitness \Individual|null Median fitness Individual.
+     * @var \Hashbangcode\Webolution\Individual|null Median fitness Individual.
      */
     protected $medianFitnessIndividual;
 

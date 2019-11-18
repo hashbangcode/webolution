@@ -5,7 +5,7 @@ namespace Hashbangcode\Webolution;
 /**
  * Class EvolutionManager.
  *
- * @package Hashbangcode\Webolution\Evolution
+ * @package Hashbangcode\Webolution
  */
 class EvolutionManager
 {

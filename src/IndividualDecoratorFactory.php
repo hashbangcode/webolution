@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\Exception\IndividualDecoratorNotFoundException;
 /**
  * Class IndividualDecoratorFactory.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Individual\Decorators
  */
 class IndividualDecoratorFactory
 {
@@ -15,7 +15,7 @@ class IndividualDecoratorFactory
     /**
      * Given a population object and a type of render, find and instansiate the object.
      *
-     * @param \Hashbangcode\Webolution\IndividualInterface $Individual
+     * @param \Hashbangcode\Webolution\IndividualInterface $individual
      *   The individual.
      * @param string $type
      *   The current render type.

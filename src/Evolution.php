@@ -12,7 +12,7 @@ use Hashbangcode\Webolution\Exception\PopulationDecoratorNotFoundException;
 /**
  * Class Evolution.
  *
- * @package Hashbangcode\Webolution\Evolution
+ * @package Hashbangcode\Webolution
  */
 class Evolution
 {
@@ -427,7 +427,7 @@ class Evolution
      * @return string
      *   The rendered output.
      *
-     * @throws \Hashbangcode\Webolution\Evolution\PopulationDecoratorNotFoundException
+     * @throws \Hashbangcode\Webolution\Exception\PopulationDecoratorNotFoundException
      *   Throws an exception if the decorator is not found.
      */
     public function renderGenerations($printStats = false, $format = 'html')

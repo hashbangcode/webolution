@@ -11,7 +11,7 @@ use Hashbangcode\Webolution\Type\Unit\UnitIndividual;
 /**
  * Class StyleIndividual.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Individual
  */
 class StyleIndividual extends Individual
 {

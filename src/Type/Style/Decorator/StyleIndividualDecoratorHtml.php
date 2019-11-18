@@ -11,7 +11,7 @@ use Hashbangcode\Webolution\Type\Color\Color;
 /**
  * Class StyleIndividualDecoratorHtml.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Type\Style\Decorators
  */
 class StyleIndividualDecoratorHtml extends IndividualDecorator
 {

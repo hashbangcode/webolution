@@ -8,7 +8,7 @@ use Hashbangcode\Webolution\Statistics\Statistics;
 /**
  * Class Population.
  *
- * @package Hashbangcode\Webolution\Evolution\Population
+ * @package Hashbangcode\Webolution\Population
  */
 abstract class Population implements PopulationInterface
 {
@@ -370,7 +370,7 @@ abstract class Population implements PopulationInterface
     /**
      * Get the statistics object.
      *
-     * @return \Hashbangcode\Webolution\Evolution\Statistics\Statistics|null
+     * @return \Hashbangcode\Webolution\Statistics\Statistics|null
      *   The statistics object.
      */
     public function getStatistics()
@@ -385,7 +385,7 @@ abstract class Population implements PopulationInterface
     /**
      * Set the statistics object.
      *
-     * @param \Hashbangcode\Webolution\Evolution\Statistics\Statistics $statistics
+     * @param \Hashbangcode\Webolution\Statistics\Statistics $statistics
      *   The statistics object.
      */
     public function setStatistics(Statistics $statistics)

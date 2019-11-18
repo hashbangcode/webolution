@@ -8,18 +8,18 @@ use Hashbangcode\Webolution\Type\TypeInterface;
 /**
  * Class IndividualFactory.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual\
+ * @package Hashbangcode\Webolution\Individual\
  */
 class IndividualFactory
 {
 
     /**
-     * Given a population object and a type of render, find and instansiate the object.
+     * Given a population object and a type of render, find and instantiate the object.
      *
      * @param \Hashbangcode\Webolution\Type\TypeInterface $type
      *   The individual.
      *
-     * @return \Hashbangcode\Webolution\Evolution\Population\PopulationInterface
+     * @return \Hashbangcode\Webolution\PopulationInterface
      *   The decorator.
      *
      * @throws IndividualNotFoundException

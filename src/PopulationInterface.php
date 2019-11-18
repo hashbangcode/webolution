@@ -7,7 +7,9 @@ interface PopulationInterface
     /**
      * Add an individual to the population.
      *
-     * @param \Hashbangcode\Webolution\Individual|null $\Individual|null $Individual
+     * @param \Hashbangcode\Webolution\Individual|null $individual
+     *   An individual. Subclasses may also pass a null value to generate a new
+     *   random individual.
      */
     public function addIndividual(Individual $individual = null);
 

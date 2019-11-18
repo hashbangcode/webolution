@@ -3,11 +3,13 @@
 namespace Hashbangcode\Webolution\Type\Page;
 
 use Hashbangcode\Webolution\Individual;
-use Hashbangcode\Webolution\Type\Style\Style;
+use Hashbangcode\Webolution\IndividualInterface;
+use Hashbangcode\Webolution\Type\Element\ElementIndividual;
+use Hashbangcode\Webolution\Type\Style\StyleIndividual;
 
 /**
  * Class PageIndividual
- * @package Hashbangcode\Webolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Individual
  */
 class PageIndividual extends Individual
 {

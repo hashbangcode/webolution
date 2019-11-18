@@ -6,7 +6,7 @@ use Hashbangcode\Webolution\Individual;
 
 /**
  * Class ImageIndividual
- * @package Hashbangcode\Webolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Individual
  */
 class ImageIndividual extends Individual
 {

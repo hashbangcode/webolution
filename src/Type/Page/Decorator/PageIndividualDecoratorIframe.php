@@ -9,7 +9,7 @@ use Hashbangcode\Webolution\Type\Element\Element;
 /**
  * Class PageIndividualDecoratorIframe.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Individual\Decorators
  */
 class PageIndividualDecoratorIframe extends PageIndividualDecoratorHtml
 {

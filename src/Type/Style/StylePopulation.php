@@ -8,7 +8,7 @@ use Hashbangcode\Webolution\Individual;
 /**
  * Class StylePopulation.
  *
- * @package Hashbangcode\Webolution\Evolution\Population
+ * @package Hashbangcode\Webolution\Population
  */
 class StylePopulation extends Population
 {

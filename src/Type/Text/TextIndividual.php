@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\Generator\RandomText;
 
 /**
  * Class TextIndividual
- * @package Hashbangcode\Webolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Individual
  */
 class TextIndividual extends Individual
 {

@@ -5,7 +5,7 @@ namespace Hashbangcode\Webolution;
 /**
  * Interface IndividualDecoratorInterface.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Individual\Decorators
  */
 interface IndividualDecoratorInterface
 {
@@ -13,7 +13,7 @@ interface IndividualDecoratorInterface
     /**
      * IndividualDecoratorInterface constructor.
      *
-     * @param IndividualInterface $individual
+     * @param \Hashbangcode\Webolution\IndividualInterface $individual
      *   The individual to wrap.
      */
     public function __construct(IndividualInterface $individual);

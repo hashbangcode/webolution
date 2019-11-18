@@ -6,7 +6,7 @@ use Hashbangcode\Webolution\Individual;
 
 /**
  * Class NumberIndividual
- * @package Hashbangcode\Webolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Individual
  */
 class NumberIndividual extends Individual
 {

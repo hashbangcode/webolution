@@ -2,7 +2,6 @@
 
 namespace Hashbangcode\Webolution\Test\Type\Text\Decorator;
 
-use Hashbangcode\Webolution\Evolution\Population\Decorators\TextPopulationDecoratorCli;
 use Prophecy\Prophet;
 
 class TextPopulationDecoratorTestBase extends \PHPUnit_Framework_TestCase

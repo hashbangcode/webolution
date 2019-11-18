@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\Type\TypeInterface;
 /**
  * Class Individual.
  *
- * @package Hashbangcode\Webolution\Evolution\Individual
+ * @package Hashbangcode\Webolution\Individual
  */
 abstract class Individual implements IndividualInterface
 {
@@ -29,7 +29,7 @@ abstract class Individual implements IndividualInterface
     /**
      * Individual constructor.
      *
-     * @param TypeInterface $object
+     * @param \Hashbangcode\Webolution\Type\TypeInterface $object
      *   The object to be wrapped by this individual.
      */
     public function __construct(TypeInterface $object)
