@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\IndividualDecorator;
 /**
  * Class UnitIndividualDecoratorCli.
  *
- * @package Hashbangcode\Webolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Type\Unit\Decorator
  */
 class UnitIndividualDecoratorCli extends IndividualDecorator
 {

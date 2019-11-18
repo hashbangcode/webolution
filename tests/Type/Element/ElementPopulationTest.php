@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Population;
+namespace Hashbangcode\Webolution\Test\Type\Element;
 
 use Hashbangcode\Webolution\Type\Element\ElementPopulation;
 use Hashbangcode\Webolution\Type\Element\Element;

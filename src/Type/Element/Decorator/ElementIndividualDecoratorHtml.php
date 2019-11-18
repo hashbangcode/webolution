@@ -10,7 +10,7 @@ use Hashbangcode\Webolution\IndividualDecoratorFactory;
 /**
  * Class ElementIndividualDecoratorHtml.
  *
- * @package Hashbangcode\Webolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Type\Element\Decorator
  */
 class ElementIndividualDecoratorHtml extends IndividualDecorator
 {

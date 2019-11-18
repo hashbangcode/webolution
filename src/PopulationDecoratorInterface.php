@@ -5,7 +5,7 @@ namespace Hashbangcode\Webolution;
 /**
  * Interface PopulationDecoratorInterface.
  *
- * @package Hashbangcode\Webolution\Population\Decorators
+ * @package Hashbangcode\Webolution
  */
 interface PopulationDecoratorInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test\Type\Unit\Decorator;
 
 use Hashbangcode\Webolution\Type\Unit\Decorator\UnitIndividualDecoratorHtml;
 use Prophecy\Prophet;

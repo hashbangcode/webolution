@@ -5,7 +5,7 @@ namespace Hashbangcode\Webolution;
 /**
  * Class IndividualDecorator.
  *
- * @package \Hashbangcode\Webolution\Decorators
+ * @package \Hashbangcode\Webolution
  */
 abstract class IndividualDecorator implements IndividualDecoratorInterface
 {

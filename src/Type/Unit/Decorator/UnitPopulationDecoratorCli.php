@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\PopulationDecorator;
 /**
  * Class UnitPopulationDecoratorCli.
  *
- * @package Hashbangcode\Webolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Type\Unit\Decorator
  */
 class UnitPopulationDecoratorCli extends PopulationDecorator
 {

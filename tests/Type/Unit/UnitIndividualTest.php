@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Individual;
+namespace Hashbangcode\Webolution\Test\Type\Unit;
 
 use Hashbangcode\Webolution\Type\Unit\UnitIndividual;
 

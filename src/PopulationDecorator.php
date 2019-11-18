@@ -5,7 +5,7 @@ namespace Hashbangcode\Webolution;
 /**
  * Class PopulationDecorator.
  *
- * @package Hashbangcode\Webolution\Population\Decorators
+ * @package Hashbangcode\Webolution
  */
 abstract class PopulationDecorator implements PopulationDecoratorInterface
 {

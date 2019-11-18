@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Population\Decorators;
+namespace Hashbangcode\Webolution\Test\Type\Unit\Decorator;
 
 use Hashbangcode\Webolution\Type\Unit\Decorator\UnitPopulationDecoratorCli;
 use Prophecy\Prophet;

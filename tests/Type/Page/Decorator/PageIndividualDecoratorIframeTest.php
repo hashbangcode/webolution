@@ -5,7 +5,7 @@ namespace Hashbangcode\Webolution\Test\Type\Page\Decorator;
 use Hashbangcode\Webolution\Type\Page\Decorator\PageIndividualDecoratorIframe;
 use Prophecy\Prophet;
 
-class PageIndividualDecoratorIframeTestTest extends \PHPUnit_Framework_TestCase
+class PageIndividualDecoratorIframeTest extends \PHPUnit_Framework_TestCase
 {
 
     private $prophet;

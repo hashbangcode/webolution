@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\Exception\IndividualDecoratorNotFoundException;
 /**
  * Class IndividualDecoratorFactory.
  *
- * @package Hashbangcode\Webolution\Individual\Decorators
+ * @package Hashbangcode\Webolution
  */
 class IndividualDecoratorFactory
 {

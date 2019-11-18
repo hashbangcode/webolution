@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\Exception\PopulationDecoratorNotFoundException;
 /**
  * Class PopulationDecoratorFactory.
  *
- * @package Hashbangcode\Webolution\Population\Decorators
+ * @package Hashbangcode\Webolution
  */
 class PopulationDecoratorFactory
 {

@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\Statistics\StatisticsInterface;
 /**
  * Interface StatisticsDecoratorInterface.
  *
- * @package Hashbangcode\Webolution\Statistics\Decorators
+ * @package Hashbangcode\Webolution\Statistics\Decorator
  */
 interface StatisticsDecoratorInterface
 {

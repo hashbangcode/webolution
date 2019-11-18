@@ -5,7 +5,7 @@ namespace Hashbangcode\Webolution\Statistics\Decorator;
 /**
  * Class StatisticsDecorator.
  *
- * @package Hashbangcode\Webolution\Statistics\Decorators
+ * @package Hashbangcode\Webolution\Statistics\Decorator
  */
 class StatisticsDecoratorCli extends StatisticsDecorator
 {

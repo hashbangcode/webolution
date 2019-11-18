@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Individual\Decorators;
+namespace Hashbangcode\Webolution\Test;
 
 use Hashbangcode\Webolution\IndividualDecoratorFactory;
 use Hashbangcode\Webolution\Type\Number\Number;

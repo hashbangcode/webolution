@@ -8,7 +8,7 @@ use Hashbangcode\Webolution\Type\Style\Decorator\StyleIndividualDecoratorCli;
 /**
  * Class StylePopulationDecoratorCli.
  *
- * @package Hashbangcode\Webolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Type\Style\Decorator
  */
 class StylePopulationDecoratorCli extends PopulationDecorator
 {

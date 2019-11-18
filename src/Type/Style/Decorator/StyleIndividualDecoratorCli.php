@@ -6,7 +6,7 @@ namespace Hashbangcode\Webolution\Type\Style\Decorator;
 /**
  * Class StyleIndividualDecoratorCli.
  *
- * @package Hashbangcode\Webolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Type\Style\Decorator
  */
 class StyleIndividualDecoratorCli extends StyleIndividualDecoratorHtml
 {

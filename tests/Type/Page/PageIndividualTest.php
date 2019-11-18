@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Individual;
+namespace Hashbangcode\Webolution\Test\Type\Page;
 
 use Hashbangcode\Webolution\Type\Page\PageIndividual;
 use Hashbangcode\Webolution\Type\Page\Page;

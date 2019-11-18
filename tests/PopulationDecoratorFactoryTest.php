@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Population\Decorators;
+namespace Hashbangcode\Webolution\Test;
 
 use Hashbangcode\Webolution\PopulationDecoratorFactory;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Population;
+namespace Hashbangcode\Webolution\Test\Type\Text;
 
 use Hashbangcode\Webolution\Type\Text\TextPopulation;
 use Hashbangcode\Webolution\Type\Text\TextIndividual;

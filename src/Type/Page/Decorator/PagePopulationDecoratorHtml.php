@@ -8,7 +8,7 @@ use Hashbangcode\Webolution\Type\Page\Decorator\PageIndividualDecoratorHtml;
 /**
  * Class NumberPopulationDecoratorHtml.
  *
- * @package Hashbangcode\Webolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Type\Page\Decorator
  */
 class PagePopulationDecoratorHtml extends PopulationDecorator
 {

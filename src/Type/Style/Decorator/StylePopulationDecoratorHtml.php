@@ -7,7 +7,7 @@ use Hashbangcode\Webolution\PopulationDecorator;
 /**
  * Class StylePopulationDecoratorHtml.
  *
- * @package Hashbangcode\Webolution\Population\Decorators
+ * @package Hashbangcode\Webolution\Type\Style\Decorator
  */
 class StylePopulationDecoratorHtml extends PopulationDecorator
 {

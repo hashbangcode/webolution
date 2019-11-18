@@ -11,7 +11,7 @@ use Hashbangcode\Webolution\IndividualDecoratorFactory;
 /**
  * Class PageIndividualDecoratorHtml.
  *
- * @package Hashbangcode\Webolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Type\Page\Decorator
  */
 class PageIndividualDecoratorHtml extends IndividualDecorator
 {

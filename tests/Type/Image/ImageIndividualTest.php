@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Individual;
+namespace Hashbangcode\Webolution\Test\Type\Image;
 
 use Hashbangcode\Webolution\Type\Image\ImageIndividual;
 

@@ -5,7 +5,7 @@ namespace Hashbangcode\Webolution\Type\Page\Decorator;
 /**
  * Class PageIndividualDecoratorCli.
  *
- * @package Hashbangcode\Webolution\Individual\Decorators
+ * @package Hashbangcode\Webolution\Type\Page\Decorator
  */
 class PageIndividualDecoratorCli extends PageIndividualDecoratorHtml
 {

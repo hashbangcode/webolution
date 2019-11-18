@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Population;
+namespace Hashbangcode\Webolution\Test\Type\Image;
 
 use Hashbangcode\Webolution\Type\Image\ImagePopulation;
 use Hashbangcode\Webolution\Type\Image\ImageIndividual;

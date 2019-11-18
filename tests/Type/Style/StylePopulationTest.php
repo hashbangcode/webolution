@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Population;
+namespace Hashbangcode\Webolution\Test\Type\Style;
 
 use Hashbangcode\Webolution\Type\Style\StylePopulation;
 use Hashbangcode\Webolution\Type\Style\StyleIndividual;

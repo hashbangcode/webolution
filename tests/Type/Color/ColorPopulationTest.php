@@ -1,6 +1,6 @@
 <?php
 
-namespace Hashbangcode\Webolution\Test\Population;
+namespace Hashbangcode\Webolution\Test\Type\Color;
 
 use Hashbangcode\Webolution\Type\Color\ColorPopulation;
 use Hashbangcode\Webolution\Type\Color\ColorIndividual;
