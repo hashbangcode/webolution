@@ -72,7 +72,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     public function testSetChildElement()
     {
         $element = new Element('ul');
-        $child_types = $element->getAvailableChildTypes($element->getType());
+        $child_types = $element->getAvailableChildTypes();
         $this->assertEquals('li', $child_types[0]);
     }
 
@@ -82,7 +82,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     public function testGetAvailableChildTypes($type, $childTypes)
     {
         $element = new Element($type);
-        $returnedChildTypes = $element->getAvailableChildTypes($element->getType());
+        $returnedChildTypes = $element->getAvailableChildTypes();
 
         foreach ($returnedChildTypes as $id => $childType) {
             $this->assertEquals($childTypes[$id], $returnedChildTypes[$id]);
@@ -245,7 +245,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $object = new Element();
         $object->setType('div');
         $object->setElementText('sometext');
-        $this->assertEquals('div', $object->getType('div'));
+        $this->assertEquals('div', $object->getType());
         $this->assertEquals('sometext', $object->getElementText());
     }
 
