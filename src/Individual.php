@@ -49,7 +49,7 @@ abstract class Individual implements IndividualInterface
     /**
      * {@inheritdoc}
      */
-    public function getObject()
+    public function getObject(): TypeInterface
     {
         return $this->object;
     }

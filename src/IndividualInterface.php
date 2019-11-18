@@ -14,10 +14,10 @@ interface IndividualInterface
     /**
      * Get the underlying Type object.
      *
-     * @return object
+     * @return \Hashbangcode\Webolution\Type\TypeInterface
      *   The type object.
      */
-    public function getObject();
+    public function getObject(): TypeInterface;
 
     /**
      * Mutate the individual.
