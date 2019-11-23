@@ -33,7 +33,7 @@ class PageIndividualDecoratorHtml extends IndividualDecorator
         $body = '';
 
         // Render the styles.
-        if (count($object->getStyles()) > 0) {
+        if (is_countable($object->getStyles()) && count($object->getStyles()) > 0) {
             foreach ($object->getStyles() as $styleObject) {
                 if ($styleObject instanceof Style) {
                     $styleIndividual = IndividualFactory::getIndividual($styleObject);

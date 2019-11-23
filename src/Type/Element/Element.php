@@ -24,7 +24,7 @@ class Element implements TypeInterface
     /**
      * @var array An associative array of attributes.
      */
-    protected $attributes = null;
+    protected $attributes = [];
 
     /**
      * @var array The children of this element.
