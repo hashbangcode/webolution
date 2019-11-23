@@ -21,7 +21,6 @@ class ElementIndividualTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateElementThroughIndividualWithDifferentFactor()
     {
-
         $html = new Element('html');
         $body = new Element('body');
         $html->addChild($body);
