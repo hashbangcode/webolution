@@ -5,8 +5,9 @@ namespace Hashbangcode\Webolution\Test\Type\Image;
 use Hashbangcode\Webolution\Type\Image\ImagePopulation;
 use Hashbangcode\Webolution\Type\Image\ImageIndividual;
 use Hashbangcode\Webolution\Type\Image\Image;
+use PHPUnit\Framework\TestCase;
 
-class ImagePopulationTest extends \PHPUnit_Framework_TestCase
+class ImagePopulationTest extends TestCase
 {
 
     public function testEmptyColorPopulation()

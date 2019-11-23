@@ -3,13 +3,10 @@
 namespace Hashbangcode\Webolution\Test\Type\Unit;
 
 use Hashbangcode\Webolution\Type\Unit\Unit;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Test class for Color
- */
-class UnitTest extends \PHPUnit_Framework_TestCase
+class UnitTest extends TestCase
 {
-
     public function testSetAndGetUnit()
     {
         $object = new Unit(1, 'px');
@@ -37,13 +34,15 @@ class UnitTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidUnit()
     {
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Unit\Exception\InvalidUnitException');
+        $this->expectException('Hashbangcode\Webolution\Type\Unit\Exception\InvalidUnitException');
+
         $object = new Unit(1, 'monkey');
     }
 
     public function testInvalidNumber()
     {
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Unit\Exception\InvalidNumberException');
+        $this->expectException('Hashbangcode\Webolution\Type\Unit\Exception\InvalidNumberException');
+
         $object = new Unit('monkey', 'px');
     }
 }

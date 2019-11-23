@@ -5,11 +5,12 @@ namespace Hashbangcode\Webolution\Test\Type\Element;
 use Hashbangcode\Webolution\Type\Element\ElementPopulation;
 use Hashbangcode\Webolution\Type\Element\Element;
 use Hashbangcode\Webolution\Type\Element\ElementIndividual;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for ElementPopulation
  */
-class ElementPopulationTest extends \PHPUnit_Framework_TestCase
+class ElementPopulationTest extends TestCase
 {
 
     public function testCreateObject()

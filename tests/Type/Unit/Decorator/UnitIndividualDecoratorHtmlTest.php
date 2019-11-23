@@ -4,10 +4,10 @@ namespace Hashbangcode\Webolution\Test\Type\Unit\Decorator;
 
 use Hashbangcode\Webolution\Type\Unit\Decorator\UnitIndividualDecoratorHtml;
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
-class UnitIndividualDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
+class UnitIndividualDecoratorHtmlTest extends TestCase
 {
-
     private $prophet;
 
     public function setup()

@@ -3,11 +3,12 @@
 namespace Hashbangcode\Webolution\Test\Type\Image;
 
 use Hashbangcode\Webolution\Type\Image\Image;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for Image
  */
-class ImageTest extends \PHPUnit_Framework_TestCase
+class ImageTest extends TestCase
 {
     public function testCreateSizedImage()
     {
@@ -68,7 +69,10 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $object = new Image();
         $object->createImageMatrix(5, 5);
         $message = 'Pixel not found at coordinates (100, 100)';
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Image\Exception\InvalidPixelException', $message);
+
+        $this->expectException('Hashbangcode\Webolution\Type\Image\Exception\InvalidPixelException');
+        $this->expectExceptionMessage($message);
+
         $object->setPixel(100, 100, 1);
     }
 
@@ -77,7 +81,10 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $object = new Image();
         $object->createImageMatrix(5, 5);
         $message = 'Pixel not found at coordinates (100, 100)';
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Image\Exception\InvalidPixelException', $message);
+
+        $this->expectException('Hashbangcode\Webolution\Type\Image\Exception\InvalidPixelException');
+        $this->expectExceptionMessage($message);
+
         $object->getPixel(100, 100);
     }
 
@@ -86,7 +93,10 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $object = new Image();
         $object->createImageMatrix(5, 5);
         $message = 'Pixel not found at coordinates (2, 100)';
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Image\Exception\InvalidPixelException', $message);
+
+        $this->expectException('Hashbangcode\Webolution\Type\Image\Exception\InvalidPixelException');
+        $this->expectExceptionMessage($message);
+
         $object->setPixel(2, 100, 1);
     }
 
@@ -95,7 +105,10 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $object = new Image();
         $object->createImageMatrix(5, 5);
         $message = 'Pixel not found at coordinates (2, 100)';
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Image\Exception\InvalidPixelException', $message);
+
+        $this->expectException('Hashbangcode\Webolution\Type\Image\Exception\InvalidPixelException');
+        $this->expectExceptionMessage($message);
+
         $object->getPixel(2, 100);
     }
 

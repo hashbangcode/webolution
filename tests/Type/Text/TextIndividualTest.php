@@ -3,11 +3,9 @@
 namespace Hashbangcode\Webolution\Test\Type\Text;
 
 use Hashbangcode\Webolution\Type\Text\TextIndividual;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Test class for ColorIndividual
- */
-class TextIndividualTest extends \PHPUnit_Framework_TestCase
+class TextIndividualTest extends TestCase
 {
 
     public function testCreateIndividual()

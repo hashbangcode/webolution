@@ -2,14 +2,14 @@
 
 namespace Hashbangcode\Webolution\Test\Type\Element;
 
-
 use Hashbangcode\Webolution\Type\Element\ElementIndividual;
 use Hashbangcode\Webolution\Type\Element\Element;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for ColorIndividual
  */
-class ElementIndividualTest extends \PHPUnit_Framework_TestCase
+class ElementIndividualTest extends TestCase
 {
 
     public function testCreateIndividual()

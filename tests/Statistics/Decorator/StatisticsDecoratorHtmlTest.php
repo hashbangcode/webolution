@@ -4,8 +4,9 @@ namespace Hashbangcode\Webolution\Test\Statistics\Decorator;
 
 use Hashbangcode\Webolution\Statistics\Decorator\StatisticsDecoratorHtml;
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
-class StatisticsDecoratorHtmlTest extends \PHPUnit_Framework_TestCase
+class StatisticsDecoratorHtmlTest extends TestCase
 {
 
     private $prophet;

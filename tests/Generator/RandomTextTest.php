@@ -3,11 +3,12 @@
 namespace Hashbangcode\Webolution\Test\Generator;
 
 use Hashbangcode\Webolution\Generator\RandomText;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for Color
  */
-class RandomTextTest extends \PHPUnit_Framework_TestCase
+class RandomTextTest extends TestCase
 {
     use RandomText;
 

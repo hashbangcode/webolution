@@ -3,11 +3,12 @@
 namespace Hashbangcode\Webolution\Test\Type\Number;
 
 use Hashbangcode\Webolution\Type\Number\Number;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for Color
  */
-class NumberTest extends \PHPUnit_Framework_TestCase
+class NumberTest extends TestCase
 {
     /**
      * @dataProvider numbersProvider
@@ -39,7 +40,10 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     public function testCreateNonNumbers($notNumber)
     {
         $message = $notNumber . ' is not a number.';
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Number\Exception\InvalidNumberException', $message);
+
+        $this->expectException('Hashbangcode\Webolution\Type\Number\Exception\InvalidNumberException');
+        $this->expectExceptionMessage($message);
+
         $object = new Number($notNumber);
     }
 

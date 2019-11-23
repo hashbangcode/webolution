@@ -3,11 +3,12 @@
 namespace Hashbangcode\Webolution\Test\Type\Color;
 
 use Hashbangcode\Webolution\Type\Color\ColorIndividual;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for ColorIndividual
  */
-class ColorIndividualTest extends \PHPUnit_Framework_TestCase
+class ColorIndividualTest extends TestCase
 {
 
     public function testGenerateFromHex()

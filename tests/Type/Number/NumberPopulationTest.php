@@ -4,8 +4,9 @@ namespace Hashbangcode\Webolution\Test\Type\Number;
 
 use Hashbangcode\Webolution\Type\Number\NumberPopulation;
 use Hashbangcode\Webolution\Type\Number\NumberIndividual;
+use PHPUnit\Framework\TestCase;
 
-class NumberPopulationTest extends \PHPUnit_Framework_TestCase
+class NumberPopulationTest extends TestCase
 {
 
     public function testEmptyNumberPopulation()

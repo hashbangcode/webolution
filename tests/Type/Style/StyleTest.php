@@ -4,11 +4,9 @@ namespace Hashbangcode\Webolution\Test\Type\Style;
 
 use Hashbangcode\Webolution\Type\Style\Style;
 use Hashbangcode\Webolution\Type\Color\ColorIndividual;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Test class for Color
- */
-class StyleTest extends \PHPUnit_Framework_TestCase
+class StyleTest extends TestCase
 {
     public function testSetAndGetAttributes()
     {

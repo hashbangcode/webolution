@@ -3,8 +3,9 @@
 namespace Hashbangcode\Webolution\Test;
 
 use Hashbangcode\Webolution\IndividualFactory;
+use PHPUnit\Framework\TestCase;
 
-class IndividualFactoryTest extends \PHPUnit_Framework_TestCase
+class IndividualFactoryTest extends TestCase
 {
 
     public function testFindNumberIndividual()

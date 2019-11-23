@@ -5,8 +5,9 @@ namespace Hashbangcode\Webolution\Test;
 use Hashbangcode\Webolution\Evolution;
 use Hashbangcode\Webolution\EvolutionManager;
 use Hashbangcode\Webolution\Type\Number\NumberPopulation;
+use PHPUnit\Framework\TestCase;
 
-class EvolutionManagerTest extends \PHPUnit_Framework_TestCase
+class EvolutionManagerTest extends TestCase
 {
     public function testCreateObject()
     {
@@ -32,7 +33,10 @@ class EvolutionManagerTest extends \PHPUnit_Framework_TestCase
     {
         $object = new EvolutionManager();
         $message = 'No population object exists in evolution class.';
-        $this->setExpectedException('Hashbangcode\Webolution\Exception\NoPopulationException', $message);
+
+        $this->expectException('Hashbangcode\Webolution\Exception\NoPopulationException');
+        $this->expectExceptionMessage($message);
+
         $object->runEvolution();
     }
 

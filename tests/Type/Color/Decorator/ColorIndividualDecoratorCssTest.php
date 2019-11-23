@@ -4,8 +4,9 @@ namespace Hashbangcode\Webolution\Test\Type\Color\Decorator;
 
 use Hashbangcode\Webolution\Type\Color\Decorator\ColorIndividualDecoratorCss;
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
-class ColorIndividualDecoratorCssTest extends \PHPUnit_Framework_TestCase
+class ColorIndividualDecoratorCssTest extends TestCase
 {
 
     private $prophet;

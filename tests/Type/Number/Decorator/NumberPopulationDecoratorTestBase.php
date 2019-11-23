@@ -4,8 +4,9 @@ namespace Hashbangcode\Webolution\Test\Type\Number\Decorator;
 
 use Hashbangcode\Webolution\Type\Number\Decorator\NumberPopulationDecoratorCli;
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
-class NumberPopulationDecoratorTestBase extends \PHPUnit_Framework_TestCase
+class NumberPopulationDecoratorTestBase extends TestCase
 {
 
     protected $prophet;

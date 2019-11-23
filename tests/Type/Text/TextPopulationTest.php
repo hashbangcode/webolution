@@ -4,8 +4,9 @@ namespace Hashbangcode\Webolution\Test\Type\Text;
 
 use Hashbangcode\Webolution\Type\Text\TextPopulation;
 use Hashbangcode\Webolution\Type\Text\TextIndividual;
+use PHPUnit\Framework\TestCase;
 
-class TextPopulationTest extends \PHPUnit_Framework_TestCase
+class TextPopulationTest extends TestCase
 {
 
     public function testEmptyPopulation()

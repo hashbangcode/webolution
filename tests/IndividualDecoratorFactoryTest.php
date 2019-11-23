@@ -6,8 +6,9 @@ use Hashbangcode\Webolution\IndividualDecoratorFactory;
 use Hashbangcode\Webolution\Type\Number\Number;
 use Hashbangcode\Webolution\Type\Color\Color;
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
-class IndividualDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
+class IndividualDecoratorFactoryTest extends TestCase
 {
     private $prophet;
 

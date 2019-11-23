@@ -3,13 +3,10 @@
 namespace Hashbangcode\Webolution\Test\Type\Unit;
 
 use Hashbangcode\Webolution\Type\Unit\UnitIndividual;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Test class for ColorIndividual
- */
-class UnitIndividualTest extends \PHPUnit_Framework_TestCase
+class UnitIndividualTest extends TestCase
 {
-
     public function testCreateIndividual()
     {
         $object = UnitIndividual::generateRandomUnit();
@@ -37,12 +34,6 @@ class UnitIndividualTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $object->getFitness());
         $object->getObject()->setNumber(8);
         $this->assertEquals(8, $object->getFitness());
-    }
-
-    public function testMutateUnit()
-    {
-        $object = UnitIndividual::generateFromUnitArguments(1, 'px');
-        $object->mutate();
     }
 
     public function testMutateZeroNumber()

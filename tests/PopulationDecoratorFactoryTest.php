@@ -3,8 +3,9 @@
 namespace Hashbangcode\Webolution\Test;
 
 use Hashbangcode\Webolution\PopulationDecoratorFactory;
+use PHPUnit\Framework\TestCase;
 
-class PopulationDecoratorFactoryTest extends \PHPUnit_Framework_TestCase
+class PopulationDecoratorFactoryTest extends TestCase
 {
     /**
      * @dataProvider populationDecoratorFactoryDataProvider

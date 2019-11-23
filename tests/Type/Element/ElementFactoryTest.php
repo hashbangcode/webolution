@@ -4,8 +4,9 @@
 namespace Hashbangcode\Webolution\Test\Type\Element;
 
 use Hashbangcode\Webolution\Type\Element\ElementFactory;
+use PHPUnit\Framework\TestCase;
 
-class ElementFactoryTest extends \PHPUnit_Framework_TestCase
+class ElementFactoryTest extends TestCase
 {
   /**
    * @dataProvider htmlStringDataProvider

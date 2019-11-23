@@ -4,8 +4,9 @@ namespace Hashbangcode\Webolution\Test\Type\Color;
 
 use Hashbangcode\Webolution\Type\Color\ColorPopulation;
 use Hashbangcode\Webolution\Type\Color\ColorIndividual;
+use PHPUnit\Framework\TestCase;
 
-class ColorPopulationTest extends \PHPUnit_Framework_TestCase
+class ColorPopulationTest extends TestCase
 {
 
     public function testEmptyColorPopulation()

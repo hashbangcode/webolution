@@ -5,11 +5,12 @@ namespace Hashbangcode\Webolution\Test\Type\Page;
 use Hashbangcode\Webolution\Type\Page\Page;
 use Hashbangcode\Webolution\Type\Style\Style;
 use Hashbangcode\Webolution\Type\Element\Element;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for Page
  */
-class PageTest extends \PHPUnit_Framework_TestCase
+class PageTest extends TestCase
 {
     public function testGetAndSetStyles()
     {

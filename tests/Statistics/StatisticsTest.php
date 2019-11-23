@@ -4,8 +4,9 @@ namespace Hashbangcode\Webolution\Test\Statistics;
 
 use Hashbangcode\Webolution\Statistics\Statistics;
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
-class StatisticsTest extends \PHPUnit_Framework_TestCase
+class StatisticsTest extends TestCase
 {
 
     private $prophet;

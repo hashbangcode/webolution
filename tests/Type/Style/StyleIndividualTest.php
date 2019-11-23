@@ -5,11 +5,9 @@ namespace Hashbangcode\Webolution\Test\Type\Style;
 use Hashbangcode\Webolution\Type\Style\StyleIndividual;
 use Hashbangcode\Webolution\Type\Style\Style;
 use Hashbangcode\Webolution\Type\Color\ColorIndividual;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Test class for ColorIndividual
- */
-class StyleIndividualTest extends \PHPUnit_Framework_TestCase
+class StyleIndividualTest extends TestCase
 {
 
     public function testCreateIndividual()

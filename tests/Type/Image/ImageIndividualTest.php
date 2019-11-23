@@ -3,11 +3,12 @@
 namespace Hashbangcode\Webolution\Test\Type\Image;
 
 use Hashbangcode\Webolution\Type\Image\ImageIndividual;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for ColorIndividual
  */
-class ImageIndividualTest extends \PHPUnit_Framework_TestCase
+class ImageIndividualTest extends TestCase
 {
 
     public function testCreateIndividual()

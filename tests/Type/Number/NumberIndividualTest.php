@@ -3,11 +3,12 @@
 namespace Hashbangcode\Webolution\Test\Type\Number;
 
 use Hashbangcode\Webolution\Type\Number\NumberIndividual;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for ColorIndividual
  */
-class NumberIndividualTest extends \PHPUnit_Framework_TestCase
+class NumberIndividualTest extends TestCase
 {
 
     public function testCreateIndividual()

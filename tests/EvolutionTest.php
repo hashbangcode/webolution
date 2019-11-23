@@ -5,8 +5,9 @@ namespace Hashbangcode\Webolution\Test;
 use Hashbangcode\Webolution\Evolution;
 use Hashbangcode\Webolution\Type\Color\ColorPopulation;
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
-class EvolutionTest extends \PHPUnit_Framework_TestCase
+class EvolutionTest extends TestCase
 {
     protected $prophet;
 

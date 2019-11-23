@@ -3,8 +3,9 @@
 namespace Hashbangcode\Webolution\Test\Type\Element\Decorator;
 
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
-class ElementPopulationDecoratorTestBase extends \PHPUnit_Framework_TestCase
+class ElementPopulationDecoratorTestBase extends TestCase
 {
     protected $prophet;
 

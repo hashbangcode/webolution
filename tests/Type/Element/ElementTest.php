@@ -4,11 +4,12 @@ namespace Hashbangcode\Webolution\Test\Type\Element;
 
 use Hashbangcode\Webolution\Type\Element\Element;
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for Color
  */
-class ElementTest extends \PHPUnit_Framework_TestCase
+class ElementTest extends TestCase
 {
     public function testGetAttribute()
     {
@@ -57,7 +58,10 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $inner_element->setType('div');
 
         $message = 'Cant add child of type "div" to "ol"';
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Element\Exception\InvalidChildTypeException', $message);
+
+        $this->expectException('Hashbangcode\Webolution\Type\Element\Exception\InvalidChildTypeException');
+        $this->expectExceptionMessage($message);
+
         $outer_element->addChild($inner_element);
     }
 
@@ -65,7 +69,9 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     {
         $element = new Element();
         $element->setType('p');
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Element\Exception\InvalidAttributesException');
+
+        $this->expectException('Hashbangcode\Webolution\Type\Element\Exception\InvalidAttributesException');
+
         $element->setAttributes(2);
     }
 

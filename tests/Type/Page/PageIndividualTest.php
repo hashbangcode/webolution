@@ -4,11 +4,12 @@ namespace Hashbangcode\Webolution\Test\Type\Page;
 
 use Hashbangcode\Webolution\Type\Page\PageIndividual;
 use Hashbangcode\Webolution\Type\Page\Page;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for PageIndividual
  */
-class PageIndividualTest extends \PHPUnit_Framework_TestCase
+class PageIndividualTest extends TestCase
 {
 
     public function testCreateIndividual()

@@ -4,8 +4,9 @@ namespace Hashbangcode\Webolution\Test\Type\Image\Decorator;
 
 use Hashbangcode\Webolution\Type\Image\Decorator\ImageIndividualDecoratorCli;
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
-class ImageIndividualDecoratorCliTest extends \PHPUnit_Framework_TestCase
+class ImageIndividualDecoratorCliTest extends TestCase
 {
 
     private $prophet;

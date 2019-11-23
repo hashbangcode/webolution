@@ -4,8 +4,9 @@ namespace Hashbangcode\Webolution\Test\Type\Style;
 
 use Hashbangcode\Webolution\Type\Style\StylePopulation;
 use Hashbangcode\Webolution\Type\Style\StyleIndividual;
+use PHPUnit\Framework\TestCase;
 
-class StylePopulationTest extends \PHPUnit_Framework_TestCase
+class StylePopulationTest extends TestCase
 {
 
     public function testEmptyPopulation()

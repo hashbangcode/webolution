@@ -5,8 +5,9 @@ namespace Hashbangcode\Webolution\Test\Type\Page;
 use Hashbangcode\Webolution\Type\Page\PagePopulation;
 use Hashbangcode\Webolution\Type\Page\PageIndividual;
 use Hashbangcode\Webolution\Type\Page\Page;
+use PHPUnit\Framework\TestCase;
 
-class PagePopulationTest extends \PHPUnit_Framework_TestCase
+class PagePopulationTest extends TestCase
 {
 
 
