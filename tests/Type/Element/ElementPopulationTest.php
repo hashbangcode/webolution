@@ -15,10 +15,24 @@ class ElementPopulationTest extends TestCase
 
     public function testCreateObject()
     {
-        $element = new Element();
-        $element->setType('html');
-        $element_individual = new ElementIndividual($element);
         $object = new ElementPopulation();
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Element\ElementPopulation', $object);
+    }
+
+    public function testAddElementsToPopulation()
+    {
+        $element = new Element();
+        $element->setType('div');
+        $element_individual = new ElementIndividual($element);
+
+        $object = new ElementPopulation();
+        $object->addIndividual($element_individual);
+        $object->addIndividual();
+
+        $this->assertEquals(2, $object->getLength());
+
+        foreach ($object->getIndividuals() as $individual) {
+            $this->assertEquals('div', $individual->getObject()->getType());
+        }
     }
 }
