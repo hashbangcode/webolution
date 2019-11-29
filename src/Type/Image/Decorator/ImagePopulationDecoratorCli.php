@@ -21,6 +21,7 @@ class ImagePopulationDecoratorCli extends PopulationDecorator
         foreach ($this->getPopulation()->getIndividuals() as $individual) {
             $individualDecorator = new ImageIndividualDecoratorCli($individual);
             $output .= $individualDecorator->render();
+            $output .= PHP_EOL . PHP_EOL;
         }
 
         return $output;
