@@ -10,46 +10,49 @@ class UnitPopulationDecoratorTestBase extends TestCase
 {
     protected $prophet;
 
-    protected $textPopulation;
+    protected $unitPopulation;
 
     public function setup()
     {
         $this->prophet = new Prophet();
 
-        $text1 = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\Unit');
-        $text1->getUnit()->willReturn('abc');
+        $unit1 = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\Unit');
+        $unit1->getUnit()->willReturn('em');
+        $unit1->getNumber()->willReturn(1);
 
-        $text2 = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\Unit');
-        $text2->getUnit()->willReturn('def');
+        $unit2 = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\Unit');
+        $unit2->getUnit()->willReturn('px');
+        $unit2->getNumber()->willReturn(1);
+        
+        $unit3 = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\Unit');
+        $unit3->getUnit()->willReturn('%');
+        $unit3->getNumber()->willReturn(1);
 
-        $text3 = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\Unit');
-        $text3->getUnit()->willReturn('ghi');
+        $unitPopulation = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\UnitPopulation');
 
-        $textPopulation = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\UnitPopulation');
-
-        $textIndividual1 = $this->prophet
+        $unitIndividual1 = $this->prophet
             ->prophesize('Hashbangcode\Webolution\Type\Unit\UnitIndividual');
-        $textIndividual1->getObject()->willReturn($text1);
+        $unitIndividual1->getObject()->willReturn($unit1);
 
-        $textIndividual2 = $this->prophet
+        $unitIndividual2 = $this->prophet
             ->prophesize('Hashbangcode\Webolution\Type\Unit\UnitIndividual');
-        $textIndividual2->getObject()->willReturn($text2);
+        $unitIndividual2->getObject()->willReturn($unit2);
 
-        $textIndividual3 = $this->prophet
+        $unitIndividual3 = $this->prophet
             ->prophesize('Hashbangcode\Webolution\Type\Unit\UnitIndividual');
-        $textIndividual3->getObject()->willReturn($text3);
+        $unitIndividual3->getObject()->willReturn($unit3);
 
         $individuals = [
-            $textIndividual1,
-            $textIndividual2,
-            $textIndividual3,
+            $unitIndividual1,
+            $unitIndividual2,
+            $unitIndividual3,
         ];
 
-        $textPopulation->getIndividuals()->willReturn($individuals);
-        $textPopulation->getLength()->willReturn(3);
-        $textPopulation->sort()->willReturn(null);
+        $unitPopulation->getIndividuals()->willReturn($individuals);
+        $unitPopulation->getLength()->willReturn(3);
+        $unitPopulation->sort()->willReturn(null);
 
-        $this->textPopulation = $textPopulation;
+        $this->unitPopulation = $unitPopulation;
     }
 
     protected function tearDown()
