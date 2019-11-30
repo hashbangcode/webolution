@@ -20,7 +20,7 @@ class PagePopulationDecoratorIframe extends PagePopulationDecoratorHtml
 
         foreach ($this->getPopulation()->getIndividuals() as $individual) {
             $individualDecorator = new PageIndividualDecoratorIframe($individual);
-            $output .= $individualDecorator->render() . PHP_EOL;
+            $output .= $individualDecorator->render() . PHP_EOL . PHP_EOL;
         }
 
         return $output;
