@@ -79,6 +79,10 @@ class PageIndividual extends Individual
         // Get styles.
         $styles = $this->getObject()->getStyles();
 
+        if (empty($styles)) {
+            return;
+        }
+
         // Mutate styles.
         $randomStyle = $styles[array_rand($styles)];
         if (!($randomStyle instanceof IndividualInterface)) {
