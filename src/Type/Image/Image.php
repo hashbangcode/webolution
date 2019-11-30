@@ -223,8 +223,8 @@ class Image implements TypeInterface
         $imageMatrix = $this->getImageMatrix();
         $height = 0;
 
-        for ($x = count($imageMatrix) - 1; $x > 0; $x--) {
-            for ($y = count($imageMatrix[$x]) - 1; $y > 0; $y--) {
+        for ($x = count($imageMatrix) - 1; $x >= 0; $x--) {
+            for ($y = count($imageMatrix[$x]) - 1; $y >= 0; $y--) {
                 if ($imageMatrix[$x][$y] == 1) {
                     $height++;
                     break;
