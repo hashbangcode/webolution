@@ -45,7 +45,7 @@ class ColorIndividual extends Individual
      */
     public static function generateRandomColor()
     {
-        return new self(Color::generateRandomColor());
+        return new self(ColorFactory::generateRandom());
     }
 
     /**
@@ -61,7 +61,7 @@ class ColorIndividual extends Individual
      */
     public static function generateFromHex($hex)
     {
-        return new self(Color::generateFromHex($hex));
+        return new self(ColorFactory::generateFromHex($hex));
     }
 
     /**

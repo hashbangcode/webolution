@@ -22,7 +22,7 @@ class UnitIndividual extends Individual
      */
     public static function generateRandomUnit()
     {
-        return new self(Unit::generateRandomUnit());
+        return new self(UnitFactory::generateRandom());
     }
 
     /**

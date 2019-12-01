@@ -23,6 +23,6 @@ class RandomTextTest extends TestCase
     {
         $letter = $this->generateRandomText();
         $this->assertTrue(is_string($letter));
-        $this->assertEquals(7, strlen($letter));
+        $this->assertEquals(10, strlen($letter));
     }
 }

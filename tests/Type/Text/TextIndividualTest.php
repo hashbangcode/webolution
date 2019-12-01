@@ -28,7 +28,7 @@ class TextIndividualTest extends TestCase
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\TextIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\Text', $object->getObject());
         $text = $object->getObject()->getText();
-        $this->assertEquals(7, strlen($text));
+        $this->assertEquals(10, strlen($text));
     }
 
     public function testGenerateRandomTextWithArguments()

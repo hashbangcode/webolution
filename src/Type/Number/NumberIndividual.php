@@ -35,6 +35,7 @@ class NumberIndividual extends Individual
      */
     public static function generateRandomNumber()
     {
+        // @todo move to factory
         return new self(new Number(mt_rand(1, 10)));
     }
 

@@ -11,8 +11,6 @@ use Hashbangcode\Webolution\Generator\RandomText;
  */
 class TextIndividual extends Individual
 {
-    use RandomText;
-
     /**
      * @var string The fitness goal that the string should aspire to.
      */
@@ -24,10 +22,9 @@ class TextIndividual extends Individual
      * @return TextIndividual
      *   The new TextIndividual.
      */
-    public static function generateRandomTextIndividual($length = 7)
+    public static function generateRandomTextIndividual($length = 10)
     {
-        $randomText = self::generateRandomText($length);
-        $textObject = new Text($randomText);
+        $textObject = TextFactory::generateRandomWithLength($length);
         return new self($textObject);
     }
 
@@ -39,7 +36,7 @@ class TextIndividual extends Individual
      */
     public static function generateFromString($string)
     {
-        $textObject = new Text($string);
+        $textObject = TextFactory::generateFromString($string);
         return new self($textObject);
     }
 
