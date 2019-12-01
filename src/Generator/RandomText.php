@@ -45,7 +45,7 @@ trait RandomText
      * @return string
      *   The random string.
      */
-    public static function generateRandomText($textLength = 7)
+    public static function generateRandomText($textLength = 10)
     {
         $text = "";
         $charArray = static::generateCharacterArray();

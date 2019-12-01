@@ -101,23 +101,6 @@ class Unit implements TypeInterface
     }
 
     /**
-     * Generate a Unit object with some random properties.
-     *
-     * @return Unit
-     *   A new unit object with random properties.
-     *
-     * @throws InvalidNumberException
-     * @throws InvalidUnitException
-     */
-    public static function generateRandomUnit()
-    {
-        $number = mt_rand(1, 500);
-        $units = ['px', 'em', '%', 'auto'];
-        $unit = $units[array_rand($units)];
-        return new Unit($number, $unit);
-    }
-
-    /**
      * Add an amount to the number.
      *
      * @param int $x
