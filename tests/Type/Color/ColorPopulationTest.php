@@ -2,6 +2,7 @@
 
 namespace Hashbangcode\Webolution\Test\Type\Color;
 
+use Hashbangcode\Webolution\Type\Color\ColorFactory;
 use Hashbangcode\Webolution\Type\Color\ColorPopulation;
 use Hashbangcode\Webolution\Type\Color\ColorIndividual;
 use PHPUnit\Framework\TestCase;
@@ -11,37 +12,37 @@ class ColorPopulationTest extends TestCase
 
     public function testEmptyColorPopulation()
     {
-        $colorColorPopulation = new ColorPopulation();
-        $this->assertEquals(0, $colorColorPopulation->getLength());
+        $colorPopulation = new ColorPopulation();
+        $this->assertEquals(0, $colorPopulation->getLength());
     }
 
     public function testAddItemColorPopulation()
     {
-        $colorColorPopulation = new ColorPopulation();
-        $colorColorPopulation->addIndividual();
-        $this->assertEquals(1, $colorColorPopulation->getLength());
+        $colorPopulation = new ColorPopulation();
+        $colorPopulation->addIndividual();
+        $this->assertEquals(1, $colorPopulation->getLength());
     }
 
     public function testAddItemsToColorPopulation()
     {
-        $colorColorPopulation = new ColorPopulation();
+        $colorPopulation = new ColorPopulation();
 
-        $colorColorPopulation->addIndividual();
-        $colorColorPopulation->addIndividual();
-        $colorColorPopulation->addIndividual();
+        $colorPopulation->addIndividual();
+        $colorPopulation->addIndividual();
+        $colorPopulation->addIndividual();
 
-        $this->assertEquals(3, $colorColorPopulation->getLength());
+        $this->assertEquals(3, $colorPopulation->getLength());
     }
 
     public function testColorIteration()
     {
-        $colorColorPopulation = new ColorPopulation();
+        $colorPopulation = new ColorPopulation();
 
-        $colorColorPopulation->addIndividual(ColorIndividual::generateRandomColor());
-        $colorColorPopulation->addIndividual(ColorIndividual::generateRandomColor());
-        $colorColorPopulation->addIndividual(ColorIndividual::generateRandomColor());
+        $colorPopulation->addIndividual(ColorIndividual::generateRandomColor());
+        $colorPopulation->addIndividual(ColorIndividual::generateRandomColor());
+        $colorPopulation->addIndividual(ColorIndividual::generateRandomColor());
 
-        $population = $colorColorPopulation->getIndividuals();
+        $population = $colorPopulation->getIndividuals();
 
         foreach ($population as $color) {
             $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\Color', $color->getObject());
@@ -50,16 +51,32 @@ class ColorPopulationTest extends TestCase
 
     public function testGetRandomIndividual()
     {
-        $colorColorPopulation = new ColorPopulation();
+        $colorPopulation = new ColorPopulation();
 
-        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
-        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 0));
-        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
-        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
-        $colorColorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
+        $colorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
+        $colorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 0));
+        $colorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
+        $colorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 255, 0));
+        $colorPopulation->addIndividual(ColorIndividual::generateFromRgb(0, 0, 255));
 
-        $object = $colorColorPopulation->getRandomIndividual();
+        $object = $colorPopulation->getRandomIndividual();
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\ColorIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\Color', $object->getObject());
+    }
+
+    public function testCrossover() {
+        $colorPopulation = new ColorPopulation();
+
+        $color1 = ColorFactory::generateFromHex('000000');
+        $colorPopulation->addIndividual(new ColorIndividual($color1));
+
+        $color2 = ColorFactory::generateFromHex('FFFFFF');
+        $colorPopulation->addIndividual(new ColorIndividual($color2));
+
+        $colorPopulation->crossover();
+
+        $individuals = $colorPopulation->getIndividuals();
+
+        $this->assertEquals('0F0F0F', $individuals[2]->getObject()->getHex());
     }
 }
