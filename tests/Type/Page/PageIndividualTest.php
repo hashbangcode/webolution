@@ -23,7 +23,7 @@ class PageIndividualTest extends TestCase
     {
         $page = new Page(new Element());
         $object = new PageIndividual($page);
-        $object->mutate(0);
+        $object->mutate(-100);
         $this->assertEquals('div', $object->getObject()->getBody()->getType());
     }
 }
