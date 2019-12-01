@@ -4,11 +4,12 @@ namespace Hashbangcode\Webolution\Test\Type\Element;
 
 use Hashbangcode\Webolution\Type\Element\Element;
 use Prophecy\Prophet;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for Color
  */
-class ElementTest extends \PHPUnit_Framework_TestCase
+class ElementTest extends TestCase
 {
     public function testGetAttribute()
     {
@@ -57,7 +58,10 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $inner_element->setType('div');
 
         $message = 'Cant add child of type "div" to "ol"';
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Element\Exception\InvalidChildTypeException', $message);
+
+        $this->expectException('Hashbangcode\Webolution\Type\Element\Exception\InvalidChildTypeException');
+        $this->expectExceptionMessage($message);
+
         $outer_element->addChild($inner_element);
     }
 
@@ -65,14 +69,16 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     {
         $element = new Element();
         $element->setType('p');
-        $this->setExpectedException('Hashbangcode\Webolution\Type\Element\Exception\InvalidAttributesException');
+
+        $this->expectException('Hashbangcode\Webolution\Type\Element\Exception\InvalidAttributesException');
+
         $element->setAttributes(2);
     }
 
     public function testSetChildElement()
     {
         $element = new Element('ul');
-        $child_types = $element->getAvailableChildTypes($element->getType());
+        $child_types = $element->getAvailableChildTypes();
         $this->assertEquals('li', $child_types[0]);
     }
 
@@ -82,7 +88,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     public function testGetAvailableChildTypes($type, $childTypes)
     {
         $element = new Element($type);
-        $returnedChildTypes = $element->getAvailableChildTypes($element->getType());
+        $returnedChildTypes = $element->getAvailableChildTypes();
 
         foreach ($returnedChildTypes as $id => $childType) {
             $this->assertEquals($childTypes[$id], $returnedChildTypes[$id]);
@@ -245,7 +251,7 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $object = new Element();
         $object->setType('div');
         $object->setElementText('sometext');
-        $this->assertEquals('div', $object->getType('div'));
+        $this->assertEquals('div', $object->getType());
         $this->assertEquals('sometext', $object->getElementText());
     }
 

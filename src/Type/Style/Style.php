@@ -124,7 +124,7 @@ class Style implements TypeInterface
      *   Name of the attribute.
      * @param string|\Hashbangcode\Webolution\Type\TypeInterface $value
      *   Value to set the attribute to. This can be another Type object, which
-     *   will be used as a mutatable item.
+     *   will be used as a mutable item.
      */
     public function setAttribute($name, $value)
     {

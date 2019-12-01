@@ -3,11 +3,9 @@
 namespace Hashbangcode\Webolution\Test\Type\Text;
 
 use Hashbangcode\Webolution\Type\Text\Text;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Test class for Color
- */
-class TextTest extends \PHPUnit_Framework_TestCase
+class TextTest extends TestCase
 {
     public function testGetText()
     {

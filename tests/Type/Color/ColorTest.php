@@ -4,11 +4,12 @@ namespace Hashbangcode\Webolution\Test\Type\Color;
 
 use Hashbangcode\Webolution\Type\Color\Color;
 use Hashbangcode\Webolution\Type\Color\Exception;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for Color
  */
-class ColorTest extends \PHPUnit_Framework_TestCase
+class ColorTest extends TestCase
 {
     public function testCreateColorFromStrings()
     {
@@ -211,8 +212,8 @@ class ColorTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidRBGValue($r, $g, $b)
     {
-      $this->setExpectedException('Hashbangcode\Webolution\Type\Color\Exception\InvalidRGBValueException');
-      $color = new Color($r, $g, $b);
+        $this->expectException('Hashbangcode\Webolution\Type\Color\Exception\InvalidRGBValueException');
+        $color = new Color($r, $g, $b);
     }
 
     public function invalidRGBValues()

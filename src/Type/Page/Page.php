@@ -24,6 +24,25 @@ class Page implements TypeInterface
     protected $body;
 
     /**
+     * Page constructor.
+     *
+     * @param Element $body
+     *   The body.
+     * @param array $styles
+     *   (Optional) The styles.
+     */
+    public function __construct(Element $body = NULL, $styles = [])
+    {
+        if (!empty($styles)) {
+            $this->styles = $styles;
+        }
+
+        if (!is_null($body)) {
+            $this->body = $body;
+        }
+    }
+
+    /**
      * Get styles.
      *
      * @return array

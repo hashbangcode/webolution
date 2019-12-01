@@ -3,7 +3,7 @@
 namespace Hashbangcode\Webolution\Type\Element;
 
 use Hashbangcode\Webolution\Type\Element\Exception\InvalidChildTypeException;
-use Hashbangcode\Webolution\Generators\RandomText;
+use Hashbangcode\Webolution\Generator\RandomText;
 use Hashbangcode\Webolution\Type\TypeInterface;
 
 /**
@@ -24,7 +24,7 @@ class Element implements TypeInterface
     /**
      * @var array An associative array of attributes.
      */
-    protected $attributes = null;
+    protected $attributes = [];
 
     /**
      * @var array The children of this element.
