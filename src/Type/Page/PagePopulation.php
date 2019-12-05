@@ -53,6 +53,17 @@ class PagePopulation extends Population
      */
     public function crossover()
     {
-        // @todo implement this.
+        // Get two individuals from the population.
+        $individuals = $this->getRandomIndividuals(2);
+
+        $style = $individuals[0]->getObject()->getStyles();
+        $body = $individuals[1]->getObject()->getBody();
+
+        $newIndividual = PageIndividual::generateBlankPage();
+
+        $newIndividual->getObject()->setBody($body);
+        $newIndividual->getObject()->setStyles($style);
+
+        $this->addIndividual($newIndividual);
     }
 }

@@ -24,4 +24,14 @@ class PagePopulationTest extends TestCase
         $individual = $object->getIndividuals()[0];
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Page\PageIndividual', $individual);
     }
+
+    public function testCrossOverAddsIndividual()
+    {
+        $object = new PagePopulation();
+        $object->addIndividual();
+        $object->addIndividual();
+        $object->addIndividual();
+        $object->crossover();
+        $this->assertEquals(4, $object->getLength());
+    }
 }
