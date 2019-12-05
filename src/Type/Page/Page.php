@@ -158,7 +158,6 @@ class Page implements TypeInterface
         $selectors = $this->getSeletors();
         $styles = [];
         foreach ($selectors as $selector) {
-            // @todo change to a factory
             $styles[$selector] = new Style($selector);
         }
         $this->setStyles($styles);
