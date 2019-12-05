@@ -22,7 +22,6 @@ class ElementIndividual extends Individual
      */
     public static function generateFromElementType($type)
     {
-        // @todo move this into the factory.
         return new self(new Element($type));
     }
 
