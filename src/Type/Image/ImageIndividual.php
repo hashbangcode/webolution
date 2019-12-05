@@ -35,8 +35,7 @@ class ImageIndividual extends Individual
      */
     public static function generateRandomImage()
     {
-        // @todo move to factory
-        return new self(new Image(mt_rand(1, 20), mt_rand(1, 20)));
+        return new self(ImageFactory::generateRandom());
     }
 
     /**

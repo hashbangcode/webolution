@@ -18,7 +18,7 @@ class ImageFactory implements TypeFactoryInterface
      */
     public static function generateRandom(): TypeInterface
     {
-        $image = new Image();
+        $image = new Image(mt_rand(1, 20), mt_rand(1, 20));
         return $image;
     }
 }
