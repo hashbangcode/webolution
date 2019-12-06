@@ -127,13 +127,14 @@ class EvolutionTest extends TestCase
         $this->assertEquals(4, $evolution->getCurrentPopulation()->getIndividualCount());
     }
 
-
     public function testEvolutionRender()
     {
         $colorPopulation = new ColorPopulation();
         $colorPopulation->addIndividual();
         $colorPopulation->addIndividual();
         $colorPopulation->setDefaultRenderType('cli');
+
+        $this->assertContains('cli', $colorPopulation->getDefaultRenderType());
 
         $evolution = new Evolution($colorPopulation, false);
 
