@@ -107,4 +107,15 @@ class TextPopulationTest extends TestCase
         $this->assertEquals('AFCHIJK', $population->getIndividuals()[2]->getObject()->getText());
         $this->assertEquals(3, $population->getIndividualCount());
     }
+
+    public function testCopyIndividual()
+    {
+        $population = new TextPopulation();
+        $population->addIndividual(TextIndividual::generateFromString('ABCD'));
+        $population->copyIndividual();
+        $this->assertEquals(2, $population->getIndividualCount());
+        $individuals = $population->getIndividuals();
+        $this->assertEquals('ABCD', $individuals[0]->getObject()->getText());
+        $this->assertEquals('ABCD', $individuals[1]->getObject()->getText());
+    }
 }
