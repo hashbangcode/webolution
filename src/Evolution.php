@@ -108,7 +108,7 @@ class Evolution
         if ($population instanceof Population) {
             // If a population object was passed then we can setup the population.
             $this->setPopulation($population);
-            $length = $this->population->getLength();
+            $length = $this->getCurrentPopulation()->getLength();
             if ($autoGeneratePopulation == true && $length < $this->getIndividualsPerGeneration()) {
                 // If we are to auto-populate the population and the length is less than the number of individuals per
                 // generation then populate the population with individuals.
@@ -158,12 +158,11 @@ class Evolution
      */
     public function crossOverPopulation()
     {
-        do {
+        // Keep adding individuals to the population whilst the count is less then the minimum count.
+        while ($this->getCurrentPopulation()->getLength() < $this->getIndividualsPerGeneration()) {
             // Run the crossover function of the Population class.
-            $this->population->crossover();
-
-            // Keep adding individuals to the population whilst the count is less then the minimum count.
-        } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
+            $this->getCurrentPopulation()->crossover();
+        }
     }
 
     /**

@@ -119,6 +119,8 @@ class EvolutionTest extends TestCase
 
         $evolution = new Evolution($colorPopulation, false);
 
+        $this->assertEquals(2, $evolution->getCurrentPopulation()->getLength());
+
         $evolution->setIndividualsPerGeneration(4);
 
         $evolution->runGeneration();
@@ -157,6 +159,7 @@ class EvolutionTest extends TestCase
 
         $this->assertEquals(10, $evolution->getMaxGenerations());
         $this->assertEquals(20, $evolution->getIndividualsPerGeneration());
+        $this->assertEquals(20, $evolution->getCurrentPopulation()->getLength());
 
         $this->assertEquals($evolution->getIndividualsPerGeneration(), $evolution->getCurrentPopulation()->getLength());
     }
@@ -168,7 +171,33 @@ class EvolutionTest extends TestCase
 
         $this->assertEquals(10, $evolution->getMaxGenerations());
         $this->assertEquals(20, $evolution->getIndividualsPerGeneration());
+        $this->assertEquals(20, $evolution->getCurrentPopulation()->getLength());
 
         $this->assertEquals($evolution->getIndividualsPerGeneration(), $evolution->getCurrentPopulation()->getLength());
+    }
+
+    public function testPopulationCrossoverDoesNotExceedMaxPopulation()
+    {
+        $colorPopulation = new ColorPopulation();
+        $evolution = new Evolution($colorPopulation, false, 10, 20);
+
+        $evolution->getCurrentPopulation()->addIndividual();
+        $evolution->getCurrentPopulation()->addIndividual();
+        $evolution->getCurrentPopulation()->addIndividual();
+
+        $this->assertEquals(3, $evolution->getCurrentPopulation()->getLength());
+
+        $evolution->crossOverPopulation();
+
+        $this->assertEquals(20, $evolution->getCurrentPopulation()->getLength());
+
+        $colorPopulation = new ColorPopulation();
+        $evolution = new Evolution($colorPopulation, true, 10, 20);
+
+        $this->assertEquals(20, $evolution->getCurrentPopulation()->getLength());
+
+        $evolution->crossOverPopulation();
+
+        $this->assertEquals(20, $evolution->getCurrentPopulation()->getLength());
     }
 }
