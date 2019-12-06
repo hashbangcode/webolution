@@ -13,14 +13,14 @@ class ColorPopulationTest extends TestCase
     public function testEmptyColorPopulation()
     {
         $colorPopulation = new ColorPopulation();
-        $this->assertEquals(0, $colorPopulation->getLength());
+        $this->assertEquals(0, $colorPopulation->getIndividualCount());
     }
 
     public function testAddItemColorPopulation()
     {
         $colorPopulation = new ColorPopulation();
         $colorPopulation->addIndividual();
-        $this->assertEquals(1, $colorPopulation->getLength());
+        $this->assertEquals(1, $colorPopulation->getIndividualCount());
     }
 
     public function testAddItemsToColorPopulation()
@@ -31,7 +31,7 @@ class ColorPopulationTest extends TestCase
         $colorPopulation->addIndividual();
         $colorPopulation->addIndividual();
 
-        $this->assertEquals(3, $colorPopulation->getLength());
+        $this->assertEquals(3, $colorPopulation->getIndividualCount());
     }
 
     public function testColorIteration()

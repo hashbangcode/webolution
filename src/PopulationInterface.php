@@ -24,7 +24,7 @@ interface PopulationInterface
      * @return int
      *   The number of Individuals in the population.
      */
-    public function getLength();
+    public function getIndividualCount();
 
     /**
      * Get the individuals for this population.

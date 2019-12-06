@@ -49,7 +49,7 @@ class UnitPopulationDecoratorTestBase extends TestCase
         ];
 
         $unitPopulation->getIndividuals()->willReturn($individuals);
-        $unitPopulation->getLength()->willReturn(3);
+        $unitPopulation->getIndividualCount()->willReturn(3);
         $unitPopulation->sort()->willReturn(null);
 
         $this->unitPopulation = $unitPopulation;

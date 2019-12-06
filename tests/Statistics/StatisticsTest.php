@@ -62,7 +62,7 @@ class StatisticsTest extends TestCase
         ];
 
         $numberPopulation->getIndividuals()->willReturn($individuals);
-        $numberPopulation->getLength()->willReturn(2);
+        $numberPopulation->getIndividualCount()->willReturn(2);
 
         $this->assertEquals(5, $statistics->calculateMeanFitness($numberPopulation->reveal()));
         $this->assertEquals(5, $statistics->getMeanFitness());
@@ -130,7 +130,7 @@ class StatisticsTest extends TestCase
         ];
 
         $numberPopulation->getIndividuals()->willReturn($individuals);
-        $numberPopulation->getLength()->willReturn(3);
+        $numberPopulation->getIndividualCount()->willReturn(3);
         $numberPopulation->sort()->willReturn(null);
 
         $statistics->extractFitnessIndividuals($numberPopulation->reveal());

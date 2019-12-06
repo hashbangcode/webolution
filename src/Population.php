@@ -147,7 +147,7 @@ abstract class Population implements PopulationInterface
      */
     public function getRandomIndividual()
     {
-        if ($this->getLength() == 0) {
+        if ($this->getIndividualCount() == 0) {
             // No individuals in the array.
             return false;
         }
@@ -167,12 +167,12 @@ abstract class Population implements PopulationInterface
      */
     public function getRandomIndividuals($number)
     {
-        if ($this->getLength() == 0) {
+        if ($this->getIndividualCount() == 0) {
             // No individuals in the array.
             return false;
         }
 
-        if ($number > $this->getLength()) {
+        if ($number > $this->getIndividualCount()) {
             // The number we want is higher than the number of individuals to select from.
             return false;
         }
@@ -191,7 +191,7 @@ abstract class Population implements PopulationInterface
      * @return int
      *   Length of population.
      */
-    public function getLength()
+    public function getIndividualCount()
     {
         return count($this->individuals);
     }
@@ -306,7 +306,7 @@ abstract class Population implements PopulationInterface
      */
     public function generateStatistics()
     {
-        if ($this->getLength() == 0) {
+        if ($this->getIndividualCount() == 0) {
             // No population yet.
             return false;
         }

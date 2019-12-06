@@ -47,7 +47,7 @@ class NumberPopulationDecoratorTestBase extends TestCase
         ];
 
         $numberPopulation->getIndividuals()->willReturn($individuals);
-        $numberPopulation->getLength()->willReturn(3);
+        $numberPopulation->getIndividualCount()->willReturn(3);
         $numberPopulation->sort()->willReturn(null);
 
         $this->numberPopulation = $numberPopulation;

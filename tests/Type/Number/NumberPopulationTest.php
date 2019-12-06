@@ -12,21 +12,21 @@ class NumberPopulationTest extends TestCase
     public function testEmptyNumberPopulation()
     {
         $numberPopulation = new NumberPopulation();
-        $this->assertEquals(0, $numberPopulation->getLength());
+        $this->assertEquals(0, $numberPopulation->getIndividualCount());
     }
 
     public function testAddItemNumberPopulation()
     {
         $numberPopulation = new NumberPopulation();
         $numberPopulation->addIndividual();
-        $this->assertEquals(1, $numberPopulation->getLength());
+        $this->assertEquals(1, $numberPopulation->getIndividualCount());
     }
 
     public function testGetRandomIndividual()
     {
         $numberPopulation = new NumberPopulation();
         $numberPopulation->addIndividual();
-        $this->assertEquals(1, $numberPopulation->getLength());
+        $this->assertEquals(1, $numberPopulation->getIndividualCount());
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Number\NumberIndividual', $numberPopulation->getRandomIndividual());
     }
 
@@ -38,7 +38,7 @@ class NumberPopulationTest extends TestCase
         $numberPopulation->addIndividual();
         $numberPopulation->addIndividual();
 
-        $this->assertEquals(3, $numberPopulation->getLength());
+        $this->assertEquals(3, $numberPopulation->getIndividualCount());
 
         $population = $numberPopulation->getIndividuals();
 

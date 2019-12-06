@@ -13,14 +13,14 @@ class ImagePopulationTest extends TestCase
     public function testEmptyColorPopulation()
     {
         $object = new ImagePopulation();
-        $this->assertEquals(0, $object->getLength());
+        $this->assertEquals(0, $object->getIndividualCount());
     }
 
     public function testAddItemColorPopulation()
     {
         $object = new ImagePopulation();
         $object->addIndividual();
-        $this->assertEquals(1, $object->getLength());
+        $this->assertEquals(1, $object->getIndividualCount());
     }
 
     public function testAddItemsToColorPopulation()
@@ -31,7 +31,7 @@ class ImagePopulationTest extends TestCase
         $object->addIndividual();
         $object->addIndividual();
 
-        $this->assertEquals(3, $object->getLength());
+        $this->assertEquals(3, $object->getIndividualCount());
     }
 
     public function testSortPopulation()
@@ -83,7 +83,7 @@ class ImagePopulationTest extends TestCase
         $image6->getObject()->setPixel(6, 2, 1);
         $object->addIndividual($image6);
         
-        $this->assertEquals(6, $object->getLength());
+        $this->assertEquals(6, $object->getIndividualCount());
 
         $object->sort();
 

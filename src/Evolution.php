@@ -108,7 +108,7 @@ class Evolution
         if ($population instanceof Population) {
             // If a population object was passed then we can setup the population.
             $this->setPopulation($population);
-            $length = $this->getCurrentPopulation()->getLength();
+            $length = $this->getCurrentPopulation()->getIndividualCount();
             if ($autoGeneratePopulation == true && $length < $this->getIndividualsPerGeneration()) {
                 // If we are to auto-populate the population and the length is less than the number of individuals per
                 // generation then populate the population with individuals.
@@ -129,7 +129,7 @@ class Evolution
             // Create random individual.
             $this->population->addIndividual();
             // Keep adding individuals to the population whilst the count is less then the minimum count.
-        } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
+        } while ($this->population->getIndividualCount() < $this->getIndividualsPerGeneration());
     }
 
     /**
@@ -150,7 +150,7 @@ class Evolution
                 $this->population->addIndividual();
             }
             // Keep adding individuals to the population whilst the count is less then the minimum count.
-        } while ($this->population->getLength() < $this->getIndividualsPerGeneration());
+        } while ($this->population->getIndividualCount() < $this->getIndividualsPerGeneration());
     }
 
     /**
@@ -159,7 +159,7 @@ class Evolution
     public function crossOverPopulation()
     {
         // Keep adding individuals to the population whilst the count is less then the minimum count.
-        while ($this->getCurrentPopulation()->getLength() < $this->getIndividualsPerGeneration()) {
+        while ($this->getCurrentPopulation()->getIndividualCount() < $this->getIndividualsPerGeneration()) {
             // Run the crossover function of the Population class.
             $this->getCurrentPopulation()->crossover();
         }
@@ -234,7 +234,7 @@ class Evolution
         }
 
         // Ensure the population has a length.
-        if ($this->population->getLength() == 0) {
+        if ($this->population->getIndividualCount() == 0) {
             // If there is no population left then set the number of generations to max.
             $this->generation = $this->getMaxGenerations();
             return false;
@@ -245,14 +245,14 @@ class Evolution
             $this->population->cullPopulation($this->getGlobalFitnessGoal());
         }
 
-        if ($this->population->getLength() == 0) {
+        if ($this->population->getIndividualCount() == 0) {
             // If there is no population left then set the number of generations to max.
             $this->generation = $this->getMaxGenerations();
             // Stop running the evolution process.
             return false;
         }
 
-        if ($this->population->getLength() < $this->getIndividualsPerGeneration()) {
+        if ($this->population->getIndividualCount() < $this->getIndividualsPerGeneration()) {
             // Ensure the population is at the right level.
             switch ($this->getReplicationType()) {
                 case self::REPLICATION_TYPE_CLONE:

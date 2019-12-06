@@ -22,7 +22,7 @@ class EvolutionTest extends TestCase
         $evolution = new Evolution($population);
 
         $population = $evolution->getCurrentPopulation();
-        $this->assertEquals($evolution->getIndividualsPerGeneration(), $population->getLength());
+        $this->assertEquals($evolution->getIndividualsPerGeneration(), $population->getIndividualCount());
     }
 
     public function testGenerationIsOneWhenFirstCreated()
@@ -50,7 +50,7 @@ class EvolutionTest extends TestCase
 
         $evolution->setPopulation($colorPopulation);
 
-        $this->assertEquals(0, $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals(0, $evolution->getCurrentPopulation()->getIndividualCount());
     }
 
     public function testEvolutionRunBlankGeneration()
@@ -119,12 +119,12 @@ class EvolutionTest extends TestCase
 
         $evolution = new Evolution($colorPopulation, false);
 
-        $this->assertEquals(2, $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals(2, $evolution->getCurrentPopulation()->getIndividualCount());
 
         $evolution->setIndividualsPerGeneration(4);
 
         $evolution->runGeneration();
-        $this->assertEquals(4, $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals(4, $evolution->getCurrentPopulation()->getIndividualCount());
     }
 
 
@@ -159,9 +159,9 @@ class EvolutionTest extends TestCase
 
         $this->assertEquals(10, $evolution->getMaxGenerations());
         $this->assertEquals(20, $evolution->getIndividualsPerGeneration());
-        $this->assertEquals(20, $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals(20, $evolution->getCurrentPopulation()->getIndividualCount());
 
-        $this->assertEquals($evolution->getIndividualsPerGeneration(), $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals($evolution->getIndividualsPerGeneration(), $evolution->getCurrentPopulation()->getIndividualCount());
     }
 
     public function testEvolutionColorAutoGeneratePopulation()
@@ -171,9 +171,9 @@ class EvolutionTest extends TestCase
 
         $this->assertEquals(10, $evolution->getMaxGenerations());
         $this->assertEquals(20, $evolution->getIndividualsPerGeneration());
-        $this->assertEquals(20, $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals(20, $evolution->getCurrentPopulation()->getIndividualCount());
 
-        $this->assertEquals($evolution->getIndividualsPerGeneration(), $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals($evolution->getIndividualsPerGeneration(), $evolution->getCurrentPopulation()->getIndividualCount());
     }
 
     public function testPopulationCrossoverDoesNotExceedMaxPopulation()
@@ -185,19 +185,19 @@ class EvolutionTest extends TestCase
         $evolution->getCurrentPopulation()->addIndividual();
         $evolution->getCurrentPopulation()->addIndividual();
 
-        $this->assertEquals(3, $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals(3, $evolution->getCurrentPopulation()->getIndividualCount());
 
         $evolution->crossOverPopulation();
 
-        $this->assertEquals(20, $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals(20, $evolution->getCurrentPopulation()->getIndividualCount());
 
         $colorPopulation = new ColorPopulation();
         $evolution = new Evolution($colorPopulation, true, 10, 20);
 
-        $this->assertEquals(20, $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals(20, $evolution->getCurrentPopulation()->getIndividualCount());
 
         $evolution->crossOverPopulation();
 
-        $this->assertEquals(20, $evolution->getCurrentPopulation()->getLength());
+        $this->assertEquals(20, $evolution->getCurrentPopulation()->getIndividualCount());
     }
 }

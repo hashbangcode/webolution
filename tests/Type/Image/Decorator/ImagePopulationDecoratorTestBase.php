@@ -52,7 +52,7 @@ class ImagePopulationDecoratorTestBase extends TestCase
         ];
 
         $imagePopulation->getIndividuals()->willReturn($individuals);
-        $imagePopulation->getLength()->willReturn(3);
+        $imagePopulation->getIndividualCount()->willReturn(3);
         $imagePopulation->sort()->willReturn(null);
 
         $this->imagePopulation = $imagePopulation;

@@ -120,7 +120,7 @@ class Statistics implements StatisticsInterface
         foreach ($population->getIndividuals() as $individual) {
             $fitnessSum += $individual->getFitness();
         }
-        $this->setMeanFitness($fitnessSum / $population->getLength());
+        $this->setMeanFitness($fitnessSum / $population->getIndividualCount());
         return $this->getMeanFitness();
     }
 

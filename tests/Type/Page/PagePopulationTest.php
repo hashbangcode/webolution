@@ -32,6 +32,6 @@ class PagePopulationTest extends TestCase
         $object->addIndividual();
         $object->addIndividual();
         $object->crossover();
-        $this->assertEquals(4, $object->getLength());
+        $this->assertEquals(4, $object->getIndividualCount());
     }
 }

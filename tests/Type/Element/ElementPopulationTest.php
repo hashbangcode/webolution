@@ -29,7 +29,7 @@ class ElementPopulationTest extends TestCase
         $object->addIndividual($element_individual);
         $object->addIndividual();
 
-        $this->assertEquals(2, $object->getLength());
+        $this->assertEquals(2, $object->getIndividualCount());
 
         foreach ($object->getIndividuals() as $individual) {
             $this->assertEquals('div', $individual->getObject()->getType());

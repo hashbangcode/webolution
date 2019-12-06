@@ -45,7 +45,7 @@ class TextPopulationDecoratorTestBase extends TestCase
         ];
 
         $textPopulation->getIndividuals()->willReturn($individuals);
-        $textPopulation->getLength()->willReturn(3);
+        $textPopulation->getIndividualCount()->willReturn(3);
         $textPopulation->sort()->willReturn(null);
 
         $this->textPopulation = $textPopulation;

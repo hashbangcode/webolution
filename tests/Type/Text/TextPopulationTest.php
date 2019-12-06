@@ -12,35 +12,35 @@ class TextPopulationTest extends TestCase
     public function testEmptyPopulation()
     {
         $population = new TextPopulation();
-        $this->assertEquals(0, $population->getLength());
+        $this->assertEquals(0, $population->getIndividualCount());
     }
 
     public function testAddItemPopulation()
     {
         $population = new TextPopulation();
         $population->addIndividual();
-        $this->assertEquals(1, $population->getLength());
+        $this->assertEquals(1, $population->getIndividualCount());
     }
 
     public function testGetRandomIndividual()
     {
         $population = new TextPopulation();
         $population->addIndividual();
-        $this->assertEquals(1, $population->getLength());
+        $this->assertEquals(1, $population->getIndividualCount());
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\TextIndividual', $population->getRandomIndividual());
     }
 
     public function testGetRandomIndividualWithEmptyPopulation()
     {
         $population = new TextPopulation();
-        $this->assertEquals(0, $population->getLength());
+        $this->assertEquals(0, $population->getIndividualCount());
         $this->assertFalse($population->getRandomIndividual());
     }
 
     public function testGetRandomIndividualsWithEmptyPopulation()
     {
         $population = new TextPopulation();
-        $this->assertEquals(0, $population->getLength());
+        $this->assertEquals(0, $population->getIndividualCount());
         $this->assertFalse($population->getRandomIndividuals(2));
     }
 
@@ -48,7 +48,7 @@ class TextPopulationTest extends TestCase
     {
         $population = new TextPopulation();
         $population->addIndividual();
-        $this->assertEquals(1, $population->getLength());
+        $this->assertEquals(1, $population->getIndividualCount());
         $this->assertFalse($population->getRandomIndividuals(2));
     }
 
@@ -60,7 +60,7 @@ class TextPopulationTest extends TestCase
         $population->addIndividual();
         $population->addIndividual();
 
-        $this->assertEquals(3, $population->getLength());
+        $this->assertEquals(3, $population->getIndividualCount());
     }
 
     public function testDefaultSort()
@@ -96,6 +96,6 @@ class TextPopulationTest extends TestCase
         foreach ($individuals[0]->getObject() as $text) {
             $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\Text', $text);
         }
-        $this->assertEquals(3, $population->getLength());
+        $this->assertEquals(3, $population->getIndividualCount());
     }
 }

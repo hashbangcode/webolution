@@ -46,7 +46,7 @@ class ColorPopulationDecoratorTestBase extends TestCase
         ];
 
         $colorPopulation->getIndividuals()->willReturn($individuals);
-        $colorPopulation->getLength()->willReturn(3);
+        $colorPopulation->getIndividualCount()->willReturn(3);
         $colorPopulation->sort()->willReturn(null);
 
         $this->colorPopulation = $colorPopulation;
