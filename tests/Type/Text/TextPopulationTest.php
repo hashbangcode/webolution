@@ -9,24 +9,20 @@ use PHPUnit\Framework\TestCase;
 class TextPopulationTest extends TestCase
 {
 
-    public function testEmptyPopulation()
+    public function testPopulationCreationAndSetup()
     {
         $population = new TextPopulation();
         $this->assertEquals(0, $population->getIndividualCount());
-    }
 
-    public function testAddItemPopulation()
-    {
-        $population = new TextPopulation();
         $population->addIndividual();
         $this->assertEquals(1, $population->getIndividualCount());
-    }
 
-    public function testGetRandomIndividual()
-    {
-        $population = new TextPopulation();
         $population->addIndividual();
-        $this->assertEquals(1, $population->getIndividualCount());
+        $this->assertEquals(2, $population->getIndividualCount());
+
+        $population->addIndividual();
+        $this->assertEquals(3, $population->getIndividualCount());
+
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\TextIndividual', $population->getRandomIndividual());
     }
 
@@ -52,17 +48,6 @@ class TextPopulationTest extends TestCase
         $this->assertFalse($population->getRandomIndividuals(2));
     }
 
-    public function testAddItemsToTextPopulation()
-    {
-        $population = new TextPopulation();
-
-        $population->addIndividual();
-        $population->addIndividual();
-        $population->addIndividual();
-
-        $this->assertEquals(3, $population->getIndividualCount());
-    }
-
     public function testDefaultSort()
     {
         $population = new TextPopulation();
@@ -71,6 +56,7 @@ class TextPopulationTest extends TestCase
         $population->addIndividual(TextIndividual::generateFromString('B'));
         $population->addIndividual(TextIndividual::generateFromString('C'));
         $population->addIndividual(TextIndividual::generateFromString('D'));
+        $population->addIndividual(TextIndividual::generateFromString('E'));
         $population->addIndividual(TextIndividual::generateFromString('E'));
 
         $population->sort();
@@ -81,21 +67,44 @@ class TextPopulationTest extends TestCase
         $this->assertEquals('C', $individuals[2]->getObject()->getText());
         $this->assertEquals('D', $individuals[3]->getObject()->getText());
         $this->assertEquals('E', $individuals[4]->getObject()->getText());
+        $this->assertEquals('E', $individuals[5]->getObject()->getText());
     }
 
-    public function testPopulationLength()
+    public function testPopulationCrossoverOnEmptyPopulation()
+    {
+        $population = new TextPopulation();
+        $population->crossover();
+        $this->assertEquals(0, $population->getIndividualCount());
+
+        $population->addIndividual(TextIndividual::generateFromString('A'));
+
+        $population->crossover();
+        $this->assertEquals(2, $population->getIndividualCount());
+    }
+
+    public function testPopulationCrossoverWithEqualStrings()
     {
         $population = new TextPopulation();
 
-        $population->addIndividual(TextIndividual::generateRandomTextIndividual());
-        $population->addIndividual(TextIndividual::generateRandomTextIndividual());
-        $population->addIndividual(TextIndividual::generateRandomTextIndividual());
+        $population->addIndividual(TextIndividual::generateFromString('ABCD'));
+        $population->addIndividual(TextIndividual::generateFromString('EFGH'));
 
-        $individuals = $population->getIndividuals();
+        $population->crossover();
 
-        foreach ($individuals[0]->getObject() as $text) {
-            $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\Text', $text);
-        }
+        $this->assertEquals('EBGD', $population->getIndividuals()[2]->getObject()->getText());
+        $this->assertEquals(3, $population->getIndividualCount());
+    }
+
+    public function testPopulationCrossoverWithUnequalStrings()
+    {
+        $population = new TextPopulation();
+
+        $population->addIndividual(TextIndividual::generateFromString('ABCD'));
+        $population->addIndividual(TextIndividual::generateFromString('EFGHIJK'));
+
+        $population->crossover();
+
+        $this->assertEquals('AFCHIJK', $population->getIndividuals()[2]->getObject()->getText());
         $this->assertEquals(3, $population->getIndividualCount());
     }
 }

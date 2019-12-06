@@ -45,18 +45,19 @@ class TextPopulation extends Population
      */
     public function crossover()
     {
-        // Get two individuals from the population.
-        $individuals = $this->getRandomIndividuals(2);
+        if ($this->getIndividualCount() == 0) {
+            return;
+        }
 
-        // Make sure we have Individuals to use.
-        if ($individuals == false) {
+        if ($this->getIndividualCount() == 1) {
             // Add a clone of a individual individual.
             $randomIndividual = $this->getRandomIndividual();
             $this->addIndividual(clone $randomIndividual);
-
-            // Don't do anything else.
             return;
         }
+
+        // Get two individuals from the population.
+        $individuals = $this->getRandomIndividuals(2);
 
         $text1 = str_split($individuals[0]->getObject()->getText());
         $text2 = str_split($individuals[1]->getObject()->getText());
@@ -66,8 +67,9 @@ class TextPopulation extends Population
         $text1Count = count($text1);
         $text2Count = count($text2);
 
-
         if ($text1Count >= $text2Count) {
+            // If text 1 length is equal to or greater than text 2 length then splice the strings
+            // together starting from text 1.
             foreach ($text1 as $id => $letter) {
                 if ($id % 2 || !isset($text2[$id])) {
                     $newText .= $text1[$id];
@@ -76,6 +78,8 @@ class TextPopulation extends Population
                 }
             }
         } elseif ($text1Count < $text2Count) {
+            // If text 1 length is less than text 2 length then splice the strings
+            // together starting from text 2.
             foreach ($text2 as $id => $letter) {
                 if ($id % 2 || !isset($text1[$id])) {
                     $newText .= $text2[$id];
