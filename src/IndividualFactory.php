@@ -41,10 +41,6 @@ class IndividualFactory
         $individualClass .= '\\' . $classType;
         $individualClass .= '\\' . $classType . 'Individual';
 
-        if (!class_exists($individualClass)) {
-            throw new IndividualNotFoundException(' class ' . $individualClass . ' not found.');
-        }
-
         $decorator = new $individualClass($type);
         return $decorator;
     }
