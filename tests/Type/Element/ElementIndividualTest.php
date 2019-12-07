@@ -15,6 +15,10 @@ class ElementIndividualTest extends TestCase
     public function testCreateIndividual()
     {
         $object = new ElementIndividual(new Element('div'));
+
+        $this->assertEquals('1', $object->getName());
+        $this->assertEquals('1', $object->getSpecies());
+
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Element\ElementIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Element\Element', $object->getObject());
     }

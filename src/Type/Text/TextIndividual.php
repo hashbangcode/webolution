@@ -43,6 +43,24 @@ class TextIndividual extends Individual
     /**
      * {@inheritdoc}
      */
+    public function getName(): string
+    {
+        // The name of the TextIndividual is the text value.
+        return $this->getObject()->getText();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSpecies(): string
+    {
+        // The species of the TextIndividual is the crc32 hash value of the string.
+        return (string) crc32($this->getObject()->getText());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         $text = $this->getObject()->getText();
@@ -118,7 +136,7 @@ class TextIndividual extends Individual
     /**
      * {@inheritdoc}
      */
-    public function getFitness($type = '')
+    public function getFitness($type = ''): float
     {
         // Get the text and the fitness goal values.
         $text = str_split($this->getObject()->getText());

@@ -35,6 +35,24 @@ class StyleIndividual extends Individual
     /**
      * {@inheritdoc}
      */
+    public function getName(): string
+    {
+        // The name of the StyleIndividual is the selector name.
+        return $this->getObject()->getSelector();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSpecies(): string
+    {
+        // The species of the StyleIndividual is the number of attributes.
+        return (string) count($this->getObject()->getAttributes());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         // Figure out the action we are going to take.
@@ -326,7 +344,7 @@ class StyleIndividual extends Individual
     /**
      * {@inheritdoc}
      */
-    public function getFitness($type = '')
+    public function getFitness($type = ''): float
     {
         $fitness = 0;
         if ($this->isSelectorId() == false) {

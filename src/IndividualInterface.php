@@ -12,6 +12,22 @@ use Hashbangcode\Webolution\Type\TypeInterface;
 interface IndividualInterface
 {
     /**
+     * Get the name of the individual.
+     *
+     * @return mixed
+     *   The name.
+     */
+    public function getName(): string;
+
+    /**
+     * Get the species of the individual.
+     *
+     * @return string
+     *   The specied name.
+     */
+    public function getSpecies(): string;
+
+    /**
      * Get the underlying Type object.
      *
      * @return \Hashbangcode\Webolution\Type\TypeInterface
@@ -37,8 +53,8 @@ interface IndividualInterface
      * @param string $type
      *   The type of fitness to calculate.
      *
-     * @return int
+     * @return float
      *   The fitness of the individual.
      */
-    public function getFitness($type = '');
+    public function getFitness($type = ''): float;
 }

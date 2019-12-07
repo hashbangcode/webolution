@@ -7,10 +7,10 @@ use PHPUnit\Framework\TestCase;
 
 class TextIndividualTest extends TestCase
 {
-
     public function testCreateIndividual()
     {
         $object = TextIndividual::generateRandomTextIndividual(1);
+        $this->assertEquals(36, strlen($object->getId()));
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\TextIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Text\Text', $object->getObject());
     }
@@ -63,6 +63,10 @@ class TextIndividualTest extends TestCase
     public function testmutateText()
     {
         $object = TextIndividual::generateFromString('abc');
+
+        $this->assertEquals('abc', $object->getName());
+        $this->assertEquals('891568578', $object->getSpecies());
+
         $this->assertEquals('abc', $object->getObject()->getText());
         $object->mutate();
         $this->assertNotEquals('abc', $object->getObject()->getText());

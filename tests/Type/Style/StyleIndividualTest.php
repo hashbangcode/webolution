@@ -33,6 +33,9 @@ class StyleIndividualTest extends TestCase
         $object->addAttribute();
         $attributes = $object->getObject()->getAttributes();
         $this->assertEquals(1, count($attributes));
+
+        $this->assertEquals('.div', $object->getName());
+        $this->assertEquals('1', $object->getSpecies());
     }
 
     public function testIsSelectorId()

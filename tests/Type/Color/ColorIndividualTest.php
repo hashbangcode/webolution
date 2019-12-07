@@ -14,6 +14,11 @@ class ColorIndividualTest extends TestCase
     public function testGenerateFromHex()
     {
         $object = ColorIndividual::generateFromHex('123456');
+
+        $this->assertEquals(36, strlen($object->getId()));
+        $this->assertEquals('123456', $object->getName());
+        $this->assertEquals('210', $object->getSpecies());
+
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\ColorIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Color\Color', $object->getObject());
 

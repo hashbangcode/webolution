@@ -13,7 +13,6 @@ use Hashbangcode\Webolution\Type\TypeInterface;
  */
 class Element implements TypeInterface
 {
-
     use RandomText;
 
     /**
@@ -417,7 +416,7 @@ class Element implements TypeInterface
     }
 
     /**
-     * Extract a selected from an element.
+     * Extract a the most specific selector from the element.
      *
      * @return mixed|string
      *  The selector for the element.

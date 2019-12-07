@@ -48,6 +48,24 @@ class UnitIndividual extends Individual
     /**
      * {@inheritdoc}
      */
+    public function getName(): string
+    {
+        // The name of the UnitIndividual is the unit.
+        return $this->getObject()->getUnit();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSpecies(): string
+    {
+        // The species of the UnitIndividual is the unit
+        return $this->getObject()->getUnit();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         $action = mt_rand(0, 100) + $mutationFactor;
@@ -98,7 +116,7 @@ class UnitIndividual extends Individual
     /**
      * {@inheritdoc}
      */
-    public function getFitness($type = '')
+    public function getFitness($type = ''): float
     {
         // The fitness of this UnitIndividual is the value of the number attribute.
         return $this->getObject()->getNumber();

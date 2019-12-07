@@ -27,6 +27,24 @@ class ElementIndividual extends Individual
 
     /**
      * {@inheritdoc}
+     */
+    public function getName(): string
+    {
+        // The name of the ElementIndividual is the number of elements.
+        return count($this->getObject()->getAllElements());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSpecies(): string
+    {
+        // The species of the ElementIndividual is number of different types.
+        return (string) count($this->getObject()->getAllTypes());
+    }
+
+    /**
+     * {@inheritdoc}
      *
      * Possible actions to take during mutation.
      * - Alter attributes (2/10).
@@ -136,7 +154,7 @@ class ElementIndividual extends Individual
     /**
      * {@inheritdoc}
      */
-    public function getFitness($type = '')
+    public function getFitness($type = ''): float
     {
         $fitness = 0;
 

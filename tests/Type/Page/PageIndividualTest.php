@@ -17,6 +17,9 @@ class PageIndividualTest extends TestCase
     {
         $object = new PageIndividual(new Page(new Element()));
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Page\PageIndividual', $object);
+
+        $this->assertEquals('1', $object->getName());
+        $this->assertEquals('div', $object->getSpecies());
     }
 
     public function testMutateIndividual()

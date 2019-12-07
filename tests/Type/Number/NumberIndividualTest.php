@@ -14,6 +14,9 @@ class NumberIndividualTest extends TestCase
     public function testCreateIndividual()
     {
         $object = NumberIndividual::generateFromNumber(1);
+        $this->assertEquals(36, strlen($object->getId()));
+        $this->assertEquals('1', $object->getName());
+        $this->assertEquals('0', $object->getSpecies());
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Number\NumberIndividual', $object);
         $this->assertInstanceOf('Hashbangcode\Webolution\Type\Number\Number', $object->getObject());
     }
