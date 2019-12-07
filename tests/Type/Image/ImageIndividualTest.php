@@ -50,6 +50,10 @@ class ImageIndividualTest extends TestCase
         $imageMatrix[9][5] = 1;
 
         $image = ImageIndividual::generateFromMatrix($imageMatrix);
+
+        $this->assertEquals('1', $image->getName());
+        $this->assertEquals('1', $image->getSpecies());
+
         $this->assertEquals(1, $image->getFitness('height'));
     }
 

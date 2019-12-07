@@ -11,7 +11,6 @@ namespace Hashbangcode\Webolution\Generator;
  */
 trait RandomText
 {
-
     /**
      * Generate an array of characters containing a-z, A-Z and a space.
      *

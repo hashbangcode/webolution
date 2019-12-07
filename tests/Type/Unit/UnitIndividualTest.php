@@ -17,6 +17,10 @@ class UnitIndividualTest extends TestCase
     public function testMutateNumberThroughIndividual()
     {
         $object = UnitIndividual::generateFromUnitArguments(1, 'px');
+
+        $this->assertEquals('px', $object->getName());
+        $this->assertEquals('px', $object->getSpecies());
+
         $object->mutate(-100, 1);
         $this->assertNotEquals(1, $object->getObject()->getNumber());
     }

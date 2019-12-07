@@ -8,8 +8,9 @@ use Hashbangcode\Webolution\Type\Element\ElementIndividual;
 use Hashbangcode\Webolution\Type\Style\StyleIndividual;
 
 /**
- * Class PageIndividual
- * @package Hashbangcode\Webolution\Individual
+ * Class PageIndividual.
+ *
+ * @package Hashbangcode\Webolution\Page
  */
 class PageIndividual extends Individual
 {
@@ -23,6 +24,24 @@ class PageIndividual extends Individual
     public static function generateBlankPage()
     {
         return new self(new Page());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName(): string
+    {
+        // The name of the PageIndividual.
+        return (string) count($this->getObject()->getBody()->getAllElements());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSpecies(): string
+    {
+        // The species of the PageIndividual.
+        return (string) implode($this->getObject()->getBodyElementTypes());
     }
 
     /**

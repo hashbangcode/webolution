@@ -61,6 +61,25 @@ class NumberIndividual extends Individual
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getName(): string
+    {
+        // The name of the NumberIndividual is simply the number.
+        return (string) $this->getObject()->getNumber();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSpecies(): string
+    {
+        // The species of the NumberIndividual is the floored log of the number.
+        $number = $this->getObject()->getNumber();
+        return (string) floor(log($number));
+    }
+
+    /**
      * Add an amount to the number.
      *
      * @param int|float $mutationAmount

@@ -13,12 +13,14 @@ use Ramsey\Uuid\Uuid;
 abstract class Individual implements IndividualInterface
 {
     /**
-     * @var object The type object.
+     * @var object
+     *   The type object.
      */
     protected $object;
 
     /**
-     * @var string the ID.
+     * @var string
+     *   The ID.
      */
     protected $id;
 

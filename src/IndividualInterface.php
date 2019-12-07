@@ -12,6 +12,22 @@ use Hashbangcode\Webolution\Type\TypeInterface;
 interface IndividualInterface
 {
     /**
+     * Get the name of the individual.
+     *
+     * @return mixed
+     *   The name.
+     */
+    public function getName(): string;
+
+    /**
+     * Get the species of the individual.
+     *
+     * @return string
+     *   The specied name.
+     */
+    public function getSpecies(): string;
+
+    /**
      * Get the underlying Type object.
      *
      * @return \Hashbangcode\Webolution\Type\TypeInterface

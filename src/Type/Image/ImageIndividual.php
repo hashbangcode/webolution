@@ -57,6 +57,24 @@ class ImageIndividual extends Individual
     /**
      * {@inheritdoc}
      */
+    public function getName(): string
+    {
+        // The name of the ImageIndividual is the number of active pixels.
+        return $this->getObject()->getActivePixels();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSpecies(): string
+    {
+        // The species of the ImageIndividual is the height of the image.
+        return (string) $this->getObject()->getHeight();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         $action = mt_rand(0, 100) + $mutationFactor;

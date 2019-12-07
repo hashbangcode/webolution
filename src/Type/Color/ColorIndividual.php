@@ -67,6 +67,24 @@ class ColorIndividual extends Individual
     /**
      * {@inheritdoc}
      */
+    public function getName(): string
+    {
+        // The name of the ColorIndividual is the hex value.
+        return (string) $this->getObject()->getHex();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSpecies(): string
+    {
+        // The species of the ColorIndividual is the the floored hue.
+        return (string) floor($this->getObject()->getHue());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function mutate($mutationFactor = 0, $mutationAmount = 1)
     {
         if (mt_rand(0, 100) < $mutationFactor) {
