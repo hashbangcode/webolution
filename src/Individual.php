@@ -3,6 +3,7 @@
 namespace Hashbangcode\Webolution;
 
 use Hashbangcode\Webolution\Type\TypeInterface;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class Individual.
@@ -17,9 +18,48 @@ abstract class Individual implements IndividualInterface
     protected $object;
 
     /**
+     * @var string the ID.
+     */
+    protected $id;
+
+    /**
+     * Generate the individual unique ID.
+     *
+     * @return string
+     *   The ID.
+     */
+    protected function generateId()
+    {
+        $uuid1 = Uuid::uuid1();
+        $this->setId($uuid1->toString());
+    }
+
+    /**
+     * Get the ID.
+     *
+     * @return string
+     *   The ID.
+     */
+    public function getId() : string
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the ID.
+     *
+     * @param string $id
+     *   The ID.
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * {@inheritdoc}
      */
-    abstract public function getFitness($type = '');
+    abstract public function getFitness($type = ''): float;
 
     /**
      * {@inheritdoc}
@@ -34,6 +74,10 @@ abstract class Individual implements IndividualInterface
      */
     public function __construct(TypeInterface $object)
     {
+        // Generate an ID for this object.
+        $this->generateId();
+
+        // Set the object.
         $this->object = $object;
     }
 
