@@ -118,7 +118,7 @@ class TextIndividual extends Individual
     /**
      * {@inheritdoc}
      */
-    public function getFitness($type = '')
+    public function getFitness($type = ''): float
     {
         // Get the text and the fitness goal values.
         $text = str_split($this->getObject()->getText());

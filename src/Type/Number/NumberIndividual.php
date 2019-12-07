@@ -85,7 +85,7 @@ class NumberIndividual extends Individual
     /**
      * {@inheritdoc}
      */
-    public function getFitness($type = '')
+    public function getFitness($type = ''): float
     {
         // The fitness of a NumberIndividual is literally the value of the number.
         return $this->getObject()->getNumber();

@@ -103,7 +103,7 @@ class ColorIndividual extends Individual
     /**
      * {@inheritdoc}
      */
-    public function getFitness($type = '')
+    public function getFitness($type = ''): float
     {
         // Get the color object.
         $color = $this->getObject();

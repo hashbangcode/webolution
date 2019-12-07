@@ -98,7 +98,7 @@ class ImageIndividual extends Individual
      *
      * For Image types we return the number of "on" pixels in the image.
      */
-    public function getFitness($type = '')
+    public function getFitness($type = ''): float
     {
         switch ($type) {
             case 'height':

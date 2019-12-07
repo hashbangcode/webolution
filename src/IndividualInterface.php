@@ -37,8 +37,8 @@ interface IndividualInterface
      * @param string $type
      *   The type of fitness to calculate.
      *
-     * @return int
+     * @return float
      *   The fitness of the individual.
      */
-    public function getFitness($type = '');
+    public function getFitness($type = ''): float;
 }
