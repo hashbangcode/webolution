@@ -213,12 +213,10 @@ class Image implements TypeInterface
     /**
      * Get the height of the active pixels in the image.
      *
-     * @todo : change the name of this method. it's confusing.
-     *
      * @return int
      *   The height.
      */
-    public function getHeight()
+    public function getPixelHeightFromBottom(): int
     {
         $imageMatrix = $this->getImageMatrix();
         $height = 0;
