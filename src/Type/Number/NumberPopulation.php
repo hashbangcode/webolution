@@ -57,18 +57,19 @@ class NumberPopulation extends Population
      */
     public function crossover()
     {
-        // Get two individuals from the population.
-        $individuals = $this->getRandomIndividuals(2);
+        if ($this->getIndividualCount() == 0) {
+            return;
+        }
 
-        // Make sure we have Individuals to use.
-        if ($individuals == false) {
+        if ($this->getIndividualCount() == 1) {
             // Add a clone of a individual individual.
             $randomIndividual = $this->getRandomIndividual();
             $this->addIndividual(clone $randomIndividual);
-
-            // Don't do anything else.
             return;
         }
+
+        // Get two individuals from the population.
+        $individuals = $this->getRandomIndividuals(2);
 
         $number1 = $individuals[0]->getObject()->getNumber();
         $number2 = $individuals[1]->getObject()->getNumber();
@@ -76,10 +77,7 @@ class NumberPopulation extends Population
         // Create a new number based on the average of the previous numbers..
         $number = round(($number1 + $number2) / 2);
 
-        // Create a new individual.
-        $individualNew = NumberIndividual::generateFromNumber((int) $number);
-
-        // Add the individual to the population.
-        $this->addIndividual($individualNew);
+        // Create a new individual and add the individual to the population.
+        $this->addIndividual(NumberIndividual::generateFromNumber((int) $number));
     }
 }

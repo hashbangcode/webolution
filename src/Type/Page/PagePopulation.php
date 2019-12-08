@@ -53,6 +53,17 @@ class PagePopulation extends Population
      */
     public function crossover()
     {
+        if ($this->getIndividualCount() == 0) {
+            return;
+        }
+
+        if ($this->getIndividualCount() == 1) {
+            // Add a clone of a individual individual.
+            $randomIndividual = $this->getRandomIndividual();
+            $this->addIndividual(clone $randomIndividual);
+            return;
+        }
+
         // Get two individuals from the population.
         $individuals = $this->getRandomIndividuals(2);
 

@@ -4,6 +4,7 @@ namespace Hashbangcode\Webolution\Type\Unit;
 
 use Hashbangcode\Webolution\Population;
 use Hashbangcode\Webolution\Individual;
+use Hashbangcode\Webolution\Type\Image\ImageFactory;
 
 /**
  * Class UnitPopulation.
@@ -63,5 +64,32 @@ class UnitPopulation extends Population
      */
     public function crossover()
     {
+        if ($this->getIndividualCount() == 0) {
+            return;
+        }
+
+        if ($this->getIndividualCount() == 1) {
+            // Add a clone of a individual individual.
+            $randomIndividual = $this->getRandomIndividual();
+            $this->addIndividual(clone $randomIndividual);
+            return;
+        }
+
+        // Get two individuals from the population.
+        $individuals = $this->getRandomIndividuals(2);
+
+        $unit = $individuals[0]->getObject()->getUnit();
+
+        if ($unit == 'auto') {
+            // If the unit is 'auto' then there will be no number so we can only clone the current object.
+            $randomIndividual = $this->getRandomIndividual();
+            $this->addIndividual(clone $randomIndividual);
+            return;
+        }
+
+        $number = $individuals[1]->getObject()->getNumber();
+
+        // Create a new individual using the combined unit and number and add to the population.
+        $this->addIndividual(UnitIndividual::generateFromUnitArguments($number, $unit));
     }
 }
