@@ -2,6 +2,8 @@
 
 namespace Hashbangcode\Webolution\Generator;
 
+use Faker\Factory;
+
 /**
  * Class RandomTextGenerator.
  *
@@ -53,5 +55,29 @@ trait RandomText
             $text .= $charArray[$randItem];
         }
         return $text;
+    }
+
+    /**
+     * Generate a fake title string.
+     *
+     * @return string
+     *   The title.
+     */
+    public static function generateFakeTitle()
+    {
+        $faker = Factory::create();
+        return $faker->words($faker->numberBetween(1, 2), true);
+    }
+
+    /**
+     * Generate a fake paragraph of text.
+     *
+     * @return string
+     *   The paragraph.
+     */
+    public static function generateFakeText()
+    {
+        $faker = Factory::create();
+        return $faker->paragraph($faker->numberBetween(1, 3));
     }
 }

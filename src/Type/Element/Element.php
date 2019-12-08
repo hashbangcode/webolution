@@ -76,15 +76,18 @@ class Element implements TypeInterface
             // This is an object so we store it differently.
             $this->type = false;
             $this->object = $arg;
-        } else {
+        }
+        else {
             // This is a string so we create a normal Element object.
             $this->type = $arg;
-
             if (in_array($arg, $this->getTextTypes())) {
-                // @todo some text elements should create more text than other text elements.
-                // for example, a h1 tag would contain 10-20 characters
-                // a p tag would contain a lot more text.
-                $this->elementText = $this->generateRandomText(15);
+                if (in_array($arg, $this->getHeadingTypes())) {
+                    // This is a heading to add short a block of text.
+                    $this->elementText = $this->generateFakeTitle();
+                } else {
+                    // This is a full text element so add a block of text.
+                    $this->elementText = $this->generateFakeText();
+                }
             }
         }
     }
@@ -107,6 +110,23 @@ class Element implements TypeInterface
             'h5',
             'strong',
             'em',
+        ];
+    }
+
+    /**
+     * Get the types of element that are classed as headings.
+     *
+     * @return array
+     *   The list of headings elements.
+     */
+    public function getHeadingTypes()
+    {
+        return [
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'h5',
         ];
     }
 
