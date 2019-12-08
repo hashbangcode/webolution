@@ -36,6 +36,27 @@ class StylePopulation extends Population
      */
     public function crossover()
     {
-        // @todo implement this.
+        if ($this->getIndividualCount() == 0) {
+            return;
+        }
+
+        if ($this->getIndividualCount() == 1) {
+            // Add a clone of a individual individual.
+            $randomIndividual = $this->getRandomIndividual();
+            $this->addIndividual(clone $randomIndividual);
+            return;
+        }
+
+        // Get two individuals from the population.
+        $individuals = $this->getRandomIndividuals(2);
+
+        $selector = $individuals[0]->getObject()->getSelector();
+        $attributes = $individuals[1]->getObject()->getAttributes();
+
+        $newStyle = StyleIndividual::generateFromSelector($selector);
+        $newStyle->getObject()->setAttributes($attributes);
+
+        // Create a new individual using the new matrix and add to the population.
+        $this->addIndividual($newStyle);
     }
 }

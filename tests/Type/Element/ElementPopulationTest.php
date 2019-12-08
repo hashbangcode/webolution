@@ -35,4 +35,24 @@ class ElementPopulationTest extends TestCase
             $this->assertEquals('div', $individual->getObject()->getType());
         }
     }
+
+    public function testCrossover()
+    {
+        $population = new ElementPopulation();
+
+        $element1 = ElementIndividual::generateFromElementType('p');
+        $population->addIndividual($element1);
+
+        $element2 = ElementIndividual::generateFromElementType('div');
+        $population->addIndividual($element2);
+
+        $this->assertEquals(2, $population->getIndividualCount());
+
+        $population->crossover();
+        $this->assertEquals(3, $population->getIndividualCount());
+
+        $individuals = $population->getIndividuals();
+
+        $this->assertEquals('p', $individuals[2]->getObject()->getType());
+    }
 }
