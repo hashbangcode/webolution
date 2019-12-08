@@ -211,7 +211,7 @@ class ImageTest extends TestCase
         $image->setPixel(3, 2, 1);
         $image->setPixel(4, 2, 1);
 
-        $this->assertEquals(2, $image->getHeight());
+        $this->assertEquals(2, $image->getPixelHeightFromBottom());
     }
 
     public function testGetHeightComplex()
@@ -241,6 +241,6 @@ class ImageTest extends TestCase
         $image->setPixel(7, 9, 1);
         $image->setPixel(5, 0, 1);
 
-        $this->assertEquals(6, $image->getHeight());
+        $this->assertEquals(6, $image->getPixelHeightFromBottom());
     }
 }

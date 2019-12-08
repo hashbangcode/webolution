@@ -89,12 +89,12 @@ class ImagePopulationTest extends TestCase
 
         // Ensure that the keys are still in the same locations.
         $images = $object->getIndividuals();
-        $this->assertEquals(6, $images[0]->getObject()->getHeight());
-        $this->assertEquals(3, $images[1]->getObject()->getHeight());
-        $this->assertEquals(2, $images[2]->getObject()->getHeight());
-        $this->assertEquals(5, $images[3]->getObject()->getHeight());
-        $this->assertEquals(1, $images[4]->getObject()->getHeight());
-        $this->assertEquals(4, $images[5]->getObject()->getHeight());
+        $this->assertEquals(6, $images[0]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(3, $images[1]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(2, $images[2]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(5, $images[3]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(1, $images[4]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(4, $images[5]->getObject()->getPixelHeightFromBottom());
 
         // Transpose the images into a sorted array so we can test sort order.
         $sortedImages = [];
@@ -102,12 +102,12 @@ class ImagePopulationTest extends TestCase
           $sortedImages[] = $image;
         }
 
-        $this->assertEquals(1, $sortedImages[0]->getObject()->getHeight());
-        $this->assertEquals(2, $sortedImages[1]->getObject()->getHeight());
-        $this->assertEquals(3, $sortedImages[2]->getObject()->getHeight());
-        $this->assertEquals(4, $sortedImages[3]->getObject()->getHeight());
-        $this->assertEquals(5, $sortedImages[4]->getObject()->getHeight());
-        $this->assertEquals(6, $sortedImages[5]->getObject()->getHeight());
+        $this->assertEquals(1, $sortedImages[0]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(2, $sortedImages[1]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(3, $sortedImages[2]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(4, $sortedImages[3]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(5, $sortedImages[4]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(6, $sortedImages[5]->getObject()->getPixelHeightFromBottom());
 
         $object->sort('DESC');
         $images = $object->getIndividuals();
@@ -118,11 +118,11 @@ class ImagePopulationTest extends TestCase
           $sortedImages[] = $image;
         }
 
-        $this->assertEquals(6, $sortedImages[0]->getObject()->getHeight());
-        $this->assertEquals(5, $sortedImages[1]->getObject()->getHeight());
-        $this->assertEquals(4, $sortedImages[2]->getObject()->getHeight());
-        $this->assertEquals(3, $sortedImages[3]->getObject()->getHeight());
-        $this->assertEquals(2, $sortedImages[4]->getObject()->getHeight());
-        $this->assertEquals(1, $sortedImages[5]->getObject()->getHeight());
+        $this->assertEquals(6, $sortedImages[0]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(5, $sortedImages[1]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(4, $sortedImages[2]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(3, $sortedImages[3]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(2, $sortedImages[4]->getObject()->getPixelHeightFromBottom());
+        $this->assertEquals(1, $sortedImages[5]->getObject()->getPixelHeightFromBottom());
     }
 }

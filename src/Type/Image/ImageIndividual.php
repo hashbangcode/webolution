@@ -69,7 +69,7 @@ class ImageIndividual extends Individual
     public function getSpecies(): string
     {
         // The species of the ImageIndividual is the height of the image.
-        return (string) $this->getObject()->getHeight();
+        return (string) $this->getObject()->getPixelHeightFromBottom();
     }
 
     /**
@@ -120,7 +120,7 @@ class ImageIndividual extends Individual
     {
         switch ($type) {
             case 'height':
-                return $this->getObject()->getHeight();
+                return $this->getObject()->getPixelHeightFromBottom();
             default:
                 return $this->getObject()->getActivePixels();
         }
