@@ -9,9 +9,8 @@ I'm interested in finding out if anyone has looked at this code or has any sugge
 
 Requirements
 ============
-- PHP (preferably 7.1+).
+- PHP (preferably 7.2+).
 - Composer.
-- The PHP Sqlite library is required for the evolution storage.
 
 Structure
 =========
@@ -102,22 +101,12 @@ Next steps
 ==========
 Some things that need to happen.
 
-- Tidy up the code. Lots of missing comments and messy looking bits.
-- Use constants instead of lots of strings being passed around.
 - Have a look at performance. Lots of objects being created can use up a lot of memory maybe look at only storing the top (or bottom) individuals in a population instead of everything.
 - The way in which the TextIndividual works out it's fitness is based on an external factor. As such it would be better to abstract that functionality out so that it's not just this class that has this functionality.
-- Refactor the forms in the demo application. The forms are prime for abstraction into a form class or perhaps a Symfony form component.
-- Use the decorator design pattern to render individuals instead of passing the render type as a string.
-- Create a downloader that will allow the full page individuals to be exported as full web pages. This can probably take the form of a decorator or a different renderer type.
-- Find a better way of creating and storing the statistics generated from the evolution process.
-- Print out statistics in the demo application.
-- Add better "random" strings to the HTML elements, perhaps even using a lorem ipsum generator or similar. The current random strings make things look very messy.
 
 Future plans
 ============
 
 - Add a dependency injection container to streamline the use of the application in other applications.
-- Generate a family tree of individuals. Might need to add a uuid to Individuals.
+- Generate a family tree of individuals.
 - Performance testing and improvements.
-- Group Individuals into "species" or "related types".
-- Add graphs of statistics to the demo application.
