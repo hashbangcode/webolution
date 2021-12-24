@@ -48,5 +48,5 @@ nbproject
 
 build
 build/*
-composer.lock
 /vendor/
+.phpunit.result.cache

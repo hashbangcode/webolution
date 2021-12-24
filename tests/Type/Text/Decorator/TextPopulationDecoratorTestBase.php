@@ -11,7 +11,7 @@ class TextPopulationDecoratorTestBase extends TestCase
 
     protected $textPopulation;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
 
@@ -51,7 +51,7 @@ class TextPopulationDecoratorTestBase extends TestCase
         $this->textPopulation = $textPopulation;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

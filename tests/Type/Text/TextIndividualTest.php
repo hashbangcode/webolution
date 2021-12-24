@@ -55,9 +55,9 @@ class TextIndividualTest extends TestCase
 
     public function testGetFitnessWithGoal()
     {
-        $object = TextIndividual::generateRandomTextIndividual('abc');
+        $object = TextIndividual::generateFromString('abc');
         $object->setFitnessGoal('abc');
-        $this->assertEquals(0, $object->getFitness());
+        $this->assertEquals(3, $object->getFitness());
     }
 
     public function testmutateText()

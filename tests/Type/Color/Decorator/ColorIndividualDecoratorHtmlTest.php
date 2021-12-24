@@ -11,7 +11,7 @@ class ColorIndividualDecoratorHtmlTest extends TestCase
 
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -35,7 +35,7 @@ class ColorIndividualDecoratorHtmlTest extends TestCase
         $this->assertEquals('<span style="background-color:#000"> </span>', $render);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

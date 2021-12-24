@@ -10,7 +10,7 @@ class TextIndividualDecoratorHtmlTest extends TestCase
 {
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -34,7 +34,7 @@ class TextIndividualDecoratorHtmlTest extends TestCase
         $this->assertEquals('abc' . '<br>' . PHP_EOL, $render);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

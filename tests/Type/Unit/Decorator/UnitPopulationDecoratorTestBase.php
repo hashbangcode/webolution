@@ -12,7 +12,7 @@ class UnitPopulationDecoratorTestBase extends TestCase
 
     protected $unitPopulation;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
 
@@ -55,7 +55,7 @@ class UnitPopulationDecoratorTestBase extends TestCase
         $this->unitPopulation = $unitPopulation;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

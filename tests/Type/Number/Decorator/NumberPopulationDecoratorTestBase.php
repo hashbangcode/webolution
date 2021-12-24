@@ -13,7 +13,7 @@ class NumberPopulationDecoratorTestBase extends TestCase
 
     protected $numberPopulation;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
 
@@ -53,7 +53,7 @@ class NumberPopulationDecoratorTestBase extends TestCase
         $this->numberPopulation = $numberPopulation;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

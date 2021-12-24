@@ -13,7 +13,7 @@ class ImagePopulationDecoratorTestBase extends TestCase
 
     protected $imagePopulation;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
 
@@ -58,7 +58,7 @@ class ImagePopulationDecoratorTestBase extends TestCase
         $this->imagePopulation = $imagePopulation;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

@@ -12,7 +12,7 @@ class IndividualDecoratorFactoryTest extends TestCase
 {
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }

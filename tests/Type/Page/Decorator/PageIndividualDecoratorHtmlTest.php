@@ -11,7 +11,7 @@ class PageIndividualDecoratorHtmlTest extends TestCase
 
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -94,7 +94,7 @@ class PageIndividualDecoratorHtmlTest extends TestCase
     $this->assertStringEqualsFile(__DIR__ . '/data/page04.html', $output);
   }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

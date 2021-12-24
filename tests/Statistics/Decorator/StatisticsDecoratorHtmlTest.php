@@ -11,7 +11,7 @@ class StatisticsDecoratorHtmlTest extends TestCase
 
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -32,12 +32,12 @@ class StatisticsDecoratorHtmlTest extends TestCase
 
         $statisticsDecorator = new StatisticsDecoratorHtml($statistics->reveal());
         $render = $statisticsDecorator->render();
-        $this->assertContains('<li><strong>Min Fitness:</strong> 1</li>', $render);
-        $this->assertContains('<li><strong>Max Fitness:</strong> 2</li>', $render);
-        $this->assertContains('<li><strong>Mean Fitness:</strong> 3</li>', $render);
+        $this->assertStringContainsString('<li><strong>Min Fitness:</strong> 1</li>', $render);
+        $this->assertStringContainsString('<li><strong>Max Fitness:</strong> 2</li>', $render);
+        $this->assertStringContainsString('<li><strong>Mean Fitness:</strong> 3</li>', $render);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

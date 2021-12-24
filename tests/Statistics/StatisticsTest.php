@@ -11,7 +11,7 @@ class StatisticsTest extends TestCase
 
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -144,7 +144,7 @@ class StatisticsTest extends TestCase
         $this->assertEquals(2, $statistics->getMedianFitnessIndividual()->getFitness());
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

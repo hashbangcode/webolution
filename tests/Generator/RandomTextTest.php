@@ -30,8 +30,8 @@ class RandomTextTest extends TestCase
     {
         $title = $this->generateFakeTitle();
         $this->assertTrue(is_string($title));
-        $this->assertGreaterThan(1, strlen($title));
-        $this->assertLessThan(15, strlen($title));
+        $this->assertGreaterThanOrEqual(1, strlen($title));
+        $this->assertLessThan(50, strlen($title));
     }
 
     public function testGenerateFakeText()

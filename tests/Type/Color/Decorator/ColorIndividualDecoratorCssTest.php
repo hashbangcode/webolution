@@ -11,7 +11,7 @@ class ColorIndividualDecoratorCssTest extends TestCase
 
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -35,7 +35,7 @@ class ColorIndividualDecoratorCssTest extends TestCase
         $this->assertEquals('#000', $render);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

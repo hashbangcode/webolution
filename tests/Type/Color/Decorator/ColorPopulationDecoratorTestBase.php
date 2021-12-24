@@ -12,7 +12,7 @@ class ColorPopulationDecoratorTestBase extends TestCase
 
     protected $colorPopulation;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
 
@@ -52,7 +52,7 @@ class ColorPopulationDecoratorTestBase extends TestCase
         $this->colorPopulation = $colorPopulation;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

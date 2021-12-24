@@ -10,7 +10,7 @@ class StyleIndividualDecoratorCliTest extends TestCase
 {
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -91,7 +91,7 @@ class StyleIndividualDecoratorCliTest extends TestCase
         $this->assertEquals('div.test{background:black;color:red;padding:0px;margin:1px;}', $render);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

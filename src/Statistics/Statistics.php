@@ -49,7 +49,7 @@ class Statistics implements StatisticsInterface
     /**
      * {@inheritdoc}
      */
-    public function getMedianFitness(): int
+    public function getMedianFitness(): float
     {
         return $this->medianFitness;
     }
@@ -57,7 +57,7 @@ class Statistics implements StatisticsInterface
     /**
      * {@inheritdoc}
      */
-    public function setMedianFitness(int $medianFitness)
+    public function setMedianFitness(float $medianFitness)
     {
         $this->medianFitness = $medianFitness;
     }
@@ -82,7 +82,7 @@ class Statistics implements StatisticsInterface
     /**
      * {@inheritdoc}
      */
-    public function getMinFitness(): int
+    public function getMinFitness(): float
     {
         return $this->minFitness;
     }
@@ -90,7 +90,7 @@ class Statistics implements StatisticsInterface
     /**
      * {@inheritdoc}
      */
-    public function setMinFitness(int $minFitness)
+    public function setMinFitness(float $minFitness)
     {
         $this->minFitness = $minFitness;
     }
@@ -98,7 +98,7 @@ class Statistics implements StatisticsInterface
     /**
      * {@inheritdoc}
      */
-    public function getMaxFitness(): int
+    public function getMaxFitness(): float
     {
         return $this->maxFitness;
     }
@@ -106,7 +106,7 @@ class Statistics implements StatisticsInterface
     /**
      * {@inheritdoc}
      */
-    public function setMaxFitness(int $maxFitness)
+    public function setMaxFitness(float $maxFitness)
     {
         $this->maxFitness = $maxFitness;
     }
@@ -127,7 +127,7 @@ class Statistics implements StatisticsInterface
     /**
      * {@inheritdoc}
      */
-    public function getMeanFitness(): int
+    public function getMeanFitness(): float
     {
         return $this->meanFitness;
     }
@@ -135,7 +135,7 @@ class Statistics implements StatisticsInterface
     /**
      * {@inheritdoc}
      */
-    public function setMeanFitness(int $meanFitness)
+    public function setMeanFitness(float $meanFitness)
     {
         $this->meanFitness = $meanFitness;
     }

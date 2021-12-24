@@ -11,7 +11,7 @@ class EvolutionTest extends TestCase
 {
     protected $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -134,7 +134,7 @@ class EvolutionTest extends TestCase
         $colorPopulation->addIndividual();
         $colorPopulation->setDefaultRenderType('cli');
 
-        $this->assertContains('cli', $colorPopulation->getDefaultRenderType());
+        $this->assertStringContainsString('cli', $colorPopulation->getDefaultRenderType());
 
         $evolution = new Evolution($colorPopulation, false);
 
@@ -143,10 +143,10 @@ class EvolutionTest extends TestCase
 
         $output = $evolution->renderGenerations(true, 'cli');
 
-        $this->assertContains('1:', $output);
-        $this->assertContains('2:', $output);
-        $this->assertContains('Min Fitness:', $output);
-        $this->assertContains('Max Fitness:', $output);
+        $this->assertStringContainsString('1:', $output);
+        $this->assertStringContainsString('2:', $output);
+        $this->assertStringContainsString('Min Fitness:', $output);
+        $this->assertStringContainsString('Max Fitness:', $output);
     }
 
     public function testEvolutionColorConstructorParameters()

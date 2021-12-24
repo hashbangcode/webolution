@@ -11,6 +11,8 @@ use Hashbangcode\Webolution\Generator\RandomText;
  */
 class TextIndividual extends Individual
 {
+    use RandomText;
+
     /**
      * @var string The fitness goal that the string should aspire to.
      */

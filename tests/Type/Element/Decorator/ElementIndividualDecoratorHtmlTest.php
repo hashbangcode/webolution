@@ -11,7 +11,7 @@ class ElementIndividualDecoratorHtmlTest extends TestCase
 
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -99,7 +99,7 @@ class ElementIndividualDecoratorHtmlTest extends TestCase
         $this->assertEquals('<div class="class"><p></p></div>', $render);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

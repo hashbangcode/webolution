@@ -10,7 +10,7 @@ class UnitIndividualDecoratorHtmlTest extends TestCase
 {
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -54,7 +54,7 @@ class UnitIndividualDecoratorHtmlTest extends TestCase
         ];
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

@@ -11,7 +11,7 @@ class ImageIndividualDecoratorCliTest extends TestCase
 
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -64,7 +64,7 @@ class ImageIndividualDecoratorCliTest extends TestCase
         $this->assertStringEqualsFile(__DIR__ . '/data/image02.txt', $render);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

@@ -14,18 +14,18 @@ interface StatisticsInterface
     /**
      * Get the median fitness.
      *
-     * @return int
+     * @return float
      *   The median fitness.
      */
-    public function getMedianFitness(): int;
+    public function getMedianFitness(): float;
 
     /**
      * Set the median fitness.
      *
-     * @param int $medianFitness
+     * @param float $medianFitness
      *   The median fitness.
      */
-    public function setMedianFitness(int $medianFitness);
+    public function setMedianFitness(float $medianFitness);
 
     /**
      * Get the median fitness individual.
@@ -46,34 +46,34 @@ interface StatisticsInterface
     /**
      * Get min fitness.
      *
-     * @return int
+     * @return float
      *   The min fitness.
      */
-    public function getMinFitness(): int;
+    public function getMinFitness(): float;
 
     /**
      * Set the min fitness.
      *
-     * @param int $minFitness
+     * @param float $minFitness
      *   The min fitness.
      */
-    public function setMinFitness(int $minFitness);
+    public function setMinFitness(float $minFitness);
 
     /**
      * Get the max fitness.
      *
-     * @return int
+     * @return float
      *   The max fitness.
      */
-    public function getMaxFitness(): int;
+    public function getMaxFitness(): float;
 
     /**
      * Set the max fitness.
      *
-     * @param int $maxFitness
+     * @param float $maxFitness
      *   The max fitness to set.
      */
-    public function setMaxFitness(int $maxFitness);
+    public function setMaxFitness(float $maxFitness);
 
     /**
      * Using a population, calculate the mean fitness.
@@ -90,18 +90,18 @@ interface StatisticsInterface
     /**
      * Get the mean fitness.
      *
-     * @return int
+     * @return float
      *   The mean fitness.
      */
-    public function getMeanFitness(): int;
+    public function getMeanFitness(): float;
 
     /**
      * Set the mean fitness.
      *
-     * @param int $meanFitness
+     * @param float $meanFitness
      *   The mean fitness.
      */
-    public function setMeanFitness(int $meanFitness);
+    public function setMeanFitness(float $meanFitness);
 
     /**
      * Extract the fitness individuals and assign them to min, max and median values.

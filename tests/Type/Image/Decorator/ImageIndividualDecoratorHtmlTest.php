@@ -11,7 +11,7 @@ class ImageIndividualDecoratorHtmlTest extends TestCase
 
     private $prophet;
 
-    public function setup()
+    public function setup(): void
     {
         $this->prophet = new Prophet();
     }
@@ -40,11 +40,11 @@ class ImageIndividualDecoratorHtmlTest extends TestCase
         $render = $objectIndividualDecorator->render();
 
         // Test that the rendered image is +100 the original array size.
-        $this->assertContains('width="110"', $render);
-        $this->assertContains('height="110"', $render);
+        $this->assertStringContainsString('width="110"', $render);
+        $this->assertStringContainsString('height="110"', $render);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->prophet->checkPredictions();
     }

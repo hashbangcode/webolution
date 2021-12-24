@@ -56,7 +56,7 @@ class ElementIndividualTest extends TestCase
             $object->mutateAttribute();
         }
 
-        $this->assertLessThanOrEqual(10, $object->getObject()->getAttributes()['class']);
+        $this->assertLessThanOrEqual(10, strlen($object->getObject()->getAttributes()['class']));
     }
 
     public function testMutateElementChild()

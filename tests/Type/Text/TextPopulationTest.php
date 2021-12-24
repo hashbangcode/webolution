@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 class TextPopulationTest extends TestCase
 {
 
-    public function testPopulationCreationAndSetup()
+    public function testPopulationCreationAndsetup(): void
     {
         $population = new TextPopulation();
         $this->assertEquals(0, $population->getIndividualCount());
