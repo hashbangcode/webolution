@@ -68,9 +68,6 @@ class StyleIndividualDecoratorCliTest extends TestCase
 
         $unitIndividual = new \Hashbangcode\Webolution\Type\Unit\UnitIndividual($unit1->reveal());
 
-        //$unitIndividual = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Unit\UnitIndividual');
-        //$unitIndividual->getObject()->willReturn($unit1->reveal());
-
         $object = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Style\Style');
         $object->getSelector()->willReturn('div.test');
         $object->getAttributes()->willReturn([

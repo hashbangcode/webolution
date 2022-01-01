@@ -73,26 +73,26 @@ class PageIndividualDecoratorHtmlTest extends TestCase
         $this->assertStringEqualsFile(__DIR__ . '/data/page03.html', $output);
     }
 
-  public function testPageCreationWithBodyAndStyleWithColorObject()
-  {
-    $body = new \Hashbangcode\Webolution\Type\Element\Element();
+    public function testPageCreationWithBodyAndStyleWithColorObject()
+    {
+        $body = new \Hashbangcode\Webolution\Type\Element\Element();
 
-    $color = \Hashbangcode\Webolution\Type\Color\ColorIndividual::generateFromHex('2CA02C');
+        $color = \Hashbangcode\Webolution\Type\Color\ColorIndividual::generateFromHex('2CA02C');
 
-    $style = new \Hashbangcode\Webolution\Type\Style\Style('div.test', ['color' => $color]);
+        $style = new \Hashbangcode\Webolution\Type\Style\Style('div.test', ['color' => $color]);
 
-    $page = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Page\Page');
-    $page->getStyles()->willReturn([$style]);
-    $page->getBody()->willReturn($body);
+        $page = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Page\Page');
+        $page->getStyles()->willReturn([$style]);
+        $page->getBody()->willReturn($body);
 
-    $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Page\PageIndividual');
-    $individual->getObject()->willReturn($page);
+        $individual = $this->prophet->prophesize('Hashbangcode\Webolution\Type\Page\PageIndividual');
+        $individual->getObject()->willReturn($page);
 
-    $individualDecorator = new PageIndividualDecoratorHtml($individual->reveal());
-    $output = $individualDecorator->render();
+        $individualDecorator = new PageIndividualDecoratorHtml($individual->reveal());
+        $output = $individualDecorator->render();
 
-    $this->assertStringEqualsFile(__DIR__ . '/data/page04.html', $output);
-  }
+        $this->assertStringEqualsFile(__DIR__ . '/data/page04.html', $output);
+    }
 
     protected function tearDown(): void
     {

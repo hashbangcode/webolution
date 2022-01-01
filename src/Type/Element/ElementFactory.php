@@ -41,7 +41,11 @@ class ElementFactory implements TypeFactoryInterface
             $parentElement->setElementText($dom->firstChild->nodeValue);
         }
 
-        if ($dom->firstChild->hasChildNodes()) {
+        foreach ($dom->firstChild->attributes as $attribute) {
+          $parentElement->setAttribute($attribute->nodeName, $attribute->nodeValue);
+        }
+
+        if ($dom->hasChildNodes()) {
             self::processChildNodes($dom->firstChild->childNodes, $parentElement);
         }
 
@@ -63,18 +67,15 @@ class ElementFactory implements TypeFactoryInterface
         foreach ($childNodes as $childNode) {
             if ($childNode->nodeType === XML_ELEMENT_NODE) {
                 $childElement = new Element($childNode->nodeName);
-
-                if ($childNode->hasChildNodes()) {
-                    if ($childNode->firstChild->nodeType === XML_TEXT_NODE) {
-                        $childElement->setElementText($childNode->nodeValue);
-                    }
-                }
-
                 $parentElement->addChild($childElement);
+            }
 
-                if ($childNode->hasChildNodes()) {
-                    self::processChildNodes($childNode->childNodes, $childElement);
-                }
+            if ($childNode->nodeType === XML_TEXT_NODE) {
+                $parentElement->setElementText($childNode->nodeValue);
+            }
+
+            if ($childNode->hasChildNodes()) {
+                self::processChildNodes($childNode->childNodes, $childElement);
             }
         }
     }
