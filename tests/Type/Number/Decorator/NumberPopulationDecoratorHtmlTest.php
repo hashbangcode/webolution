@@ -18,6 +18,6 @@ class NumberPopulationDecoratorHtmlTest extends NumberPopulationDecoratorTestBas
     {
         $numberPopulationDecorator = new NumberPopulationDecoratorHtml($this->numberPopulation->reveal());
         $render = $numberPopulationDecorator->render();
-        $this->assertEquals(1 . '<br>' . 2 . '<br>' . 3 . '<br>', $render);
+        $this->assertEquals("1, 2, 3", $render);
     }
 }

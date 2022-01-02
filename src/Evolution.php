@@ -456,11 +456,6 @@ class Evolution
             }
         }
 
-        if ($format == 'cli') {
-            // If the format is cli then replace all <br> tags with "\n" symbols.
-            $output = preg_replace('/\<br(\s*)?\/?\>/i', "\n", $output);
-        }
-
         return $output;
     }
 

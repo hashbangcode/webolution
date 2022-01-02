@@ -17,13 +17,13 @@ class NumberPopulationDecoratorCli extends PopulationDecorator
      */
     public function render()
     {
-        $output = '';
+        $numbers = [];
 
         foreach ($this->getPopulation()->getIndividuals() as $individual) {
             $individualDecorator = new NumberIndividualDecoratorCli($individual);
-            $output .= $individualDecorator->render();
+            $numbers[] = $individualDecorator->render();
         }
 
-        return $output;
+        return implode(', ', $numbers);
     }
 }

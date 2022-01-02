@@ -18,6 +18,6 @@ class NumberPopulationDecoratorCliTest extends NumberPopulationDecoratorTestBase
     {
         $numberPopulationDecorator = new NumberPopulationDecoratorCli($this->numberPopulation->reveal());
         $render = $numberPopulationDecorator->render();
-        $this->assertEquals(1 . PHP_EOL . 2 . PHP_EOL . 3 . PHP_EOL, $render);
+        $this->assertEquals("1, 2, 3", $render);
     }
 }

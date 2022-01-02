@@ -9,20 +9,6 @@ use Hashbangcode\Webolution\PopulationDecorator;
  *
  * @package Hashbangcode\Webolution\Type\Number\Decorator
  */
-class NumberPopulationDecoratorHtml extends PopulationDecorator
+class NumberPopulationDecoratorHtml extends NumberPopulationDecoratorCli
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        $output = '';
-
-        foreach ($this->getPopulation()->getIndividuals() as $individual) {
-            $individualDecorator = new NumberIndividualDecoratorHtml($individual);
-            $output .= $individualDecorator->render();
-        }
-
-        return $output;
-    }
 }

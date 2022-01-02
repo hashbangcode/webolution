@@ -16,6 +16,6 @@ class NumberIndividualDecoratorCli extends IndividualDecorator
      */
     public function render()
     {
-        return $this->getIndividual()->getObject()->getNumber() . PHP_EOL;
+        return $this->getIndividual()->getObject()->getNumber();
     }
 }

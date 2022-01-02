@@ -32,7 +32,7 @@ class NumberIndividualDecoratorHtmlTest extends TestCase
 
         $objectIndividualDecorator = new NumberIndividualDecoratorHtml($objectIndividual->reveal());
         $render = $objectIndividualDecorator->render();
-        $this->assertEquals(123 . '<br>', $render);
+        $this->assertEquals(123, $render);
     }
 
     protected function tearDown(): void

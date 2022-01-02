@@ -16,6 +16,6 @@ class NumberIndividualDecoratorHtml extends IndividualDecorator
      */
     public function render()
     {
-        return $this->getIndividual()->getObject()->getNumber() . '<br>';
+        return $this->getIndividual()->getObject()->getNumber();
     }
 }
