@@ -429,17 +429,30 @@ class Evolution
      * @throws \Hashbangcode\Webolution\Exception\PopulationDecoratorNotFoundException
      *   Throws an exception if the decorator is not found.
      */
-    public function renderGenerations($printStats = false, $format = 'html')
+    public function renderGenerations($printStats = false, $format = null)
     {
         $output = '';
 
         /* @var Population $population */
         foreach ($this->previousGenerations as $generation_number => $population) {
+            $format = $format ?? $population->getDefaultRenderType();
+
             // Render the population.
             $populationDecorator = PopulationDecoratorFactory::getPopulationDecorator($population, $format);
-            $output .= $generation_number . ':<br>' . $populationDecorator->render() . PHP_EOL . '<br>';
+
+            switch ($format) {
+                case 'html':
+                    $output .= '<p><strong>' . $generation_number . ':</strong> ' . $populationDecorator->render() . '</p>' . PHP_EOL;
+                    break;
+                case 'cli':
+                    // Deliberate fall through.
+                default:
+                    $output .= $generation_number . ': ' . $populationDecorator->render() . PHP_EOL;
+                    break;
+            }
 
             if ($printStats === true) {
+                // Render statistics.
                 $statistics = $population->getStatistics();
 
                 switch ($format) {
@@ -454,6 +467,7 @@ class Evolution
                 }
                 $output .= $statisticsDecorator->render();
             }
+            $output .= PHP_EOL;
         }
 
         return $output;

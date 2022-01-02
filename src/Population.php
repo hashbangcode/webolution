@@ -32,7 +32,7 @@ abstract class Population implements PopulationInterface
      *
      * @var string
      */
-    protected $defaultRenderType = '';
+    protected $defaultRenderType = 'html';
 
     /**
      * The population fitness.
@@ -179,10 +179,13 @@ abstract class Population implements PopulationInterface
 
         // @todo : instead of this being true random it needs to be slanted towards those individuals who are fitter.
         $random_keys = array_rand($this->individuals, $number);
-        return [
-            0 => $this->individuals[$random_keys[0]],
-            1 => $this->individuals[$random_keys[1]],
-        ];
+        $return = [];
+
+        foreach ($random_keys as $key) {
+          $return[] = $this->individuals[$key];
+        }
+
+        return $return;
     }
 
     /**

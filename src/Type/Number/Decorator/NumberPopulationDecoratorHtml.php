@@ -11,4 +11,18 @@ use Hashbangcode\Webolution\PopulationDecorator;
  */
 class NumberPopulationDecoratorHtml extends NumberPopulationDecoratorCli
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function render()
+    {
+        $numbers = [];
+
+        foreach ($this->getPopulation()->getIndividuals() as $individual) {
+            $individualDecorator = new NumberIndividualDecoratorCli($individual);
+            $numbers[] = $individualDecorator->render();
+        }
+
+        return implode(', ', $numbers);
+    }
 }
