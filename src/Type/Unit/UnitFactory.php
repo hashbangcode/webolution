@@ -18,7 +18,7 @@ class UnitFactory implements TypeFactoryInterface
      */
     public static function generateRandom(): TypeInterface
     {
-        $number = mt_rand(1, 500);
+        $number = mt_rand(1, 10);
         $units = ['px', 'em', '%', 'auto'];
         $unit = $units[array_rand($units)];
         return new Unit($number, $unit);
